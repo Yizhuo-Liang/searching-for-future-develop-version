@@ -1,37 +1,14 @@
-Welcome to Glitch
-=================
+# p5.js template
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
+Click **"Remix to edit"** that appears at the right top corner!
 
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
+[p5.js](https://p5js.org) is a Javascript library for creative coding.
 
-Find out more [about Glitch](https://glitch.com/about).
+This project is a template for using p5.js from a Content Delivery Network
+(CDN).
 
+## License
 
-Your Project
-------------
-
-### ← README.md
-
-That's this file, where you can tell people what your cool website does and how you built it.
-
-### ← index.html
-
-Where you'll write the content of your website. 
-
-### ← style.css
-
-CSS files add styling rules to your content.
-
-### ← script.js
-
-If you're feeling fancy you can add interactivity to your site with JavaScript.
-
-### ← assets
-
-Drag in `assets`, like images or music, to add them to your project
-
-Made by [Glitch](https://glitch.com/)
--------------------
-
-\ ゜o゜)ノ
+This work is licensed under a [Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International
+License](http://creativecommons.org/licenses/by-nc-sa/4.0/).

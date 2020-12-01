@@ -1,12 +1,5 @@
-let data;
-
-function preload() {
-    data = loadJSON("https://openprocessing-usercontent.s3.amazonaws.com/files/user201396/visual1029706/h4ef8ca9a5689a9f7fd1155ef9ab7d6af/pose.json");
-}
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  console.info(data);
 }
 
 function draw() {

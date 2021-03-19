@@ -2,19 +2,32 @@ let particles;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  colorMode(HSB);
   particles = [];
-  for (let i = 0; i < 200; i++) {
-    let particle = createParticle(random(width), random(height));
-    particles.push(particle);
-  }
+  // for (let i = 0; i < 200; i++) {
+  //   let particle = createParticle(random(width), random(height));
+  //   particles.push(particle);
+  // }
 }
 
 function draw() {
   background(20);
-
+  
+  particles = particles.filter(particleIsNotTooOld);
+  while (particles.length < 100) {
+    let particle = createParticle(random(width), random(height));
+    particles.push(particle);
+  }
+  
+  if (mouseIsPressed) {
+    let particle = createParticle(mouseX, mouseY);
+    particles.push(particle);
+  }
+  
   for (let particle of particles) {
     moveParticle(particle);
     drawParticle(particle);
+    ageParticle(particle);
   }
 }
 
@@ -28,8 +41,10 @@ function createParticle(x, y) {
     x: x,
     y: y,
     size: 10,
-    dx: random(-10, 1),
+    dx: random(-1, 1),
     dy: random(-1, 1),
+    age: random(10),
+    hue: random(60),
   };
   return particle;
 }
@@ -41,7 +56,16 @@ function moveParticle(particle) {
 
 function drawParticle(particle) {
   noStroke();
+  fill(particle.hue, 100, 100);
   circle(particle.x, particle.y, particle.size);
+}
+
+function ageParticle(particle) {
+  particle.age += 1;
+}
+
+function particleIsNotTooOld(particle) {
+  return particle.age < 100;
 }
 
 function closeToMouse(particle) {

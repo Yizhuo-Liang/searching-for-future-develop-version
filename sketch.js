@@ -14,10 +14,10 @@ function draw() {
   background(20);
   
   particles = particles.filter(particleIsNotTooOld);
-  while (particles.length < 100) {
-    let particle = createParticle(random(width), random(height));
-    particles.push(particle);
-  }
+  // while (particles.length < 100) {
+  //   let particle = createParticle(random(width), random(height));
+  //   particles.push(particle);
+  // }j
   
   if (mouseIsPressed) {
     let particle = createParticle(mouseX, mouseY);
@@ -28,6 +28,12 @@ function draw() {
     moveParticle(particle);
     drawParticle(particle);
     ageParticle(particle);
+  }
+  
+  if (particles.length > 0 && random() < 0.50) {
+    let basis = random(particles);
+    let copy = createParticle(basis.x, basis.y);
+    particles.push(copy);
   }
 }
 
@@ -40,11 +46,11 @@ function createParticle(x, y) {
   let particle = {
     x: x,
     y: y,
-    size: 10,
+    size: random(5, 15),
     dx: random(-1, 1),
     dy: random(-1, 1),
     age: random(10),
-    hue: random(60),
+    hue: 120 + random(60),
   };
   return particle;
 }
@@ -55,8 +61,8 @@ function moveParticle(particle) {
 }
 
 function drawParticle(particle) {
-  noStroke();
-  fill(particle.hue, 100, 100);
+  noFill();
+  stroke(particle.hue, 100, 100);
   circle(particle.x, particle.y, particle.size);
 }
 

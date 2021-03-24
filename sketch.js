@@ -36,13 +36,14 @@ function draw() {
   // pop();
 }
 
-// Plannet class introduction:
+// Planet class introduction:
 // 1. constructor has 5 arguments
 // 2. x, y, z denotes the position of the plannet where radius is simply the radius
 // 3. number of rings can be either 0, 1, or 2
 // 4. move() function has 3 arguments which are increment amount of x, y, z
 // 5. draw() can be used to draw the plannet directly on its position
 
+//BEGINNING OF PLANET
 class Planet {
   constructor(x, y, z, radius, rings) {
     this.x = x;
@@ -82,12 +83,18 @@ class Planet {
     pop();
     push();
     rotateY(-1.1 * (PI / 2));
-    if (this.rings >= 2) circle(0, 0, 5 * this.radius * random(0.95, 1.05));
+    if (this.rings >= 2) {
+      circle(0, 0, 5 * this.radius * random(0.95, 1.05));
+    }
+    pop();
     pop();
     pop();
   }
+}
+//END OF PLANET
 
-class blackhole {
+//BEGINNNING OF BLACKHOLE
+class Blackhole {
   constructor(x, y, z, size, mass) {
     this.x = x;
     this.y = y;
@@ -120,3 +127,6 @@ class blackhole {
     pop();
   }
 }
+// END OF BLACKHOLE
+
+

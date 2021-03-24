@@ -8,8 +8,10 @@ let z = 10;
 let theta = 0;
 let angle = 0;
 
+
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
+  camZ = (height/2.0) / tan(30.0);
   detail = createSlider(3, 24, 14);
   detail.position(10, height - 30);
   detail.style("width", "80px");
@@ -132,24 +134,29 @@ class Blackhole {
 // END OF BLACKHOLE
 
 
+//Start of moveAround()
 let camX = 0;
 let camY = 0;
-let camZ = (height/2.0) / tan(PI*30.0 / 180.0);
+let camZ;
 function moveAround(){  
-  camera(camX, camY, camZ);
-}
-
-function keyPressed() {
-  if (keyCode === UP_ARROW) {
-    camX += 10;
-  } 
-  else if (keyCode === DOWN_ARROW) {
-    camX -= 10;
-  } 
-  else if (keyCode === LEFT_ARROW) {
-    camY -= 10;
-  } 
-  else if (keyCode === RIGHT_ARROW) {
-    camY += 10;
+	if (keyIsDown(LEFT_ARROW)) {
+    camX -= 5;
   }
+  if (keyIsDown(RIGHT_ARROW)) {
+    camX += 5;
+  }
+  if (keyIsDown(UP_ARROW)) {
+    camY -= 5;
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    camY += 5;
+  }
+	if (keyIsDown(107) || keyIsDown(187)){
+		camZ -= 5
+	}
+	if (keyIsDown(109) || keyIsDown(189)){
+		camZ += 5
+	}
+  camera(camX, camY, camZ, camX, camY, camZ - 100);
 }
+//End of moveAround()

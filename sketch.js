@@ -34,6 +34,7 @@ function draw() {
   // x = 400 * cos(theta);
   // y = 200 * sin(theta);
   // pop();
+  console.log(camX, camY, camZ);
 }
 
 // Planet class introduction:
@@ -130,3 +131,24 @@ class Blackhole {
 // END OF BLACKHOLE
 
 
+let camX = 0;
+let camY = 0;
+let camZ = 0;
+function moveAround(){  
+  
+}
+
+function keyPressed() {
+  if (value === 'w') {
+    camX += 1;
+  } 
+  else if (value === 's') {
+    camX -= 1;
+  } 
+  else if (value === 'a') {
+    camY -= 1;
+  } 
+  else if (value === 'd') {
+    camY += 1;
+  }
+}

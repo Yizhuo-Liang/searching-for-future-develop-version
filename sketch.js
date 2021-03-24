@@ -18,22 +18,23 @@ function setup() {
 
 function draw() {
   background(0);
-  // saturn = new Planet(50, 50, 50, 40, 1);
-  // pluto = new Planet(-150, -100, 20, 25, 2);
-  // mars = new Planet(-200, 150, 0, 15, 0);
-  // saturn.draw();
-  // pluto.draw();
-  // mars.draw();
-  // push();
-  // blackhole1 = new blackhole(50+x, 200+y, 106,1/2);
-  // pop();
-  // blackhole2 = new blackhole(50, 200, 106,1);
-  // blackhole1.draw();
-  // blackhole2.draw();
-  // theta =frameCount/100
-  // x = 400 * cos(theta);
-  // y = 200 * sin(theta);
-  // pop();
+  saturn = new Planet(50, 50, 50, 40, 1);
+  pluto = new Planet(-150, -100, 20, 25, 2);
+  mars = new Planet(-200, 150, 0, 15, 0);
+  saturn.draw();
+  pluto.draw();
+  mars.draw();
+  push();
+  blackhole1 = new blackhole(50+x, 200+y, 106,1/2);
+  pop();
+  blackhole2 = new blackhole(50, 200, 106,1);
+  blackhole1.draw();
+  blackhole2.draw();
+  theta =frameCount/100
+  x = 400 * cos(theta);
+  y = 200 * sin(theta);
+  pop();
+  moveAround();
   console.log(camX, camY, camZ);
 }
 
@@ -133,22 +134,22 @@ class Blackhole {
 
 let camX = 0;
 let camY = 0;
-let camZ = 0;
+let camZ = (height/2.0) / tan(PI*30.0 / 180.0);
 function moveAround(){  
-  
+  camera(camX, camY, camZ);
 }
 
 function keyPressed() {
-  if (value === 'w') {
-    camX += 1;
+  if (keyCode === UP_ARROW) {
+    camX += 10;
   } 
-  else if (value === 's') {
-    camX -= 1;
+  else if (keyCode === DOWN_ARROW) {
+    camX -= 10;
   } 
-  else if (value === 'a') {
-    camY -= 1;
+  else if (keyCode === LEFT_ARROW) {
+    camY -= 10;
   } 
-  else if (value === 'd') {
-    camY += 1;
+  else if (keyCode === RIGHT_ARROW) {
+    camY += 10;
   }
 }

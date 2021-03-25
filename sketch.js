@@ -12,22 +12,22 @@ let angle = 0;
 
 let spaceship;
 function preload() {
-  spaceship = loadModel('https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fspaceship.obj?v=1616637037535');
+  spaceship = loadModel(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fspaceship.obj?v=1616637037535"
+  );
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   _W = windowWidth;
   _H = windowHeight;
-  camZ = (height/2.0) / tan(30.0);
-  
+  camZ = height / 2.0 / tan(30.0);
+
   detail = createSlider(3, 24, 14);
   detail.position(10, height - 30);
   detail.style("width", "80px");
   frameRate(30);
 }
-
-
 
 // Planet class introduction:
 // 1. constructor has 5 arguments
@@ -122,13 +122,12 @@ class Blackhole {
 }
 // END OF BLACKHOLE
 
-
 //Start of moveAround()
 let camX = 0;
 let camY = 0;
 let camZ;
-function moveAround(){  
-	if (keyIsDown(LEFT_ARROW)) {
+function moveAround() {
+  if (keyIsDown(LEFT_ARROW)) {
     camX -= 5;
   }
   if (keyIsDown(RIGHT_ARROW)) {
@@ -140,12 +139,12 @@ function moveAround(){
   if (keyIsDown(DOWN_ARROW)) {
     camY += 5;
   }
-	if (keyIsDown(107) || keyIsDown(187)){
-		camZ -= 5
-	}
-	if (keyIsDown(109) || keyIsDown(189)){
-		camZ += 5
-	}
+  if (keyIsDown(107) || keyIsDown(187)) {
+    camZ -= 5;
+  }
+  if (keyIsDown(109) || keyIsDown(189)) {
+    camZ += 5;
+  }
   camera(camX, camY, camZ, camX, camY, camZ - 100);
 }
 //End of moveAround()

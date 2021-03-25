@@ -2,12 +2,19 @@ MVP:
 Scene 1:
 1) Planet with img, randomly generated as camera move across
 2) Spaceship move with position (okay)
-3) Collision detection
-4) class score board
+3) Collision detection (Coulson)
+4) class score board (Coulson)
 
 Scene 2:
 1) class status (alive or dead or respawn)\
-2) new scene: display score and ask play again (p)
-30
+2) explosion effect
+3) new scene: display score and ask "press p play again"
+
+Next:
+1) Gravity
+2) Sound
+3) Decorative: comet, stars 
+4) Success parameter: layer with light
+5) 
 
 Explosion, layer 

@@ -13,7 +13,7 @@ let angle = 0;
 let spaceship;
 function preload() {
   spaceship = loadModel(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fspaceship.obj?v=1616637037535"
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fspaceship3.obj?v=1616643844367"
   );
 }
 
@@ -21,12 +21,11 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   _W = windowWidth;
   _H = windowHeight;
-  camZ = height / 2.0 / tan(30.0);
-
-  detail = createSlider(3, 24, 14);
-  detail.position(10, height - 30);
-  detail.style("width", "80px");
-  frameRate(30);
+  camZ = (height / 2.0 )/ tan(30.0);
+  // detail = createSlider(3, 24, 14);
+  // detail.position(10, height - 30);
+  // detail.style("width", "80px");
+  // frameRate(30);
 }
 
 // Planet class introduction:

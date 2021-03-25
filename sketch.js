@@ -166,3 +166,4 @@ function draw() {
   moveAround();
   console.log(camX, camY, camZ);
 }
+

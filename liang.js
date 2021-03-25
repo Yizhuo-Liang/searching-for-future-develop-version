@@ -25,9 +25,7 @@ function draw() {
 // 5. draw() can be used to draw the plannet directly on its position
 
 class Planet {
-	
 	constructor(x, y, z, radius, rings) {
-		
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -52,7 +50,7 @@ class Planet {
 		noFill();
 		stroke(220);
 		strokeWeight(0.5);
-		rotateY(millis() / 2500);
+		// rotateY(millis() / 2500);
 		sphere(this.radius, 24, detail.value());
 		noFill();
 		stroke(255);

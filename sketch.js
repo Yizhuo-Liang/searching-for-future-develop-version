@@ -7,7 +7,10 @@ let z = 10;
 let theta = 0;
 let angle = 0;
 
-
+let spaceship;
+function preload() {
+  spaceship = loadModel('Quarren Coyote Ship.obj')
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -159,6 +162,7 @@ function draw() {
   // x = 400 * cos(theta);
   // y = 200 * sin(theta);
   // pop();
+  model(spaceship);
   moveAround();
   console.log(camX, camY, camZ);
 }

@@ -1,5 +1,4 @@
 let particles;
-let detail;
 let x = 0;
 let y = 0;
 let realx = 0;
@@ -7,6 +6,7 @@ let realy = 0;
 let z = 10;
 let theta = 0;
 let angle = 0;
+
 
 
 function setup() {
@@ -18,31 +18,11 @@ function setup() {
   frameRate(30);
 }
 
-function draw() {
-  background(0);
-  saturn = new Planet(50, 50, 50, 40, 1);
-  pluto = new Planet(-150, -100, 20, 25, 2);
-  mars = new Planet(-200, 150, 0, 15, 0);
-  saturn.draw();
-  pluto.draw();
-  mars.draw();
-  push();
-  blackhole1 = new blackhole(50+x, 200+y, 106,1/2);
-  pop();
-  blackhole2 = new blackhole(50, 200, 106,1);
-  blackhole1.draw();
-  blackhole2.draw();
-  theta =frameCount/100
-  x = 400 * cos(theta);
-  y = 200 * sin(theta);
-  pop();
-  moveAround();
-  console.log(camX, camY, camZ);
-}
+
 
 // Planet class introduction:
 // 1. constructor has 5 arguments
-// 2. x, y, z denotes the position of the plannet where radius is simply the radius
+// 2. x, y, z denotes the position of the plannet with radius
 // 3. number of rings can be either 0, 1, or 2
 // 4. move() function has 3 arguments which are increment amount of x, y, z
 // 5. draw() can be used to draw the plannet directly on its position
@@ -160,3 +140,25 @@ function moveAround(){
   camera(camX, camY, camZ, camX, camY, camZ - 100);
 }
 //End of moveAround()
+
+function draw() {
+  background(0);
+  // saturn = new Planet(50, 50, 50, 40, 1);
+  // pluto = new Planet(-150, -100, 20, 25, 2);
+  // mars = new Planet(-200, 150, 0, 15, 0);
+  // saturn.draw();
+  // pluto.draw();
+  // mars.draw();
+  // push();
+  // blackhole1 = new blackhole(50+x, 200+y, 106,1/2);
+  // pop();
+  // blackhole2 = new blackhole(50, 200, 106,1);
+  // blackhole1.draw();
+  // blackhole2.draw();
+  // theta =frameCount/100
+  // x = 400 * cos(theta);
+  // y = 200 * sin(theta);
+  // pop();
+  moveAround();
+  console.log(camX, camY, camZ);
+}

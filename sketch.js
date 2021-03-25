@@ -9,7 +9,7 @@ let angle = 0;
 
 let spaceship;
 function preload() {
-  spaceship = loadModel('Quarren Coyote Ship.obj')
+  spaceship = loadModel('spaceship.obj')
 }
 
 function setup() {

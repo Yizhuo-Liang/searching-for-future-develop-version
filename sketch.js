@@ -1,3 +1,6 @@
+let _W;
+let _H;
+
 let particles;
 let x = 0;
 let y = 0;
@@ -14,7 +17,10 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
+  _W = windowWidth;
+  _H = windowHeight;
   camZ = (height/2.0) / tan(30.0);
+  
   detail = createSlider(3, 24, 14);
   detail.position(10, height - 30);
   detail.style("width", "80px");

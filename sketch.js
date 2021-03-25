@@ -12,7 +12,7 @@ let angle = 0;
 
 let spaceship;
 function preload() {
-  spaceship = loadModel('spaceship.obj');
+  spaceship = loadModel('https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fspaceship.obj?v=1616637037535');
 }
 
 function setup() {

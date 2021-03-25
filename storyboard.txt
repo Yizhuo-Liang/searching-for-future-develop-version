@@ -1,0 +1,13 @@
+MVP:
+Scene 1:
+1) Planet with img, randomly generated as camera move across
+2) Spaceship move with position (okay)
+3) Collision detection
+4) class score board
+
+Scene 2:
+1) class status (alive or dead or respawn)\
+2) new scene: display score and ask play again (p)
+30
+
+Explosion, layer 

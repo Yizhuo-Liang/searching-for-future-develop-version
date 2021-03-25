@@ -1,2 +1,6 @@
+Deliverables:
+1) Clashing mechanism
+2) 
+
 24/3:
 [Lucas]: Added movable camera

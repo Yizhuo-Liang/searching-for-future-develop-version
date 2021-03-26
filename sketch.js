@@ -214,8 +214,8 @@ class Spaceship {
   
   draw(){
     push();
-    translate(this.x, this.y, this.z, this.size, this.angle);
-    rotateZ(tilt);
+    translate(this.x, this.y, this.z);
+    rotateZ(this.angle);
     scale(this.size);
     model(this.shipModel);
     pop();
@@ -236,7 +236,7 @@ function draw() {
   // pluto.draw();
   // mars.draw();
   moveAround();
-  ship1 = Spaceship(camX, camY + 150, camZ - 350, 0.4, tilt, spaceship);
+  ship1 = new Spaceship(camX, camY + 150, camZ - 350, 0.4, tilt, spaceship);
   ship1.draw();
   console.info(
     isCollide(new Position(0, 0, 0), new Position(100, 100, 100), 10, 10)

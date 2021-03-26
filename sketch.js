@@ -153,12 +153,12 @@ function moveAround() {
   }
   if (keyIsDown(107) || keyIsDown(187)) {
     camZ -= 5;
-    rotateY -= 5;
+    tiltX += 5;
     triggerX = 1;
   }
   if (keyIsDown(109) || keyIsDown(189)) {
     camZ += 5;
-    rotateY += 5;
+    tiltX -= 5;
     triggerX = 1;
   }
 

@@ -13,7 +13,7 @@ let angle = 0;
 let spaceship;
 
 function preload() {
-  spaceship = loadModel("assets/spaceship.obj");
+  spaceship = loadModel("assets/spaceship2.obj");
 }
 
 function setup() {
@@ -261,9 +261,10 @@ function draw() {
   // pluto.draw();
   // mars.draw();
   moveAround();
-  ship1 = new Spaceship(camX, camY + 150, camZ - 350, 0.4, tiltZ, tiltX, spaceship);
-  ship1.draw();
-  pluto.draw();
+  model(spaceship);
+  // ship1 = new Spaceship(camX, camY + 150, camZ - 350, 0.4, tiltZ, tiltX, spaceship);
+  // ship1.draw();
+  // pluto.draw();
 }
 
 

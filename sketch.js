@@ -65,7 +65,7 @@ class Planet {
     stroke(220);
     strokeWeight(0.5);
     rotateY(millis() / 2500);
-    sphere(this.radius, 24, detail.value());
+    sphere(this.radius, 24, 14);
     noFill();
     stroke(255);
     strokeWeight(3);
@@ -127,19 +127,21 @@ class Blackhole {
 let camX = 0;
 let camY = 0;
 let camZ;
+let tiltZ = 0;
 let tiltX = 0;
 function moveAround() {
-  let trigger = 0;
+  let triggerZ = 0;
+  let triggerX = 0;
   if (keyIsDown(LEFT_ARROW)) {
     camX -= 5;
-    tiltX -= 4;
-    trigger = 1;
+    tiltZ -= 4;
+    triggerZ = 1;
   }
 
   if (keyIsDown(RIGHT_ARROW)) {
     camX += 5;
-    tiltX += 4;
-    trigger = 1;
+    tiltZ += 4;
+    triggerZ = 1;
   }
 
   if (keyIsDown(UP_ARROW)) {
@@ -151,18 +153,37 @@ function moveAround() {
   }
   if (keyIsDown(107) || keyIsDown(187)) {
     camZ -= 5;
+    rotateY -= 5;
+    triggerX = 1;
   }
   if (keyIsDown(109) || keyIsDown(189)) {
     camZ += 5;
+    rotateY += 5;
+    triggerX = 1;
   }
 
-  if (trigger === 0) {
+  if (triggerZ === 0) {
+    if (tiltZ > 0) {
+      tiltZ -= 2;
+    } else if (tiltZ < 0) {
+      tiltZ += 2;
+    }
+  }
+  
+  if (triggerX === 0) {
     if (tiltX > 0) {
       tiltX -= 2;
     } else if (tiltX < 0) {
       tiltX += 2;
     }
   }
+  
+  if (tiltZ > 0) {
+    tiltZ = min(tiltZ, 16);
+  } else if (tiltZ < 0) {
+    tiltZ = max(tiltZ, -16);
+  }
+  
   if (tiltX > 0) {
     tiltX = min(tiltX, 16);
   } else if (tiltX < 0) {
@@ -204,19 +225,21 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
 // End of isCollide()
 
 class Spaceship {
-  constructor(x, y, z, size, angle, shipModel) {
+  constructor(x, y, z, size, angleZ, angleX, shipModel) {
     this.x = x;
     this.y = y;
     this.z = z;
     this.size = size;
-    this.angle = angle;
+    this.angleZ = angleZ;
+    this.angleX = angleX;
     this.shipModel = shipModel;
   }
   
   draw(){
     push();
     translate(this.x, this.y, this.z);
-    rotateZ(this.angle);
+    rotateZ(this.angleZ);
+    rotateX(this.angleX);
     scale(this.size);
     model(this.shipModel);
     pop();
@@ -228,6 +251,7 @@ class Spaceship {
 
 //
 let ship1;
+let pluto = new Planet(100, 100, 100, 50, 0);
 function draw() {
   background(0);
   // saturn = new Planet(50, 50, 50, 40, 1);
@@ -237,11 +261,9 @@ function draw() {
   // pluto.draw();
   // mars.draw();
   moveAround();
-  ship1 = new Spaceship(camX, camY + 150, camZ - 350, 0.4, tiltX, spaceship);
+  ship1 = new Spaceship(camX, camY + 150, camZ - 350, 0.4, tiltZ, tiltX, spaceship);
   ship1.draw();
-  console.info(
-    isCollide(new Position(0, 0, 0), new Position(100, 100, 100), 10, 10)
-  ); // supposed to be true
+  pluto.draw();
 }
 
 

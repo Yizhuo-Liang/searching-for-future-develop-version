@@ -37,7 +37,7 @@ function setup() {
 // 4. move() function has 3 arguments which are increment amount of x, y, z
 // 5. draw() can be used to draw the plannet directly on its position
 
-//BEGINNING OF PLANET
+//--------------------------------- BEGINNING OF PLANET ---------------------------------
 class Planet {
   constructor(x, y, z, radius, rings) {
     this.x = x;
@@ -85,7 +85,7 @@ class Planet {
     pop();
   }
 }
-//END OF PLANET
+//--------------------------------- END OF PLANET ---------------------------------
 
 //BEGINNNING OF BLACKHOLE
 class Blackhole {
@@ -127,18 +127,18 @@ class Blackhole {
 let camX = 0;
 let camY = 0;
 let camZ;
-let tilt = 0;
+let tiltX = 0;
 function moveAround() {
   let trigger = 0;
   if (keyIsDown(LEFT_ARROW)) {
     camX -= 5;
-    tilt -= 4;
+    tiltX -= 4;
     trigger = 1;
   }
 
   if (keyIsDown(RIGHT_ARROW)) {
     camX += 5;
-    tilt += 4;
+    tiltX += 4;
     trigger = 1;
   }
 
@@ -157,17 +157,18 @@ function moveAround() {
   }
 
   if (trigger === 0) {
-    if (tilt > 0) {
-      tilt -= 2;
-    } else if (tilt < 0) {
-      tilt += 2;
+    if (tiltX > 0) {
+      tiltX -= 2;
+    } else if (tiltX < 0) {
+      tiltX += 2;
     }
   }
-  if (tilt > 0) {
-    tilt = min(tilt, 16);
-  } else if (tilt < 0) {
-    tilt = max(tilt, -16);
+  if (tiltX > 0) {
+    tiltX = min(tiltX, 16);
+  } else if (tiltX < 0) {
+    tiltX = max(tiltX, -16);
   }
+  
   camera(camX, camY, camZ, camX, camY, camZ - 100);
 }
 //End of moveAround()
@@ -236,7 +237,7 @@ function draw() {
   // pluto.draw();
   // mars.draw();
   moveAround();
-  ship1 = new Spaceship(camX, camY + 150, camZ - 350, 0.4, tilt, spaceship);
+  ship1 = new Spaceship(camX, camY + 150, camZ - 350, 0.4, tiltX, spaceship);
   ship1.draw();
   console.info(
     isCollide(new Position(0, 0, 0), new Position(100, 100, 100), 10, 10)

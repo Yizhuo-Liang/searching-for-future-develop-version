@@ -1,3 +1,5 @@
+import detection from '/detection.js';
+
 let _W;
 let _H;
 
@@ -11,8 +13,9 @@ let theta = 0;
 let angle = 0;
 
 let spaceship;
+
 function preload() {
-  spaceship = loadModel("assets/spaceship.obj");
+  spaceship = loadModel("assets/spaceship.obj")
 }
 
 function setup() {
@@ -82,6 +85,7 @@ class Planet {
     pop();
     pop();
     pop();
+    
   }
 }
 //END OF PLANET

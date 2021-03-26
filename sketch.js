@@ -190,7 +190,7 @@ function moveAround() {
     tiltX = max(tiltX, -16);
   }
   
-  camera(camX, camY, camZ, camX, camY, camZ - 100);
+  camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
 }
 //End of moveAround()
 
@@ -261,10 +261,9 @@ function draw() {
   // pluto.draw();
   // mars.draw();
   moveAround();
-  model(spaceship);
-  // ship1 = new Spaceship(camX, camY + 150, camZ - 350, 0.4, tiltZ, tiltX, spaceship);
-  // ship1.draw();
-  // pluto.draw();
+  ship1 = new Spaceship(camX, camY + 150, camZ - 350, 15, tiltZ, tiltX, spaceship);
+  ship1.draw();
+  pluto.draw();
 }
 
 

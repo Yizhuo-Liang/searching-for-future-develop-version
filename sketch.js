@@ -174,7 +174,7 @@ function moveAround() {
 
 function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
 
-    let distance = dist(objPositon.x, objPositon.y, objPositon.z, 
+    let distance = dist(objPosition.x, objPosition.y, objPosition.z, 
         trgtPosition.x, trgtPosition.y, trgtPosition.z);
     return(distance < objRadius + trgtRadius);
 }

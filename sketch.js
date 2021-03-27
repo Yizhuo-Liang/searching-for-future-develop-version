@@ -249,6 +249,7 @@ class Spaceship {
 
 
 
+
 //
 let ship1;
 let pluto = new Planet(100, 100, 100, 50, 0);

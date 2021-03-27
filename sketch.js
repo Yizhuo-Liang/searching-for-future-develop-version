@@ -210,8 +210,11 @@ class Position {
 }
 // End of position
 
-// Start of isCollide()
+//--------------------------------- START OF COLLISION DETECTING ---------------------------------
+
+
 function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
+  
   let distance = dist(
     objPosition.x,
     objPosition.y,
@@ -222,7 +225,13 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
   );
   return distance < objRadius + trgtRadius;
 }
-// End of isCollide()
+
+function testCollision(planets, ) {
+  
+  
+}
+
+//--------------------------------- END OF COLLISION DETECTING ---------------------------------
 
 class Spaceship {
   constructor(x, y, z, size, angleZ, angleX, shipModel) {

@@ -229,8 +229,11 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
 function testCollision(planets, myShip) {
   
   for(let i = 0;i < planets.length;i++) {
-    if(isCollide(myShip.position, planets[i].position, 50, planets))
+    if(isCollide(myShip.position, planets[i].position, 50, planets[i].radius)) {
+      return true;
+    }
   }
+  return false;
 }
 
 //--------------------------------- END OF COLLISION DETECTING ---------------------------------
@@ -262,7 +265,7 @@ let pluto = new Planet(100, 100, 100, 50, 0);
 let planets = [];
 let alive = true;
 function draw() {
-  alive = testCollision();
+  alive = !testCollision();
   background(0);
   // saturn = new Planet(50, 50, 50, 40, 1);
   // pluto = new Planet(-150, -100, 20, 25, 2);

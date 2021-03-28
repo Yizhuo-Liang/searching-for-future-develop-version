@@ -226,18 +226,18 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
   return distance < objRadius + trgtRadius;
 }
 
-function testCollision(planets, ) {
+function testCollision(planets, myShip) {
   
-  
+  for(let i = 0;i < planets.length;i++) {
+    if(isCollide(myShip.position, planets[i].position, 50, planets))
+  }
 }
 
 //--------------------------------- END OF COLLISION DETECTING ---------------------------------
 
 class Spaceship {
   constructor(x, y, z, size, angleZ, angleX, shipModel) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
+    this.position = new Position(x, y, z);
     this.size = size;
     this.angleZ = angleZ;
     this.angleX = angleX;
@@ -246,7 +246,7 @@ class Spaceship {
   
   draw(){
     push();
-    translate(this.x, this.y, this.z);
+    translate(this.position.x, this.position.y, this.position.z);
     rotateZ(this.angleZ);
     rotateX(this.angleX);
     scale(this.size);
@@ -254,9 +254,6 @@ class Spaceship {
     pop();
   }
 }
-
-
-
 
 
 //

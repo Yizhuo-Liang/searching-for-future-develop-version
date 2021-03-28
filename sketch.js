@@ -262,7 +262,10 @@ class Spaceship {
 //
 let ship1;
 let pluto = new Planet(100, 100, 100, 50, 0);
+let planets = [];
+let alive = true;
 function draw() {
+  alive = testCollision();
   background(0);
   // saturn = new Planet(50, 50, 50, 40, 1);
   // pluto = new Planet(-150, -100, 20, 25, 2);

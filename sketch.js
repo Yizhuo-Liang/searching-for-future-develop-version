@@ -265,7 +265,6 @@ let pluto = new Planet(100, 100, 100, 50, 0);
 let planets = [];
 let alive = true;
 function draw() {
-  alive = !testCollision();
   background(0);
   // saturn = new Planet(50, 50, 50, 40, 1);
   // pluto = new Planet(-150, -100, 20, 25, 2);
@@ -275,6 +274,9 @@ function draw() {
   // mars.draw();
   moveAround();
   ship1 = new Spaceship(camX, camY + 150, camZ - 350, 15, tiltZ, tiltX, spaceship);
+  
+  alive = !testCollision(planets,ship1);  //<<<-------------- Check the state of the game
+  
   ship1.draw();
   pluto.draw();
 }

@@ -27,8 +27,6 @@ function setup() {
 	explosion_ball = new explosion(0, 0, 100, 4, 250, 250, 0, 10);
   re_explosion_ball = new re_explosion(0, 0, 100, 1000);
 	scoreboard1 = new scoreboard(windowHeight);
-  
-
 }
 
 
@@ -61,7 +59,7 @@ function draw() {
 
 
 
-class explosion {
+class Explosion {
 	constructor(x, y, z, size, r, g, b, transparent) {
 		this.x = x;
 		this.y = y;
@@ -149,13 +147,12 @@ class explosion {
 
 
 
-class re_explosion {
+class Re_explosion {
 	constructor(x, y, z, size) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		this.size = size;
-	
+		this.size = size;	
     // this.explosion_status=false;
 	}
 
@@ -222,7 +219,7 @@ class re_explosion {
 
 
 
-class  {
+class endScene {
 	constructor(w, s = 0) {
 		this.x = 0;
 		this.y = 0;

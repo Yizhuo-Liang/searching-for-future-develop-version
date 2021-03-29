@@ -428,7 +428,7 @@ class Scoreboard {
     // rotateZ(frameCount * 0.01);
     // box(200+this.expand_value);
 
-    if (distance % 100 == 1) {
+    if (distance % 10 == 0) {
       this.expand_value = this.size / 2;
     }
     noStroke();
@@ -462,11 +462,11 @@ class Explosion {
     }
     if (this.size < 10) {
       this.size = this.size * (1.009 * 1.013);
-      this.b += 0.8;
+      this.b += 1;
     }
     if (this.size > 10 && this.size < 70) {
       this.size = this.size * (1.0653 * 1.013);
-      this.b += 0.8;
+      this.b += 1;
     }
     if (this.size > 70 && this.size < 100) {
       this.size = this.size * (1.0065 * 1.013);
@@ -474,7 +474,7 @@ class Explosion {
     }
     if (this.size > 100 && this.size < 900) {
       this.size = this.size * (1.04 * 1.013);
-      this.b += 2.5;
+      this.b += 5;
     }
   }
   getSize() {

@@ -51,7 +51,7 @@ function setup() {
   smooth();
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
-  sb = new Scoreboard(0.8 * _W, 0.1 * _H, camZ, 100)
+  sb = new Scoreboard(100);
   // bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
@@ -82,7 +82,7 @@ function draw() {
       generatePlanet(ship1);
     }
     drawPlanets(planets);
-    sb.draw(ship1.getLocation().z);
+    sb.draw(ship1.getLocation().x + _W/4, ship1.getLocation().y - _H/4, ship1.getLocation().z);
     if (testCollision(planets, ship1)) {
       status = "justdied";
     }
@@ -355,24 +355,25 @@ function planetIsTooFar(planet) {
 
 
 class Scoreboard{
-		constructor(x,y,z,size){
+		constructor(size){
 			this.size = size
 			this.expand_value = 0;
 		}
 	
 		draw(x,y,z){
+      push();
 			let graphics = createGraphics(200,200)
 			let distance=int(millis()/100)
 			let expand = false;
 			// background(0);
 			graphics.background(255,0)
-			graphics.fill(255,0,255)
+			graphics.fill(255)
 			graphics.textSize(50);
 			graphics.text(distance+'AU',10,80,700,700);
 
 			texture(graphics);
 			
-			translate(this.x,this.y, z)
+			translate(x, y, z)
 			// rotateX(frameCount * 0.01);
 			// rotateY(frameCount * 0.01);
 			// rotateZ(frameCount * 0.01);
@@ -383,6 +384,7 @@ class Scoreboard{
 			}
   		noStroke();
 			plane(this.size+this.expand_value);
+      pop();
 		}
 	
 		
@@ -412,19 +414,19 @@ class Explosion {
 			this.transparent += 0.3;
 		}
     if (this.size < 10) {
-			this.size = this.size * (1.009);
+			this.size = this.size * (1.009*1.013);
       this.b += 0.8;
 		}
     if (this.size > 10 && this.size < 70 ) {
-			this.size = this.size * (1.0653);
+			this.size = this.size * (1.0653*1.013);
       this.b += 0.8;
 		}
     if (this.size > 70 && this.size < 100 ) {
-			this.size = this.size * (1.0065;)
+			this.size = this.size * (1.0065*1.013);
       this.b += 0.08;
 		}
 		if (this.size > 100 && this.size < 900) {
-			this.size = this.size * 1.04;
+			this.size = this.size * (1.04*1.013);
       this.b += 2.5;
 		}
     
@@ -517,7 +519,7 @@ class EndScene {
 		this.y = y;
 		this.z = z;
 		this.size = min(_W, _H) / 4;
-		this.graphics = createGraphics(this.size/3, this.size/3)
+		this.graphics = createGraphics(this.size, this.size/3)
 		this.graphics.textSize(this.size/30);
 		this.graphics.fill(255);
 		this.graphics.background(0, 0);

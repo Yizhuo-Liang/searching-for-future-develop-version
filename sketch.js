@@ -52,7 +52,7 @@ let pluto = new Planet(100, 100, 100, 155, 0);
 let planets = [];
 let status = "alive";
 
-function draw() {
+function draw()  {
   if (status === "alive") {
     background(0);
     moveAround();
@@ -355,10 +355,13 @@ class Explosion {
 
 
 function generatePlanet(ship){
-  
-    let shipLoc = ship.getLocation()
-    let lowerBound = shipLoc.z + 500
-    let planetZ = random(lowerBound, lowerBound + 700)
+    let shipLoc = ship.getLocation();
+    let lowerBound = shipLoc.z + 500;
+    let pZ = random(lowerBound, lowerBound + 700);
+    let pX = random(shipLoc.X - 50, shipLoc.X + 50);
+    let pY = random(shipLoc.Y - 50, shipLoc.Y + 50);
+    let pS = random(500, 690);
+    let planetN = new Planet(pX, pY, pZ, random)
     
   }
   

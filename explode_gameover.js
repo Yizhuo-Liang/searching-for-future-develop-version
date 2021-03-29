@@ -45,7 +45,7 @@ function draw() {
 
 
 	if (explosion_ball.getSize() > 900) {
-		background(255);
+		background(0);
 		scoreboard1.draw();
 		// fragments1 = new fragments(50, 100, 0);
 		// fragments1.draw()
@@ -76,23 +76,27 @@ class explosion {
 
 	growBall() {
     
-		if (this.b < 255) {
-			this.b += 0.7;
-		}
+		// if (this.b < 255) {
+		// 	this.b += 0.8;
+		// }
 		if (this.transparent < 255) {
 			this.transparent += 0.3;
 		}
     if (this.size < 10) {
 			this.size = this.size * 1.009;
+      this.b += 0.8;
 		}
     if (this.size > 10 && this.size < 70 ) {
 			this.size = this.size * 1.0653;
+      this.b += 0.8;
 		}
     if (this.size > 70 && this.size < 100 ) {
 			this.size = this.size * 1.0065;
+      this.b += 0.08;
 		}
 		if (this.size > 100 && this.size < 900) {
 			this.size = this.size * 1.04;
+      this.b += 2.5;
 		}
     
 	}
@@ -148,7 +152,7 @@ class scoreboard {
 		this.size = w / 2;
 		this.graphics = createGraphics(w/3, w/3)
 		this.graphics.textSize(w/30);
-		this.graphics.fill(0);
+		this.graphics.fill(255);
 		this.graphics.background(0, 0);
 		this.graphics.textAlign(CENTER,CENTER);
 		this.graphics.text("GAME OVER!\n you score: " + str(s), 0,0, w/3, w/3);
@@ -171,7 +175,7 @@ class scoreboard {
 		// 	this.expand_value=this.size/2
 		// }
 		// noStroke();
-		stroke(0);
+		stroke(255);
 		texture(this.graphics);
 		// fill(255,0,255,10)
 		box(this.size);

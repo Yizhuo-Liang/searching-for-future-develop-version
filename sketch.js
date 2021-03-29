@@ -99,7 +99,7 @@ function draw() {
       10
     );
     re_explosion_ball = new Re_explosion(ship1.getLocation().x, ship1.getLocation().y, ship1.getLocation().z, 1000);
-    ending = new EndScene(ship1.getLocation().x, ship1.getLocation().y, ship1.getLocation().z, _W);
+    ending = new EndScene(ship1.getLocation().x, ship1.getLocation().y, ship1.getLocation().z);
     status = "died";
   } else {
     background(0);
@@ -356,14 +356,11 @@ function planetIsTooFar(planet) {
 
 class Scoreboard{
 		constructor(x,y,z,size){
-			this.x = x;
-			this.y = y;
-			this.z = z;
 			this.size = size
 			this.expand_value = 0;
 		}
 	
-		draw(z){
+		draw(x,y,z){
 			let graphics = createGraphics(200,200)
 			let distance=int(millis()/100)
 			let expand = false;
@@ -415,15 +412,15 @@ class Explosion {
 			this.transparent += 0.3;
 		}
     if (this.size < 10) {
-			this.size = this.size * 1.009;
+			this.size = this.size * (1.009);
       this.b += 0.8;
 		}
     if (this.size > 10 && this.size < 70 ) {
-			this.size = this.size * 1.0653;
+			this.size = this.size * (1.0653);
       this.b += 0.8;
 		}
     if (this.size > 70 && this.size < 100 ) {
-			this.size = this.size * 1.0065;
+			this.size = this.size * (1.0065;)
       this.b += 0.08;
 		}
 		if (this.size > 100 && this.size < 900) {
@@ -515,32 +512,31 @@ class Re_explosion {
 
 //--------------------------------- START OF ENDSCENE ---------------------------------
 class EndScene {
-	constructor(x, y, z, w, s = 0) {
+	constructor(x, y, z, s = 0) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		this.size = w / 2;
-		this.graphics = createGraphics(w/3, w/3)
-		this.graphics.textSize(w/30);
+		this.size = min(_W, _H) / 4;
+		this.graphics = createGraphics(this.size/3, this.size/3)
+		this.graphics.textSize(this.size/30);
 		this.graphics.fill(255);
 		this.graphics.background(0, 0);
 		this.graphics.textAlign(CENTER,CENTER);
-		this.graphics.text("GAME OVER!\n you score: " + str(s), 0,0, w/3, w/3);
+		this.graphics.text("GAME OVER!\n you score: " + str(s), 0,0, this.size/3, this.size/3);
 
 	}
 
 	draw() {
 
-
+    push()
 		translate(this.x, this.y, this.z)
-		rotateX(frameCount * 0.01);
-		rotateY(frameCount * 0.01);
-		rotateZ(frameCount * 0.01);
-
+		rotateX(frameCount * 0.1);
+		rotateY(frameCount * 0.1);
+		rotateZ(frameCount * 0.1);
 		stroke(255);
 		texture(this.graphics);
-		
 		box(this.size);
+    pop();
 
 	}
 }

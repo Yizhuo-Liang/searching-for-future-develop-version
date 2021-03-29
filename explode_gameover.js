@@ -17,8 +17,10 @@ let explosde_sound;
 let scoreboard1;
 let explosion_ball;
 
+let explosion_status = false;
+
 function preload(){
-	soundFormats('mp3','ogg');
+  soundFormats('mp3', 'ogg');
 	explosde_sound = loadSound("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2F11369.mp3?v=1617032492745");
 }
 
@@ -26,13 +28,19 @@ function setup() {
 	createCanvas(windowWidth, windowHeight, WEBGL);
 	explosion_ball = new explosion(50, 200, 106, explosion_size, 250, 250, B, T);
 	scoreboard1 = new scoreboard(windowHeight);
-  explosde_sound.play();
+  
 
 }
 
+
 function draw() {
 	background(0);
- 
+  
+  if(explosion_status==false){
+    explosde_sound.play();
+    explosion_status=true;
+  }
+  
 	if (explosion_ball.getSize() < 900) {
 		explosion_ball.draw(explosion_size, B, T);
 		explosion_size = explosion_size * 1.05;

@@ -15,6 +15,7 @@ function draw() {
 
 }
 
+
 class scoreboard{
 		constructor(x,y,z,size){
 			this.x = x;

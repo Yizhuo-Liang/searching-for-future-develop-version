@@ -26,6 +26,7 @@ function preload() {
   planet4 = loadImage("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet4.jpg?v=1616633289270")
   planet5 = loadImage("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet5.png?v=1616633291018")
 }
+let planetlist = [earth, planet1, planet2, planet3, planet4, planet5]
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -56,6 +57,7 @@ class Planet {
     this.z = z;
     this.radius = radius;
     this.rings = rings;
+    this.t = random(6);
   }
 
   move(xDist, yDist, zDist) {
@@ -67,7 +69,7 @@ class Planet {
   getRadius() {
     return this.radius;
   }
-
+  
   draw() {
     push();
     translate(this.x, this.y, this.z);
@@ -76,6 +78,7 @@ class Planet {
     stroke(220);
     strokeWeight(0.5);
     rotateY(millis() / 2500);
+    texture(this.t);
     sphere(this.radius, 24, 14);
     noFill();
     stroke(255);

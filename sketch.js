@@ -57,7 +57,7 @@ class Planet {
     this.z = z;
     this.radius = radius;
     this.rings = rings;
-    this.t = random(6);
+    this.t = planetlist[random(6)];
   }
 
   move(xDist, yDist, zDist) {
@@ -77,7 +77,7 @@ class Planet {
     noFill();
     stroke(220);
     strokeWeight(0.5);
-    rotateY(millis() / 2500);
+    // rotateY(millis() / 2500);
     texture(this.t);
     sphere(this.radius, 24, 14);
     noFill();
@@ -101,41 +101,6 @@ class Planet {
 }
 //--------------------------------- END OF PLANET ---------------------------------
 
-//BEGINNNING OF BLACKHOLE
-class Blackhole {
-  constructor(x, y, z, size, mass) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.size = size;
-    this.mass = mass;
-  }
-
-  draw() {
-    push();
-    this.x += 5 * cos(frameCount / 1);
-    translate(this.x, this.y, this.z);
-    rotateY(millis() / 1000);
-    rotateX(frameCount * 0.01);
-    rotateZ(frameCount * 0.01);
-    push();
-    lights(34, 56, 128);
-    stroke(10);
-    fill(51, 51, 51);
-    sphere(100 * this.size, 24, 16);
-    pop();
-    rotateY(millis() / 1000);
-    noStroke();
-    let jet = 60 * cos(frameCount / 100);
-    fill(random(255), random(255), random(255), 90);
-    translate(0, -500 * this.size, 0);
-    cone(100 * this.size, 1000 * this.size, 16 * this.size, 16 * this.size);
-    translate(0, 1000 * this.size, 0);
-    cone(100 * this.size, -1000 * this.size, 16 * this.size, 16 * this.size);
-    pop();
-  }
-}
-// END OF BLACKHOLE
 
 //Start of moveAround()
 let camX = 0;
@@ -208,6 +173,7 @@ function moveAround() {
   camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
 }
 //End of moveAround()
+
 
 // Start of Position()
 class Position {

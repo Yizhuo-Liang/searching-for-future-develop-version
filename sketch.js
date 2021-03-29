@@ -32,6 +32,7 @@ function preload() {
   );
 }
 let planetlist = [earth, planet1, planet2, planet3, planet4, planet5];
+let bumi;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -42,6 +43,7 @@ function setup() {
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
   explosionEffect = new Explosion();
+  bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
   // detail.style("width", "80px");
@@ -51,6 +53,7 @@ function setup() {
 let ship1;
 let planets = [];
 let status = "alive";
+
 
 function draw()  {
   if (status === "alive") {
@@ -66,6 +69,7 @@ function draw()  {
       spaceship
     );
     ship1.draw();
+    bumi.draw();
     if ((frameCount) % 100 === 0){
       generatePlanet(ship1)
     }  
@@ -131,6 +135,7 @@ class Planet {
     texture(earth);
     sphere(this.radius, 30, 30);
     pop();
+    console.log("planet called")
     // noFill();
     // stroke(255);
     // strokeWeight(3);
@@ -362,18 +367,18 @@ class Explosion {
 
 function generatePlanet(ship){
   let shipLoc = ship.getLocation();
-  let lowerBound = shipLoc.z - 500;
-  let pZ = random(lowerBound, lowerBound - 700);
-  let pX = random(shipLoc.X - 50, shipLoc.X + 50);
-  let pY = random(shipLoc.Y - 50, shipLoc.Y + 50);
-  let pS = random(450, 690);
+  let lowerBound = shipLoc.z - 200;
+  let pZ = int(random(lowerBound, lowerBound - 700));
+  let pX = int(random(shipLoc.X - 50, shipLoc.X + 50));
+  let pY = int(random(shipLoc.Y - 50, shipLoc.Y + 50));
+  let pS = int(random(450, 690));
   let planetN = new Planet(pX, pY, pZ, pS, 0);
   planets.push(planetN);
   console.log("Planet created")
   }
 
 function drawPlanets(planets) {
-  planets = planets.filter(planetIsTooFar)
+  // planets = planets.filter(planetIsTooFar)
   for (let i = 0; i < planets.length; i++) {
     planets[i].draw()
     console.log("Planet drawn" + str(planets[i].x) + str(planets[i].y) + str(planets[i].z))

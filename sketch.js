@@ -10,6 +10,7 @@ let planet3;
 let planet4;
 let planet5;
 let explosionEffect;
+let BGM;
 
 let explosde_sound;
 let ending;
@@ -40,6 +41,9 @@ function preload() {
   explosde_sound = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2F11369.mp3?v=1617032492745"
   );
+  BGM = loadSound(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FBGM.mp3?v=1617047619315"
+  );
 }
 let planetlist = [earth, planet1, planet2, planet3, planet4, planet5];
 let sb;
@@ -54,6 +58,8 @@ function setup() {
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
   sb = new Scoreboard(100);
+  ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
+  BGM.play();
   // bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
@@ -307,7 +313,7 @@ class Spaceship {
 
   draw(x, y, z, size, angleZ, angleX, shipModel) {
     push();
-    this.position = Position(x, y, z);
+    this.position = new Position(x, y, z);
     translate(this.position.x, this.position.y, this.position.z);
     rotateZ(angleZ);
     rotateX(angleX);
@@ -329,8 +335,8 @@ function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let lowerBound = shipLoc.z - 800;
   let pZ = int(random(lowerBound, lowerBound - 700));
-  let pX = int(random(shipLoc.X - 50, shipLoc.X + 50));
-  let pY = int(random(shipLoc.Y - 50, shipLoc.Y + 50));
+  let pX = int(random(shipLoc.X - 500, shipLoc.X + 500));
+  let pY = int(random(shipLoc.Y - 500, shipLoc.Y + 500));
   let pS = int(random(250, 490));
   let planetN = new Planet(pX, pY, pZ, pS, 0);
   planets.push(planetN);

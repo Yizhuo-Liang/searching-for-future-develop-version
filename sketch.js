@@ -62,7 +62,7 @@ function setup() {
   smooth();
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
-  sb = new Scoreboard(100);
+  // sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   
   // bumi = new Planet(0, 0, camZ - 400, 300, 0)
@@ -88,7 +88,7 @@ function keyTyped() {
 
 function draw() {
   
-
+  sb = new Scoreboard(100);
   
   if (status === "alive") {
     background(0);
@@ -428,7 +428,7 @@ class Scoreboard {
     // rotateZ(frameCount * 0.01);
     // box(200+this.expand_value);
 
-    if (distance % 10 == 0) {
+    if (distance % 10 == 1) {
       this.expand_value = this.size / 2;
     }
     noStroke();

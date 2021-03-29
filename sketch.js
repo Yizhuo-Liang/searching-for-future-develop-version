@@ -88,16 +88,7 @@ function draw() {
     }
     
   } else if (status === "justdied") {
-    explosion_ball = new Explosion(
-      ship1.getLocation().x,
-      ship1.getLocation().y,
-      ship1.getLocation().y,
-      4,
-      250,
-      250,
-      0,
-      10
-    );
+    explosion_ball = new Explosion(ship1.getLocation().x, ship1.getLocation().y,ship1.getLocation().y,4,250,250,0,10);
     re_explosion_ball = new Re_explosion(ship1.getLocation().x, ship1.getLocation().y, ship1.getLocation().z, 1000);
     ending = new EndScene(ship1.getLocation().x, ship1.getLocation().y, ship1.getLocation().z);
     status = "died";
@@ -437,12 +428,10 @@ class Explosion {
 
 	draw() {
 		this.growBall();
-    
-    if(this.explosion_status == false){
+    if (this.explosion_status == false){
       explosde_sound.play();
       this.explosion_status=true;
     }
-    
 		push();
 		// this.x += 5 * cos(frameCount / 1);
 
@@ -519,12 +508,12 @@ class EndScene {
 		this.y = y;
 		this.z = z;
 		this.size = min(_W, _H) / 4;
-		this.graphics = createGraphics(this.size, this.size/3)
-		this.graphics.textSize(this.size/30);
+		this.graphics = createGraphics(this.size, this.size)
+		this.graphics.textSize(this.size/10);
 		this.graphics.fill(255);
 		this.graphics.background(0, 0);
 		this.graphics.textAlign(CENTER,CENTER);
-		this.graphics.text("GAME OVER!\n you score: " + str(s), 0,0, this.size/3, this.size/3);
+		this.graphics.text("GAME OVER!\n you score: " + str(s), 0,0, this.size, this.size);
 
 	}
 

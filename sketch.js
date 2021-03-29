@@ -17,7 +17,7 @@ let ending;
 let explosion_ball;
 let re_explosion_ball;
 
-let start= false;
+
 
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
@@ -46,6 +46,7 @@ function preload() {
   BGM = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FBGM.mp3?v=1617047619315"
   );
+
   
 }
 let planetlist = [earth, planet1, planet2, planet3, planet4, planet5];
@@ -53,7 +54,7 @@ let sb;
 let bumi;
 
 function setup() {
-  BGM.play();
+ 
   createCanvas(windowWidth, windowHeight, WEBGL);
   _W = windowWidth;
   _H = windowHeight;
@@ -75,15 +76,19 @@ let ship1;
 let planets = [];
 let status = "alive";
 
+
+function play(){
+  BGM.play();
+}
+
+
 function draw() {
   
-  // if (start==false){
-  //   BGM.play();
-  //   start = true;
-  // }
+
   
   if (status === "alive") {
     background(0);
+   
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     // bumi.draw();

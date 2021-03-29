@@ -17,6 +17,9 @@ let ending;
 let explosion_ball;
 let re_explosion_ball;
 
+var xp= width / 2;
+var yp= height / 2;
+var maxSpeed = 15;
 
 
 function preload() {
@@ -253,6 +256,14 @@ function moveAround() {
     tiltX -= 5;
     triggerX = 1;
   }
+  
+  xp += map(rotationY, -180, 180, -maxSpeed, maxSpeed);
+  yp += map(rotationX, -180, 180, -maxSpeed, maxSpeed);
+  
+  camX += xp;
+  camY += yp;
+  
+  
   //   if (keyIsDown(107) || keyIsDown(187)) {
   //     camZ -= 5;
   //     tiltX += 5;

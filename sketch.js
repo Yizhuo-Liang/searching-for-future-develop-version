@@ -11,9 +11,20 @@ let theta = 0;
 let angle = 0;
 
 let spaceship;
-
+let earth;
+let planet1;
+let planet2;
+let planet3;
+let planet4;
+let planet5;
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
+  earth = loadImage("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fearth.jpg?v=1616633286407")
+  planet1 = loadImage("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet2.jpg?v=1616633287289")
+  planet2 = loadImage("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet2.jpg?v=1616633287289")
+  planet3 = loadImage("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet3.jpg?v=1616633288086")
+  planet4 = loadImage("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet4.jpg?v=1616633289270")
+  planet5 = loadImage("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet5.png?v=1616633291018")
 }
 
 function setup() {

@@ -12,7 +12,7 @@ let planet5;
 let explosionEffect;
 
 let explosde_sound;
-let scoreboard1;
+let ending;
 let explosion_ball;
 let re_explosion_ball;
 
@@ -51,10 +51,7 @@ function setup() {
   smooth();
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
-  sb = Scoreboard(0.8 * _W, 0.1 * _H, camZ, 100)
-  explosion_ball = new Explosion(0, 0, 100, 4, 250, 250, 0, 10);
-  re_explosion_ball = new Re_explosion(0, 0, 100, 1000);
-	scoreboard1 = new Scoreboard(windowHeight);
+  sb = new Scoreboard(0.8 * _W, 0.1 * _H, camZ, 100)
   // bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
@@ -102,6 +99,7 @@ function draw() {
       10
     );
     re_explosion_ball = new Re_explosion(ship1.getLocation().x, ship1.getLocation().y, ship1.getLocation().z, 1000);
+    ending = new EndScene(ship1.getLocation().x, ship1.getLocation().y, ship1.getLocation().z, _W);
     status = "died";
   } else {
     background(0);
@@ -112,7 +110,8 @@ function draw() {
 	if (explosion_ball.getSize() > 900) {
 		background(0);
     re_explosion_ball.draw();
-		scoreboard1.draw();
+		ending.draw();
+  }
   }
 
   // status = !testCollision(planets,ship1);  //<<<-------------- Check the state of the game
@@ -466,7 +465,7 @@ class Explosion {
 		pop();
 
 		push();
-		rotateX(PI / 3);
+		rotateX(60);
 		noStroke();
 		fill(245, 245, 237);
 		torus(this.size * 2.5, this.size * 0.07);
@@ -529,10 +528,10 @@ class Re_explosion {
 
 //--------------------------------- START OF ENDSCENE ---------------------------------
 class EndScene {
-	constructor(w, s = 0) {
-		this.x = 0;
-		this.y = 0;
-		this.z = -200;
+	constructor(x, y, z, w, s = 0) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
 		this.size = w / 2;
 		this.graphics = createGraphics(w/3, w/3)
 		this.graphics.textSize(w/30);

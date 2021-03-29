@@ -24,8 +24,8 @@ function preload(){
 
 function setup() {
 	createCanvas(windowWidth, windowHeight, WEBGL);
-	explosion_ball = new explosion(50, 200, 106, 4, 250, 250, 0, 10);
-  re_explosion_ball = new re_explosion(50, 200, 106, 1000);
+	explosion_ball = new explosion(0, 0, 100, 4, 250, 250, 0, 10);
+  re_explosion_ball = new re_explosion(0, 0, 100, 1000);
 	scoreboard1 = new scoreboard(windowHeight);
   
 
@@ -131,7 +131,7 @@ class explosion {
 		pop();
 
 		push();
-		rotateX(PI / 2);
+		rotateX(PI / 3);
 		noStroke();
 		fill(245, 245, 237);
 		torus(this.size * 2.5, this.size * 0.07);
@@ -163,7 +163,7 @@ class re_explosion {
     
 
 
-		if (this.size > 10) {
+		if (this.size > 20) {
 			this.size = this.size * 0.9;
 		}
     
@@ -222,7 +222,7 @@ class re_explosion {
 
 
 
-class scoreboard {
+class  {
 	constructor(w, s = 0) {
 		this.x = 0;
 		this.y = 0;

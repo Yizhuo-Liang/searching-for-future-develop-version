@@ -144,7 +144,7 @@ class Planet {
     this.z = z;
     this.radius = radius;
     this.rings = rings;
-    this.t = earth;
+    this.t = int(random(6));
   }
 
   move(xDist, yDist, zDist) {
@@ -165,7 +165,21 @@ class Planet {
     push();
     translate(this.x, this.y, this.z);
     noStroke();
-    texture(earth);
+    if (dumb === 0) {
+      texture(earth);
+    }
+    else if (dumb === 1) {
+      texture(planet1);
+    } else if (dumb === 2) {
+      texture(planet2);
+    } else if (dumb === 3) {
+      texture(planet3);
+    } else if (dumb === 4) {
+      texture(planet4);
+    } else{
+      texture(planet5);
+    }
+
     sphere(this.radius, 30, 30);
     pop();
     console.log("planet called");
@@ -335,8 +349,8 @@ function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let lowerBound = shipLoc.z - 800;
   let pZ = int(random(lowerBound, lowerBound - 700));
-  let pX = int(random(shipLoc.X - 500, shipLoc.X + 500));
-  let pY = int(random(shipLoc.Y - 500, shipLoc.Y + 500));
+  let pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
+  let pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
   let pS = int(random(250, 490));
   let planetN = new Planet(pX, pY, pZ, pS, 0);
   planets.push(planetN);

@@ -80,7 +80,7 @@ class explosion {
 			this.b += 0.7;
 		}
 		if (this.transparent < 255) {
-			this.transparent += 0.5;
+			this.transparent += 0.3;
 		}
     if (this.size < 10) {
 			this.size = this.size * 1.009;
@@ -145,13 +145,13 @@ class scoreboard {
 		this.x = 0;
 		this.y = 0;
 		this.z = -200;
-		this.size = 500;
-		this.graphics = createGraphics(500, 500)
-		this.graphics.textSize(w/15);
+		this.size = w / 2;
+		this.graphics = createGraphics(w/3, w/3)
+		this.graphics.textSize(w/30);
 		this.graphics.fill(0);
 		this.graphics.background(0, 0);
-		this.graphics.textAlign(CENTER);
-		this.graphics.text("GAME OVER!  \n you score: " + str(s), 250, 250, 700, 700);
+		this.graphics.textAlign(CENTER,CENTER);
+		this.graphics.text("GAME OVER!\n you score: " + str(s), 0,0, w/3, w/3);
 
 	}
 

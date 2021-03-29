@@ -66,6 +66,10 @@ function draw()  {
       spaceship
     );
     ship1.draw();
+    if ((frameCount + 1) % 100 === 0){
+      generatePlanet(ship1)
+    }  
+    drawPlanets(planets);
     pluto.draw();
     if (testCollision(planets, ship1)) {
       status = "justdied";
@@ -355,20 +359,25 @@ class Explosion {
 
 
 function generatePlanet(ship){
-    let shipLoc = ship.getLocation();
-    let lowerBound = shipLoc.z + 500;
-    let pZ = random(lowerBound, lowerBound + 700);
-    let pX = random(shipLoc.X - 50, shipLoc.X + 50);
-    let pY = random(shipLoc.Y - 50, shipLoc.Y + 50);
-    let pS = random(500, 690);
-    let planetN = new Planet(pX, pY, pZ, random)
-    
+  let shipLoc = ship.getLocation();
+  let lowerBound = shipLoc.z + 500;
+  let pZ = random(lowerBound, lowerBound + 700);
+  let pX = random(shipLoc.X - 50, shipLoc.X + 50);
+  let pY = random(shipLoc.Y - 50, shipLoc.Y + 50);
+  let pS = random(450, 690);
+  let planetN = new Planet(pX, pY, pZ, pS);
+  planets.push(planetN);
   }
-  
-  
+
+function drawPlanets(planets) {
+  planets = planets.filter(planetIsTooFar())
+  for (let i = 0; i < planets.length; i++) {
+    planets[i].draw()
+  }
 }
 
-function planetIsTooFar(){
+function planetIsTooFar(planet){
+  if (planet.z - ship1.loc
   
 }
 

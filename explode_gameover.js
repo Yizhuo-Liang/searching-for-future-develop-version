@@ -109,6 +109,7 @@ class explosion {
       explosde_sound.play();
       this.explosion_status=true;
     }
+    
 		push();
 		this.x += 5 * cos(frameCount / 1);
 
@@ -185,10 +186,6 @@ class re_explosion {
 
     
 
-
-
-
-	
 
 		
     noStroke();

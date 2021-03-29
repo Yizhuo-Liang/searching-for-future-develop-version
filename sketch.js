@@ -129,7 +129,7 @@ class Planet {
     translate(this.x, this.y, this.z);
     noStroke();
     texture(earth);
-    sphere(this.radius, 24, 14);
+    sphere(this.radius, 30, 30);
     pop();
     // noFill();
     // stroke(255);
@@ -261,7 +261,7 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
 function testCollision(planets, myShip) {
   for (let i = 0; i < planets.length; i++) {
     if (
-      isCollide(myShip.position, planets[i].position, 50, planets[i].radius)
+      isCollide(myShip.position, planets[i], 155, planets[i].radius)
     ) {
       return true;
     }
@@ -373,17 +373,19 @@ function generatePlanet(ship){
   }
 
 function drawPlanets(planets) {
-  planets = planets.filter(planetIsTooFar())
+  planets = planets.filter(planetIsTooFar)
   for (let i = 0; i < planets.length; i++) {
     planets[i].draw()
+    console.log("Planet drawn" + str(planets[i].x) + str(planets[i].y) + str(planets[i].z))
   }
 }
 
 function planetIsTooFar(planet){
-  if (planet.z - ship1.getLoc().z < 50){
+  if (planet.z - ship1.getLocation().z > 50){
     return true
   }
   else {
+    console.log("Planet destroyed")
     return false
   }
   

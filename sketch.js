@@ -17,8 +17,8 @@ let ending;
 let explosion_ball;
 let re_explosion_ball;
 
-var xp= width / 2;
-var yp= height / 2;
+var xp;
+var yp;
 var maxSpeed = 15;
 
 
@@ -68,6 +68,9 @@ function setup() {
   // sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   
+  
+  xp= width / 2;
+  yp= height / 2;
   // bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
@@ -257,11 +260,15 @@ function moveAround() {
     triggerX = 1;
   }
   
-  xp += map(rotationY, -180, 180, -maxSpeed, maxSpeed);
-  yp += map(rotationX, -180, 180, -maxSpeed, maxSpeed);
+  //phone version
   
-  camX += xp;
-  camY += yp;
+  // xp = map(rotationY, -180, 180, -maxSpeed, maxSpeed);
+  // yp = map(rotationX, -180, 180, -maxSpeed, maxSpeed);
+  
+  // camX += xp*5;
+  // camY += yp*5;
+  
+  //phone version
   
   
   //   if (keyIsDown(107) || keyIsDown(187)) {

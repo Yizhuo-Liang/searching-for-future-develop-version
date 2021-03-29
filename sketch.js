@@ -441,32 +441,19 @@ class Explosion {
     
     if(this.explosion_status == false){
       explosde_sound.play();
-      console.log(this.explosion_status)
       this.explosion_status=true;
     }
     
 		push();
-		this.x += 5 * cos(frameCount / 1);
+		// this.x += 5 * cos(frameCount / 1);
 
 		translate(this.x, this.y, this.z)
-
-		push();
-
 		noStroke();
-
 		fill(this.r, this.g, this.b, this.transparent);
-
 		for (let i = 1; i < 6; i++) {
-			noStroke();
-			fill(this.r, this.g, this.b, this.transparent);
 			sphere(this.size + i * 5, 24, 16);
 		}
-
-		pop();
-
-		push();
 		rotateX(60);
-		noStroke();
 		fill(245, 245, 237);
 		torus(this.size * 2.5, this.size * 0.07);
 		pop();

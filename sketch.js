@@ -170,6 +170,7 @@ function moveAround() {
     tiltX += 5;
     triggerX = 1;
   }
+  
   if (keyIsDown(109) || keyIsDown(189)) {
     camZ += 5;
     tiltX -= 5;

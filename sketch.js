@@ -17,6 +17,8 @@ let ending;
 let explosion_ball;
 let re_explosion_ball;
 
+let start= false;
+
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
   earth = loadImage(
@@ -44,12 +46,14 @@ function preload() {
   BGM = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FBGM.mp3?v=1617047619315"
   );
+  
 }
 let planetlist = [earth, planet1, planet2, planet3, planet4, planet5];
 let sb;
 let bumi;
 
 function setup() {
+  BGM.play();
   createCanvas(windowWidth, windowHeight, WEBGL);
   _W = windowWidth;
   _H = windowHeight;
@@ -59,7 +63,7 @@ function setup() {
   camZ = height / 2.0 / tan(30.0);
   sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
-  BGM.play();
+  
   // bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
@@ -72,6 +76,12 @@ let planets = [];
 let status = "alive";
 
 function draw() {
+  
+  // if (start==false){
+  //   BGM.play();
+  //   start = true;
+  // }
+  
   if (status === "alive") {
     background(0);
     moveAround();
@@ -109,7 +119,8 @@ function draw() {
     ending = new EndScene(
       ship1.getLocation().x,
       ship1.getLocation().y,
-      ship1.getLocation().z
+      ship1.getLocation().z,
+      sb.getScore()
     );
     status = "died";
   } else {
@@ -210,24 +221,28 @@ let tiltX = 0;
 function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;
-  if (keyIsDown(LEFT_ARROW)) {
+  if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     camX -= 15;
     tiltZ -= 4;
     triggerZ = 1;
   }
 
-  if (keyIsDown(RIGHT_ARROW)) {
+  if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
     camX += 15;
     tiltZ += 4;
     triggerZ = 1;
   }
 
-  if (keyIsDown(UP_ARROW)) {
+  if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
     camY -= 15;
+    tiltX += 5;
+    triggerX = 1;
   }
 
-  if (keyIsDown(DOWN_ARROW)) {
+  if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
     camY += 15;
+    tiltX -= 5;
+    triggerX = 1;
   }
   //   if (keyIsDown(107) || keyIsDown(187)) {
   //     camZ -= 5;
@@ -241,9 +256,9 @@ function moveAround() {
   //     triggerX = 1;
   //   }
 
-  camZ -= 15;
-  tiltX += 5;
-  triggerX = 1;
+  camZ -= 25;
+  // tiltX += 5;
+  // triggerX = 1;
 
   if (triggerZ === 0) {
     if (tiltZ > 0) {
@@ -411,6 +426,10 @@ class Scoreboard {
     plane(this.size + this.expand_value);
     pop();
   }
+  
+  getScore() {
+    return int(millis() / 100);
+  }
 }
 
 //--------------------------------- START OF EXPLOSION ---------------------------------
@@ -528,7 +547,7 @@ class EndScene {
     this.graphics.background(0, 0);
     this.graphics.textAlign(CENTER, CENTER);
     this.graphics.text(
-      "GAME OVER!\n you score: " + str(s),
+      "GAME OVER!\n Your Score: " + str(s),
       0,
       0,
       this.size,

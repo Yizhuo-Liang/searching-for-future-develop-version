@@ -356,6 +356,12 @@ class Explosion {
 
 function generatePlanet(ship){
   
+    let shipLoc = ship.getLocation()
+    let lowerBound = shipLoc.z + 500
+    let planetZ = random(lowerBound, lowerBound + 700)
+    
+  }
+  
   
 }
 

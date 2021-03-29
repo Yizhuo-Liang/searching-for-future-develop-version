@@ -5,7 +5,7 @@ let realy = 0
 let z = 10
 let theta = 0
 let angle = 0
-let explosion_size = 2
+let explosion_size = 4
 // let R =0;
 // let G =255;
 let B = 0;
@@ -82,10 +82,16 @@ class explosion {
 		if (this.transparent < 255) {
 			this.transparent += 0.5;
 		}
-    if (this.size < 5) {
+    if (this.size < 10) {
 			this.size = this.size * 1.009;
 		}
-		if (this.size > 5 && this.size < 900) {
+    if (this.size > 10 && this.size < 70 ) {
+			this.size = this.size * 1.0653;
+		}
+    if (this.size > 70 && this.size < 100 ) {
+			this.size = this.size * 1.0065;
+		}
+		if (this.size > 100 && this.size < 900) {
 			this.size = this.size * 1.04;
 		}
     
@@ -139,13 +145,13 @@ class scoreboard {
 		this.x = 0;
 		this.y = 0;
 		this.z = -200;
-		this.size = w / 2;
-		this.graphics = createGraphics(w, w)
-		this.graphics.textSize(w/10);
+		this.size = 500;
+		this.graphics = createGraphics(500, 500)
+		this.graphics.textSize(w/15);
 		this.graphics.fill(0);
 		this.graphics.background(0, 0);
-		this.graphics.textAlign(CENTER, CENTER);
-		this.graphics.text("GAME OVER!  \n you score: " + str(s), 0,0, 700, 700);
+		this.graphics.textAlign(CENTER);
+		this.graphics.text("GAME OVER!  \n you score: " + str(s), 250, 250, 700, 700);
 
 	}
 

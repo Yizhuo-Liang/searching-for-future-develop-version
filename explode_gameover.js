@@ -5,7 +5,7 @@ let realy = 0
 let z = 10
 let theta = 0
 let angle = 0
-let explosion_size = 10
+let explosion_size = 2
 // let R =0;
 // let G =255;
 let B = 0;
@@ -77,13 +77,16 @@ class explosion {
 	growBall() {
     
 		if (this.b < 255) {
-			this.b += 0.93;
+			this.b += 0.7;
 		}
 		if (this.transparent < 255) {
-			this.transparent += 1;
+			this.transparent += 0.5;
 		}
-		if (this.size < 900) {
-			this.size = this.size * 1.016;
+    if (this.size < 5) {
+			this.size = this.size * 1.009;
+		}
+		if (this.size > 5 && this.size < 900) {
+			this.size = this.size * 1.04;
 		}
     
 	}
@@ -112,7 +115,7 @@ class explosion {
 		for (let i = 1; i < 6; i++) {
 			noStroke();
 			fill(this.r, this.g, this.b, this.transparent);
-			sphere(this.size + i * 30, 24, 16);
+			sphere(this.size + i * 5, 24, 16);
 		}
 
 		pop();
@@ -121,7 +124,7 @@ class explosion {
 		rotateX(PI / 2);
 		noStroke();
 		fill(245, 245, 237);
-		torus(this.size * 2.5, 15);
+		torus(this.size * 2.5, this.size * 0.07);
 		pop();
 
 

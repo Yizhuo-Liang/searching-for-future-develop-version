@@ -155,7 +155,7 @@ class re_explosion {
 		this.z = z;
 		this.size = size;
 	
-    this.explosion_status=false;
+    // this.explosion_status=false;
 	}
 
 	growBall() {
@@ -174,10 +174,10 @@ class re_explosion {
 	draw() {
 		this.growBall();
     
-    if(this.explosion_status == false){
-      explosde_sound.play();
-      this.explosion_status=true;
-    }
+    // if(this.explosion_status == false){
+    //   explosde_sound.play();
+    //   this.explosion_status=true;
+    // }
     
 		push();
 

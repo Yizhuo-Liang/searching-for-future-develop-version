@@ -43,7 +43,7 @@ function setup() {
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
   explosionEffect = new Explosion();
-  bumi = new Planet(0, 0, camZ - 400, 300, 0)
+  // bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
   // detail.style("width", "80px");
@@ -69,7 +69,7 @@ function draw()  {
       spaceship
     );
     ship1.draw();
-    bumi.draw();
+    // bumi.draw();
     if ((frameCount) % 100 === 0){
       generatePlanet(ship1)
     }  
@@ -90,6 +90,7 @@ function draw()  {
     );
     status = "died";
   } else {
+    background(0);
     explosionEffect.draw();
   }
 
@@ -341,7 +342,7 @@ class Explosion {
   draw() {
     this.growBall();
     push();
-    this.x += 5 * cos(frameCount / 1);
+    // this.x += 5 * cos(frameCount / 1);
     translate(this.x, this.y, this.z);
     push();
     noStroke();
@@ -367,7 +368,7 @@ class Explosion {
 
 function generatePlanet(ship){
   let shipLoc = ship.getLocation();
-  let lowerBound = shipLoc.z - 200;
+  let lowerBound = shipLoc.z - 800;
   let pZ = int(random(lowerBound, lowerBound - 700));
   let pX = int(random(shipLoc.X - 50, shipLoc.X + 50));
   let pY = int(random(shipLoc.Y - 50, shipLoc.Y + 50));

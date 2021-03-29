@@ -77,7 +77,7 @@ function draw() {
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     // bumi.draw();
-    if (frameCount % 100 === 0) {
+    if (frameCount === 1 || frameCount % 100 === 0) {
       generatePlanet(ship1);
     }
     drawPlanets(planets);
@@ -165,18 +165,17 @@ class Planet {
     push();
     translate(this.x, this.y, this.z);
     noStroke();
-    if (dumb === 0) {
+    if (this.t === 0) {
       texture(earth);
-    }
-    else if (dumb === 1) {
+    } else if (this.t === 1) {
       texture(planet1);
-    } else if (dumb === 2) {
+    } else if (this.t === 2) {
       texture(planet2);
-    } else if (dumb === 3) {
+    } else if (this.t === 3) {
       texture(planet3);
-    } else if (dumb === 4) {
+    } else if (this.t === 4) {
       texture(planet4);
-    } else{
+    } else {
       texture(planet5);
     }
 
@@ -212,35 +211,39 @@ function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;
   if (keyIsDown(LEFT_ARROW)) {
-    camX -= 5;
+    camX -= 15;
     tiltZ -= 4;
     triggerZ = 1;
   }
 
   if (keyIsDown(RIGHT_ARROW)) {
-    camX += 5;
+    camX += 15;
     tiltZ += 4;
     triggerZ = 1;
   }
 
   if (keyIsDown(UP_ARROW)) {
-    camY -= 5;
+    camY -= 15;
   }
 
   if (keyIsDown(DOWN_ARROW)) {
-    camY += 5;
+    camY += 15;
   }
-  if (keyIsDown(107) || keyIsDown(187)) {
-    camZ -= 5;
-    tiltX += 5;
-    triggerX = 1;
-  }
+  //   if (keyIsDown(107) || keyIsDown(187)) {
+  //     camZ -= 5;
+  //     tiltX += 5;
+  //     triggerX = 1;
+  //   }
 
-  if (keyIsDown(109) || keyIsDown(189)) {
-    camZ += 5;
-    tiltX -= 5;
-    triggerX = 1;
-  }
+  //   if (keyIsDown(109) || keyIsDown(189)) {
+  //     camZ += 5;
+  //     tiltX -= 5;
+  //     triggerX = 1;
+  //   }
+
+  camZ -= 15;
+  tiltX += 5;
+  triggerX = 1;
 
   if (triggerZ === 0) {
     if (tiltZ > 0) {
@@ -347,7 +350,7 @@ class Spaceship {
 
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
-  let lowerBound = shipLoc.z - 800;
+  let lowerBound = shipLoc.z - 1500;
   let pZ = int(random(lowerBound, lowerBound - 700));
   let pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
   let pY = int(random(shipLoc.y - 50, shipLoc.y + 50));

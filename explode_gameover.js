@@ -107,6 +107,7 @@ class explosion {
     
     if(this.explosion_status == false){
       explosde_sound.play();
+      console.log(this.explosion_status)
       this.explosion_status=true;
     }
     

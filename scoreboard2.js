@@ -10,7 +10,7 @@ function draw() {
   background(51);
 
 	
-	scoreboard1 = new scoreboard(200,-200,-200,1000);
+	scoreboard1 = new scoreboard(0,0,-200,100);
 	scoreboard1.draw();
 
 }

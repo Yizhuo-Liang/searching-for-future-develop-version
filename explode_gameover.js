@@ -9,7 +9,7 @@ let explosion_size = 10
 // let R =0;
 // let G =255;
 let B = 0;
-let T = 100;
+let T = 10;
 let _W;
 let _H;
 let explosde_sound;
@@ -17,7 +17,7 @@ let explosde_sound;
 let scoreboard1;
 let explosion_ball;
 
-let explosion_status = false;
+
 
 function preload(){
   soundFormats('mp3', 'ogg');
@@ -36,10 +36,7 @@ function setup() {
 function draw() {
 	background(0);
   
-  if(explosion_status==false){
-    explosde_sound.play();
-    explosion_status=true;
-  }
+
   
 	if (explosion_ball.getSize() < 900) {
 		explosion_ball.draw(explosion_size, B, T);
@@ -74,22 +71,21 @@ class explosion {
 		this.g = g;
 		this.b = b;
 		this.transparent = transparent;
-    this.explosion_status
+    this.explosion_status=false;
 	}
-  if(explosion_status==false){
-    explosde_sound.play();
-    explosion_status=true;
-  }
+
 	growBall() {
+    
 		if (this.b < 255) {
-			this.b += 0.95;
+			this.b += 0.93;
 		}
 		if (this.transparent < 255) {
-			this.transparent += 1.3;
+			this.transparent += 1;
 		}
 		if (this.size < 900) {
-			this.size = this.size * 1.019;
+			this.size = this.size * 1.016;
 		}
+    
 	}
 	getSize() {
 		return this.size
@@ -97,6 +93,11 @@ class explosion {
 
 	draw() {
 		this.growBall();
+    
+    if(this.explosion_status == false){
+      explosde_sound.play();
+      this.explosion_status=true;
+    }
 		push();
 		this.x += 5 * cos(frameCount / 1);
 
@@ -108,7 +109,7 @@ class explosion {
 
 		fill(this.r, this.g, this.b, this.transparent);
 
-		for (let i = 1; i < 3; i++) {
+		for (let i = 1; i < 6; i++) {
 			noStroke();
 			fill(this.r, this.g, this.b, this.transparent);
 			sphere(this.size + i * 30, 24, 16);

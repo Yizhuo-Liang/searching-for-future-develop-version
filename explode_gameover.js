@@ -9,7 +9,7 @@ let explosion_size = 10
 // let R =0;
 // let G =255;
 let B = 0;
-let T = 180;
+let T = 100;
 let _W;
 let _H;
 let explosde_sound;
@@ -43,7 +43,7 @@ function draw() {
   
 	if (explosion_ball.getSize() < 900) {
 		explosion_ball.draw(explosion_size, B, T);
-		explosion_size = explosion_size * 1.05;
+		
 	}
 
 
@@ -74,17 +74,21 @@ class explosion {
 		this.g = g;
 		this.b = b;
 		this.transparent = transparent;
+    this.explosion_status
 	}
-
+  if(explosion_status==false){
+    explosde_sound.play();
+    explosion_status=true;
+  }
 	growBall() {
 		if (this.b < 255) {
-			this.b += 2.7;
+			this.b += 0.95;
 		}
 		if (this.transparent < 255) {
-			this.transparent += 3;
+			this.transparent += 1.3;
 		}
 		if (this.size < 900) {
-			this.size = this.size * 1.05;
+			this.size = this.size * 1.019;
 		}
 	}
 	getSize() {

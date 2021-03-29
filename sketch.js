@@ -40,7 +40,7 @@ function setup() {
   smooth();
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
-  explosionEffect = new Explosion(50, 200, 106, 10, 250, 250, 0, 180);
+  explosionEffect = new Explosion();
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
   // detail.style("width", "80px");
@@ -50,10 +50,10 @@ function setup() {
 let ship1;
 let pluto = new Planet(100, 100, 100, 155, 0);
 let planets = [];
-let alive = true;
+let status = 'alive';
 
 function draw() {
-  if (alive === true){
+  if (status === 'alive'){
     background(0);
     moveAround();
     ship1 = new Spaceship(
@@ -69,12 +69,16 @@ function draw() {
     pluto.draw();
   }
   
-  else {
-    explosionEffect
+  else if (status === 'justdied'){
+    explosionEffect = new Explosion(ship1.getLocation().x, ship1.getLocation().y, ship1.getLocation().y, 10, 250, 250, 0, 180);
+  }
+  
+  else{
+    explosionEffect.draw();     
   }
   
 
-  // alive = !testCollision(planets,ship1);  //<<<-------------- Check the state of the game
+  // status = !testCollision(planets,ship1);  //<<<-------------- Check the state of the game
 
   
 }
@@ -268,7 +272,7 @@ class Spaceship {
     pop();
   }
   
-  getSpaceshipLoc(){
+  getLocation(){
     return this.position
   }
 }

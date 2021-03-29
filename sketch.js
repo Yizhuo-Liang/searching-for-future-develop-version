@@ -78,22 +78,22 @@ class Planet {
     noStroke();
     texture(earth);
     sphere(this.radius, 24, 14);
-    noFill();
-    stroke(255);
-    strokeWeight(3);
-    push();
-    rotateX(1.1 * (PI / 2));
-    if (this.rings >= 1) {
-      circle(0, 0, 5 * this.radius * random(0.95, 1.05));
-    }
     pop();
-    push();
-    rotateY(-1.1 * (PI / 2));
-    if (this.rings >= 2) {
-      circle(0, 0, 5 * this.radius * random(0.95, 1.05));
-    }
-    pop();
-    pop();
+    // noFill();
+    // stroke(255);
+    // strokeWeight(3);
+    // push();
+    // rotateX(1.1 * (PI / 2));
+    // if (this.rings >= 1) {
+    //   circle(0, 0, 5 * this.radius * random(0.95, 1.05));
+    // }
+    // pop();
+    // push();
+    // rotateY(-1.1 * (PI / 2));
+    // if (this.rings >= 2) {
+    //   circle(0, 0, 5 * this.radius * random(0.95, 1.05));
+    // }
+    // pop();
     // rotateY(millis() / 2500);
   }
 }
@@ -236,7 +236,7 @@ class Spaceship {
 
 //
 let ship1;
-let pluto = new Planet(100, 100, 100, 50, 0);
+let pluto = new Planet(100, 100, 100, 155, 0);
 let planets = [];
 let alive = true;
 function draw() {

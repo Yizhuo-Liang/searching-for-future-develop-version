@@ -77,8 +77,12 @@ let planets = [];
 let status = "alive";
 
 
-function play(){
-  BGM.play();
+function keyTyped() {
+  if (BGM.isPlaying()) {
+
+  } else {
+    BGM.play();
+  }
 }
 
 

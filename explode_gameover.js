@@ -14,7 +14,7 @@ let explosde_sound;
 
 let scoreboard1;
 let explosion_ball;
-
+let re_explosion_ball
 
 
 function preload(){
@@ -25,6 +25,7 @@ function preload(){
 function setup() {
 	createCanvas(windowWidth, windowHeight, WEBGL);
 	explosion_ball = new explosion(50, 200, 106, 4, 250, 250, 0, 10);
+  re_explosion_ball = new re_explosion(50, 200, 106, 1000);
 	scoreboard1 = new scoreboard(windowHeight);
   
 
@@ -44,7 +45,7 @@ function draw() {
 
 	if (explosion_ball.getSize() > 900) {
 		background(0);
-    
+    re_explosion_ball.draw();
 		scoreboard1.draw();
 		// fragments1 = new fragments(50, 100, 0);
 		// fragments1.draw()
@@ -176,13 +177,14 @@ class re_explosion {
       explosde_sound.play();
       this.explosion_status=true;
     }
+    
 		push();
-		this.x += 5 * cos(frameCount / 1);
+
 
 		translate(this.x, this.y, this.z)
 
     
-		push();
+
 
 
 

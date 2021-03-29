@@ -1,6 +1,7 @@
 let _W;
 let _H;
 
+let camZ;
 let spaceship;
 let earth;
 let planet1;
@@ -48,7 +49,6 @@ function setup() {
 
 //
 let ship1;
-let pluto = new Planet(100, 100, 100, 155, 0);
 let planets = [];
 let status = "alive";
 
@@ -66,11 +66,10 @@ function draw()  {
       spaceship
     );
     ship1.draw();
-    if ((frameCount + 1) % 100 === 0){
+    if ((frameCount) % 100 === 0){
       generatePlanet(ship1)
     }  
     drawPlanets(planets);
-    pluto.draw();
     if (testCollision(planets, ship1)) {
       status = "justdied";
     }
@@ -120,6 +119,10 @@ class Planet {
   getRadius() {
     return this.radius;
   }
+  
+  getZ() {
+    return this.z
+  }
 
   draw() {
     push();
@@ -151,7 +154,6 @@ class Planet {
 //--------------------------------- START OF MOVEAROUND ---------------------------------
 let camX = 0;
 let camY = 0;
-let camZ;
 let tiltZ = 0;
 let tiltX = 0;
 function moveAround() {
@@ -360,13 +362,14 @@ class Explosion {
 
 function generatePlanet(ship){
   let shipLoc = ship.getLocation();
-  let lowerBound = shipLoc.z + 500;
-  let pZ = random(lowerBound, lowerBound + 700);
+  let lowerBound = shipLoc.z - 500;
+  let pZ = random(lowerBound, lowerBound - 700);
   let pX = random(shipLoc.X - 50, shipLoc.X + 50);
   let pY = random(shipLoc.Y - 50, shipLoc.Y + 50);
   let pS = random(450, 690);
-  let planetN = new Planet(pX, pY, pZ, pS);
+  let planetN = new Planet(pX, pY, pZ, pS, 0);
   planets.push(planetN);
+  console.log("Planet created")
   }
 
 function drawPlanets(planets) {
@@ -377,7 +380,12 @@ function drawPlanets(planets) {
 }
 
 function planetIsTooFar(planet){
-  if (planet.z - ship1.loc
+  if (planet.z - ship1.getLoc().z < 50){
+    return true
+  }
+  else {
+    return false
+  }
   
 }
 

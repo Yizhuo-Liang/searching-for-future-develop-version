@@ -605,11 +605,17 @@ class EndScene {
 
 function getGravityAcceleration(myShip, planets) {
   
+  // find the closest planet & calculate the distance
   let closePlanet = planets[0];
-  let distance = distFromLocations(myShip.getLocation);
+  let distance = distFromLocations(myShip.getLocation(), closePlanet.location);
   for(let i = 1; i < planets.length - 1; i++) {
-    if(planet)
+    if(distFromLocations(myShip.getLocation(), planets[i]) < distance) {
+      distance = distFromLocations(myShip.getLocation(), planets[i]);
+      closePlanet = planets[i];
+    }
   }
+  
+  // 
 }
 
 function distFromLocations(location1, location2) {

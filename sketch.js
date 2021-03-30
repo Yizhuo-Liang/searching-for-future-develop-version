@@ -61,7 +61,7 @@ function setup() {
   smooth();
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
-  // sb = new Scoreboard(100);
+  sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
 
   xp = width / 2;
@@ -89,8 +89,6 @@ function keyTyped() {
 /////////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
-  sb = new Scoreboard(100);
-
   if (status === "alive" && frameCount >= 1800) {
     status === "justdied";
   }
@@ -108,6 +106,7 @@ function draw() {
     // bumi.draw();
     if (frameCount === 1 || frameCount % 200 === 0) {
       generatePlanet(ship1);
+      console.log(planets.length)
     }
 
     drawPlanets(planets);
@@ -287,8 +286,6 @@ function moveAround() {
   //   }
 
   camZ -= 25;
-  // tiltX += 5;
-  // triggerX = 1;
 
   if (triggerZ === 0) {
     if (tiltZ > 0) {
@@ -322,6 +319,10 @@ function moveAround() {
 }
 //--------------------------------- END OF MOVEAROUND ---------------------------------
 
+
+
+
+
 //--------------------------------- START OF POSITION ---------------------------------
 class Position {
   constructor(x, y, z) {
@@ -337,6 +338,10 @@ class Position {
   }
 }
 //--------------------------------- END OF POSITION ---------------------------------
+
+
+
+
 
 //--------------------------------- START OF COLLISION DETECTING ---------------------------------
 
@@ -362,6 +367,9 @@ function testCollision(planets, myShip) {
 }
 
 //--------------------------------- END OF COLLISION DETECTING ---------------------------------
+
+
+
 
 //--------------------------------- START OF SPACESHIP ---------------------------------
 class Spaceship {
@@ -391,7 +399,11 @@ class Spaceship {
 
 //--------------------------------- END OF SPACESHIP ---------------------------------
 
-//--------------------------------- END OF EXPLOSION ---------------------------------
+
+
+
+
+//--------------------------------- START OF GENERATEPLANETS ---------------------------------
 
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
@@ -489,6 +501,10 @@ class Scoreboard {
     return int(millis() / 100);
   }
 }
+
+
+
+
 
 //--------------------------------- START OF EXPLOSION ---------------------------------
 
@@ -632,7 +648,7 @@ class EndScene {
 function getWarningLevel(myShip, planets) {
   // find the closest planet & calculate the distance
   if (planets === null) return 2;
-  if (planets.length === 0) return 2;
+  if (planets === []) return 2;
   let closePlanet = findClosestPlanet(myShip);
   let distance = distFromLocations(myShip.getLocation(), closePlanet);
   return 400 / distance;

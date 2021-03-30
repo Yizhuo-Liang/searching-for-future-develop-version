@@ -87,6 +87,7 @@ let status = "alive";
 // function mouseClicked() {
 //   status = "alive_again";
 //   delete global.planets
+//   global.plants = null;
 // }
 // function doubleClicked() {
 //   status = "alive"

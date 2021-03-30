@@ -77,13 +77,6 @@ let ship1;
 let planets = [];
 let status = "alive";
 
-function keyTyped() {
-  if (BGM.isPlaying()) {
-  } else {
-    BGM.play();
-  }
-}
-
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////  -- DRAW IS HERE --  /////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -430,21 +423,21 @@ function generatePlanet(ship) {
 }
 
 function drawPlanets() {
-  console.log(planets.length)
+  console.log(planets.length);
   planets = planets.filter(planetIsNotTooFar);
-  console.log(planets.length)
+  console.log(planets.length);
   for (let i = 0; i < planets.length; i++) {
     planets[i].draw();
   }
 }
 
 function planetIsNotTooFar(planet) {
-  if (planet.z - ship1.getLocation().z > - 300) {
-    console.log("Planet destroyed");
-    return false;
-  } else {
-    return true;
-  }
+  return (planet.z - ship1.getLocation().z) > - 300
+  //   console.log("Planet destroyed");
+  //   return false;
+  // } else {
+  //   return true;
+  // }
 }
 
 //--------------------------------- END OF PLANETFUNCTIONS ---------------------------------

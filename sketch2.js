@@ -77,13 +77,6 @@ let ship1;
 let planets = [];
 let status = "alive";
 
-// function keyTyped() {
-//   if (BGM.isPlaying()) {
-//   } else {
-//     BGM.play();
-//   }
-// }
-
 // function mouseClicked() {
 //   status = "alive_again";
 //   delete global.planets
@@ -248,27 +241,32 @@ function moveAround() {
   let triggerX = 0;
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     for (let i = 0; i < planets.length; i++){
-      planets.
+      planets[i].x += 15;
     }
-    camX -= 15;
     tiltZ -= 4;
     triggerZ = 1;
   }
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
-    camX += 15;
+    for (let i = 0; i < planets.length; i++){
+      planets[i].x -= 15;
+    }
     tiltZ += 4;
     triggerZ = 1;
   }
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
-    camY -= 15;
+    for (let i = 0; i < planets.length; i++){
+      planets[i].y += 15;
+    }
     tiltX += 5;
     triggerX = 1;
   }
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
-    camY += 15;
+    for (let i = 0; i < planets.length; i++){
+      planets[i].y -= 15;
+    }
     tiltX -= 5;
     triggerX = 1;
   }
@@ -295,7 +293,9 @@ function moveAround() {
   //     triggerX = 1;
   //   }
 
-  camZ -= 25;
+  for (let i = 0; i < planets.length; i++){
+      planets[i].z += 15;
+    }
 
   if (triggerZ === 0) {
     if (tiltZ > 0) {

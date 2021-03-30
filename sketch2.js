@@ -52,7 +52,7 @@ function preload() {
 let planetlist = [earth, planet1, planet2, planet3, planet4, planet5];
 let sb;
 let bumi;
-
+let displayPoem;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -67,6 +67,7 @@ function setup() {
   BGM.play();
   xp = width / 2;
   yp = height / 2;
+  displayPoem = new DisplayWords(poem, 200);
   // bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
@@ -116,6 +117,11 @@ function draw() {
       ship1.getLocation().y - _H / 4,
       ship1.getLocation().z
     );
+    
+    displayPoem.draw(ship1.getLocation().x,
+      ship1.getLocation().y - _H / 4,
+      ship1.getLocation().z)
+    
     if (testCollision(planets, ship1)) {
       status = "justdied";
     }
@@ -160,6 +166,8 @@ function draw() {
 
 
 
+
+
 let poem = ["Life is strange is it not?", "You wake up everyday not knowing what’s in store.", "You go to sleep only to journey yet again.",
             "Our universe is so vast and yet it is so detailed.", "Everything has a story, including you.", "You may not be the first person to exist.",
             "You definitely won’t be the last.", "But you are the only you that exists.", "You’re unique from everyone else in your own special way.", 
@@ -171,8 +179,27 @@ let poem = ["Life is strange is it not?", "You wake up everyday not knowing what
             "So I wish you the best on your journey through this strange thing we call:", "Life."]
 
 class DisplayWords {
-  constructor(wordList){
+  constructor(wordList, size){
     this.wordList = wordList;
+    this.index = 0;
+    this.size = size;
+  }
+    
+  draw(x, y, z) {
+    push();
+    let graphics = createGraphics(200, 200);
+    graphics.background(0, 30);
+    graphics.fill(255);
+    graphics.textSize(50);
+    if (frameCount % 210 == 0){
+      this.index += 1
+    }
+    graphics.text(this.wordList[this.index], );
+    texture(graphics);
+    translate(x, y, z);
+    noStroke();
+    plane(this.size);
+    pop();
   }
 }
 

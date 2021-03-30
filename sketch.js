@@ -104,7 +104,7 @@ function draw() {
   }
   
   if (status === "alive") {
-    background(0);
+    background(0 + (1/getWarningLevel(ship1)) * 30);
    
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
@@ -175,7 +175,7 @@ class Planet {
     this.x = x;
     this.y = y;
     this.z = z;
-    //this.location = new Location(x, y, z);
+    this.location = new Position(x, y, z);
     this.radius = radius;
     this.rings = rings;
     this.t = int(random(6));
@@ -633,26 +633,19 @@ class EndScene {
 }
 //--------------------------------- END OF ENDSCENE ---------------------------------
 
-//--------------------------------- START OF GRAVITY ---------------------------------
+//--------------------------------- START OF WARNING ---------------------------------
 
-function getGravityAcceleration(myShip, planets) {
+function getWarningLevel(myShip, planets) {
   
   // find the closest planet & calculate the distance
-  let closePlanet = planets[0];
-  let distance = distFromLocations(myShip.getLocation(), closePlanet.location);
-  for(let i = 1; i < planets.length - 1; i++) {
-    if(distFromLocations(myShip.getLocation(), planets[i]) < distance) {
-      distance = distFromLocations(myShip.getLocation(), planets[i]);
-      closePlanet = planets[i];
-    }
-  }
-  
-  // 
+  let closePlanet = findClosestPlanet(myShip);
+  let distance = distFromLocations(myShip.getLocation(), closePlanet);
+  return distance / 400;
 }
 
 function findClosestPlanet(myShip) {
   let closePlanet = planets[0];
-  let distance = distFromLocations(myShip.getLocation(), closePlanet.location);
+  let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
   for(let i = 1; i < planets.length - 1; i++) {
     if(distFromLocations(myShip.getLocation(), planets[i]) < distance) {
       distance = distFromLocations(myShip.getLocation(), planets[i]);

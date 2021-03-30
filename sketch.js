@@ -94,12 +94,12 @@ function draw() {
   }
 
   if (status === "alive") {
-    let warning = 0;
-    let warningLevel = getWarningLevel(ship1);
-    if (warningLevel > 1) {
-      warning += warningLevel * 40;
-    }
-    background(0 + warning, 0, 0);
+    // let warning = 0;
+    // let warningLevel = getWarningLevel(ship1);
+    // if (warningLevel > 1) {
+    //   warning += warningLevel * 40;
+    // }
+    background(getWarningLevel(ship1, planets));
 
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
@@ -356,7 +356,6 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
   );
   return distance < objRadius + trgtRadius;
 }
-
 
 
 function testCollision(planets, myShip) {
@@ -661,38 +660,60 @@ class EndScene {
 
 
 //--------------------------------- START OF WARNING ---------------------------------
-
-function getWarningLevel(myShip, planets) {
-  // find the closest planet & calculate the distance
-  if (planets === null) return 2;
-  if (planets === []) return 2;
-  let closePlanet = findClosestPlanet(myShip);
-  let distance = distFromLocations(myShip.getLocation(), closePlanet);
-  return 400 / distance;
+function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {
+  let distance = dist(
+    objPosition.x,
+    objPosition.y,
+    objPosition.z,
+    trgtPosition.x,
+    trgtPosition.y,
+    trgtPosition.z
+  );
+  return distance < objRadius + trgtRadius + 400;
 }
 
-function findClosestPlanet(myShip) {
-  let closePlanet = planets[0];
-  let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-  for (let i = 1; i < planets.length - 1; i++) {
-    if (distFromLocations(myShip.getLocation(), planets[i]) < distance) {
-      distance = distFromLocations(myShip.getLocation(), planets[i]);
-      closePlanet = planets[i];
+function testIsClose(myShip, planets) {
+  if (planets === []){
+    return false
+  }
+  for (let i = 0; i < planets.length; i++) {
+    if (isClose(myShip.position, planets[i], 155, planets[i].radius)) {
+      return true;
     }
   }
-  return closePlanet;
+  return false;
 }
 
-function distFromLocations(location1, location2) {
-  return dist(
-    location1.x,
-    location1.y,
-    location1.z,
-    location2.x,
-    location2.y,
-    location2.z
-  );
+function getWarningLevel(myShip, planets) {
+  if (testIsClose(myShip, planets) && frameCount % 30 > 10) {
+    return (255, 0, 0)
+  } else {
+    return(0)
+  }
 }
+
+// function findClosestPlanet(myShip) {
+//   let closePlanet = planets[0];
+//   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
+//   for (let i = 1; i < planets.length - 1; i++) {
+//     if (distFromLocations(myShip.getLocation(), planets[i]) < distance) {
+//       distance = distFromLocations(myShip.getLocation(), planets[i]);
+//       closePlanet = planets[i];
+//     }
+//   }
+//   return closePlanet;
+// }
+
+// function distFromLocations(location1, location2) {
+//   return dist(
+//     location1.x,
+//     location1.y,
+//     location1.z,
+//     location2.x,
+//     location2.y,
+//     location2.z
+//   );
+// }
 
 //--------------------------------- END OF GRAVITY ---------------------------------
 

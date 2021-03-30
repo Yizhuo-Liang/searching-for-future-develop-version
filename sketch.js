@@ -17,9 +17,9 @@ let ending;
 let explosion_ball;
 let re_explosion_ball;
 
-var xp;
-var yp;
-var maxSpeed = 15;
+let xp;
+let yp;
+let maxSpeed = 15;
 
 
 function preload() {
@@ -104,7 +104,13 @@ function draw() {
   }
   
   if (status === "alive") {
-    background(0 + (1/getWarningLevel(ship1)) * 30);
+    
+    let warning = 0;
+    let warningLevel = getWarningLevel(ship1);
+    if(warningLevel > 1) {
+      warning += warningLevel * 40;
+    }
+    background(0 + warning, 0, 0);
    
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
@@ -175,7 +181,7 @@ class Planet {
     this.x = x;
     this.y = y;
     this.z = z;
-    this.location = new Position(x, y, z);
+    this.position = new Position(x, y, z);
     this.radius = radius;
     this.rings = rings;
     this.t = int(random(6));
@@ -269,13 +275,13 @@ function moveAround() {
     triggerX = 1;
   }
   
-  //phone version
+//   phone version
   
-  // xp = map(rotationY, -180, 180, -maxSpeed, maxSpeed);
-  // yp = map(rotationX, -180, 180, -maxSpeed, maxSpeed);
+//   xp = map(rotationY, -180, 180, -maxSpeed, maxSpeed);
+//   yp = map(rotationX, -180, 180, -maxSpeed, maxSpeed);
   
-  // camX += xp*5;
-  // camY += yp*5;
+//   camX += xp*5;
+//   camY += yp*5;
   
   //phone version
   
@@ -638,9 +644,10 @@ class EndScene {
 function getWarningLevel(myShip, planets) {
   
   // find the closest planet & calculate the distance
+  if(planets.length === 0) return 2;
   let closePlanet = findClosestPlanet(myShip);
   let distance = distFromLocations(myShip.getLocation(), closePlanet);
-  return distance / 400;
+  return 400 / distance;
 }
 
 function findClosestPlanet(myShip) {

@@ -63,7 +63,7 @@ function setup() {
   camZ = height / 2.0 / tan(30.0);
   sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
-
+  BGM.play();
   xp = width / 2;
   yp = height / 2;
   // bumi = new Planet(0, 0, camZ - 400, 300, 0)
@@ -442,9 +442,9 @@ function drawPlanets(planets) {
 
 function planetIsNotTooFar(planet) {
   if (planet.z - ship1.getLocation().z > 50) {
+    console.log("Planet destroyed");
     return false;
   } else {
-    console.log("Planet destroyed");
     return true;
   }
 }

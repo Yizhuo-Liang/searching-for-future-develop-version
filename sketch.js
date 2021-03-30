@@ -413,27 +413,27 @@ function generatePlanet(ship) {
     let planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     // randomness += int(random(-5000, 5000)) 
     planets.push(planetNew);
-  let pX = int(random(shipLoc.x - 500, shipLoc.x + 50));
-  let pY = int(random(shipLoc.y - 100, shipLoc.y + 100));
-  let pS = int(random(250, 490));
-  let randomness = 0
-  // for (let i = 0; i < random(8) ; i++) {
-  let planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+   pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
+   pY = int(random(shipLoc.y - 100, shipLoc.y + 100));
+   pS = int(random(250, 490));
+   randomness = 0
+  // for ( i = 0; i < random(8) ; i++) {
+   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
   planets.push(planetNew);
-  let pX = int(random(shipLoc.x + 50, shipLoc.x + 500));
-  let pY = int(random(shipLoc.y - 100, shipLoc.y + 100));
-  let pS = int(random(250, 490));
-  let randomness = 0
-  // for (let i = 0; i < random(8) ; i++) {
-  let planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+   pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
+   pY = int(random(shipLoc.y - 100, shipLoc.y + 100));
+   pS = int(random(250, 490));
+   randomness = 0
+  // for ( i = 0; i < random(8) ; i++) {
+   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
   planets.push(planetNew);
   
-  let pX = int(random(shipLoc.x + 50, shipLoc.x + 500));
-  let pY = int(random(shipLoc.y - , shipLoc.y + 50));
-  let pS = int(random(250, 490));
-  let randomness = 0
-  // for (let i = 0; i < random(8) ; i++) {
-  let planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+   pX = int(random(shipLoc.x + 50, shipLoc.x + 500));
+   pY = int(random(shipLoc.y + 1500, shipLoc.y + 3000));
+   pS = int(random(250, 490));
+   randomness = 0
+  // for ( i = 0; i < random(8) ; i++) {
+   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
   planets.push(planetNew);
   // }
   console.log("Planet created");

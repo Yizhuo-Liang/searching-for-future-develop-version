@@ -84,9 +84,13 @@ let status = "alive";
 //   }
 // }
 
-function mouseClicked() {
-  status = "alive_again";
-}
+// function mouseClicked() {
+//   status = "alive_again";
+//   delete global.planets
+// }
+// function doubleClicked() {
+//   status = "alive"
+// }
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////  -- DRAW IS HERE --  /////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -95,10 +99,7 @@ function draw() {
   // if (status === "alive" && frameCount >= 1800) {
   //   status === "justdied";
   // }
-  if (status === "alive_again") {
-  
-    status = "alive"
-  }
+
   if (status === "alive") {
     // let warning = 0;
     // let warningLevel = getWarningLevel(ship1);

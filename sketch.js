@@ -156,7 +156,6 @@ function draw() {
     }
   }
 
-  // status = !testCollision(planets,ship1);  //<<<-------------- Check the state of the game
 }
 
 // Planet class introduction:
@@ -172,6 +171,7 @@ class Planet {
     this.x = x;
     this.y = y;
     this.z = z;
+    this.location = new Location(x, y, z);
     this.radius = radius;
     this.rings = rings;
     this.t = int(random(6));
@@ -603,8 +603,17 @@ class EndScene {
 
 //--------------------------------- START OF GRAVITY ---------------------------------
 
-function getGravityForce() {
+function getGravityAcceleration(myShip, planets) {
   
+  let closePlanet = planets[0];
+  let distance = distFromLocations(myShip.getLocation);
+  for(let i = 1; i < planets.length - 1; i++) {
+    if(planet)
+  }
+}
+
+function distFromLocations(location1, location2) {
+  return dist(location1.x, location1.y, location1.z, location2.x, location2.y, location2.z);
 }
 
 //--------------------------------- END OF GRAVITY ---------------------------------

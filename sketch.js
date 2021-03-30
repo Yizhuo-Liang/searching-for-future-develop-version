@@ -104,7 +104,7 @@ function draw() {
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     // bumi.draw();
     if (frameCount === 1 || frameCount % 180 == 0) {
-      generatePlanet(ship1);
+      // generatePlanet(ship1);
       console.log(planets.length);
     }
 
@@ -439,9 +439,9 @@ function drawPlanets() {
 }
 
 function planetIsNotTooFar(planet) {
-  if (int(planet.z) - int(ship1.getLocation().z) > 50) 
+  if (int(planet.z) - int(ship1.getLocation().z) < 10) 
   {
-    global.planet = undefined;
+    delete global.planet;
     console.log("Planet destroyed");
     return false;
   } else {

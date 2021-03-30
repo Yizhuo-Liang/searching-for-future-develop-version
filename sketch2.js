@@ -120,7 +120,7 @@ function draw() {
 
     displayPoem.draw(
       ship1.getLocation().x,
-      ship1.getLocation().y - _H / 8,
+      ship1.getLocation().y - _H / 5,
       ship1.getLocation().z
     );
 
@@ -205,22 +205,23 @@ class DisplayWords {
     this.wordList = wordList;
     this.index = 0;
     this.size = size;
+    this.graphics = createGraphics(this.size * 3, this.size);
   }
 
   draw(x, y, z) {
     push();
-    let graphics = createGraphics(this.size, this.size);
-    graphics.background(0, 100);
-    graphics.fill(255);
-    graphics.textSize(this.size/10);
-    if (frameCount % 210 == 0) {
+    this.graphics.background(0, 20);
+    this.graphics.fill(255);
+    this.graphics.textSize(this.size/8);
+    if (frameCount % 120 == 0) {
       this.index += 1;
     }
-    graphics.text(this.wordList[this.index], 0, 0, this.size, this.size);
-    texture(graphics);
+    this.graphics.textAlign(CENTER, CENTER);
+    this.graphics.text(this.wordList[this.index], 0, 0, this.size*3, this.size);
+    texture(this.graphics);
     translate(x, y, z);
     noStroke();
-    plane(this.size, this.size);
+    plane(this.size, this.size/3);
     pop();
   }
 }

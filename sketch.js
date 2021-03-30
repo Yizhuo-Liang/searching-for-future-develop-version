@@ -91,6 +91,9 @@ function keyTyped() {
   }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////  -- DRAW IS HERE  /////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
   
@@ -396,6 +399,8 @@ class Spaceship {
 
 //--------------------------------- END OF EXPLOSION ---------------------------------
 
+
+
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let lowerBound = shipLoc.z - 1500;
@@ -403,9 +408,12 @@ function generatePlanet(ship) {
   let pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
   let pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
   let pS = int(random(250, 490));
-  for (let i = 0; i < )
-  let planetNew = new Planet(pX, pY, pZ, pS, 0);
-  planets.push(planetNew);
+  let randomness = 0
+  // for (let i = 0; i < random(8) ; i++) {
+    let planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+    // randomness += int(random(-5000, 5000)) 
+    planets.push(planetNew);
+  // }
   console.log("Planet created");
 }
 

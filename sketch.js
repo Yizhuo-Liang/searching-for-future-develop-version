@@ -96,9 +96,9 @@ function draw() {
   
   sb = new Scoreboard(100);
   
-  if(status === "alive" && frameCount >= 1800) {
-    status === "justdied";
-  }
+  // if(status === "alive" && frameCount >= 1800) {
+  //   status === "justdied";
+  // }
   
   if (status === "alive") {
     background(0);
@@ -171,7 +171,7 @@ class Planet {
     this.x = x;
     this.y = y;
     this.z = z;
-    this.location = new Location(x, y, z);
+    //this.location = new Location(x, y, z);
     this.radius = radius;
     this.rings = rings;
     this.t = int(random(6));

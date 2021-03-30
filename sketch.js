@@ -108,15 +108,15 @@ function draw() {
       console.log(planets.length);
     }
 
-    drawPlanets();
+    // drawPlanets();
     sb.draw(
       ship1.getLocation().x + _W / 4,
       ship1.getLocation().y - _H / 4,
       ship1.getLocation().z
     );
-    if (testCollision(planets, ship1)) {
-      status = "justdied";
-    }
+    // if (testCollision(planets, ship1)) {
+    //   status = "justdied";
+    // }
   } else if (status === "justdied") {
     explosion_ball = new Explosion(
       ship1.getLocation().x,

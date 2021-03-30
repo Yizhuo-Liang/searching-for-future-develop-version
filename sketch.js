@@ -89,9 +89,9 @@ function keyTyped() {
 /////////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
-  if (status === "alive" && frameCount >= 1800) {
-    status === "justdied";
-  }
+  // if (status === "alive" && frameCount >= 1800) {
+  //   status === "justdied";
+  // }
 
   if (status === "alive") {
     // let warning = 0;
@@ -103,7 +103,7 @@ function draw() {
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     // bumi.draw();
-    if (frameCount === 1 || frameCount % 200 == 0) {
+    if (frameCount === 1 || frameCount % 180 == 0) {
       generatePlanet(ship1);
       console.log(planets.length);
     }
@@ -210,7 +210,6 @@ class Planet {
 
     sphere(this.radius, 30, 30);
     pop();
-    console.log("planet called");
     // noFill();
     // stroke(255);
     // strokeWeight(3);

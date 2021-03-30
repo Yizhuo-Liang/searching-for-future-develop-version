@@ -21,7 +21,6 @@ let xp;
 let yp;
 let maxSpeed = 15;
 
-
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
   earth = loadImage(
@@ -49,15 +48,12 @@ function preload() {
   BGM = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FBGM.mp3?v=1617047619315"
   );
-
-  
 }
 let planetlist = [earth, planet1, planet2, planet3, planet4, planet5];
 let sb;
 let bumi;
 
 function setup() {
- 
   createCanvas(windowWidth, windowHeight, WEBGL);
   _W = windowWidth;
   _H = windowHeight;
@@ -67,10 +63,9 @@ function setup() {
   camZ = height / 2.0 / tan(30.0);
   // sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
-  
-  
-  xp= width / 2;
-  yp= height / 2;
+
+  xp = width / 2;
+  yp = height / 2;
   // bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
@@ -82,10 +77,8 @@ let ship1;
 let planets = [];
 let status = "alive";
 
-
 function keyTyped() {
   if (BGM.isPlaying()) {
-
   } else {
     BGM.play();
   }
@@ -96,29 +89,27 @@ function keyTyped() {
 /////////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
-  
   sb = new Scoreboard(100);
-  
-  if(status === "alive" && frameCount >= 1800) {
+
+  if (status === "alive" && frameCount >= 1800) {
     status === "justdied";
   }
-  
+
   if (status === "alive") {
-    
     let warning = 0;
     let warningLevel = getWarningLevel(ship1);
-    if(warningLevel > 1) {
+    if (warningLevel > 1) {
       warning += warningLevel * 40;
     }
     background(0 + warning, 0, 0);
-   
+
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     // bumi.draw();
-    if (frameCount === 1 || frameCount % 100 === 0) {
+    if (frameCount === 1 || frameCount % 200 === 0) {
       generatePlanet(ship1);
     }
-    
+
     drawPlanets(planets);
     sb.draw(
       ship1.getLocation().x + _W / 4,
@@ -148,7 +139,6 @@ function draw() {
     ending = new EndScene(
       ship1.getLocation().x,
       ship1.getLocation().y,
-      ship1.getLocation().z,
       sb.getScore()
     );
     status = "died";
@@ -165,7 +155,6 @@ function draw() {
       ending.draw();
     }
   }
-
 }
 
 // Planet class introduction:
@@ -274,18 +263,17 @@ function moveAround() {
     tiltX -= 5;
     triggerX = 1;
   }
-  
-//   phone version
-  
-//   xp = map(rotationY, -180, 180, -maxSpeed, maxSpeed);
-//   yp = map(rotationX, -180, 180, -maxSpeed, maxSpeed);
-  
-//   camX += xp*5;
-//   camY += yp*5;
-  
+
+  //   phone version
+
+  //   xp = map(rotationY, -180, 180, -maxSpeed, maxSpeed);
+  //   yp = map(rotationX, -180, 180, -maxSpeed, maxSpeed);
+
+  //   camX += xp*5;
+  //   camY += yp*5;
+
   //phone version
-  
-  
+
   //   if (keyIsDown(107) || keyIsDown(187)) {
   //     camZ -= 5;
   //     tiltX += 5;
@@ -405,76 +393,41 @@ class Spaceship {
 
 //--------------------------------- END OF EXPLOSION ---------------------------------
 
-
-
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
-  for (let d = 0; d < 3; d++){
-    let lowerBound = shipLoc.z - 1500;
-    let pZ = int(random(lowerBound, lowerBound - 700));
-  let pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
-  let pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
-  let pS = int(random(250, 490));
-  let randomness = 0
-  // for (let i = 0; i < random(8) ; i++) {
-    let planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
-    // randomness += int(random(-5000, 5000)) 
+  let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
+  for (let d = 1; d < 4; d++) {
+    lowerBound = shipLoc.z - (2000*d);
+    pZ = int(random(lowerBound, lowerBound - 700));
+    pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
+    pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
+    pS = int(random(250, 490));
+    planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
-   pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
-   pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
-   pS = int(random(250, 490));
-   randomness = 0
-  // for ( i = 0; i < random(8) ; i++) {
-   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
-  planets.push(planetNew);
-   pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
-   pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
-   pS = int(random(250, 490));
-   randomness = 0
-  // for ( i = 0; i < random(8) ; i++) {
-   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
-  planets.push(planetNew);
-  
-   pX = int(random(shipLoc.x + 50, shipLoc.x + 500));
-   pY = int(random(shipLoc.y + 1500, shipLoc.y + 3000));
-   pS = int(random(250, 490));
-   randomness = 0
-  // for ( i = 0; i < random(8) ; i++) {
-   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
-  planets.push(planetNew);
+    
+    pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
+    pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
+    pS = int(random(250, 490));
+    randomness = 0;
+    planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+    planets.push(planetNew);
+    
+    pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
+    pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
+    pS = int(random(250, 490));
+    randomness = 0;
+    planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+    planets.push(planetNew);
+
+    pX = int(random(shipLoc.x + 50, shipLoc.x + 500));
+    pY = int(random(shipLoc.y + 1500, shipLoc.y + 3000));
+    pS = int(random(250, 490));
+    randomness = 0;
+    planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+    planets.push(planetNew);
   }
-  
-  let lowerBound = shipLoc.z - 1500;
-  let pZ = int(random(lowerBound, lowerBound - 700));
-  let pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
-  let pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
-  let pS = int(random(250, 490));
-  let randomness = 0
-  // for (let i = 0; i < random(8) ; i++) {
-    let planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
-    // randomness += int(random(-5000, 5000)) 
-    planets.push(planetNew);
-   pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
-   pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
-   pS = int(random(250, 490));
-   randomness = 0
   // for ( i = 0; i < random(8) ; i++) {
-   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
-  planets.push(planetNew);
-   pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
-   pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
-   pS = int(random(250, 490));
-   randomness = 0
-  // for ( i = 0; i < random(8) ; i++) {
-   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
-  planets.push(planetNew);
-  
-   pX = int(random(shipLoc.x + 50, shipLoc.x + 500));
-   pY = int(random(shipLoc.y + 1500, shipLoc.y + 3000));
-   pS = int(random(250, 490));
-   randomness = 0
-  // for ( i = 0; i < random(8) ; i++) {
-   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+  planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
   planets.push(planetNew);
   // }
   console.log("Planet created");
@@ -531,7 +484,7 @@ class Scoreboard {
     plane(this.size + this.expand_value);
     pop();
   }
-  
+
   getScore() {
     return int(millis() / 100);
   }
@@ -677,10 +630,9 @@ class EndScene {
 //--------------------------------- START OF WARNING ---------------------------------
 
 function getWarningLevel(myShip, planets) {
-  
   // find the closest planet & calculate the distance
-  if(planets === null) return 2;
-  if(planets.length === 0) return 2;
+  if (planets === null) return 2;
+  if (planets.length === 0) return 2;
   let closePlanet = findClosestPlanet(myShip);
   let distance = distFromLocations(myShip.getLocation(), closePlanet);
   return 400 / distance;
@@ -689,8 +641,8 @@ function getWarningLevel(myShip, planets) {
 function findClosestPlanet(myShip) {
   let closePlanet = planets[0];
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-  for(let i = 1; i < planets.length - 1; i++) {
-    if(distFromLocations(myShip.getLocation(), planets[i]) < distance) {
+  for (let i = 1; i < planets.length - 1; i++) {
+    if (distFromLocations(myShip.getLocation(), planets[i]) < distance) {
       distance = distFromLocations(myShip.getLocation(), planets[i]);
       closePlanet = planets[i];
     }
@@ -699,7 +651,14 @@ function findClosestPlanet(myShip) {
 }
 
 function distFromLocations(location1, location2) {
-  return dist(location1.x, location1.y, location1.z, location2.x, location2.y, location2.z);
+  return dist(
+    location1.x,
+    location1.y,
+    location1.z,
+    location2.x,
+    location2.y,
+    location2.z
+  );
 }
 
 //--------------------------------- END OF GRAVITY ---------------------------------

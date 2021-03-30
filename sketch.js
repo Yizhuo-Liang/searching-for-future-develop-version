@@ -85,7 +85,7 @@ let status = "alive";
 // }
 
 function mouseClicked() {
-  status = "alive";
+  status = "alive_again";
 }
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////  -- DRAW IS HERE --  /////////////////////////////////////
@@ -95,7 +95,10 @@ function draw() {
   // if (status === "alive" && frameCount >= 1800) {
   //   status === "justdied";
   // }
-
+  if (status === "alive_again") {
+  
+    status = "alive"
+  }
   if (status === "alive") {
     // let warning = 0;
     // let warningLevel = getWarningLevel(ship1);
@@ -442,7 +445,7 @@ function drawPlanets() {
 }
 
 function planetIsNotTooFar(planet) {
-  if (planet.z - ship1.getLocation().z > - 300) {
+  if (planet.z - ship1.getLocation().z > - 300||status === "alive_again") {
     console.log("Planet destroyed");
     return false;
   } else {

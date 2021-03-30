@@ -106,7 +106,7 @@ function draw() {
     // bumi.draw();
     if (frameCount === 1 || frameCount % 200 === 0) {
       generatePlanet(ship1);
-      console.log(planets.length)
+      console.log(planets.length);
     }
 
     drawPlanets(planets);
@@ -320,10 +320,6 @@ function moveAround() {
 }
 //--------------------------------- END OF MOVEAROUND ---------------------------------
 
-
-
-
-
 //--------------------------------- START OF POSITION ---------------------------------
 class Position {
   constructor(x, y, z) {
@@ -340,10 +336,6 @@ class Position {
 }
 //--------------------------------- END OF POSITION ---------------------------------
 
-
-
-
-
 //--------------------------------- START OF COLLISION DETECTING ---------------------------------
 
 function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
@@ -358,7 +350,6 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
   return distance < objRadius + trgtRadius;
 }
 
-
 function testCollision(planets, myShip) {
   for (let i = 0; i < planets.length; i++) {
     if (isCollide(myShip.position, planets[i], 155, planets[i].radius)) {
@@ -369,9 +360,6 @@ function testCollision(planets, myShip) {
 }
 
 //--------------------------------- END OF COLLISION DETECTING ---------------------------------
-
-
-
 
 //--------------------------------- START OF SPACESHIP ---------------------------------
 class Spaceship {
@@ -401,31 +389,27 @@ class Spaceship {
 
 //--------------------------------- END OF SPACESHIP ---------------------------------
 
-
-
-
-
 //--------------------------------- START OF PLANETSFUNCTIONS ---------------------------------
 
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
   for (let d = 1; d < 4; d++) {
-    lowerBound = shipLoc.z - (2000*d);
+    lowerBound = shipLoc.z - 2000 * d;
     pZ = int(random(lowerBound, lowerBound - 700));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(250, 490));
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
-    
+
     pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
     pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
     pS = int(random(250, 490));
     randomness = 0;
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
-    
+
     pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
     pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
     pS = int(random(250, 490));
@@ -448,7 +432,7 @@ function generatePlanet(ship) {
 }
 
 function drawPlanets(planets) {
-  planets = planets.filter(planetIsTooFar);
+  planets = planets.filter(planetIsNotTooFar);
   for (let i = 0; i < planets.length; i++) {
     planets[i].draw();
     console.log(
@@ -457,7 +441,7 @@ function drawPlanets(planets) {
   }
 }
 
-function planetIsTooFar(planet) {
+function planetIsNotTooFar(planet) {
   if (planet.z - ship1.getLocation().z > 50) {
     return false;
   } else {
@@ -467,8 +451,6 @@ function planetIsTooFar(planet) {
 }
 
 //--------------------------------- END OF PLANETFUNCTIONS ---------------------------------
-
-
 
 //--------------------------------- START OF SCOREBOARD ---------------------------------
 class Scoreboard {
@@ -510,8 +492,6 @@ class Scoreboard {
 }
 
 //--------------------------------- END OF SCOREBOARD ---------------------------------
-
-
 
 //--------------------------------- START OF EXPLOSION ---------------------------------
 
@@ -577,9 +557,6 @@ class Explosion {
 
 //--------------------------------- END OF EXPLOSION ---------------------------------
 
-
-
-
 //--------------------------------- START OF RE_EXPLOSION ---------------------------------
 class Re_explosion {
   constructor(x, y, z, size) {
@@ -618,10 +595,6 @@ class Re_explosion {
 
 //--------------------------------- END OF RE_EXPLOSION ---------------------------------
 
-
-
-
-
 //--------------------------------- START OF ENDSCENE ---------------------------------
 class EndScene {
   constructor(x, y, z, s = 0) {
@@ -657,9 +630,6 @@ class EndScene {
 }
 //--------------------------------- END OF ENDSCENE ---------------------------------
 
-
-
-
 //--------------------------------- START OF WARNING ---------------------------------
 function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {
   let distance = dist(
@@ -674,11 +644,13 @@ function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {
 }
 
 function testIsClose(myShip, planets) {
-  if (planets === []){
-    return false
+  console.log("testing");
+  if (planets === []) {
+    return false;
   }
   for (let i = 0; i < planets.length; i++) {
     if (isClose(myShip.position, planets[i], 155, planets[i].radius)) {
+      console.log("ShipIsClose1");
       return true;
     }
   }
@@ -686,11 +658,11 @@ function testIsClose(myShip, planets) {
 }
 
 function getWarningLevel(myShip, planets) {
-  if (testIsClose(myShip, planets) && frameCount % 30 > 10) {
-    console.log("ShipIsClose")
-    return (255, 0, 0)
+  if (testIsClose(myShip, planets) === true) {
+    console.log("ShipIsClose");
+    return 255, 0, 0;
   } else {
-    return(0)
+    return 0;
   }
 }
 

@@ -117,11 +117,13 @@ function draw() {
       ship1.getLocation().y - _H / 4,
       ship1.getLocation().z
     );
-    
-    displayPoem.draw(ship1.getLocation().x,
-      ship1.getLocation().y - _H / 4,
-      ship1.getLocation().z)
-    
+
+    displayPoem.draw(
+      ship1.getLocation().x,
+      ship1.getLocation().y - _H / 8,
+      ship1.getLocation().z
+    );
+
     if (testCollision(planets, ship1)) {
       status = "justdied";
     }
@@ -164,46 +166,64 @@ function draw() {
   }
 }
 
-
-
-
-
-let poem = ["Life is strange is it not?", "You wake up everyday not knowing what’s in store.", "You go to sleep only to journey yet again.",
-            "Our universe is so vast and yet it is so detailed.", "Everything has a story, including you.", "You may not be the first person to exist.",
-            "You definitely won’t be the last.", "But you are the only you that exists.", "You’re unique from everyone else in your own special way.", 
-            "Life is a journey.", "You will hit many bumps along the way.", "But you’ll keep moving on.", "As cheesy as it sounds its not the destination that matters, it’s the journey.",
-            "That’s what makes life so wonderful.", "The good and the bad moments we go through.", "The people we meet.", "The places we go.", "And the goals we accomplish.",
-            "It shows how incredible we can be and what we can do if we keep pushing on.", "If we keep on living.", "If you keep being you.", 
-            "So life may be strange but it’s also very beautiful and you are a part of it.", "So live your life the way you want to.", "Do what you wanna do.", 
-            "Be who you wanna be.", "Just be you and never stop being you.", "So don’t cry.", "Keep pushing on.", "And smile for all of the universe to see!",
-            "So I wish you the best on your journey through this strange thing we call:", "Life."]
+let poem = [
+  "Life is strange is it not?",
+  "You wake up everyday not knowing what’s in store.",
+  "You go to sleep only to journey yet again.",
+  "Our universe is so vast and yet it is so detailed.",
+  "Everything has a story, including you.",
+  "You may not be the first person to exist.",
+  "You definitely won’t be the last.",
+  "But you are the only you that exists.",
+  "You’re unique from everyone else in your own special way.",
+  "Life is a journey.",
+  "You will hit many bumps along the way.",
+  "But you’ll keep moving on.",
+  "As cheesy as it sounds its not the destination that matters, it’s the journey.",
+  "That’s what makes life so wonderful.",
+  "The good and the bad moments we go through.",
+  "The people we meet.",
+  "The places we go.",
+  "And the goals we accomplish.",
+  "It shows how incredible we can be and what we can do if we keep pushing on.",
+  "If we keep on living.",
+  "If you keep being you.",
+  "So life may be strange but it’s also very beautiful and you are a part of it.",
+  "So live your life the way you want to.",
+  "Do what you wanna do.",
+  "Be who you wanna be.",
+  "Just be you and never stop being you.",
+  "So don’t cry.",
+  "Keep pushing on.",
+  "And smile for all of the universe to see!",
+  "So I wish you the best on your journey through this strange thing we call:",
+  "Life."
+];
 
 class DisplayWords {
-  constructor(wordList, size){
+  constructor(wordList, size) {
     this.wordList = wordList;
     this.index = 0;
     this.size = size;
   }
-    
+
   draw(x, y, z) {
     push();
-    let graphics = createGraphics(200, 200);
-    graphics.background(0, 30);
+    let graphics = createGraphics(this.size, this.size);
+    graphics.background(0, 100);
     graphics.fill(255);
-    graphics.textSize(50);
-    if (frameCount % 210 == 0){
-      this.index += 1
+    graphics.textSize(this.size/10);
+    if (frameCount % 210 == 0) {
+      this.index += 1;
     }
-    graphics.text(this.wordList[this.index], );
+    graphics.text(this.wordList[this.index], 0, 0, this.size, this.size);
     texture(graphics);
     translate(x, y, z);
     noStroke();
-    plane(this.size);
+    plane(this.size, this.size);
     pop();
   }
 }
-
-
 
 // Planet class introduction:
 // 1. constructor has 5 arguments
@@ -288,7 +308,7 @@ function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
-    for (let i = 0; i < planets.length; i++){
+    for (let i = 0; i < planets.length; i++) {
       planets[i].x += 15;
     }
     tiltZ -= 4;
@@ -296,7 +316,7 @@ function moveAround() {
   }
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
-    for (let i = 0; i < planets.length; i++){
+    for (let i = 0; i < planets.length; i++) {
       planets[i].x -= 15;
     }
     tiltZ += 4;
@@ -304,7 +324,7 @@ function moveAround() {
   }
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
-    for (let i = 0; i < planets.length; i++){
+    for (let i = 0; i < planets.length; i++) {
       planets[i].y += 15;
     }
     tiltX += 5;
@@ -312,7 +332,7 @@ function moveAround() {
   }
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
-    for (let i = 0; i < planets.length; i++){
+    for (let i = 0; i < planets.length; i++) {
       planets[i].y -= 15;
     }
     tiltX -= 5;
@@ -341,9 +361,9 @@ function moveAround() {
   //     triggerX = 1;
   //   }
 
-  for (let i = 0; i < planets.length; i++){
-      planets[i].z += 15;
-    }
+  for (let i = 0; i < planets.length; i++) {
+    planets[i].z += 15;
+  }
 
   if (triggerZ === 0) {
     if (tiltZ > 0) {
@@ -489,16 +509,16 @@ function generatePlanet(ship) {
 }
 
 function drawPlanets() {
-  console.log(planets.length)
+  console.log(planets.length);
   planets = planets.filter(planetIsNotTooFar);
-  console.log(planets.length)
+  console.log(planets.length);
   for (let i = 0; i < planets.length; i++) {
     planets[i].draw();
   }
 }
 
 function planetIsNotTooFar(planet) {
-  if (planet.z - ship1.getLocation().z > - 300||status === "alive_again") {
+  if (planet.z - ship1.getLocation().z > -300 || status === "alive_again") {
     console.log("Planet destroyed");
     return false;
   } else {
@@ -716,7 +736,7 @@ function testIsClose(myShip, planets) {
 function getWarningLevel(myShip, planets) {
   if (testIsClose(myShip, planets) === true && frameCount % 10 === 0) {
     console.log("ShipIsClose");
-    return 'red';
+    return "red";
   } else {
     return 0;
   }

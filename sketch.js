@@ -439,9 +439,7 @@ function drawPlanets() {
 }
 
 function planetIsNotTooFar(planet) {
-  if (int(planet.z) - int(ship1.getLocation().z) > 50) 
-  {
-    delete global.planet;
+  if (planet.z - ship1.getLocation().z > - 300) {
     console.log("Planet destroyed");
     return false;
   } else {
@@ -539,7 +537,7 @@ class Explosion {
       this.explosion_status = true;
     }
     push();
-    this.x += 5 * cos(frameCount / 1);
+    // this.x += 5 * cos(frameCount / 1);
 
     translate(this.x, this.y, this.z);
     noStroke();

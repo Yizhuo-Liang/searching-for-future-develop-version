@@ -96,6 +96,10 @@ function draw() {
   
   sb = new Scoreboard(100);
   
+  if(status === "alive" && frameCount >= 1800) {
+    status === "justdied";
+  }
+  
   if (status === "alive") {
     background(0);
    

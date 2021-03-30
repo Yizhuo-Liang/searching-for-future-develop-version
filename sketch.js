@@ -539,7 +539,7 @@ class Explosion {
       this.explosion_status = true;
     }
     push();
-    // this.x += 5 * cos(frameCount / 1);
+    this.x += 5 * cos(frameCount / 1);
 
     translate(this.x, this.y, this.z);
     noStroke();

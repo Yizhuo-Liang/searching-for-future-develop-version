@@ -96,9 +96,9 @@ function draw() {
   
   sb = new Scoreboard(100);
   
-  // if(status === "alive" && frameCount >= 1800) {
-  //   status === "justdied";
-  // }
+  if(status === "alive" && frameCount >= 1800) {
+    status === "justdied";
+  }
   
   if (status === "alive") {
     background(0);
@@ -109,6 +109,7 @@ function draw() {
     if (frameCount === 1 || frameCount % 100 === 0) {
       generatePlanet(ship1);
     }
+    
     drawPlanets(planets);
     sb.draw(
       ship1.getLocation().x + _W / 4,
@@ -402,6 +403,7 @@ function generatePlanet(ship) {
   let pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
   let pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
   let pS = int(random(250, 490));
+  for (let i = 0; i < )
   let planetNew = new Planet(pX, pY, pZ, pS, 0);
   planets.push(planetNew);
   console.log("Planet created");

@@ -414,14 +414,14 @@ function generatePlanet(ship) {
     // randomness += int(random(-5000, 5000)) 
     planets.push(planetNew);
    pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
-   pY = int(random(shipLoc.y - 100, shipLoc.y + 100));
+   pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
    pS = int(random(250, 490));
    randomness = 0
   // for ( i = 0; i < random(8) ; i++) {
    planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
   planets.push(planetNew);
    pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
-   pY = int(random(shipLoc.y - 100, shipLoc.y + 100));
+   pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
    pS = int(random(250, 490));
    randomness = 0
   // for ( i = 0; i < random(8) ; i++) {
@@ -648,6 +648,18 @@ function getGravityAcceleration(myShip, planets) {
   }
   
   // 
+}
+
+function findClosestPlanet(myShip) {
+  let closePlanet = planets[0];
+  let distance = distFromLocations(myShip.getLocation(), closePlanet.location);
+  for(let i = 1; i < planets.length - 1; i++) {
+    if(distFromLocations(myShip.getLocation(), planets[i]) < distance) {
+      distance = distFromLocations(myShip.getLocation(), planets[i]);
+      closePlanet = planets[i];
+    }
+  }
+  return closePlanet;
 }
 
 function distFromLocations(location1, location2) {

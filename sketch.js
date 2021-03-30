@@ -77,13 +77,16 @@ let ship1;
 let planets = [];
 let status = "alive";
 
-function keyTyped() {
-  if (BGM.isPlaying()) {
-  } else {
-    BGM.play();
-  }
-}
+// function keyTyped() {
+//   if (BGM.isPlaying()) {
+//   } else {
+//     BGM.play();
+//   }
+// }
 
+function mouseClicked() {
+  status = "alive";
+}
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////  -- DRAW IS HERE --  /////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -598,7 +601,7 @@ class EndScene {
     this.x = x;
     this.y = y;
     this.z = z;
-    this.size = min(_W, _H) / 2;
+    this.size = min(_W, _H) / 4;
     this.graphics = createGraphics(this.size, this.size);
     this.graphics.textSize(this.size / 10);
     this.graphics.fill(255);

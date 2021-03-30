@@ -138,6 +138,7 @@ function draw() {
     ending = new EndScene(
       ship1.getLocation().x,
       ship1.getLocation().y,
+      ship1.getLocation().z,
       sb.getScore()
     );
     status = "died";
@@ -627,7 +628,7 @@ class EndScene {
     this.x = x;
     this.y = y;
     this.z = z;
-    this.size = min(_W, _H) / 4;
+    this.size = min(_W, _H) / 3;
     this.graphics = createGraphics(this.size, this.size);
     this.graphics.textSize(this.size / 10);
     this.graphics.fill(255);
@@ -645,9 +646,9 @@ class EndScene {
   draw() {
     push();
     translate(this.x, this.y, this.z);
-    rotateX(frameCount * 0.1);
-    rotateY(frameCount * 0.1);
-    rotateZ(frameCount * 0.1);
+    rotateX(frameCount * 0.7);
+    rotateY(frameCount * 0.7);
+    rotateZ(frameCount * 0.7);
     stroke(255);
     texture(this.graphics);
     box(this.size);
@@ -669,7 +670,7 @@ function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {
     trgtPosition.y,
     trgtPosition.z
   );
-  return distance < objRadius + trgtRadius + 400;
+  return distance - 400 < objRadius + trgtRadius;
 }
 
 function testIsClose(myShip, planets) {
@@ -686,6 +687,7 @@ function testIsClose(myShip, planets) {
 
 function getWarningLevel(myShip, planets) {
   if (testIsClose(myShip, planets) && frameCount % 30 > 10) {
+    console.log("ShipIsClose")
     return (255, 0, 0)
   } else {
     return(0)

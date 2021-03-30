@@ -644,7 +644,7 @@ class EndScene {
 function getWarningLevel(myShip, planets) {
   
   // find the closest planet & calculate the distance
-  if(planets.length === 0) return 2;
+  if(planets != null && planets.length === 0) return 2;
   let closePlanet = findClosestPlanet(myShip);
   let distance = distFromLocations(myShip.getLocation(), closePlanet);
   return 400 / distance;

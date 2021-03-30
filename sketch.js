@@ -357,6 +357,8 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
   return distance < objRadius + trgtRadius;
 }
 
+
+
 function testCollision(planets, myShip) {
   for (let i = 0; i < planets.length; i++) {
     if (isCollide(myShip.position, planets[i], 155, planets[i].radius)) {
@@ -403,7 +405,7 @@ class Spaceship {
 
 
 
-//--------------------------------- START OF GENERATEPLANETS ---------------------------------
+//--------------------------------- START OF PLANETSFUNCTIONS ---------------------------------
 
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
@@ -464,6 +466,11 @@ function planetIsTooFar(planet) {
   }
 }
 
+//--------------------------------- END OF PLANETFUNCTIONS ---------------------------------
+
+
+
+//--------------------------------- START OF SCOREBOARD ---------------------------------
 class Scoreboard {
   constructor(size) {
     this.size = size;
@@ -502,7 +509,7 @@ class Scoreboard {
   }
 }
 
-
+//--------------------------------- END OF SCOREBOARD ---------------------------------
 
 
 
@@ -570,6 +577,9 @@ class Explosion {
 
 //--------------------------------- END OF EXPLOSION ---------------------------------
 
+
+
+
 //--------------------------------- START OF RE_EXPLOSION ---------------------------------
 class Re_explosion {
   constructor(x, y, z, size) {
@@ -608,6 +618,10 @@ class Re_explosion {
 
 //--------------------------------- END OF RE_EXPLOSION ---------------------------------
 
+
+
+
+
 //--------------------------------- START OF ENDSCENE ---------------------------------
 class EndScene {
   constructor(x, y, z, s = 0) {
@@ -642,6 +656,9 @@ class EndScene {
   }
 }
 //--------------------------------- END OF ENDSCENE ---------------------------------
+
+
+
 
 //--------------------------------- START OF WARNING ---------------------------------
 

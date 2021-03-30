@@ -440,7 +440,7 @@ function generatePlanet(ship) {
 }
 
 function drawPlanets(planets) {
-  // planets = planets.filter(planetIsTooFar)
+  planets = planets.filter(planetIsTooFar);
   for (let i = 0; i < planets.length; i++) {
     planets[i].draw();
     console.log(
@@ -451,10 +451,10 @@ function drawPlanets(planets) {
 
 function planetIsTooFar(planet) {
   if (planet.z - ship1.getLocation().z > 50) {
-    return true;
+    return false;
   } else {
     console.log("Planet destroyed");
-    return false;
+    return true;
   }
 }
 

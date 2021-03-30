@@ -53,6 +53,7 @@ let planetlist = [earth, planet1, planet2, planet3, planet4, planet5];
 let sb;
 let bumi;
 
+
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   _W = windowWidth;
@@ -156,6 +157,26 @@ function draw() {
     }
   }
 }
+
+
+
+let poem = ["Life is strange is it not?", "You wake up everyday not knowing what’s in store.", "You go to sleep only to journey yet again.",
+            "Our universe is so vast and yet it is so detailed.", "Everything has a story, including you.", "You may not be the first person to exist.",
+            "You definitely won’t be the last.", "But you are the only you that exists.", "You’re unique from everyone else in your own special way.", 
+            "Life is a journey.", "You will hit many bumps along the way.", "But you’ll keep moving on.", "As cheesy as it sounds its not the destination that matters, it’s the journey.",
+            "That’s what makes life so wonderful.", "The good and the bad moments we go through.", "The people we meet.", "The places we go.", "And the goals we accomplish.",
+            "It shows how incredible we can be and what we can do if we keep pushing on.", "If we keep on living.", "If you keep being you.", 
+            "So life may be strange but it’s also very beautiful and you are a part of it.", "So live your life the way you want to.", "Do what you wanna do.", 
+            "Be who you wanna be.", "Just be you and never stop being you.", "So don’t cry.", "Keep pushing on.", "And smile for all of the universe to see!",
+            "So I wish you the best on your journey through this strange thing we call:", "Life."]
+
+class DisplayWords {
+  constructor(wordList){
+    this.wordList = wordList;
+  }
+}
+
+
 
 // Planet class introduction:
 // 1. constructor has 5 arguments

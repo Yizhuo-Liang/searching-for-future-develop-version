@@ -104,19 +104,19 @@ function draw() {
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     // bumi.draw();
     if (frameCount === 1 || frameCount % 180 == 0) {
-      generatePlanet(ship1);
+      // generatePlanet(ship1);
       console.log(planets.length);
     }
 
-    drawPlanets();
+    // drawPlanets();
     sb.draw(
       ship1.getLocation().x + _W / 4,
       ship1.getLocation().y - _H / 4,
       ship1.getLocation().z
     );
-    if (testCollision(planets, ship1)) {
-      status = "justdied";
-    }
+    // if (testCollision(planets, ship1)) {
+    //   status = "justdied";
+    // }
   } else if (status === "justdied") {
     explosion_ball = new Explosion(
       ship1.getLocation().x,
@@ -439,7 +439,7 @@ function drawPlanets() {
 }
 
 function planetIsNotTooFar(planet) {
-  if (int(planet.z) - int(ship1.getLocation().z) > 50) 
+  if (int(planet.z) - int(ship1.getLocation().z) < 10) 
   {
     delete global.planet;
     console.log("Planet destroyed");

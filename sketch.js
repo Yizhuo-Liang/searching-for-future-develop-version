@@ -439,7 +439,7 @@ function drawPlanets() {
 }
 
 function planetIsNotTooFar(planet) {
-  if (int(planet.z) - int(ship1.getLocation().z) > - 300) 
+  if (int(planet.z) - int(ship1.getLocation().z) > 50) 
   {
     console.log("Planet destroyed");
     return false;

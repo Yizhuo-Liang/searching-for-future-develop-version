@@ -100,7 +100,6 @@ function draw() {
     //   warning += warningLevel * 40;
     // }
     background(getWarningLevel(ship1, planets));
-
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     // bumi.draw();
@@ -601,7 +600,7 @@ class EndScene {
     this.x = x;
     this.y = y;
     this.z = z;
-    this.size = min(_W, _H) / 3;
+    this.size = min(_W, _H) / 2;
     this.graphics = createGraphics(this.size, this.size);
     this.graphics.textSize(this.size / 10);
     this.graphics.fill(255);
@@ -640,7 +639,7 @@ function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {
     trgtPosition.y,
     trgtPosition.z
   );
-  return distance - 400 < objRadius + trgtRadius;
+  return distance - 300 < objRadius + trgtRadius;
 }
 
 function testIsClose(myShip, planets) {
@@ -658,9 +657,9 @@ function testIsClose(myShip, planets) {
 }
 
 function getWarningLevel(myShip, planets) {
-  if (testIsClose(myShip, planets) === true) {
+  if (testIsClose(myShip, planets) === true && frameCount % 10 === 0) {
     console.log("ShipIsClose");
-    return 255, 0, 0;
+    return 'red';
   } else {
     return 0;
   }

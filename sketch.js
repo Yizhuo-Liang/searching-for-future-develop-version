@@ -409,6 +409,41 @@ class Spaceship {
 
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
+  for (let d = 0; d < 3; d++){
+    let lowerBound = shipLoc.z - 1500;
+    let pZ = int(random(lowerBound, lowerBound - 700));
+  let pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
+  let pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
+  let pS = int(random(250, 490));
+  let randomness = 0
+  // for (let i = 0; i < random(8) ; i++) {
+    let planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+    // randomness += int(random(-5000, 5000)) 
+    planets.push(planetNew);
+   pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
+   pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
+   pS = int(random(250, 490));
+   randomness = 0
+  // for ( i = 0; i < random(8) ; i++) {
+   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+  planets.push(planetNew);
+   pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
+   pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
+   pS = int(random(250, 490));
+   randomness = 0
+  // for ( i = 0; i < random(8) ; i++) {
+   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+  planets.push(planetNew);
+  
+   pX = int(random(shipLoc.x + 50, shipLoc.x + 500));
+   pY = int(random(shipLoc.y + 1500, shipLoc.y + 3000));
+   pS = int(random(250, 490));
+   randomness = 0
+  // for ( i = 0; i < random(8) ; i++) {
+   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+  planets.push(planetNew);
+  }
+  
   let lowerBound = shipLoc.z - 1500;
   let pZ = int(random(lowerBound, lowerBound - 700));
   let pX = int(random(shipLoc.x - 50, shipLoc.x + 50));

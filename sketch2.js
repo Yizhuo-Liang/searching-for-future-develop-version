@@ -149,7 +149,6 @@ function draw() {
   if (status === "alive") {
     // sb = new Scoreboard(100);
     // deleteBoard();
-    scenes.draw();
     background(getWarningLevel(ship1, planets));
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
@@ -395,7 +394,7 @@ function moveAround() {
   let triggerX = 0;
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x += 15;
+      planets[i].x += 15+speedZ;
     }
     tiltZ -= 4;
     triggerZ = 10;
@@ -403,7 +402,7 @@ function moveAround() {
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x -= 15;
+      planets[i].x -= 15+speedZ;
     }
     tiltZ += 4;
     triggerZ = 10;
@@ -411,7 +410,7 @@ function moveAround() {
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y += 15;
+      planets[i].y += 15+speedZ;
     }
     tiltX += 5;
     triggerX = 10;
@@ -419,7 +418,7 @@ function moveAround() {
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y -= 15;
+      planets[i].y -= 15+speedZ;
     }
     tiltX -= 5;
     triggerX = 10;
@@ -452,7 +451,7 @@ function moveAround() {
   }
   
   if (sb.getScore() % 100 == 0){
-      speedZ += 10;
+      speedZ += 2;
     }
 
   if (triggerZ === 0) {

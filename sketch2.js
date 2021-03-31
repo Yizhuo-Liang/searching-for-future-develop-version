@@ -93,8 +93,10 @@ let planets = [];
 let status = "alive";
 
 function mouseClicked() {
-  planets = [];
-  status = "aliveAgain"
+  if(status === "died"){
+      planets = [];
+      status = "aliveAgain"
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -165,7 +167,16 @@ function draw() {
       sb.getScore()
     );
     status = "died";
-  } else {
+  } else if (status === "aliveAgain") {
+
+    start_explosion = new start_explosion(
+      ship1.getLocation().x,
+      ship1.getLocation().y,
+      ship1.getLocation().z,
+      1000
+    );
+    status = "alive";
+  }else {
     background(0);
     if (explosion_ball.getSize() < 900) {
       explosion_ball.draw();
@@ -753,9 +764,9 @@ class Re_explosion {
 }
 
 //--------------------------------- END OF RE_EXPLOSION ---------------------------------
-//--------------------------------- START OF start_EXPLOSION ---------------------------------
-class start_EXPLOSION {
-  constructor(x, y, z, size) {
+//--------------------------------- START OF start_explosion ---------------------------------
+class start_explosion {
+  constructor(x, y, z) {
     this.x = x;
     this.y = y;
     this.z = z;
@@ -765,7 +776,7 @@ class start_EXPLOSION {
 
   growBall() {
     if (this.size < 1000) {
-      this.size = this.size * 1.1;
+      this.size = this.size * 1.01;
     }
   }
   getSize() {
@@ -789,7 +800,7 @@ class start_EXPLOSION {
   }
 }
 
-//--------------------------------- END OF start_EXPLOSION ---------------------------------
+//--------------------------------- END OF start_explosion ---------------------------------
 
 //--------------------------------- START OF ENDSCENE ---------------------------------
 class EndScene {

@@ -158,6 +158,17 @@ function draw() {
   }
 }
 
+class startPage {
+  constructor() {
+    this.started = false;
+  }
+  draw(){
+    textSize(20);
+    text("MAY THE FORCE BE WITH YOU", width/2 - 100, height/3);
+    text("Start", width/2 - 50, 2*height/3);
+  }
+}
+
 let poem = [
   "Life is strange is it not?",
   "You wake up everyday not knowing what’s in store.",

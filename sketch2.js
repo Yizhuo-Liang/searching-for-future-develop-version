@@ -433,7 +433,7 @@ function moveAround() {
     tiltX = max(tiltX, -16);
   }
   
-  // adding the resultant displacement due to gravity  
+  // adding the resultant displacement due to gravity  <<<<<<<< ----------------------------- Gravity's Effect <<<<<<<
   
   let currentAcc = getAcceleration(ship1);
 //   for (let i = 0; i < planets.length; i++) {

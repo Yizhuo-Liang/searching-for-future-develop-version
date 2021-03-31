@@ -106,7 +106,10 @@ function draw() {
     frameCount = 0;
     return;
   }
-  if(startMillis === null) startMillis = millis();
+  if(startMillisNotInitialized === true) {
+    startMillis = millis();
+    startMillisNotInitialized = false;
+  }
 
   if (status === "alive") {
     background(getWarningLevel(ship1, planets));
@@ -582,6 +585,7 @@ function planetIsNotTooFar(planet) {
 //--------------------------------- START OF SCOREBOARD ---------------------------------
 
 let startMillis;
+let startMillisNotInitialized = true;
 class Scoreboard {
   constructor(size) {
     this.size = size;
@@ -591,7 +595,8 @@ class Scoreboard {
   draw(x, y, z) {
     push();
     let graphics = createGraphics(200, 200);
-    let distance = int(millis() / 100);
+    let distance = int((millis() - startMillis) / 100);
+    console.info(startMillis);
     let expand = false;
     // background(0);
     graphics.background(255, 0);

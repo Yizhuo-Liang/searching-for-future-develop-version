@@ -103,6 +103,7 @@ function setup() {
   // let cameraZ = (height/2.0)/(height/2.0)
   // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
   frustum(-windowWidth/10000, windowWidth/10000, windowHeight/10000, -windowHeight/10000, 0.17, 20000);
+  
 }
 
 //
@@ -124,7 +125,7 @@ function mouseClicked() {
 
 function draw() {
   console.log(status)
-  
+  orbitControl();
   if(!started) {
     theStartPage.draw();
     frameCount = 0;

@@ -33,7 +33,7 @@ let newboard;
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
   universe = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet2.jpg?v=1616633287289"
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Funiverse-background-1.jpg?v=1617194401240"
   );
   startPng = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStartPage1.png?v=1617163053005"
@@ -689,7 +689,7 @@ class Scoreboard {
 
 class background_scenes {
   constructor() {
-    this.graphics = createGraphics(200, 200);
+    
     // this.backgournd(0);
   }
   
@@ -698,9 +698,8 @@ class background_scenes {
   draw(){
 
     push();
-      background(0);
-      translate(200,200,200)
-      texture(universe);
+      translate(200,200,200);
+      texture(earth);
       plane(200);
     pop();
   }

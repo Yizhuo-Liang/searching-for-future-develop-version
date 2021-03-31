@@ -432,6 +432,8 @@ function moveAround() {
   } else if (tiltX < 0) {
     tiltX = max(tiltX, -16);
   }
+  
+  
 
   camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
 }
@@ -804,6 +806,7 @@ class Vector3D {
 
 function getAcceleration(myShip) {
   let closePlanet = findClosestPlanet(myShip);
+  if(closePlanet === null) return new Vector3D(0, 0, 0);
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
   let strength = 1/(pow(distance, 1.5))
   if(strength > 20) strength = 20;
@@ -811,6 +814,7 @@ function getAcceleration(myShip) {
 }
 
 function findClosestPlanet(myShip) {
+  if(planets.length === 0) return null;
   let closePlanet = planets[0];
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
   for (let i = 1; i < planets.length - 1; i++) {

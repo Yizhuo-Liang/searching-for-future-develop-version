@@ -28,7 +28,7 @@ let theStartPage;
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
   startPng = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fstart.png?v=1617158227766"
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStartPage1.png?v=1617163053005"
   );
   earth = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fearth.jpg?v=1616633286407"
@@ -200,7 +200,7 @@ class startPage {
     texture(this.graphics);
     plane(width, height);
     scale(1);
-    image(this.img, width/2 - 1200, height/2 - 450);
+    image(this.img, camX - 255, camY - 255);
     pop();
   }
 }

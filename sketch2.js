@@ -570,32 +570,32 @@ class Spaceship {
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
-  for (let d = 1; d < 40; d++) {
-    lowerBound = shipLoc.z - 2000 * d;
+  for (let d = 1; d < 10; d++) {
+    lowerBound = shipLoc.z - 6000 * d;
     pZ = int(random(lowerBound, lowerBound - 700));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
-    pS = int(random(250, 490)*10);
+    pS = int(random(250, 490));
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
 
     pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
     pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
-    pS = int(random(250, 490)*10);
+    pS = int(random(250, 490));
     randomness = 0;
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
 
     pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
     pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
-    pS = int(random(250, 490)*10);
+    pS = int(random(250, 490));
     randomness = 0;
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
 
     pX = int(random(shipLoc.x + 50, shipLoc.x + 500));
     pY = int(random(shipLoc.y + 1500, shipLoc.y + 3000));
-    pS = int(random(250, 490)*10);
+    pS = int(random(250, 490));
     randomness = 0;
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
@@ -623,7 +623,7 @@ function drawPlanets() {
 
 
 function planetIsNotTooFar(planet) {
-  if (planet.z - ship1.getLocation().z > 200 || status === "alive_again") {
+  if (planet.z - ship1.getLocation().z > 20000 || status === "alive_again") {
     console.log("Planet destroyed");
     return false;
   } else {

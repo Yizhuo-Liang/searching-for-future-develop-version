@@ -26,6 +26,8 @@ let started = false;
 let theStartPage;
 let narratePoem;
 
+let newboard;
+
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
   startPng = loadImage(
@@ -645,7 +647,7 @@ class Scoreboard {
 }
 
 function generateBoard(){
-  sb = new Scoreboard(100); 
+  newboard = new Scoreboard(100); 
 }
 
 function boardIsNotTooOld(particle) {

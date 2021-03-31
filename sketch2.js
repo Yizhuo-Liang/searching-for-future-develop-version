@@ -93,9 +93,10 @@ let ship1;
 let planets = [];
 let status = "alive";
 
-function mouseClicked() {
+function mouseIsClicked() {
   if(status === "died"){
       planets = [];
+      // startMillisNotInitialized = true; //???
       status = "aliveAgain"
   }
 }

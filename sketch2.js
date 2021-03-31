@@ -92,14 +92,11 @@ let ship1;
 let planets = [];
 let status = "alive";
 
-// function mouseClicked() {
-//   status = "alive_again";
-//   delete global.planets
-//   global.plants = null;
-// }
-// function doubleClicked() {
-//   status = "alive"
-// }
+function mouseClicked() {
+  planets = [];
+  status = "alive"
+}
+
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////  -- DRAW IS HERE --  /////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -366,32 +363,32 @@ function moveAround() {
     for (let i = 0; i < planets.length; i++) {
       planets[i].x += 15;
     }
-    tiltZ -= 8;
-    triggerZ = 1;
+    tiltZ -= 4;
+    triggerZ = 10;
   }
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
     for (let i = 0; i < planets.length; i++) {
       planets[i].x -= 15;
     }
-    tiltZ += 8;
-    triggerZ = 1;
+    tiltZ += 4;
+    triggerZ = 10;
   }
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
     for (let i = 0; i < planets.length; i++) {
       planets[i].y += 15;
     }
-    tiltX += 10;
-    triggerX = 1;
+    tiltX += 5;
+    triggerX = 10;
   }
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
     for (let i = 0; i < planets.length; i++) {
       planets[i].y -= 15;
     }
-    tiltX -= 10;
-    triggerX = 1;
+    tiltX -= 5;
+    triggerX = 10;
   }
 
   //   phone version

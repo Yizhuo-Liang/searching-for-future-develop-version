@@ -1010,6 +1010,7 @@ function getAcceleration(myShip) {
   let closePlanet = findClosestPlanet(myShip);
   if(closePlanet === null) return new Vector3D(0, 0, 0);
   if(closePlanet.length === 0) return new Vector3D(0, 0, 0);
+  console.info("zhende: " + planets[0].position.x);
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
   // console.info("ClosePlanet Loc: " + closePlanet.x + " ** " + closePlanet.y + " ** " + closePlanet.z);
   let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y)/distance, (closePlanet.z - myShip.getLocation.z)/distance);

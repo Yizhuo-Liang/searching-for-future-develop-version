@@ -21,6 +21,9 @@ let xp;
 let yp;
 let maxSpeed = 15;
 
+let started = false;
+let theStartPage;
+
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
   earth = loadImage(
@@ -72,6 +75,7 @@ function setup() {
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
   // detail.style("width", "80px");
+  theStartPage = new startPage();
 }
 
 //
@@ -92,6 +96,11 @@ let status = "alive";
 /////////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
+  
+  if(!started) {
+    theStartPage.draw();
+    return;
+  }
 
   if (status === "alive") {
     background(getWarningLevel(ship1, planets));
@@ -162,6 +171,11 @@ class startPage {
   constructor() {
     this.started = false;
   }
+  
+  changeState(newState) {
+    this.started = newState;
+  }
+  
   draw(){
     textSize(20);
     text("MAY THE FORCE BE WITH YOU", width/2 - 100, height/3);
@@ -743,6 +757,15 @@ function getWarningLevel(myShip, planets) {
     return "red";
   } else {
     return 0;
+  }
+}
+
+function mousePressed() {
+  
+  if(mouseX > width/2 - 50 && mouseX < width/2 + 50) {
+    if(mouseY > 2*height/3 - 20 && mouseY < 2*height/3 + 20) {
+      started = true;
+    }
   }
 }
 

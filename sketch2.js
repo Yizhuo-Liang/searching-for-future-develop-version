@@ -24,6 +24,7 @@ let maxSpeed = 15;
 
 let started = false;
 let theStartPage;
+let narratePoem;
 
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
@@ -55,6 +56,7 @@ function preload() {
   BGM = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FBGM.mp3?v=1617047619315"
   );
+  narratePoem = loadSound("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881")
 }
 let planetlist = [earth, planet1, planet2, planet3, planet4, planet5];
 let sb;
@@ -72,6 +74,7 @@ function setup() {
   // sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   BGM.play();
+  // narratePoem.play();
   xp = width / 2;
   yp = height / 2;
   displayPoem = new DisplayWords(poem, 200);
@@ -113,6 +116,7 @@ function draw() {
 
   if (status === "alive") {
     sb = new Scoreboard(100);
+    deleteBoard();
     background(getWarningLevel(ship1, planets));
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
@@ -573,6 +577,12 @@ function drawPlanets() {
     planets[i].draw();
   }
 }
+
+function deleteBoard() {
+  delete global.Scoreboard;
+}
+
+
 
 function planetIsNotTooFar(planet) {
   if (planet.z - ship1.getLocation().z > 200 || status === "alive_again") {

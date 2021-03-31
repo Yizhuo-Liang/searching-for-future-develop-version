@@ -33,7 +33,7 @@ let newboard;
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
   universe = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Funiverse-background-1.jpg?v=1617194401240"
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet2.jpg?v=1616633287289"
   );
   startPng = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStartPage1.png?v=1617163053005"
@@ -689,31 +689,19 @@ class Scoreboard {
 
 class background_scenes {
   constructor() {
-    this.graphics = createGraphics(windowWidth, windowHeight);
-    this.img = universe;
+    this.graphics = createGraphics(200, 200);
+    // this.backgournd(0);
   }
   
 
   
   draw(){
-//     push();
-//     this.graphics.background(0);
-//     this.graphics.fill(255);
-//     this.graphics.textSize(40);
 
-//     this.graphics.textAlign(CENTER, CENTER);
-//     this.graphics.text("MAY THE FORCE", width/2, height/2);
-//     texture(this.graphics);
-//     noStroke();
-//     plane(width, height);
-//     pop();
     push();
-    this.graphics.background(255);
-    texture(universe);
-    noStroke();
-    plane(width, height);
-    scale(1);
-    image(this.img, camX - 255, camY - 255);
+      background(0);
+      translate(200,200,200)
+      texture(universe);
+      plane(200);
     pop();
   }
 }

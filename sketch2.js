@@ -137,11 +137,13 @@ function draw() {
     status = "aliveagain";
   }
   else if (status === "aliveagain") {
-    if (start_explosion_ball.getSize() < 800) {
+    if (start_explosion_ball.getSize() < 500) {
+      
       ending.draw();
     }
-    if (start_explosion_ball.getSize() < 1000) {
-      start_explosion_ball.draw();
+    if (start_explosion_ball.getSize() < 2000) {
+
+       start_explosion_ball.draw();
       
     }
     else {
@@ -828,6 +830,7 @@ class start_explosion {
   }
 
   draw() {
+    background(0);
     this.growBall();
 
     // if(this.explosion_status == false){

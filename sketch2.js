@@ -582,7 +582,7 @@ function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
   for (let d = 1; d < 4; d++) {
-    lowerBound = shipLoc.z - 6000 * d;
+    lowerBound = shipLoc.z - 2000 * d;
     pZ = int(random(lowerBound, lowerBound - 7000));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));

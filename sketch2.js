@@ -442,7 +442,7 @@ function moveAround() {
   
   // adding the resultant displacement due to gravity  <<<<<<<< ----------------------------- Gravity's Effect <<<<<<<
   
-  let currentAcc = getAcceleration(ship1);
+// let currentAcc = getAcceleration(ship1);
 //   for (let i = 0; i < planets.length; i++) {
 //     planets[i].x -= currentAcc.x * 0.00001;
 //     planets[i].y -= currentAcc.y * 0.00001;
@@ -829,19 +829,21 @@ class Vector3D {
   }
 }
 
-function getAcceleration(myShip) {
-  // calculate the unit force first
-  // (x, y, z)/ length
-  let closePlanet = findClosestPlanet(myShip);
-  let shipLoc = myShip.getLocation();
-  let unitForce = new Vector3D(closePlanet.x - shipLoc.x; closePlanet.y - myShip);
-  if(closePlanet === null) return new Vector3D(0, 0, 0);
-  let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-  let strength = 1/(pow(distance, 1.5))
-  if(strength > 20) strength = 20;
-  let acceleration = new Vector3D(strength, strength, strength);
-  return acceleration;
-}
+// function getAcceleration(myShip) {
+//   if(planets === null) return new Vector3D(0, 0, 0);
+//   if(planets.length === 0)
+//   // calculate the unit force first
+//   // (x, y, z)/ length
+//   let closePlanet = findClosestPlanet(myShip);
+//   let shipLoc = myShip.getLocation();
+//   let unitForce = new Vector3D(closePlanet.position.x - shipLoc.x, closePlanet.position.y - shipLoc.y, closePlanet.position.z - shipLoc.z);
+//   if(closePlanet === null) return new Vector3D(0, 0, 0);
+//   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
+//   let strength = 1/(pow(distance, 1.5))
+//   if(strength > 20) strength = 20;
+//   let acceleration = new Vector3D(strength, strength, strength);
+//   return acceleration;
+// }
 
 function findClosestPlanet(myShip) {
   if(planets.length === 0) return null;

@@ -607,40 +607,49 @@ class Scoreboard {
     this.age=0;
     
   }
-  if()
-    draw(x, y, z) {
-      push();
-      // let graphics = createGraphics(200, 200);
-      let distance = int((millis() - startMillis) / 100);
-      this.graphics.background(0);
-      this.graphics.fill(255);
-      this.graphics.textSize(50);
-      this.graphics.text(distance + "kM", 10, 80, 700, 700);
+  
+  draw(x, y, z) {
+    push();
+    // Scoreboard = Scoreboard.filter(boardIsNotTooOld);
+    // let graphics = createGraphics(200, 200);
+    let distance = int((millis() - startMillis) / 100);
+    this.graphics.background(0);
+    this.graphics.fill(255);
+    this.graphics.textSize(50);
+    this.graphics.text(distance + "kM", 10, 80, 700, 700);
+    
+    texture(this.graphics);
 
-      texture(this.graphics);
-
-      translate(x, y, z);
-      // rotateX(frameCount * 0.01);
-      // rotateY(frameCount * 0.01);
-      // rotateZ(frameCount * 0.01);
-      // box(200+this.expand_value);
-
-      if (distance % 10 == 1) {
-        this.expand_value = this.size / 2;
-      }
-      noStroke();
-      plane(this.size + this.expand_value);
-      pop();
-      this.age+=1;
+    translate(x, y, z);
+    // rotateX(frameCount * 0.01);
+    // rotateY(frameCount * 0.01);
+    // rotateZ(frameCount * 0.01);
+    // box(200+this.expand_value);
+    
+    if (distance % 10 == 1) {
+      this.expand_value = this.size / 2;
     }
+    noStroke();
+    plane(this.size + this.expand_value);
+    pop();
+    this.age+=1;
+  }
 
   getScore() {
     return int(millis() / 100);
   }
+  // boardIsNotTooOld(particle) {
+  //   return Scoreboard.age < 2;
+  // }
 }
 
 function boardIsNotTooOld(particle) {
-  return particle.age < 2;
+  return Scoreboard.age < 2;
+}
+
+function drawbBoard() {
+  Scoreboard = Scoreboard.filter(boardIsNotTooOld);
+  Scoreboard.draw
 }
 
 //--------------------------------- END OF SCOREBOARD ---------------------------------

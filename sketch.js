@@ -483,7 +483,7 @@ class Scoreboard {
     // rotateZ(frameCount * 0.01);
     // box(200+this.expand_value);
 
-    if (distance % 10 == 1) {
+    if (distance % 10 == 0) {
       this.expand_value = this.size / 2;
     }
     noStroke();

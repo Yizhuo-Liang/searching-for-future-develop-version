@@ -502,12 +502,12 @@ function moveAround() {
   // adding the resultant displacement due to gravity  <<<<<<<< ----------------------------- Gravity's Effect <<<<<<<
   
   let currentAcc = getAcceleration(ship1);
-//   for (let i = 0; i < planets.length; i++) {
-//     planets[i].x -= currentAcc.x * 0.00001;
-//     planets[i].y -= currentAcc.y * 0.00001;
-//     planets[i].z += currentAcc.z * 0.00001;
-  
-//   }
+  for (let i = 0; i < planets.length; i++) {
+    planets[i].x -= currentAcc.x * 0.001;
+    planets[i].y -= currentAcc.y * 0.001;
+    planets[i].z += currentAcc.z * 0.001;
+    
+  }
 
   camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
 }
@@ -1005,10 +1005,10 @@ function getAcceleration(myShip) {
   if(closePlanet === null) return new Vector3D(0, 0, 0);
   if(closePlanet.length === 0) return new Vector3D(0, 0, 0);
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-  let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y,closePlanet.z - myShip.getLocation.z,);
+  let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y)/distance, (closePlanet.z - myShip.getLocation.z)/distance);
   let strength = 1/(pow(distance, 1.5))
   if(strength > 20) strength = 20;
-  let acceleration = new Vector3D(strength * , strength, strength);
+  let acceleration = new Vector3D(strength * unitVector.x, strength * unitVector.y, strength * unitVector.z);
   return acceleration;
 }
 

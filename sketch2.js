@@ -112,27 +112,29 @@ function draw() {
   }
 
   if (status === "alive") {
-    background(getWarningLevel(ship1, planets));
+    
+    // background(getWarningLevel(ship1, planets));
+    background
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     // bumi.draw();
-    if (frameCount === 1 || frameCount % 180 == 0) {
-      generatePlanet(ship1);
-      console.log(planets.length);
-    }
+    // if (frameCount === 1 || frameCount % 180 == 0) {
+    //   generatePlanet(ship1);
+    //   console.log(planets.length);
+    // }
 
-    drawPlanets();
-    sb.draw(
-      ship1.getLocation().x + _W / 4,
-      ship1.getLocation().y - _H / 4,
-      ship1.getLocation().z
-    );
+    // drawPlanets();
+//     sb.draw(
+//       ship1.getLocation().x + _W / 4,
+//       ship1.getLocation().y - _H / 4,
+//       ship1.getLocation().z
+//     );
 
-    displayPoem.draw(
-      ship1.getLocation().x,
-      ship1.getLocation().y - _H / 5,
-      ship1.getLocation().z
-    );
+//     displayPoem.draw(
+//       ship1.getLocation().x,
+//       ship1.getLocation().y - _H / 5,
+//       ship1.getLocation().z
+//     );
 
     if (testCollision(planets, ship1)) {
       status = "justdied";
@@ -831,6 +833,8 @@ function getAcceleration(myShip) {
   // calculate the unit force first
   // (x, y, z)/ length
   let closePlanet = findClosestPlanet(myShip);
+  let shipLoc = myShip.getLocation();
+  let unitForce = new Vector3D(closePlanet.x - shipLoc.x; closePlanet.y - myShip);
   if(closePlanet === null) return new Vector3D(0, 0, 0);
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
   let strength = 1/(pow(distance, 1.5))

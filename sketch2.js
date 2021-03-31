@@ -574,7 +574,6 @@ function drawPlanets() {
 
 function planetIsNotTooFar(planet) {
   if (planet.z - ship1.getLocation().z > 200 || status === "alive_again") {
-    planet=null;
     console.log("Planet destroyed");
     return false;
   } else {
@@ -614,7 +613,7 @@ class Scoreboard {
     // rotateZ(frameCount * 0.01);
     // box(200+this.expand_value);
 
-    if (distance % 10 == 0) {
+    if (distance % 10 == 1) {
       this.expand_value = this.size / 2;
     }
     noStroke();
@@ -828,8 +827,6 @@ class Vector3D {
 }
 
 function getAcceleration(myShip) {
-  // calculate the unit force first
-  // (x, y, z)/ length
   let closePlanet = findClosestPlanet(myShip);
   if(closePlanet === null) return new Vector3D(0, 0, 0);
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);

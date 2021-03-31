@@ -87,7 +87,7 @@ function setup() {
   camZ = height / 2.0 / tan(30.0);
   sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
-  BGM.play();
+  BGM.loop();
   narratePoem.play();
   xp = width / 2;
   yp = height / 2;
@@ -207,26 +207,10 @@ function draw() {
       
     }
     else {
-      status = "before_alive";
-    }
-  }
-  if (status === "before_alive"){
-      
-    assemble_ball = new assemble(
-      ship1.getLocation().x,
-      ship1.getLocation().y,
-      ship1.getLocation().z,
-      );
-    status = "before_alive_again";
-  }
-  else if (status === "before_alive_again") {
-    if (assemble_ball.getSize() > 10) {
-      assemble_ball.draw();
-    }
-    else {
       status = "alive";
     }
   }
+
   if(status === "died") {
     background(0);
     if (explosion_ball.getSize() < 900) {
@@ -597,7 +581,7 @@ class Spaceship {
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
-  for (let d = 1; d < 10; d++) {
+  for (let d = 1; d < 4; d++) {
     lowerBound = shipLoc.z - 6000 * d;
     pZ = int(random(lowerBound, lowerBound - 7000));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
@@ -877,40 +861,40 @@ class start_explosion {
 
 //--------------------------------- END OF start_explosion ---------------------------------
 //--------------------------------- START OF assemble ---------------------------------
-class assemble {
-  constructor(x, y, z, size) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.size = 1000;
-    // this.explosion_status=false;
-  }
+// class assemble {
+//   constructor(x, y, z, size) {
+//     this.x = x;
+//     this.y = y;
+//     this.z = z;
+//     this.size = 1000;
+//     // this.explosion_status=false;
+//   }
 
-  growBall() {
-    if (this.size > 20) {
-      this.size = this.size * 0.9;
-    }
-  }
-  getSize() {
-    return this.size;
-  }
+//   growBall() {
+//     if (this.size > 20) {
+//       this.size = this.size * 0.9;
+//     }
+//   }
+//   getSize() {
+//     return this.size;
+//   }
 
-  draw() {
-    this.growBall();
+//   draw() {
+//     this.growBall();
 
-    // if(this.explosion_status == false){
-    //   explosde_sound.play();
-    //   this.explosion_status=true;
-    // }
+//     // if(this.explosion_status == false){
+//     //   explosde_sound.play();
+//     //   this.explosion_status=true;
+//     // }
 
-    push();
-    translate(this.x, this.y, this.z);
-    noStroke();
-    fill(255);
-    sphere(this.size, 24, 16);
-    pop();
-  }
-}
+//     push();
+//     translate(this.x, this.y, this.z);
+//     noStroke();
+//     fill(255);
+//     sphere(this.size, 24, 16);
+//     pop();
+//   }
+// }
 
 //--------------------------------- END OF assemble ---------------------------------
 

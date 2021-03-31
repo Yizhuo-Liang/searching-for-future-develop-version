@@ -137,9 +137,12 @@ function draw() {
     status = "aliveagain";
   }
   else if (status === "aliveagain") {
-    if (start_explosion_ball.getSize() < 900) {
-      start_explosion_ball.draw();
+    if (start_explosion_ball.getSize() < 800) {
       ending.draw();
+    }
+    if (start_explosion_ball.getSize() < 1000) {
+      start_explosion_ball.draw();
+      
     }
     else {
       status = "alive";
@@ -572,7 +575,7 @@ function generatePlanet(ship) {
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
   for (let d = 1; d < 10; d++) {
     lowerBound = shipLoc.z - 6000 * d;
-    pZ = int(random(lowerBound, lowerBound - 700));
+    pZ = int(random(lowerBound, lowerBound - 7000));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(250, 490));
@@ -600,11 +603,11 @@ function generatePlanet(ship) {
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
   }
-  for ( let i = 0; i < random(8) ; i++) {
-    planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
-    planets.push(planetNew);
-  }
-  console.log("4 planets created");
+  // for ( let i = 0; i < random(8) ; i++) {
+  //   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+  //   planets.push(planetNew);
+  // }
+  // console.log("4 planets created");
 }
 
 function drawPlanets() {

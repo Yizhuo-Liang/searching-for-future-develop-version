@@ -101,7 +101,8 @@ function setup() {
   
   // let fov = PI/3;
   // let cameraZ = (height/2.0)/(height/2.0)
-  perspective(PI/3, (width)/(height), 0, 2000);
+  // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
+  frustum(-0.1, 0.1, -0.1, 0.1, 0.1, 40000);
 }
 
 //

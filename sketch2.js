@@ -1,6 +1,7 @@
 let _W;
 let _H;
 
+let startPng
 let camZ;
 let spaceship;
 let earth;
@@ -26,6 +27,9 @@ let theStartPage;
 
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
+  startPng = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fstart.png?v=1617158227766"
+  );
   earth = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fearth.jpg?v=1616633286407"
   );
@@ -171,6 +175,7 @@ class startPage {
   constructor() {
     this.started = false;
     this.graphics = createGraphics(100, 100);
+    this.img = 
   }
   
   changeState(newState) {
@@ -178,17 +183,18 @@ class startPage {
   }
   
   draw(){
-    push();
-    this.graphics.background(0);
-    this.graphics.fill(255);
-    this.graphics.textSize(40);
+//     push();
+//     this.graphics.background(0);
+//     this.graphics.fill(255);
+//     this.graphics.textSize(40);
 
-    this.graphics.textAlign(CENTER, CENTER);
-    this.graphics.text("MAY THE FORCE", width/2, height/2, 20, 20);
-    texture(this.graphics);
-    noStroke();
-    plane(width, height);
-    pop();
+//     this.graphics.textAlign(CENTER, CENTER);
+//     this.graphics.text("MAY THE FORCE", width/2, height/2);
+//     texture(this.graphics);
+//     noStroke();
+//     plane(width, height);
+//     pop();
+    
   }
 }
 
@@ -771,11 +777,12 @@ function getWarningLevel(myShip, planets) {
 
 function mousePressed() {
   
-  if(mouseX > width/2 - 50 && mouseX < width/2 + 50) {
-    if(mouseY > 2*height/3 - 20 && mouseY < 2*height/3 + 20) {
-      started = true;
-    }
-  }
+  // if(mouseX > width/2 - 50 && mouseX < width/2 + 50) {
+  //   if(mouseY > 2*height/3 - 20 && mouseY < 2*height/3 + 20) {
+  //     started = true;
+  //   }
+  // }
+  started = true;
 }
 
 // function findClosestPlanet(myShip) {

@@ -445,7 +445,7 @@ class Position {
     this.z = z;
   }
 
-  stePosition(x, y, z) {
+  setPosition(x, y, z) {
     this.x = x;
     this.y = y;
     this.z = z;

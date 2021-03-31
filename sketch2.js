@@ -130,7 +130,6 @@ function draw() {
     startMillisNotInitialized = false;
   }
 
-
   if (status === "alive") {
     // sb = new Scoreboard(100);
     // deleteBoard();
@@ -139,17 +138,7 @@ function draw() {
     moveAround();
     
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
-    push();
-    assemble_ball = new assemble(
-      ship1.getLocation().x,
-      ship1.getLocation().y,
-      ship1.getLocation().z,
-      200
-    );
-    if (assemble_ball.getSize() > 10) {
-      assemble_ball.draw();
-    }
-    pop()
+
     if (frameCount === 1 || frameCount % 180 == 0) {
       generatePlanet(ship1);
       console.log(planets.length);
@@ -218,10 +207,26 @@ function draw() {
       
     }
     else {
+      status = "before_alive";
+    }
+  }
+  if (status === "before_alive"){
+      
+    assemble_ball = new assemble(
+      ship1.getLocation().x,
+      ship1.getLocation().y,
+      ship1.getLocation().z,
+      );
+    status = "before_alive_again";
+  }
+  else if (status === "before_alive_again") {
+    if (assemble_ball.getSize() > 10) {
+      assemble_ball.draw();
+    }
+    else {
       status = "alive";
     }
   }
-
   if(status === "died") {
     background(0);
     if (explosion_ball.getSize() < 900) {
@@ -877,7 +882,7 @@ class assemble {
     this.x = x;
     this.y = y;
     this.z = z;
-    this.size = size;
+    this.size = 1000;
     // this.explosion_status=false;
   }
 

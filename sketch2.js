@@ -1025,12 +1025,14 @@ function findClosestPlanet(myShip) {
   let closePlanet = planets[0];
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
   for (let i = 1; i < planets.length; i++) {
+    console.info("compare: " + distance + " ----- " +  distFromLocations(myShip.getLocation(), planets[i].position));
     if (distFromLocations(myShip.getLocation(), planets[i].position) < distance) {
-      distance = distFromLocations(myShip.getLocation(), planets[i]);
+      console.info("FUCK");
+      distance = distFromLocations(myShip.getLocation(), planets[i].position);
       closePlanet = planets[i];
     }
   }
-  
+  console.info("PlanetNum: " + closePlanet.planetNumber);
   return closePlanet;
 }
 

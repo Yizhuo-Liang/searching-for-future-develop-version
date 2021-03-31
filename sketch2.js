@@ -334,8 +334,10 @@ class DisplayWords {
 // 5. draw() can be used to draw the plannet directly on its position
 
 //--------------------------------- BEGINNING OF PLANET ---------------------------------
+let planetNo = 0;
 class Planet {
   constructor(x, y, z, radius, rings) {
+    this.planetNumber = planetNo++;
     this.x = x;
     this.y = y;
     this.z = z;
@@ -568,6 +570,8 @@ class Spaceship {
 
   draw(x, y, z, size, angleZ, angleX, shipModel) {
     push();
+    // fill(255,255,255);
+    // stroke(1);
     this.position = new Position(x, y, z);
     translate(this.position.x, this.position.y, this.position.z);
     rotateZ(angleZ);
@@ -1007,7 +1011,7 @@ function getAcceleration(myShip) {
   if(closePlanet === null) return new Vector3D(0, 0, 0);
   if(closePlanet.length === 0) return new Vector3D(0, 0, 0);
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-  console.info(closePlanet.position);
+  console.info("len" + planets.length);
   let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y)/distance, (closePlanet.z - myShip.getLocation.z)/distance);
   let strength = 1/(pow(distance, 1.5))
   if(strength > 20) strength = 20;

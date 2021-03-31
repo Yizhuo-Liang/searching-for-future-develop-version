@@ -1011,7 +1011,7 @@ function getAcceleration(myShip) {
   if(closePlanet === null) return new Vector3D(0, 0, 0);
   if(closePlanet.length === 0) return new Vector3D(0, 0, 0);
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-  console.info("len" + planets.length);
+  console.info("ClosePlanet Loc: " + closePlanet.x + " ** " + myShip.getLocation().y + " ** " + myShip.getLocation().z);
   let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y)/distance, (closePlanet.z - myShip.getLocation.z)/distance);
   let strength = 1/(pow(distance, 1.5))
   if(strength > 20) strength = 20;
@@ -1020,10 +1020,11 @@ function getAcceleration(myShip) {
 }
 
 function findClosestPlanet(myShip) {
+  if(planets === null) return null;
   if(planets.length === 0) return null;
   let closePlanet = planets[0];
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-  for (let i = 1; i < planets.length - 1; i++) {
+  for (let i = 1; i < planets.length; i++) {
     if (distFromLocations(myShip.getLocation(), planets[i]) < distance) {
       distance = distFromLocations(myShip.getLocation(), planets[i]);
       closePlanet = planets[i];

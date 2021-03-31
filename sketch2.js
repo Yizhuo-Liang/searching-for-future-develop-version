@@ -103,6 +103,7 @@ function draw() {
   
   if(!started) {
     theStartPage.draw();
+    frameCount = 0;
     return;
   }
 
@@ -175,7 +176,7 @@ class startPage {
   constructor() {
     this.started = false;
     this.graphics = createGraphics(100, 100);
-    this.img = 
+    this.img = startPng;
   }
   
   changeState(newState) {
@@ -194,7 +195,13 @@ class startPage {
 //     noStroke();
 //     plane(width, height);
 //     pop();
-    
+    push();
+    this.graphics.background(0);
+    texture(this.graphics);
+    plane(width, height);
+    scale(1);
+    image(this.img, width/2 - 1200, height/2 - 450);
+    pop();
   }
 }
 

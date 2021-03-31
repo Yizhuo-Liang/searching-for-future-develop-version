@@ -1003,10 +1003,12 @@ class Vector3D {
 function getAcceleration(myShip) {
   let closePlanet = findClosestPlanet(myShip);
   if(closePlanet === null) return new Vector3D(0, 0, 0);
+  if(closePlanet.length === 0) return new Vector3D(0, 0, 0);
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
+  let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y,closePlanet.z - myShip.getLocation.z,);
   let strength = 1/(pow(distance, 1.5))
   if(strength > 20) strength = 20;
-  let acceleration = new Vector3D(strength, strength, strength);
+  let acceleration = new Vector3D(strength * , strength, strength);
   return acceleration;
 }
 

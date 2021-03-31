@@ -574,6 +574,7 @@ function drawPlanets() {
 
 function planetIsNotTooFar(planet) {
   if (planet.z - ship1.getLocation().z > 200 || status === "alive_again") {
+    planet=null;
     console.log("Planet destroyed");
     return false;
   } else {
@@ -827,6 +828,8 @@ class Vector3D {
 }
 
 function getAcceleration(myShip) {
+  // calculate the unit force first
+  // (x, y, z)/ length
   let closePlanet = findClosestPlanet(myShip);
   if(closePlanet === null) return new Vector3D(0, 0, 0);
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);

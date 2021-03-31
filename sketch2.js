@@ -433,7 +433,15 @@ function moveAround() {
     tiltX = max(tiltX, -16);
   }
   
+  // adding the resultant displacement due to gravity  
   
+  let currentAcc = getAcceleration(ship1);
+//   for (let i = 0; i < planets.length; i++) {
+//     planets[i].x -= currentAcc.x * 0.00001;
+//     planets[i].y -= currentAcc.y * 0.00001;
+//     planets[i].z += currentAcc.z * 0.00001;
+    
+//   }
 
   camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
 }
@@ -811,6 +819,7 @@ function getAcceleration(myShip) {
   let strength = 1/(pow(distance, 1.5))
   if(strength > 20) strength = 20;
   let acceleration = new Vector3D(strength, strength, strength);
+  return acceleration;
 }
 
 function findClosestPlanet(myShip) {

@@ -631,7 +631,7 @@ class Scoreboard {
     this.size = size;
     this.expand_value = 0;
     this.graphics = createGraphics(200, 200);
-    this.age=0;
+   
     
   }
   
@@ -660,7 +660,7 @@ class Scoreboard {
     noStroke();
     plane(this.size + this.expand_value);
     pop();
-    this.age+=1;
+  
   }
 
   getScore() {
@@ -673,7 +673,47 @@ class Scoreboard {
 
 
 //--------------------------------- END OF SCOREBOARD ---------------------------------
+//--------------------------------- START OF background_scenes ---------------------------------
 
+
+class background_scenes {
+  constructor(size) {
+    this.size = size;
+    this.graphics = createGraphics(windowWidth, windowHeight);
+    this.texture = ();
+    
+  }
+  
+  draw(x, y, z) {
+    push();
+
+   
+    this.graphics.background(0, 0);
+    this.graphics.fill(255);
+
+    
+    // texture(this.graphics);
+
+    translate(x, y, z);
+
+    
+
+    noStroke();
+    plane(this.size);
+    pop();
+  
+  }
+
+  getScore() {
+    return int(millis() / 100);
+  }
+  // boardIsNotTooOld(particle) {
+  //   return Scoreboard.age < 2;
+  // }
+}
+
+
+//--------------------------------- END OF background_scenes ---------------------------------
 //--------------------------------- START OF EXPLOSION ---------------------------------
 
 class Explosion {

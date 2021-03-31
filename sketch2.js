@@ -106,6 +106,7 @@ function draw() {
     frameCount = 0;
     return;
   }
+  if(startMillis === null) startMillis = millis();
 
   if (status === "alive") {
     background(getWarningLevel(ship1, planets));
@@ -579,6 +580,8 @@ function planetIsNotTooFar(planet) {
 //--------------------------------- END OF PLANETFUNCTIONS ---------------------------------
 
 //--------------------------------- START OF SCOREBOARD ---------------------------------
+
+let startMillis;
 class Scoreboard {
   constructor(size) {
     this.size = size;

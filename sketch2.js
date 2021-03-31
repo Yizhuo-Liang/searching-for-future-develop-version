@@ -115,7 +115,8 @@ function draw() {
   }
 
   if (status === "alive") {
-    sb = new Scoreboard(100);
+    generateBoard();
+    // sb = new Scoreboard(100);
     // deleteBoard();
     background(getWarningLevel(ship1, planets));
     moveAround();
@@ -643,13 +644,17 @@ class Scoreboard {
   // }
 }
 
+function generateBoard(){
+  sb = new Scoreboard(100); 
+}
+
 function boardIsNotTooOld(particle) {
-  return Scoreboard.age < 2;
+  return Scoreboard.age < 1;
 }
 
 function drawbBoard() {
   Scoreboard = Scoreboard.filter(boardIsNotTooOld);
-  Scoreboard.draw
+  Scoreboard.draw();
 }
 
 //--------------------------------- END OF SCOREBOARD ---------------------------------

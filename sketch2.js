@@ -115,6 +115,20 @@ function draw() {
     startMillis = millis();
     startMillisNotInitialized = false;
   }
+  if (status === "aliveAgain") {
+
+    start_explosion_ball = new start_explosion(
+      ship1.getLocation().x,
+      ship1.getLocation().y,
+      ship1.getLocation().z,
+    );
+    if (start_explosion_ball.getSize() > 900) {
+      background(0);
+      start_explosion_ball.draw();
+      ending.draw();
+      status = "alive";
+    }
+  }
 
   if (status === "alive") {
     // sb = new Scoreboard(100);
@@ -169,20 +183,7 @@ function draw() {
     );
     status = "died";
   }
-    else if (status === "aliveAgain") {
 
-    start_explosion_ball = new start_explosion(
-      ship1.getLocation().x,
-      ship1.getLocation().y,
-      ship1.getLocation().z,
-    );
-    if (start_explosion_ball.getSize() > 900) {
-      background(0);
-      start_explosion_ball.draw();
-      ending.draw();
-      status = "alive";
-    }
-  }
   else {
     background(0);
     if (explosion_ball.getSize() < 900) {
@@ -197,6 +198,7 @@ function draw() {
     }
 
   }
+
   
 }
 

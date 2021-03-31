@@ -135,6 +135,7 @@ function draw() {
     // deleteBoard();
     background(getWarningLevel(ship1, planets));
     moveAround();
+    
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     if (frameCount === 1 || frameCount % 180 == 0) {
       generatePlanet(ship1);
@@ -207,7 +208,7 @@ function draw() {
       status = "alive";
     }
   }
-  
+
   if(status === "died") {
     background(0);
     if (explosion_ball.getSize() < 900) {
@@ -820,6 +821,7 @@ class start_explosion {
     this.y = y;
     this.z = z;
     this.transparent = 255;
+    this.strokeWeight = 6
     this.size = 20;
     // this.explosion_status=false;
   }
@@ -830,6 +832,7 @@ class start_explosion {
     }
     if (this.transparent > 0) {
       this.transparent -= 5;
+       this.strokeWeight -= 0.1;
     }
   }
   getSize() {
@@ -847,6 +850,7 @@ class start_explosion {
     push();
     translate(this.x, this.y, this.z);
     stroke(255);
+    strokeWeight(this.strokeWeight);
     fill(255,255,255,this.transparent);
     sphere(this.size, 24, 16);
     pop();
@@ -854,6 +858,50 @@ class start_explosion {
 }
 
 //--------------------------------- END OF start_explosion ---------------------------------
+//--------------------------------- START OF assemble ---------------------------------
+class assemble {
+  constructor(x, y, z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    // this.transparent = 255;
+    this.strokeWeight = 6
+    this.size = 2000;
+    // this.explosion_status=false;
+  }
+
+  growBall() {
+    if (this.size > 2000) {
+      this.size = this.size * 0.9;
+    }
+    if (this.strokeWeight > 0) {
+      this.transparent -= 5;
+       this.strokeWeight -= 0.1;
+    }
+  }
+  getSize() {
+    return this.size;
+  }
+
+  draw() {
+    background(0);
+    this.growBall();
+
+    // if(this.explosion_status == false){
+    //   explosde_sound.play();
+    //   this.explosion_status=true;
+    // }
+    push();
+    translate(this.x, this.y, this.z);
+    stroke(255);
+    strokeWeight(this.strokeWeight);
+    // fill(255,255,255,this.transparent);
+    sphere(this.size, 24, 16);
+    pop();
+  }
+}
+
+//--------------------------------- END OF assemble ---------------------------------
 
 //--------------------------------- START OF ENDSCENE ---------------------------------
 class EndScene {

@@ -94,7 +94,7 @@ let status = "alive";
 
 function mouseClicked() {
   planets = [];
-  status = "alive"
+  status = "aliveAgain"
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -753,6 +753,43 @@ class Re_explosion {
 }
 
 //--------------------------------- END OF RE_EXPLOSION ---------------------------------
+//--------------------------------- START OF start_EXPLOSION ---------------------------------
+class start_EXPLOSION {
+  constructor(x, y, z, size) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.size = 20;
+    // this.explosion_status=false;
+  }
+
+  growBall() {
+    if (this.size < 1000) {
+      this.size = this.size * 1.1;
+    }
+  }
+  getSize() {
+    return this.size;
+  }
+
+  draw() {
+    this.growBall();
+
+    // if(this.explosion_status == false){
+    //   explosde_sound.play();
+    //   this.explosion_status=true;
+    // }
+
+    push();
+    translate(this.x, this.y, this.z);
+    noStroke();
+    fill(0);
+    sphere(this.size, 24, 16);
+    pop();
+  }
+}
+
+//--------------------------------- END OF start_EXPLOSION ---------------------------------
 
 //--------------------------------- START OF ENDSCENE ---------------------------------
 class EndScene {

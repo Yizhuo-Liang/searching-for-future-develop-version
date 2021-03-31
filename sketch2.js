@@ -170,6 +170,7 @@ function draw() {
 class startPage {
   constructor() {
     this.started = false;
+    this.graphics = createGraphics(100, 100);
   }
   
   changeState(newState) {
@@ -177,9 +178,17 @@ class startPage {
   }
   
   draw(){
-    textSize(20);
-    text("MAY THE FORCE BE WITH YOU", width/2 - 100, height/3);
-    text("Start", width/2 - 50, 2*height/3);
+    push();
+    this.graphics.background(0);
+    this.graphics.fill(255);
+    this.graphics.textSize(40);
+
+    this.graphics.textAlign(CENTER, CENTER);
+    this.graphics.text("MAY THE FORCE", width/2, height/2, 20, 20);
+    texture(this.graphics);
+    noStroke();
+    plane(width, height);
+    pop();
   }
 }
 

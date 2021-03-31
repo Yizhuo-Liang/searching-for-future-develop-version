@@ -107,6 +107,7 @@ function mouseClicked() {
 
 function draw() {
   console.log(status)
+  
   if(!started) {
     theStartPage.draw();
     frameCount = 0;
@@ -122,11 +123,10 @@ function draw() {
       ship1.getLocation().y,
       ship1.getLocation().z,
     );
-    status = "alive";
+    status = "aliveagain";
   }
   else if (status === "aliveagain") {
     if (start_explosion_ball.getSize() < 900) {
-      background(0);
       start_explosion_ball.draw();
       ending.draw();
     }
@@ -415,11 +415,11 @@ function moveAround() {
 
   //   phone version
 
-  //   xp = map(rotationY, -180, 180, -maxSpeed, maxSpeed);
-  //   yp = map(rotationX, -180, 180, -maxSpeed, maxSpeed);
+//     xp = map(rotationY, -180, 180, -maxSpeed, maxSpeed);
+//     yp = map(rotationX, -180, 180, -maxSpeed, maxSpeed);
 
-  //   camX += xp*5;
-  //   camY += yp*5;
+//     camX += xp*5;
+//     camY += yp*5;
 
   //phone version
 
@@ -787,7 +787,7 @@ class start_explosion {
 
   growBall() {
     if (this.size < 1000) {
-      this.size = this.size * 1.01;
+      this.size = this.size * 1.08;
     }
   }
   getSize() {
@@ -803,8 +803,8 @@ class start_explosion {
     // }
     push();
     translate(this.x, this.y, this.z);
-    noStroke();
-    fill(0);
+    stroke(255);
+    // fill(255);
     sphere(this.size, 24, 16);
     pop();
   }

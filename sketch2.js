@@ -792,28 +792,46 @@ function mousePressed() {
   started = true;
 }
 
-// function findClosestPlanet(myShip) {
-//   let closePlanet = planets[0];
-//   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-//   for (let i = 1; i < planets.length - 1; i++) {
-//     if (distFromLocations(myShip.getLocation(), planets[i]) < distance) {
-//       distance = distFromLocations(myShip.getLocation(), planets[i]);
-//       closePlanet = planets[i];
-//     }
-//   }
-//   return closePlanet;
-// }
+//--------------------------------- START OF GRAVITY ---------------------------------
 
-// function distFromLocations(location1, location2) {
-//   return dist(
-//     location1.x,
-//     location1.y,
-//     location1.z,
-//     location2.x,
-//     location2.y,
-//     location2.z
-//   );
-// }
+class Vector3D {
+  constructor(x, y, z) {
+    this.x;
+    this.y;
+    this.z;
+  }
+}
+
+function getAcceleration(myShip) {
+  let closePlanet = findClosestPlanet(myShip);
+  let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
+  let strength = 1/(pow(distance, 1.5))
+  if(strength > 20) strength = 20;
+  let acceleration = new Vector3D(strength, strength, strength);
+}
+
+function findClosestPlanet(myShip) {
+  let closePlanet = planets[0];
+  let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
+  for (let i = 1; i < planets.length - 1; i++) {
+    if (distFromLocations(myShip.getLocation(), planets[i]) < distance) {
+      distance = distFromLocations(myShip.getLocation(), planets[i]);
+      closePlanet = planets[i];
+    }
+  }
+  return closePlanet;
+}
+
+function distFromLocations(location1, location2) {
+  return dist(
+    location1.x,
+    location1.y,
+    location1.z,
+    location2.x,
+    location2.y,
+    location2.z
+  );
+}
 
 //--------------------------------- END OF GRAVITY ---------------------------------
 

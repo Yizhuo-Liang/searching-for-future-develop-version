@@ -98,6 +98,7 @@ function setup() {
   // detail.style("width", "80px");
   theStartPage = new startPage();
   scenes = new background_scenes
+  perspective(PI / 3.0, width / height, 0.1, 500);
 }
 
 //
@@ -583,7 +584,7 @@ function generatePlanet(ship) {
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
   for (let d = 1; d < 4; d++) {
     lowerBound = shipLoc.z - 2000 * d;
-    pZ = int(random(lowerBound, lowerBound - 7000));
+    pZ = int(random(lowerBound-2000, lowerBound - 10000));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(250, 490));

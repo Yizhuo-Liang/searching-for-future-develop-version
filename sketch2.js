@@ -1010,7 +1010,6 @@ function getAcceleration(myShip) {
   let closePlanet = findClosestPlanet(myShip);
   if(closePlanet === null) return new Vector3D(0, 0, 0);
   if(closePlanet.length === 0) return new Vector3D(0, 0, 0);
-  console.info("zhende: " + planets[0].position.x);
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
   // console.info("ClosePlanet Loc: " + closePlanet.x + " ** " + closePlanet.y + " ** " + closePlanet.z);
   let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y)/distance, (closePlanet.z - myShip.getLocation.z)/distance);
@@ -1023,12 +1022,11 @@ function getAcceleration(myShip) {
 function findClosestPlanet(myShip) {
   if(planets === null) return null;
   if(planets.length === 0) return null;
-  let closePlanet = planets[0];
+  let closePlanet = planets[1];
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-  for (let i = 1; i < planets.length; i++) {
-    console.info("compare: " + distance + " ----- " +  distFromLocations(myShip.getLocation(), planets[i].position));
+  for (let i = 2; i < planets.length; i++) {
+    if(frameCount%50 == 0) console.info("compare: i: " + i + " -" + distance + " ----- " +  distFromLocations(myShip.getLocation(), planets[i].position));
     if (distFromLocations(myShip.getLocation(), planets[i].position) < distance) {
-      console.info("FUCK");
       distance = distFromLocations(myShip.getLocation(), planets[i].position);
       closePlanet = planets[i];
     }

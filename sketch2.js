@@ -16,6 +16,7 @@ let BGM;
 
 let explosde_sound;
 let ending;
+let assemble_ball;
 let explosion_ball;
 let re_explosion_ball;
 let start_explosion_ball;
@@ -133,6 +134,10 @@ function draw() {
   if (status === "alive") {
     // sb = new Scoreboard(100);
     // deleteBoard();
+    assemble_ball = new assemble
+    if (assemble_ball.getSize() > 30) {
+      assemble_ball.draw();
+    }
     background(getWarningLevel(ship1, planets));
     moveAround();
     
@@ -864,19 +869,19 @@ class assemble {
     this.x = x;
     this.y = y;
     this.z = z;
-    // this.transparent = 255;
+    this.transparent = 255;
     this.strokeWeight = 6
     this.size = 2000;
     // this.explosion_status=false;
   }
 
   growBall() {
-    if (this.size > 2000) {
+    if (this.size > 20) {
       this.size = this.size * 0.9;
     }
-    if (this.strokeWeight > 0) {
+    if (this.strokeWeight < 5) {
+       this.strokeWeight += 0.1;
       this.transparent -= 5;
-       this.strokeWeight -= 0.1;
     }
   }
   getSize() {
@@ -887,15 +892,11 @@ class assemble {
     background(0);
     this.growBall();
 
-    // if(this.explosion_status == false){
-    //   explosde_sound.play();
-    //   this.explosion_status=true;
-    // }
     push();
     translate(this.x, this.y, this.z);
     stroke(255);
     strokeWeight(this.strokeWeight);
-    // fill(255,255,255,this.transparent);
+    fill(255,255,255,this.transparent);
     sphere(this.size, 24, 16);
     pop();
   }

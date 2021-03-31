@@ -14,6 +14,7 @@ let BGM;
 
 let explosde_sound;
 let ending;
+let assemble_ball;
 let explosion_ball;
 let re_explosion_ball;
 
@@ -107,6 +108,7 @@ function draw() {
     // if (warningLevel > 1) {
     //   warning += warningLevel * 40;
     // }
+
     background(getWarningLevel(ship1, planets));
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);

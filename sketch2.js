@@ -115,27 +115,28 @@ function draw() {
     background(getWarningLevel(ship1, planets));
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
-//     if (frameCount === 1 || frameCount % 180 == 0) {
-//       generatePlanet(ship1);
-//       console.log(planets.length);
-//     }
+    if (frameCount === 1 || frameCount % 180 == 0) {
+      generatePlanet(ship1);
+      console.log(planets.length);
+    }
 
-//     drawPlanets();
-//     sb.draw(
-//       ship1.getLocation().x + _W / 4,
-//       ship1.getLocation().y - _H / 4,
-//       ship1.getLocation().z
-//     );
+    drawPlanets();
+    
+    sb.draw(
+      ship1.getLocation().x + _W / 4,
+      ship1.getLocation().y - _H / 4,
+      ship1.getLocation().z
+    );
 
-//     displayPoem.draw(
-//       ship1.getLocation().x,
-//       ship1.getLocation().y - _H / 5,
-//       ship1.getLocation().z
-//     );
+    displayPoem.draw(
+      ship1.getLocation().x,
+      ship1.getLocation().y - _H / 5,
+      ship1.getLocation().z
+    );
 
-//     if (testCollision(planets, ship1)) {
-//       status = "justdied";
-//     }
+    if (testCollision(planets, ship1)) {
+      status = "justdied";
+    }
   } else if (status === "justdied") {
     explosion_ball = new Explosion(
       ship1.getLocation().x,
@@ -590,21 +591,20 @@ class Scoreboard {
   constructor(size) {
     this.size = size;
     this.expand_value = 0;
+    this.graphics = createGraphics(200, 200);
+    this.expand = false;
   }
 
   draw(x, y, z) {
     push();
-    let graphics = createGraphics(200, 200);
+    
     let distance = int((millis() - startMillis) / 100);
-    console.info(startMillis);
-    let expand = false;
-    // background(0);
-    graphics.background(255, 0);
-    graphics.fill(255);
-    graphics.textSize(50);
-    graphics.text(distance + "kM", 10, 80, 700, 700);
+    this.graphics.background(0);
+    this.graphics.fill(255);
+    this.graphics.textSize(50);
+    this.graphics.text(distance + "kM", 10, 80, 700, 700);
 
-    texture(graphics);
+    texture(this.graphics);
 
     translate(x, y, z);
     // rotateX(frameCount * 0.01);

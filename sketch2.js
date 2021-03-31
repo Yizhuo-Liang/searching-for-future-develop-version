@@ -69,7 +69,7 @@ function setup() {
   smooth();
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
-  sb = new Scoreboard(100);
+  // sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   BGM.play();
   xp = width / 2;
@@ -112,6 +112,7 @@ function draw() {
   }
 
   if (status === "alive") {
+    sb = new Scoreboard(100);
     background(getWarningLevel(ship1, planets));
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
@@ -174,6 +175,7 @@ function draw() {
       ending.draw();
     }
   }
+  
 }
 
 class startPage {
@@ -592,18 +594,18 @@ class Scoreboard {
     this.size = size;
     this.expand_value = 0;
     this.graphics = createGraphics(200, 200);
-    this.expand = false;
+    
   }
 
   draw(x, y, z) {
     push();
-    
+    // let graphics = createGraphics(200, 200);
     let distance = int((millis() - startMillis) / 100);
     this.graphics.background(0);
     this.graphics.fill(255);
     this.graphics.textSize(50);
     this.graphics.text(distance + "kM", 10, 80, 700, 700);
-
+    
     texture(this.graphics);
 
     translate(x, y, z);
@@ -611,7 +613,7 @@ class Scoreboard {
     // rotateY(frameCount * 0.01);
     // rotateZ(frameCount * 0.01);
     // box(200+this.expand_value);
-
+    
     if (distance % 10 == 1) {
       this.expand_value = this.size / 2;
     }

@@ -73,13 +73,13 @@ function setup() {
   smooth();
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
-  // sb = new Scoreboard(100);
+  sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   BGM.play();
-  // narratePoem.play();
+  narratePoem.play();
   xp = width / 2;
   yp = height / 2;
-  displayPoem = new DisplayWords(poem, 200);
+  displayPoem = new DisplayWords(poem, 300);
   // bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
@@ -117,7 +117,6 @@ function draw() {
   }
 
   if (status === "alive") {
-    generateBoard();
     // sb = new Scoreboard(100);
     // deleteBoard();
     background(getWarningLevel(ship1, planets));
@@ -138,7 +137,7 @@ function draw() {
 
     displayPoem.draw(
       ship1.getLocation().x,
-      ship1.getLocation().y - _H / 5,
+      ship1.getLocation().y - _H/3,
       ship1.getLocation().z
     );
 
@@ -263,7 +262,8 @@ class DisplayWords {
 
   draw(x, y, z) {
     push();
-    this.graphics.background(0, 20);
+    this.graphics.clear();
+    this.graphics.background(0, 0);
     this.graphics.fill(255);
     this.graphics.textSize(this.size/8);
     if (frameCount % 120 == 0) {
@@ -616,7 +616,8 @@ class Scoreboard {
     // Scoreboard = Scoreboard.filter(boardIsNotTooOld);
     // let graphics = createGraphics(200, 200);
     let distance = int((millis() - startMillis) / 100);
-    this.graphics.background(0);
+    this.graphics.clear();
+    this.graphics.background(0, 0);
     this.graphics.fill(255);
     this.graphics.textSize(50);
     this.graphics.text(distance + "kM", 10, 80, 700, 700);
@@ -646,18 +647,6 @@ class Scoreboard {
   // }
 }
 
-function generateBoard(){
-  newboard = new Scoreboard(100); 
-}
-
-function boardIsNotTooOld(particle) {
-  return Scoreboard.age < 1;
-}
-
-function drawbBoard() {
-  Scoreboard = Scoreboard.filter(boardIsNotTooOld);
-  Scoreboard.draw();
-}
 
 //--------------------------------- END OF SCOREBOARD ---------------------------------
 

@@ -98,7 +98,10 @@ function setup() {
   // detail.style("width", "80px");
   theStartPage = new startPage();
   scenes = new background_scenes
-  perspective(PI / 3.0, width / height, 0.1, 500);
+  
+  // let fov = PI/3;
+  // let cameraZ = (height/2.0)/(height/2.0)
+  perspective(PI/3, (width)/(height), 0, 2000);
 }
 
 //

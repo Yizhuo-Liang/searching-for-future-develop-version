@@ -17,6 +17,7 @@ let explosde_sound;
 let ending;
 let explosion_ball;
 let re_explosion_ball;
+let start_explosion_ball;
 
 let xp;
 let yp;
@@ -167,16 +168,22 @@ function draw() {
       sb.getScore()
     );
     status = "died";
-  } else if (status === "aliveAgain") {
+  }
+    else if (status === "aliveAgain") {
 
-    start_explosion = new start_explosion(
+    start_explosion_ball = new start_explosion(
       ship1.getLocation().x,
       ship1.getLocation().y,
       ship1.getLocation().z,
-      1000
     );
-    status = "alive";
-  }else {
+    if (start_explosion_ball.getSize() > 900) {
+      background(0);
+      start_explosion_ball.draw();
+      ending.draw();
+      status = "alive";
+    }
+  }
+  else {
     background(0);
     if (explosion_ball.getSize() < 900) {
       explosion_ball.draw();
@@ -188,6 +195,7 @@ function draw() {
       re_explosion_ball.draw();
       ending.draw();
     }
+
   }
   
 }
@@ -766,7 +774,7 @@ class Re_explosion {
 //--------------------------------- END OF RE_EXPLOSION ---------------------------------
 //--------------------------------- START OF start_explosion ---------------------------------
 class start_explosion {
-  constructor(x, y, z) {
+  constructor(x, y, z,size) {
     this.x = x;
     this.y = y;
     this.z = z;

@@ -134,14 +134,22 @@ function draw() {
   if (status === "alive") {
     // sb = new Scoreboard(100);
     // deleteBoard();
-    assemble_ball = new assemble
-    if (assemble_ball.getSize() > 30) {
-      assemble_ball.draw();
-    }
+
     background(getWarningLevel(ship1, planets));
     moveAround();
     
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
+    push();
+    assemble_ball = new assemble(
+      ship1.getLocation().x,
+      ship1.getLocation().y,
+      ship1.getLocation().z,
+      200
+    );
+    if (assemble_ball.getSize() > 10) {
+      assemble_ball.draw();
+    }
+    pop()
     if (frameCount === 1 || frameCount % 180 == 0) {
       generatePlanet(ship1);
       console.log(planets.length);
@@ -865,13 +873,11 @@ class start_explosion {
 //--------------------------------- END OF start_explosion ---------------------------------
 //--------------------------------- START OF assemble ---------------------------------
 class assemble {
-  constructor(x, y, z) {
+  constructor(x, y, z, size) {
     this.x = x;
     this.y = y;
     this.z = z;
-    this.transparent = 255;
-    this.strokeWeight = 6
-    this.size = 2000;
+    this.size = size;
     // this.explosion_status=false;
   }
 
@@ -879,24 +885,23 @@ class assemble {
     if (this.size > 20) {
       this.size = this.size * 0.9;
     }
-    if (this.strokeWeight < 5) {
-       this.strokeWeight += 0.1;
-      this.transparent -= 5;
-    }
   }
   getSize() {
     return this.size;
   }
 
   draw() {
-    background(0);
     this.growBall();
+
+    // if(this.explosion_status == false){
+    //   explosde_sound.play();
+    //   this.explosion_status=true;
+    // }
 
     push();
     translate(this.x, this.y, this.z);
-    stroke(255);
-    strokeWeight(this.strokeWeight);
-    fill(255,255,255,this.transparent);
+    noStroke();
+    fill(255);
     sphere(this.size, 24, 16);
     pop();
   }

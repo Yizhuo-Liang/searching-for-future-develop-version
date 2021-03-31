@@ -570,7 +570,7 @@ class Spaceship {
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
-  for (let d = 1; d < 4; d++) {
+  for (let d = 1; d < 40; d++) {
     lowerBound = shipLoc.z - 2000 * d;
     pZ = int(random(lowerBound, lowerBound - 700));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
@@ -600,10 +600,10 @@ function generatePlanet(ship) {
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
   }
-  // for ( i = 0; i < random(8) ; i++) {
-  planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
-  planets.push(planetNew);
-  // }
+  for ( let i = 0; i < random(8) ; i++) {
+    planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+    planets.push(planetNew);
+  }
   console.log("4 planets created");
 }
 

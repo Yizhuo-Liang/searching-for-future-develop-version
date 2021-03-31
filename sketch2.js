@@ -358,6 +358,7 @@ let camX = 0;
 let camY = 0;
 let tiltZ = 0;
 let tiltX = 0;
+let speedZ = 15;
 function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;
@@ -365,7 +366,7 @@ function moveAround() {
     for (let i = 0; i < planets.length; i++) {
       planets[i].x += 15;
     }
-    tiltZ -= 4;
+    tiltZ -= 8;
     triggerZ = 1;
   }
 
@@ -373,7 +374,7 @@ function moveAround() {
     for (let i = 0; i < planets.length; i++) {
       planets[i].x -= 15;
     }
-    tiltZ += 4;
+    tiltZ += 8;
     triggerZ = 1;
   }
 
@@ -381,7 +382,7 @@ function moveAround() {
     for (let i = 0; i < planets.length; i++) {
       planets[i].y += 15;
     }
-    tiltX += 5;
+    tiltX += 10;
     triggerX = 1;
   }
 
@@ -389,7 +390,7 @@ function moveAround() {
     for (let i = 0; i < planets.length; i++) {
       planets[i].y -= 15;
     }
-    tiltX -= 5;
+    tiltX -= 10;
     triggerX = 1;
   }
 
@@ -416,8 +417,12 @@ function moveAround() {
   //   }
 
   for (let i = 0; i < planets.length; i++) {
-    planets[i].z += 15;
+    planets[i].z += speedZ;
   }
+  
+  if (sb.getScore() % 100 == 0){
+      speedZ += 10;
+    }
 
   if (triggerZ === 0) {
     if (tiltZ > 0) {

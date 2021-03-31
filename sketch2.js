@@ -93,11 +93,11 @@ let ship1;
 let planets = [];
 let status = "alive";
 
-function mouseIsClicked() {
+function mouseClicked() {
   if(status === "died"){
       planets = [];
       // startMillisNotInitialized = true; //???
-      status = "aliveAgain"
+      status = "justaliveAgain"
   }
 }
 
@@ -106,7 +106,7 @@ function mouseIsClicked() {
 /////////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
-  
+  console.log(status)
   if(!started) {
     theStartPage.draw();
     frameCount = 0;
@@ -116,17 +116,21 @@ function draw() {
     startMillis = millis();
     startMillisNotInitialized = false;
   }
-  if (status === "aliveAgain") {
-
+  if (status === "justaliveAgain") {
     start_explosion_ball = new start_explosion(
       ship1.getLocation().x,
       ship1.getLocation().y,
       ship1.getLocation().z,
     );
-    if (start_explosion_ball.getSize() > 900) {
+    status = "alive";
+  }
+  else if (status === "aliveagain") {
+    if (start_explosion_ball.getSize() < 900) {
       background(0);
       start_explosion_ball.draw();
       ending.draw();
+    }
+    else {
       status = "alive";
     }
   }
@@ -189,7 +193,6 @@ function draw() {
     background(0);
     if (explosion_ball.getSize() < 900) {
       explosion_ball.draw();
-      console.log("printed");
     }
 
     if (explosion_ball.getSize() > 900) {
@@ -197,10 +200,7 @@ function draw() {
       re_explosion_ball.draw();
       ending.draw();
     }
-
   }
-
-  
 }
 
 class startPage {
@@ -801,7 +801,6 @@ class start_explosion {
     //   explosde_sound.play();
     //   this.explosion_status=true;
     // }
-
     push();
     translate(this.x, this.y, this.z);
     noStroke();

@@ -572,7 +572,7 @@ function drawPlanets() {
 }
 
 function planetIsNotTooFar(planet) {
-  if (planet.z - ship1.getLocation().z > -300 || status === "alive_again") {
+  if (planet.z - ship1.getLocation().z > -1000 || status === "alive_again") {
     console.log("Planet destroyed");
     return false;
   } else {

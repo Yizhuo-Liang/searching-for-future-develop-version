@@ -815,10 +815,11 @@ class Re_explosion {
 //--------------------------------- END OF RE_EXPLOSION ---------------------------------
 //--------------------------------- START OF start_explosion ---------------------------------
 class start_explosion {
-  constructor(x, y, z,size) {
+  constructor(x, y, z) {
     this.x = x;
     this.y = y;
     this.z = z;
+    this.transparent = 255;
     this.size = 20;
     // this.explosion_status=false;
   }
@@ -828,7 +829,7 @@ class start_explosion {
       this.size = this.size * 1.08;
     }
     if (this.transparent > 0) {
-      this.transparent -= 1;
+      this.transparent -= 5;
     }
   }
   getSize() {
@@ -846,7 +847,7 @@ class start_explosion {
     push();
     translate(this.x, this.y, this.z);
     stroke(255);
-    // fill(255);
+    fill(255,255,255,this.transparent);
     sphere(this.size, 24, 16);
     pop();
   }

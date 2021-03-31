@@ -451,7 +451,7 @@ function moveAround() {
   }
   
   if (sb.getScore() % 100 == 0){
-      speedZ += 2;
+      speedZ += 5;
     }
 
   if (triggerZ === 0) {
@@ -575,27 +575,27 @@ function generatePlanet(ship) {
     pZ = int(random(lowerBound, lowerBound - 700));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
-    pS = int(random(250, 490));
+    pS = int(random(250, 490)*10);
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
 
     pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
     pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
-    pS = int(random(250, 490));
+    pS = int(random(250, 490)*10);
     randomness = 0;
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
 
     pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
     pY = int(random(shipLoc.y - 2000, shipLoc.y + 2000));
-    pS = int(random(250, 490));
+    pS = int(random(250, 490)*10);
     randomness = 0;
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
 
     pX = int(random(shipLoc.x + 50, shipLoc.x + 500));
     pY = int(random(shipLoc.y + 1500, shipLoc.y + 3000));
-    pS = int(random(250, 490));
+    pS = int(random(250, 490)*10);
     randomness = 0;
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);

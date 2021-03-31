@@ -202,6 +202,7 @@ class startPage {
     push();
     this.graphics.background(0);
     texture(this.graphics);
+    noStroke();
     plane(width, height);
     scale(1);
     image(this.img, camX - 255, camY - 255);
@@ -572,7 +573,7 @@ function drawPlanets() {
 }
 
 function planetIsNotTooFar(planet) {
-  if (planet.z - ship1.getLocation().z > -1000 || status === "alive_again") {
+  if (planet.z - ship1.getLocation().z > 200 || status === "alive_again") {
     console.log("Planet destroyed");
     return false;
   } else {
@@ -807,6 +808,11 @@ function mousePressed() {
   //     started = true;
   //   }
   // }
+  started = true;
+}
+
+function keyPressed() {
+  
   started = true;
 }
 

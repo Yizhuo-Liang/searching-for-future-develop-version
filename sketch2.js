@@ -397,34 +397,34 @@ function moveAround() {
   let triggerX = 0;
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x += 15;
+      planets[i].x += 15+speedZ;
     }
-    tiltZ -= 4;
-    triggerZ = 10;
+    tiltZ -= 4/3;
+    triggerZ = 10*30;
   }
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x -= 15;
+      planets[i].x -= 15+speedZ;
     }
-    tiltZ += 4;
-    triggerZ = 10;
+    tiltZ += 4/3;
+    triggerZ = 10*30;
   }
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y += 15;
+      planets[i].y += 15+speedZ;
     }
-    tiltX += 5;
-    triggerX = 10;
+    tiltX += 5/3;
+    triggerX = 10*30;
   }
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y -= 15;
+      planets[i].y -= 15+speedZ ;
     }
-    tiltX -= 5;
-    triggerX = 10;
+    tiltX -= 5/3;
+    triggerX = 10*30;
   }
 
   //   phone version
@@ -454,7 +454,7 @@ function moveAround() {
   }
   
   if (sb.getScore() % 100 == 0){
-      speedZ += 10;
+      speedZ += 2;
     }
 
   if (triggerZ === 0) {

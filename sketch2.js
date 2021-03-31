@@ -149,7 +149,9 @@ function draw() {
   if (status === "alive") {
     // sb = new Scoreboard(100);
     // deleteBoard();
-    scenes.draw();
+    
+
+    
     background(getWarningLevel(ship1, planets));
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);

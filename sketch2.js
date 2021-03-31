@@ -92,16 +92,8 @@ let status = "alive";
 /////////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
-  // if (status === "alive" && frameCount >= 1800) {
-  //   status === "justdied";
-  // }
 
   if (status === "alive") {
-    // let warning = 0;
-    // let warningLevel = getWarningLevel(ship1);
-    // if (warningLevel > 1) {
-    //   warning += warningLevel * 40;
-    // }
     background(getWarningLevel(ship1, planets));
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
@@ -545,7 +537,7 @@ class Scoreboard {
     graphics.background(255, 0);
     graphics.fill(255);
     graphics.textSize(50);
-    graphics.text(distance + "AU", 10, 80, 700, 700);
+    graphics.text(distance + "kM", 10, 80, 700, 700);
 
     texture(graphics);
 

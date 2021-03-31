@@ -473,7 +473,7 @@ class Scoreboard {
     graphics.background(255, 0);
     graphics.fill(255);
     graphics.textSize(50);
-    graphics.text(distance + "AU", 10, 80, 700, 700);
+    graphics.text(distance + "??", 10, 80, 700, 700);
 
     texture(graphics);
 

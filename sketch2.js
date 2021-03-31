@@ -147,7 +147,7 @@ function draw() {
 
     if (frameCount === 1 || frameCount % 180 == 0) {
       generatePlanet(ship1);
-      console.log(planets.length);
+      // console.log(planets.length);
     }
 
     drawPlanets();
@@ -503,9 +503,11 @@ function moveAround() {
   
   let currentAcc = getAcceleration(ship1);
   for (let i = 0; i < planets.length; i++) {
-    planets[i].x -= currentAcc.x * 0.001;
-    planets[i].y -= currentAcc.y * 0.001;
-    planets[i].z += currentAcc.z * 0.001;
+    // planets[i].x -= currentAcc.x * 0.001;
+    // planets[i].y -= currentAcc.y * 0.001;
+    // planets[i].z += currentAcc.z * 0.001;
+    
+    console.info(currentAcc.x + " -- " + currentAcc.y + " -- " + currentAcc.z);
     
   }
 
@@ -1005,6 +1007,7 @@ function getAcceleration(myShip) {
   if(closePlanet === null) return new Vector3D(0, 0, 0);
   if(closePlanet.length === 0) return new Vector3D(0, 0, 0);
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
+  console.info(closePlanet.position);
   let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y)/distance, (closePlanet.z - myShip.getLocation.z)/distance);
   let strength = 1/(pow(distance, 1.5))
   if(strength > 20) strength = 20;

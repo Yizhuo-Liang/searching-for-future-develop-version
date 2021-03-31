@@ -1,7 +1,8 @@
 let _W;
 let _H;
 
-let startPng
+let universe;
+let startPng;
 let camZ;
 let spaceship;
 let earth;
@@ -31,6 +32,9 @@ let newboard;
 
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
+  universe = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Funiverse-background-1.jpg?v=1617194401240"
+  );
   startPng = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStartPage1.png?v=1617163053005"
   );
@@ -59,12 +63,18 @@ function preload() {
   BGM = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FBGM.mp3?v=1617047619315"
   );
-  narratePoem = loadSound("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881")
+  narratePoem = loadSound("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881");
+  
+
+  
+  
 }
 let planetlist = [earth, planet1, planet2, planet3, planet4, planet5];
 let sb;
 let bumi;
 let displayPoem;
+
+let scenes
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -86,6 +96,7 @@ function setup() {
   // detail.position(10, height - 30);
   // detail.style("width", "80px");
   theStartPage = new startPage();
+  scenes = new background_scenes
 }
 
 //
@@ -675,44 +686,36 @@ class Scoreboard {
 //--------------------------------- END OF SCOREBOARD ---------------------------------
 //--------------------------------- START OF background_scenes ---------------------------------
 
-
 class background_scenes {
-  constructor(size) {
-    this.size = size;
+  constructor() {
     this.graphics = createGraphics(windowWidth, windowHeight);
-    this.texture = ();
-    
+    this.img = universe;
   }
   
-  draw(x, y, z) {
+
+  
+  draw(){
+//     push();
+//     this.graphics.background(0);
+//     this.graphics.fill(255);
+//     this.graphics.textSize(40);
+
+//     this.graphics.textAlign(CENTER, CENTER);
+//     this.graphics.text("MAY THE FORCE", width/2, height/2);
+//     texture(this.graphics);
+//     noStroke();
+//     plane(width, height);
+//     pop();
     push();
-
-   
-    this.graphics.background(0, 0);
-    this.graphics.fill(255);
-
-    
-    // texture(this.graphics);
-
-    translate(x, y, z);
-
-    
-
+    this.graphics.background(0);
+    texture(this.graphics);
     noStroke();
-    plane(this.size);
+    plane(width, height);
+    scale(1);
+    image(this.img, camX - 255, camY - 255);
     pop();
-  
   }
-
-  getScore() {
-    return int(millis() / 100);
-  }
-  // boardIsNotTooOld(particle) {
-  //   return Scoreboard.age < 2;
-  // }
 }
-
-
 //--------------------------------- END OF background_scenes ---------------------------------
 //--------------------------------- START OF EXPLOSION ---------------------------------
 

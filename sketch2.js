@@ -115,28 +115,27 @@ function draw() {
     background(getWarningLevel(ship1, planets));
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
-    // bumi.draw();
-    if (frameCount === 1 || frameCount % 180 == 0) {
-      generatePlanet(ship1);
-      console.log(planets.length);
-    }
+//     if (frameCount === 1 || frameCount % 180 == 0) {
+//       generatePlanet(ship1);
+//       console.log(planets.length);
+//     }
 
-    drawPlanets();
-    sb.draw(
-      ship1.getLocation().x + _W / 4,
-      ship1.getLocation().y - _H / 4,
-      ship1.getLocation().z
-    );
+//     drawPlanets();
+//     sb.draw(
+//       ship1.getLocation().x + _W / 4,
+//       ship1.getLocation().y - _H / 4,
+//       ship1.getLocation().z
+//     );
 
-    displayPoem.draw(
-      ship1.getLocation().x,
-      ship1.getLocation().y - _H / 5,
-      ship1.getLocation().z
-    );
+//     displayPoem.draw(
+//       ship1.getLocation().x,
+//       ship1.getLocation().y - _H / 5,
+//       ship1.getLocation().z
+//     );
 
-    if (testCollision(planets, ship1)) {
-      status = "justdied";
-    }
+//     if (testCollision(planets, ship1)) {
+//       status = "justdied";
+//     }
   } else if (status === "justdied") {
     explosion_ball = new Explosion(
       ship1.getLocation().x,

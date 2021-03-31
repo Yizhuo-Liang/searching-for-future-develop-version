@@ -128,28 +128,7 @@ function draw() {
     startMillis = millis();
     startMillisNotInitialized = false;
   }
-  if (status === "justaliveAgain") {
-    start_explosion_ball = new start_explosion(
-      ship1.getLocation().x,
-      ship1.getLocation().y,
-      ship1.getLocation().z,
-    );
-    status = "aliveagain";
-  }
-  else if (status === "aliveagain") {
-    if (start_explosion_ball.getSize() < 500) {
-      
-      ending.draw();
-    }
-    if (start_explosion_ball.getSize() < 2000) {
 
-       start_explosion_ball.draw();
-      
-    }
-    else {
-      status = "alive";
-    }
-  }
 
   if (status === "alive") {
     // sb = new Scoreboard(100);
@@ -204,8 +183,32 @@ function draw() {
     );
     status = "died";
   }
-
-  else {
+  
+  
+  if (status === "justaliveAgain") {
+    start_explosion_ball = new start_explosion(
+      ship1.getLocation().x,
+      ship1.getLocation().y,
+      ship1.getLocation().z,
+    );
+    status = "aliveagain";
+  }
+  else if (status === "aliveagain") {
+    if (start_explosion_ball.getSize() < 500) {
+      start_explosion_ball.draw();
+      ending.draw();
+    }
+    else if (start_explosion_ball.getSize() < 2000) {
+       clear();
+       start_explosion_ball.draw();
+      
+    }
+    else {
+      status = "alive";
+    }
+  }
+  
+  if(status === "died") {
     background(0);
     if (explosion_ball.getSize() < 900) {
       explosion_ball.draw();
@@ -821,8 +824,11 @@ class start_explosion {
   }
 
   growBall() {
-    if (this.size < 1000) {
+    if (this.size < 2000) {
       this.size = this.size * 1.08;
+    }
+    if (this.transparent > 0) {
+      this.transparent -= 1;
     }
   }
   getSize() {

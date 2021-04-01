@@ -640,54 +640,54 @@ function arePlanetsOvelapped(planet) {}
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
-  let generateD = 360 * speedZ;
-  let randomRange = 1500;
-  let distanceBtwPlanets = 1500;
-  let lowerBound = 
+  let stopDistance = shipLoc.z - 360 * speedZ;
+  let randomRange = 1000;
+  let distanceBtwPlanets = 0;
+  let beginDistance = shipLoc.z - speedZ * 180;
   
-  for (distanceBtwPlanets; distanceBtwPlanets < generateD; distanceBtwPlanets += 1500 ) {
-    lowerBound = shipLoc.z - distanceBtwPlanets;
-    pZ = int(random(lowerBound, lowerBound - 2000));
-    pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
-    pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
-    pS = int(random(250, 490));
-    planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
-    planets.push(planetNew);
-
-    pX = int(random(shipLoc.x - randomRange, shipLoc.x - 2 * randomRange);
-    pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange - ));
-    pS = int(random(250, 490));
+  for (beginDistance; beginDistance >= stopDistance; beginDistance -= 2000 ) {
+    lowerBound = beginDistance;
+    pZ = int(random(lowerBound + 200, lowerBound));
+    pX = shipLoc.x;
+    pY = shipLoc.y;
+    pS = int(random(400, 800));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
 
-    pX = int(random(shipLoc.x + randomRange + random(500), shipLoc.x + 2 * randomRange + random(500)));
-    pY = int(random(shipLoc.y - randomRange - random(500), shipLoc.y - 2 * randomRange - random(500)));
-    pS = int(random(250, 490));
+    pX = int(random(shipLoc.x - randomRange, shipLoc.x - 3 * randomRange));
+    pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
+    pS = int(random(400, 800));
+    planetNew = new Planet(pX, pY, pZ, pS, 0);
+    planets.push(planetNew);
+
+    pX = int(random(shipLoc.x + randomRange, shipLoc.x + 3 * randomRange));
+    pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
+    pS = int(random(400, 800));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
     
-    pX = int(random(shipLoc.x - randomRange - random(500), shipLoc.x - 2 * randomRange - random(500)));
-    pY = int(random(shipLoc.y + randomRange + random(500), shipLoc.y + 2 * randomRange + random(500)));
-    pS = int(random(250, 490));
+    pX = int(random(shipLoc.x - randomRange, shipLoc.x - 3 * randomRange));
+    pY = int(random(shipLoc.y + randomRange, shipLoc.y + 2 * randomRange));
+    pS = int(random(400, 800));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
     
-    pX = int(random(shipLoc.x + randomRange + random(500), shipLoc.x + 2 * randomRange + random(500)));
-    pY = int(random(shipLoc.y - randomRange - random(500), shipLoc.y - 2 * randomRange - random(500)));
-    pS = int(random(250, 490));
+    pX = int(random(shipLoc.x + randomRange, shipLoc.x + 3 * randomRange));
+    pY = int(random(shipLoc.y + randomRange, shipLoc.y + 2 * randomRange));
+    pS = int(random(400, 800));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
 
     pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
-    pS = int(random(250, 490));
-    planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+    pS = int(random(400, 800));
+    planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
     
     pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
-    pS = int(random(250, 490));
-    planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
+    pS = int(random(400, 800));
+    planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
   }
 }

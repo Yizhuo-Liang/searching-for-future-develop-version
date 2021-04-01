@@ -271,10 +271,10 @@ function draw() {
     }
   }
   if (sb.getScore() > 300) {
-    victoryScene = new WinningScene(camX, camZ, camZ, _W, _H, 50);
+    victoryScene = new WinningScene(camX, camY, _W, _H, 50, camZ);
     status = "victory";
   } else if (status === "victory") {
-    WinningScene.draw();
+    victoryScene.draw();
   }
 }
 

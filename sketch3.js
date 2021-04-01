@@ -77,7 +77,7 @@ function preload() {
   );
   narratePoem = loadSound("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881");
 }
-let planetlist = [earth, planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8, planet];
+let planetlist = [earth, planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8, planet9, planet10];
 let sb;
 let bumi;
 let displayPoem;
@@ -95,14 +95,10 @@ function setup() {
   sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   BGM.loop();
-  // narratePoem.play();
-  xp = width / 2; // what's this for?
-  yp = height / 2; // what's this for?
-  narratePoem.play();
+  // narratePoem.play(); (DONT TURN ON FIRST)
   xp = width / 2;
   yp = height / 2;
   displayPoem = new DisplayWords(poem, 300);
-  // bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
   // detail.style("width", "80px");
@@ -155,7 +151,6 @@ function mouseClicked() {
 
 function draw() {
   console.log(status);
-  console.log(status)
   orbitControl();
   if(!started) {
     theStartPage.draw();
@@ -171,7 +166,7 @@ function draw() {
     background(getWarningLevel(ship1, planets));
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship)
-    if (frameCount === 1 || frameCount % generate_interval == 0) {
+    if (frameCount === 1 || frameCount % max(generate_interval, 5) == 0) {
       generatePlanet(ship1);
     }
     if (frameCount === 1 || frameCount % 180 == 0) {
@@ -664,12 +659,6 @@ function drawPlanets() {
     planets[i].draw();
   }
 }
-
-// function deleteBoard() {
-//   delete global.Scoreboard;
-// }
-
-
 
 function planetIsNotTooFar(planet) {
   if (planet.z - ship1.getLocation().z > 20000 || status === "alive_again") {

@@ -1049,9 +1049,30 @@ function distFromLocations(location1, location2) {
 function getWarningLevel(myShip, planets) {
   if (testIsClose(myShip, planets) === true && frameCount % 10 === 0) {
     console.log("ShipIsClose");
+    warning.draw();
     return "red";
   } else {
     return 0;
+  }
+}
+
+class warning {
+  
+  constructor(x, y, z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+  
+  draw() {
+    push();
+    translate(this.x, this.y, this.z);
+    noStroke();
+    fill(255, 0, 0);
+    sphere(80, 20, 20);
+    translate(0, );
+    box(100);
+    pop();
   }
 }
 

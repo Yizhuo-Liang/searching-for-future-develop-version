@@ -117,7 +117,7 @@ function setup() {
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
   sb = new Scoreboard(100);
-  ship1 = new Spaceship(camX, camY, camZ - 350, 155, tiltZ, tiltX, spaceship);
+  ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship, 155);
   BGM.loop();
   // narratePoem.play(); (DONT TURN ON FIRST)
   xp = width / 2;
@@ -595,7 +595,7 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
 
 function testCollision(planets, myShip) {
   for (let i = 0; i < planets.length; i++) {
-    if (isCollide(myShip, planets[i], myShip.size, planets[i].size)) {
+    if (isCollide(myShip, planets[i], myShip.radius, planets[i].size)) {
       return true;
     }
   }
@@ -606,12 +606,13 @@ function testCollision(planets, myShip) {
 
 //--------------------------------- START OF SPACESHIP ---------------------------------
 class Spaceship {
-  constructor(x, y, z, size, angleZ, angleX, shipModel) {
+  constructor(x, y, z, size, angleZ, angleX, shipModel, radius) {
     this.position = new Position(x, y, z);
     this.size = size;
     this.angleZ = angleZ;
     this.angleX = angleX;
     this.shipModel = shipModel;
+    this.radius = 155;
   }
 
   draw(x, y, z, size, angleZ, angleX, shipModel) {
@@ -637,7 +638,9 @@ class Spaceship {
 //--------------------------------- START OF PLANETSFUNCTIONS ---------------------------------
 function arePlanetsOverlapped(planet) {
   if (testCollision(planets, planet)){
-    return true
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -662,37 +665,53 @@ function generatePlanet(ship) {
     pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    planets.push(planetNew);
+    if (!arePlanetsOverlapped(planetNew)){
+      planets.push(planetNew);
+    }
 
     pX = int(random(shipLoc.x + randomRange, shipLoc.x + 3 * randomRange));
     pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    planets.push(planetNew);
+    if (!arePlanetsOverlapped(planetNew)){
+      planets.push(planetNew);
+    }
+    
     
     pX = int(random(shipLoc.x - 1.2 * randomRange, shipLoc.x - 3 * randomRange));
     pY = int(random(shipLoc.y + randomRange, shipLoc.y + 2 * randomRange));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    planets.push(planetNew);
+    if (!arePlanetsOverlapped(planetNew)){
+      planets.push(planetNew);
+    }
+    
     
     pX = int(random(shipLoc.x + 1.2 * randomRange, shipLoc.x + 3.8 * randomRange));
     pY = int(random(shipLoc.y + randomRange, shipLoc.y + 2 * randomRange));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    planets.push(planetNew);
-
+    if (!arePlanetsOverlapped(planetNew)){
+      planets.push(planetNew);
+    }
+    
+    
     pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    planets.push(planetNew);
+    if (!arePlanetsOverlapped(planetNew)){
+      planets.push(planetNew);
+    }
+    
     
     pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    planets.push(planetNew);
+    if (!arePlanetsOverlapped(planetNew)){
+      planets.push(planetNew);
+    }
   }
 }
 
@@ -1122,7 +1141,7 @@ function testIsClose(myShip, planets) {
     return false;
   }
   for (let i = 0; i < planets.length; i++) {
-    if (isClose(myShip.position, planets[i], 155, planets[i].size)) {
+    if (isClose(myShip.position, planets[i], 155, planets[i].radius)) {
       console.log("ShipIsClose");
       return true;
     }

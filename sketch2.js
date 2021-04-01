@@ -145,7 +145,7 @@ function draw() {
       ship1.getLocation().x,
       ship1.getLocation().y,
       ship1.getLocation().z,
-      _W/2 + 200
+      _W/2 + 500
     );
     status = "alivetransition"
     start_overlap = true
@@ -154,7 +154,7 @@ function draw() {
     if (alive_ball.getSize() < 10) {
       status = "alive"
     }
-    if (alive_ball.getSize() > 10){
+    if (alive_ball.getSize() > 5){
       alive_ball.draw('shrink');
     } else {
       start_overlap = false;
@@ -893,6 +893,7 @@ class Start_explosion {
   
   shrinkBall() {
     this.size = this.size * 0.8;
+    this.strokeWeight -= 0.1
   }
   
   getSize() {
@@ -901,11 +902,11 @@ class Start_explosion {
 
   draw(text) {
     background(0);
-    if (this.size < _W/2 + 200 && text === "grow") {
+    if (this.size < _W/2 + 1000 && text === "grow") {
       this.growBall();
-    } else if (this.size > 20 && text === "shrink") {
+    } else if (this.size > 1 && text === "shrink") {
       this.transparent = 0;
-      this.strokeweight = 0.5;
+      this.strokeweight = 0.3;
       this.shrinkBall();
     }
     // if(this.explosion_status == false){

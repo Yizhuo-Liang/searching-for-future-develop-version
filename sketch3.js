@@ -643,10 +643,11 @@ function arePlanetsOvelapped(planet) {}
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
-  let ;
+  let generateD = 120 * speedZ;
   for (let d = 1; d < 4; d++) {
-    lowerBound = shipLoc.z - 1500 * d;
-    pZ = int(random(lowerBound - 2000, lowerBound - 10000));
+    let numberOfPlanets = 
+    lowerBound = shipLoc.z - generateD * d;
+    pZ = int(random(lowerBound, lowerBound - 2000));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(250, 490));
@@ -1110,11 +1111,11 @@ function testIsClose(myShip, planets) {
   return false;
 }
 
-function windowResized() {
-  if(started === false) {
-    resizeCanvas(width, height);
-  }
-}
+// function windowResized() {
+//   if(started === false) {
+//     resizeCanvas(width, height);
+//   }
+// }
 //--------------------------------- END OF WARNING ---------------------------------
 
 //--------------------------------- START OF WINSCENE ---------------------------------

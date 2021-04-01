@@ -1200,22 +1200,40 @@ function testIsClose(myShip, planets) {
 
 let winningRays = []
 class WinningRay {
-  constructor(length, radius, H, S, B){
-    
-  } 
-}
-
-class WinningScene {
-  constructor (x, y, z, density, windowSize){
+  constructor(x, y, z, length, radius){
     this.x = x;
     this.y = y;
     this.z = z;
-    this.density = density;
-    this.windowSize = windowSize;
-    this.rayAmount = int(windowSize/density);
+    this.length = length;
+    this.radius = radius;
   }
   
-  generateRay()
+  draw() {
+    push();
+    translate(this.x, this.y, this.z);
+    noStroke();
+    colorMode(HSB);
+    fill(int(random(360)), 100, 100);
+    rotateX(90);
+    cylinder(this.radius, this.length);
+    pop();
+  }
+}
+
+class WinningScene {
+  constructor (x, y, z, density, W, H){
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this._W = W;
+    this._H = H;
+    this.density = density;
+    this.rayAmount = int((W*H)/density);
+  }
+  
+  generateRay() {
+    
+  }
   
   draw() {
     

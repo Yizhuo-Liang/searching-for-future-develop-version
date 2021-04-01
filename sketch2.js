@@ -195,26 +195,28 @@ function draw() {
   
   
   if (status === "justaliveAgain") {
-    start_explosion_ball = new start_explosion(
+    start_explosion_ball = new Start_explosion(
       ship1.getLocation().x,
       ship1.getLocation().y,
       ship1.getLocation().z,
+      20
     );
     status = "aliveagain";
   }
   else if (status === "aliveagain") {
     if (start_explosion_ball.getSize() < 500) {
-      start_explosion_ball.draw();
+      start_explosion_ball.draw('grow');
       ending.draw();
     }
-    else if (start_explosion_ball.getSize() < 2000) {
+    else if (start_explosion_ball.getSize() < _W/2 + 199) {
        clear();
-       start_explosion_ball.draw();
-      
+       start_explosion_ball.draw('grow');
     }
     else {
-      status = "alive";
+      status = "alivetransition";
     }
+  } else if (status === "alivetransition") {
+    
   }
 
   if(status === "died") {
@@ -829,34 +831,42 @@ class Re_explosion {
 
 //--------------------------------- END OF RE_EXPLOSION ---------------------------------
 //--------------------------------- START OF start_explosion ---------------------------------
-class start_explosion {
-  constructor(x, y, z) {
+class Start_explosion {
+  constructor(x, y, z, size) {
     this.x = x;
     this.y = y;
     this.z = z;
     this.transparent = 255;
     this.strokeWeight = 6
-    this.size = 20;
+    this.size = size;
     // this.explosion_status=false;
   }
 
   growBall() {
-    if (this.size < 2000) {
-      this.size = this.size * 1.08;
-    }
+    this.size = this.size * 1.08;
     if (this.transparent > 0) {
       this.transparent -= 5;
        this.strokeWeight -= 0.1;
     }
   }
+  
+  shrinkBall() {
+    this.size = this.size * 0.92;
+  }
+  
   getSize() {
     return this.size;
   }
 
   draw() {
     background(0);
-    this.growBall();
-
+    if (this.size < _W/2 + 200) {
+      this.growBall();
+    } else {
+      this.transparent = 0;
+      this.strokeweight = 1;
+      this.shrinkBall();
+    }
     // if(this.explosion_status == false){
     //   explosde_sound.play();
     //   this.explosion_status=true;

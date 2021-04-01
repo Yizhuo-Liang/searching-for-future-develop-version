@@ -968,16 +968,30 @@ function getAcceleration(myShip) {
   // return acceleration;
   
   console.log("testing");
+  
+  let acc = new Vector3D(0, 0, 0);
   if (planets === []) {
-    return false;
+    return acc;
   }
   for (let i = 0; i < planets.length; i++) {
-    if (isClose(myShip.position, planets[i], 155, planets[i].radius)) {
-      console.log("ShipIsClose1");
-      return true;
+    if (isCloseForGravity(myShip.position, planets[i], 155, planets[i].radius)) {
+      let distance = dist(
+    myShip.position.x,
+    myShip.position.y,
+    myShip.position.z,
+    planets[i].x,
+    planets[i].y,
+    planets[i].z
+  );
+      let unitVector = new Vector3D((planets[i].x - myShip.getLocation.x)/distance, (planets[i].y - myShip.getLocation.y)/distance, (planets[i].z - myShip.getLocation.z)/distance);
+      let strength = 1/(pow(distance, 1.5))
+      if(strength > 20) strength = 20;
+      if(unitVector.x != null) acc.x += unitVector.x * strength;
+      if(unitVector.y != null) acc.x += unitVector.y * strength;
+      if(unitVector.z != null) acc.x += unitVector.z * strength;
     }
   }
-  return false;
+  return acc;
 }
 
 function testCloseGravity(myShip, planets) {
@@ -986,8 +1000,7 @@ function testCloseGravity(myShip, planets) {
     return false;
   }
   for (let i = 0; i < planets.length; i++) {
-    if (isClose(myShip.position, planets[i], 155, planets[i].radius)) {
-      console.log("ShipIsClose1");
+    if (isCloseForGravity(myShip.position, planets[i], 155, planets[i].radius)) {
       return true;
     }
   }
@@ -1008,6 +1021,18 @@ function findClosestPlanet(myShip) {
   }
   console.info("PlanetNum: " + closePlanet.planetNumber);
   return closePlanet;
+}
+
+function isCloseForGravity(objPosition, trgtPosition, objRadius, trgtRadius) {
+  let distance = dist(
+    objPosition.x,
+    objPosition.y,
+    objPosition.z,
+    trgtPosition.x,
+    trgtPosition.y,
+    trgtPosition.z
+  );
+  return distance - 800 < objRadius + trgtRadius;
 }
 
 function distFromLocations(location1, location2) {

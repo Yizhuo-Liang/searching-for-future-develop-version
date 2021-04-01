@@ -30,7 +30,6 @@ let theStartPage;
 let narratePoem;
 
 let newboard;
-let generate_interval = 100;
 
 function preload() {
   spaceship = loadModel("assets/spaceship2.obj");
@@ -89,10 +88,11 @@ function setup() {
   sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   BGM.loop();
-  // narratePoem.play();
-  xp = width / 2; // what's this for?
-  yp = height / 2; // what's this for?
+  narratePoem.play();
+  xp = width / 2;
+  yp = height / 2;
   displayPoem = new DisplayWords(poem, 300);
+  // bumi = new Planet(0, 0, camZ - 400, 300, 0)
   // detail = createSlider(3, 24, 14);
   // detail.position(10, height - 30);
   // detail.style("width", "80px");
@@ -124,7 +124,7 @@ function mouseClicked() {
 /////////////////////////////////////////////////////////////////////////////////////
 
 function draw() {
-  console.log(status);
+  console.log(status)
   orbitControl();
   if(!started) {
     theStartPage.draw();
@@ -145,7 +145,7 @@ function draw() {
     
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
 
-    if (frameCount === 1 || frameCount % generate_interval == 0) {
+    if (frameCount === 1 || frameCount % 180 == 0) {
       generatePlanet(ship1);
       // console.log(planets.length);
     }
@@ -471,7 +471,6 @@ function moveAround() {
   
   if (sb.getScore() % 100 == 0){
       speedZ += 5;
-      generate_interval -= 5;
     }
 
   if (triggerZ === 0) {
@@ -974,7 +973,7 @@ function testIsClose(myShip, planets) {
 }
 
 function getWarningLevel(myShip, planets) {
-  if (testIsClose(myShip, planets) === true && frameCount % 5 === 0) {
+  if (testIsClose(myShip, planets) === true && frameCount % 10 === 0) {
     console.log("ShipIsClose");
     return "red";
   } else {
@@ -1014,7 +1013,7 @@ function getAcceleration(myShip) {
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
   // console.info("ClosePlanet Loc: " + closePlanet.x + " ** " + closePlanet.y + " ** " + closePlanet.z);
   let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y)/distance, (closePlanet.z - myShip.getLocation.z)/distance);
-  let strength = 1/(pow(distance, 1.5));
+  let strength = 1/(pow(distance, 1.5))
   if(strength > 20) strength = 20;
   let acceleration = new Vector3D(strength * unitVector.x, strength * unitVector.y, strength * unitVector.z);
   return acceleration;
@@ -1022,8 +1021,7 @@ function getAcceleration(myShip) {
 
 function findClosestPlanet(myShip) {
   if(planets === null) return null;
-  if(planets === []) return null;
-  if(planets.length === 1) return null;
+  if(planets.length === 0) return null;
   let closePlanet = planets[1];
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
   for (let i = 2; i < planets.length; i++) {

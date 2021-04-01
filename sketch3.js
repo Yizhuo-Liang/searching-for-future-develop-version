@@ -967,7 +967,7 @@ function getAcceleration(myShip) {
   // let acceleration = new Vector3D(strength * unitVector.x, strength * unitVector.y, strength * unitVector.z);
   // return acceleration;
   
-  console.log("testing");
+  return new Vector3D(5,5,5);
   
   let acc = new Vector3D(0, 0, 0);
   if (planets === []) {
@@ -986,9 +986,9 @@ function getAcceleration(myShip) {
       let unitVector = new Vector3D((planets[i].x - myShip.getLocation.x)/distance, (planets[i].y - myShip.getLocation.y)/distance, (planets[i].z - myShip.getLocation.z)/distance);
       let strength = 1/(pow(distance, 1.5))
       if(strength > 20) strength = 20;
-      if(unitVector.x != null) acc.x += unitVector.x * strength;
-      if(unitVector.y != null) acc.x += unitVector.y * strength;
-      if(unitVector.z != null) acc.x += unitVector.z * strength;
+      if(unitVector.x != null && strength != null) acc.x += unitVector.x * strength;
+      if(unitVector.y != null && strength != null) acc.x += unitVector.y * strength;
+      if(unitVector.z != null && strength != null) acc.x += unitVector.z * strength;
     }
   }
   return acc;

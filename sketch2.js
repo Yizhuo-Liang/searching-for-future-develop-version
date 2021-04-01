@@ -20,6 +20,7 @@ let assemble_ball;
 let explosion_ball;
 let re_explosion_ball;
 let start_explosion_ball;
+let alive_ball;
 
 let xp;
 let yp;
@@ -109,7 +110,7 @@ function setup() {
 //
 let ship1;
 let planets = [];
-let status = "alive";
+let status = "alivecreatetransition";
 
 function mouseClicked() {
   if(status === "died"){
@@ -213,10 +214,26 @@ function draw() {
        start_explosion_ball.draw('grow');
     }
     else {
-      status = "alivetransition";
+      status = "alivecreatetransition";
     }
-  } else if (status === "alivetransition") {
-    
+  }
+  if (status === "alivecreatetransition") {
+    alive_ball = new Start_explosion(
+      ship1.getLocation().x,
+      ship1.getLocation().y,
+      ship1.getLocation().z,
+      _W/2+200
+    );
+    status = "alivetransition"
+  }
+  if (status === "alivetransition"){
+    if (start_explosion_ball.getSize() > 20){
+      alive_ball.draw('shrink');
+    }
+    else{
+      
+    }
+    status = "alive";
   }
 
   if(status === "died") {
@@ -858,11 +875,11 @@ class Start_explosion {
     return this.size;
   }
 
-  draw() {
+  draw(text) {
     background(0);
-    if (this.size < _W/2 + 200) {
+    if (this.size < _W/2 + 200 && text === "grow") {
       this.growBall();
-    } else {
+    } else if (this.size > 20 && text === "shrink") {
       this.transparent = 0;
       this.strokeweight = 1;
       this.shrinkBall();

@@ -38,6 +38,7 @@ let newboard;
 let generate_interval = 100;
 let victoryBGM;
 let space_age;
+let victoryTime;
 
 function preload() {
   space_age= loadFont("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fspace%20age.ttf?v=1617317845438");
@@ -91,7 +92,7 @@ function preload() {
   narratePoem = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881"
   );
-  victoryBGM = loadSound('https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStar%20Wars%20Main%20Theme%20(Full).mp3?v=1617319295463')
+  victoryBGM = loadSound('https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fthecityintheclouds.mp3?v=1617319870432')
 }
 let planetlist = [
   earth,
@@ -324,8 +325,10 @@ function draw() {
     victoryScene.draw();
     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
     
-  } else if (sb.getScore() > 100 && status === "alive") {
+  } else if (frameCount > 3810 && status === "alive") {
     background(0);
+    BGM.stop();
+    victoryBGM.play();
     status = "victory";
   }
 }

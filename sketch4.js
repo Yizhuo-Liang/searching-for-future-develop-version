@@ -36,7 +36,7 @@ let narratePoem;
 
 let newboard;
 let generate_interval = 100;
-
+let victoryBGM;
 let space_age;
 
 function preload() {
@@ -91,6 +91,7 @@ function preload() {
   narratePoem = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881"
   );
+  victoryBGM = loadSound('https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStar%20Wars%20Main%20Theme%20(Full).mp3?v=1617319295463')
 }
 let planetlist = [
   earth,
@@ -322,6 +323,7 @@ function draw() {
   if (status === "victory") {
     victoryScene.draw();
     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+    
   } else if (sb.getScore() > 100 && status === "alive") {
     background(0);
     status = "victory";
@@ -412,9 +414,9 @@ class DisplayWords {
     this.graphics.clear();
     this.graphics.background(0, 0);
     this.graphics.fill(255);
-    this.graphics.textFont(space_age);
+    this.graphics.textFont('Georgia');
     this.graphics.textSize(this.size / 8);
-    if (frameCount % 120 == 0) {
+    if (frameCount % 122 == 0) {
       this.index += 1;
     }
     this.graphics.textAlign(CENTER, CENTER);
@@ -1334,11 +1336,11 @@ class WinningScene {
 			let increment = int(random(10, 20));
 			for (let i = int(random(0,20)); i <= 360; i += increment){
 				if (random(1) > 0.4) {
-					let newRay = new WinningRay(0, -this.radius, camZ - 100, i, 2); 
+					let newRay = new WinningRay(0, -this.radius, camZ - 100, i, 1); 
 					winningRays.push(newRay);
 				}
     	}
-			this.radius += 70;
+			this.radius += 40;
 		}
   }
   

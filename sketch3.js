@@ -5,7 +5,17 @@ let universe;
 let startPng;
 let camZ;
 let spaceship;
-let earth, planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8, planet9, planet10;
+let earth,
+  planet1,
+  planet2,
+  planet3,
+  planet4,
+  planet5,
+  planet6,
+  planet7,
+  planet8,
+  planet9,
+  planet10;
 let explosionEffect;
 let BGM;
 
@@ -75,9 +85,23 @@ function preload() {
   BGM = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FBGM.mp3?v=1617047619315"
   );
-  narratePoem = loadSound("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881");
+  narratePoem = loadSound(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881"
+  );
 }
-let planetlist = [earth, planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8, planet9, planet10];
+let planetlist = [
+  earth,
+  planet1,
+  planet2,
+  planet3,
+  planet4,
+  planet5,
+  planet6,
+  planet7,
+  planet8,
+  planet9,
+  planet10
+];
 let sb;
 let bumi;
 let displayPoem;
@@ -103,17 +127,22 @@ function setup() {
   // detail.position(10, height - 30);
   // detail.style("width", "80px");
   theStartPage = new startPage();
-  scenes = new background_scenes
-  
+  scenes = new background_scenes();
+
   // let fov = PI/3;
   // let cameraZ = (height/2.0)/(height/2.0)
   // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
-  frustum(-windowWidth/10000, windowWidth/10000, windowHeight/10000, -windowHeight/10000, 0.17, 20000);
-  
+  frustum(
+    -windowWidth / 10000,
+    windowWidth / 10000,
+    windowHeight / 10000,
+    -windowHeight / 10000,
+    0.17,
+    20000
+  );
 }
 
 function keyPressed() {
-  
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     started = true;
   }
@@ -131,17 +160,16 @@ function keyPressed() {
   }
 }
 
-
 //
 let ship1;
 let planets = [];
 let status = "alive";
 
 function mouseClicked() {
-  if(status === "died"){
-      planets = [];
-      // startMillisNotInitialized = true; //???
-      status = "justaliveAgain"
+  if (status === "died") {
+    planets = [];
+    // startMillisNotInitialized = true; //???
+    status = "justaliveAgain";
   }
 }
 
@@ -152,12 +180,12 @@ function mouseClicked() {
 function draw() {
   console.log(status);
   orbitControl();
-  if(!started) {
+  if (!started) {
     theStartPage.draw();
     frameCount = 0;
     return;
   }
-  if(startMillisNotInitialized === true) {
+  if (startMillisNotInitialized === true) {
     startMillis = millis();
     startMillisNotInitialized = false;
   }
@@ -165,7 +193,7 @@ function draw() {
   if (status === "alive") {
     background(getWarningLevel(ship1, planets));
     moveAround();
-    ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship)
+    ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     if (frameCount === 1 || frameCount % max(generate_interval, 5) == 0) {
       generatePlanet(ship1);
     }
@@ -175,7 +203,7 @@ function draw() {
     }
 
     drawPlanets();
-    
+
     sb.draw(
       ship1.getLocation().x + _W / 4,
       ship1.getLocation().y - _H / 4,
@@ -184,7 +212,7 @@ function draw() {
 
     displayPoem.draw(
       ship1.getLocation().x,
-      ship1.getLocation().y - _H/3,
+      ship1.getLocation().y - _H / 3,
       ship1.getLocation().z
     );
 
@@ -219,24 +247,20 @@ function draw() {
     start_explosion_ball = new start_explosion(
       ship1.getLocation().x,
       ship1.getLocation().y,
-      ship1.getLocation().z,
+      ship1.getLocation().z
     );
     status = "aliveagain";
-  }
-  else if (status === "aliveagain") {
+  } else if (status === "aliveagain") {
     if (start_explosion_ball.getSize() < 500) {
       start_explosion_ball.draw();
       ending.draw();
-    }
-    else if (start_explosion_ball.getSize() < 2000) {
-       clear();
-       start_explosion_ball.draw();
-      
-    }
-    else {
+    } else if (start_explosion_ball.getSize() < 2000) {
+      clear();
+      start_explosion_ball.draw();
+    } else {
       status = "alive";
     }
-  } else if(status === "died") {
+  } else if (status === "died") {
     background(0);
     if (explosion_ball.getSize() < 900) {
       explosion_ball.draw();
@@ -253,27 +277,27 @@ function draw() {
 class startPage {
   constructor() {
     this.started = false;
-    this.scale = min(width/1200, height/600)
+    this.scale = min(width / 1200, height / 600);
     this.graphics = createGraphics(100, 100);
     this.img = startPng;
   }
-  
+
   changeState(newState) {
     this.started = newState;
   }
-  
-  draw(){
-//     push();
-//     this.graphics.background(0);
-//     this.graphics.fill(255);
-//     this.graphics.textSize(40);
 
-//     this.graphics.textAlign(CENTER, CENTER);
-//     this.graphics.text("MAY THE FORCE", width/2, height/2);
-//     texture(this.graphics);
-//     noStroke();
-//     plane(width, height);
-//     pop();
+  draw() {
+    //     push();
+    //     this.graphics.background(0);
+    //     this.graphics.fill(255);
+    //     this.graphics.textSize(40);
+
+    //     this.graphics.textAlign(CENTER, CENTER);
+    //     this.graphics.text("MAY THE FORCE", width/2, height/2);
+    //     texture(this.graphics);
+    //     noStroke();
+    //     plane(width, height);
+    //     pop();
     push();
     this.graphics.background(0);
     texture(this.graphics);
@@ -332,16 +356,22 @@ class DisplayWords {
     this.graphics.clear();
     this.graphics.background(0, 0);
     this.graphics.fill(255);
-    this.graphics.textSize(this.size/8);
+    this.graphics.textSize(this.size / 8);
     if (frameCount % 120 == 0) {
       this.index += 1;
     }
     this.graphics.textAlign(CENTER, CENTER);
-    this.graphics.text(this.wordList[this.index], 0, 0, this.size*3, this.size);
+    this.graphics.text(
+      this.wordList[this.index],
+      0,
+      0,
+      this.size * 3,
+      this.size
+    );
     texture(this.graphics);
     translate(x, y, z);
     noStroke();
-    plane(this.size, this.size/3);
+    plane(this.size, this.size / 3);
     pop();
   }
 }
@@ -433,7 +463,7 @@ function moveAround() {
   let triggerX = 0;
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x += 15+speedZ;
+      planets[i].x += 15 + speedZ;
     }
     tiltZ -= 4;
     triggerZ = 10;
@@ -441,7 +471,7 @@ function moveAround() {
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x -= 15+speedZ;
+      planets[i].x -= 15 + speedZ;
     }
     tiltZ += 4;
     triggerZ = 10;
@@ -449,7 +479,7 @@ function moveAround() {
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y += 15+speedZ;
+      planets[i].y += 15 + speedZ;
     }
     tiltX += 5;
     triggerX = 10;
@@ -457,42 +487,19 @@ function moveAround() {
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y -= 15+speedZ;
+      planets[i].y -= 15 + speedZ;
     }
     tiltX -= 5;
     triggerX = 10;
   }
 
-  //   phone version
-
-//     xp = map(rotationY, -180, 180, -maxSpeed, maxSpeed);
-//     yp = map(rotationX, -180, 180, -maxSpeed, maxSpeed);
-
-//     camX += xp*5;
-//     camY += yp*5;
-
-  //phone version
-
-  //   if (keyIsDown(107) || keyIsDown(187)) {
-  //     camZ -= 5;
-  //     tiltX += 5;
-  //     triggerX = 1;
-  //   }
-
-  //   if (keyIsDown(109) || keyIsDown(189)) {
-  //     camZ += 5;
-  //     tiltX -= 5;
-  //     triggerX = 1;
-  //   }
-
   for (let i = 0; i < planets.length; i++) {
     planets[i].z += speedZ;
   }
-  
-  if (sb.getScore() % 100 == 0){
-      speedZ += 5;
-      generate_interval -= 5;
-    }
+
+  if (sb.getScore() % 100 == 0) {
+    speedZ += 5;
+  }
 
   if (triggerZ === 0) {
     if (tiltZ > 0) {
@@ -522,24 +529,42 @@ function moveAround() {
     tiltX = max(tiltX, -16);
   }
   
+  //   phone version
+
+  //     xp = map(rotationY, -180, 180, -maxSpeed, maxSpeed);
+  //     yp = map(rotationX, -180, 180, -maxSpeed, maxSpeed);
+
+  //     camX += xp*5;
+  //     camY += yp*5;
+
+  //phone version
+
+  //   if (keyIsDown(107) || keyIsDown(187)) {
+  //     camZ -= 5;
+  //     tiltX += 5;
+  //     triggerX = 1;
+  //   }
+
+  //   if (keyIsDown(109) || keyIsDown(189)) {
+  //     camZ += 5;
+  //     tiltX -= 5;
+  //     triggerX = 1;
+  //   }
+
   // adding the resultant displacement due to gravity  <<<<<<<< ----------------------------- Gravity's Effect <<<<<<<
-  
+
   let currentAcc = getAcceleration(ship1);
   for (let i = 0; i < planets.length; i++) {
     // planets[i].x -= currentAcc.x * 0.001;
     // planets[i].y -= currentAcc.y * 0.001;
     // planets[i].z += currentAcc.z * 0.001;
-    
+
     console.info(currentAcc.x + " -- " + currentAcc.y + " -- " + currentAcc.z);
-    
   }
 
   camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
 }
 //--------------------------------- END OF MOVEAROUND ---------------------------------
-
-
-
 
 //--------------------------------- START OF POSITION ---------------------------------
 class Position {
@@ -613,16 +638,15 @@ class Spaceship {
 //--------------------------------- END OF SPACESHIP ---------------------------------
 
 //--------------------------------- START OF PLANETSFUNCTIONS ---------------------------------
-function arePlanetsOvelapped(planet){
-  
-}
+function arePlanetsOvelapped(planet) {}
 
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
+  let ;
   for (let d = 1; d < 4; d++) {
     lowerBound = shipLoc.z - 1500 * d;
-    pZ = int(random(lowerBound-2000, lowerBound - 10000));
+    pZ = int(random(lowerBound - 2000, lowerBound - 10000));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(250, 490));
@@ -681,10 +705,8 @@ class Scoreboard {
     this.size = size;
     this.expand_value = 0;
     this.graphics = createGraphics(200, 200);
-   
-    
   }
-  
+
   draw(x, y, z) {
     push();
     let distance = int((millis() - startMillis) / 100);
@@ -693,18 +715,17 @@ class Scoreboard {
     this.graphics.fill(255);
     this.graphics.textSize(50);
     this.graphics.text(distance + "kM", 10, 80, 700, 700);
-    
+
     texture(this.graphics);
 
     translate(x, y, z);
-    
+
     if (distance % 10 == 1) {
       this.expand_value = this.size / 2;
     }
     noStroke();
     plane(this.size + this.expand_value);
     pop();
-  
   }
 
   getScore() {
@@ -712,32 +733,24 @@ class Scoreboard {
   }
 }
 
-
 //--------------------------------- END OF SCOREBOARD ---------------------------------
-
 
 //--------------------------------- START OF background_scenes ---------------------------------
 
 class background_scenes {
   constructor() {
-    
     // this.backgournd(0);
   }
-  
 
-  
-  draw(){
-
+  draw() {
     push();
-      translate(200,200,200);
-      texture(earth);
-      plane(200);
+    translate(200, 200, 200);
+    texture(earth);
+    plane(200);
     pop();
   }
 }
 //--------------------------------- END OF background_scenes ---------------------------------
-
-
 
 //--------------------------------- START OF EXPLOSION ---------------------------------
 
@@ -845,7 +858,7 @@ class start_explosion {
     this.y = y;
     this.z = z;
     this.transparent = 255;
-    this.strokeWeight = 6
+    this.strokeWeight = 6;
     this.size = 20;
     // this.explosion_status=false;
   }
@@ -856,7 +869,7 @@ class start_explosion {
     }
     if (this.transparent > 0) {
       this.transparent -= 5;
-       this.strokeWeight -= 0.1;
+      this.strokeWeight -= 0.1;
     }
   }
   getSize() {
@@ -875,16 +888,13 @@ class start_explosion {
     translate(this.x, this.y, this.z);
     stroke(255);
     strokeWeight(this.strokeWeight);
-    fill(255,255,255,this.transparent);
+    fill(255, 255, 255, this.transparent);
     sphere(this.size, 24, 16);
     pop();
   }
 }
 
 //--------------------------------- END OF start_explosion ---------------------------------
-
-
-
 
 //--------------------------------- START OF ENDSCENE ---------------------------------
 class EndScene {
@@ -942,29 +952,38 @@ function getAcceleration(myShip) {
   // if(strength > 20) strength = 20;
   // let acceleration = new Vector3D(strength * unitVector.x, strength * unitVector.y, strength * unitVector.z);
   // return acceleration;
-  
-  return new Vector3D(5,5,5);
-  
+
+  return new Vector3D(5, 5, 5);
+
   let acc = new Vector3D(0, 0, 0);
   if (planets === []) {
     return acc;
   }
   for (let i = 0; i < planets.length; i++) {
-    if (isCloseForGravity(myShip.position, planets[i], 155, planets[i].radius)) {
+    if (
+      isCloseForGravity(myShip.position, planets[i], 155, planets[i].radius)
+    ) {
       let distance = dist(
-    myShip.position.x,
-    myShip.position.y,
-    myShip.position.z,
-    planets[i].x,
-    planets[i].y,
-    planets[i].z
-  );
-      let unitVector = new Vector3D((planets[i].x - myShip.getLocation.x)/distance, (planets[i].y - myShip.getLocation.y)/distance, (planets[i].z - myShip.getLocation.z)/distance);
-      let strength = 1/(pow(distance, 1.5))
-      if(strength > 20) strength = 20;
-      if(unitVector.x != null && strength != null) acc.x += unitVector.x * strength;
-      if(unitVector.y != null && strength != null) acc.x += unitVector.y * strength;
-      if(unitVector.z != null && strength != null) acc.x += unitVector.z * strength;
+        myShip.position.x,
+        myShip.position.y,
+        myShip.position.z,
+        planets[i].x,
+        planets[i].y,
+        planets[i].z
+      );
+      let unitVector = new Vector3D(
+        (planets[i].x - myShip.getLocation.x) / distance,
+        (planets[i].y - myShip.getLocation.y) / distance,
+        (planets[i].z - myShip.getLocation.z) / distance
+      );
+      let strength = 1 / pow(distance, 1.5);
+      if (strength > 20) strength = 20;
+      if (unitVector.x != null && strength != null)
+        acc.x += unitVector.x * strength;
+      if (unitVector.y != null && strength != null)
+        acc.x += unitVector.y * strength;
+      if (unitVector.z != null && strength != null)
+        acc.x += unitVector.z * strength;
     }
   }
   return acc;
@@ -976,7 +995,9 @@ function testCloseGravity(myShip, planets) {
     return false;
   }
   for (let i = 0; i < planets.length; i++) {
-    if (isCloseForGravity(myShip.position, planets[i], 155, planets[i].radius)) {
+    if (
+      isCloseForGravity(myShip.position, planets[i], 155, planets[i].radius)
+    ) {
       return true;
     }
   }
@@ -984,13 +1005,23 @@ function testCloseGravity(myShip, planets) {
 }
 
 function findClosestPlanet(myShip) {
-  if(planets === null) return null;
-  if(planets.length === 0) return null;
+  if (planets === null) return null;
+  if (planets.length === 0) return null;
   let closePlanet = planets[1];
   let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
   for (let i = 2; i < planets.length; i++) {
-    if(frameCount%50 == 0) console.info("compare: i: " + i + " -" + distance + " ----- " +  distFromLocations(myShip.getLocation(), planets[i].position));
-    if (distFromLocations(myShip.getLocation(), planets[i].position) < distance) {
+    if (frameCount % 50 == 0)
+      console.info(
+        "compare: i: " +
+          i +
+          " -" +
+          distance +
+          " ----- " +
+          distFromLocations(myShip.getLocation(), planets[i].position)
+      );
+    if (
+      distFromLocations(myShip.getLocation(), planets[i].position) < distance
+    ) {
       distance = distFromLocations(myShip.getLocation(), planets[i].position);
       closePlanet = planets[i];
     }
@@ -1034,13 +1065,12 @@ function getWarningLevel(myShip, planets) {
 }
 
 class Warning {
-  
   constructor(x, y, z) {
     this.x = x;
     this.y = y;
     this.z = z;
   }
-  
+
   draw() {
     push();
     translate(this.x, this.y, this.z);
@@ -1066,8 +1096,6 @@ function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {
   return distance - 800 < objRadius + trgtRadius;
 }
 
-//--------------------------------- START OF WARNING ---------------------------------
-
 function testIsClose(myShip, planets) {
   console.log("testing");
   if (planets === []) {
@@ -1081,6 +1109,14 @@ function testIsClose(myShip, planets) {
   }
   return false;
 }
-//--------------------------------- END OF GRAVITY ---------------------------------
+
+function windowResized() {
+  if(started === false) {
+    resizeCanvas(width, height);
+  }
+}
+//--------------------------------- END OF WARNING ---------------------------------
+
+//--------------------------------- START OF WINSCENE ---------------------------------
 
 /* global p5 sphere int detail random objPositon alpha blue brightness color green hue lerpColor lightness red saturation background clear colorMode fill noFill noStroke stroke erase noErase 2D Primitives arc ellipse circle line point quad rect square triangle ellipseMode noSmooth rectMode smooth strokeCap strokeJoin strokeWeight bezier bezierDetail bezierPoint bezierTangent curve curveDetail curveTightness curvePoint curveTangent beginContour beginShape bezierVertex curveVertex endContour endShape quadraticVertex vertex plane box sphere cylinder cone ellipsoid torus loadModel model HALF_PI PI QUARTER_PI TAU TWO_PI DEGREES RADIANS print frameCount deltaTime focused cursor frameRate noCursor displayWidth displayHeight windowWidth windowHeight windowResized width height fullscreen pixelDensity displayDensity getURL getURLPath getURLParams remove disableFriendlyErrors noLoop loop isLooping push pop redraw select selectAll removeElements changed input createDiv createP createSpan createImg createA createSlider createButton createCheckbox createSelect createRadio createColorPicker createInput createFileInput createVideo createAudio VIDEO AUDIO createCapture createElement createCanvas resizeCanvas noCanvas createGraphics blendMode drawingContext setAttributes boolean string number applyMatrix resetMatrix rotate rotateX rotateY rotateZ scale shearX shearY translate storeItem getItem clearStorage removeItem createStringDict createNumberDict append arrayCopy concat reverse shorten shuffle sort splice subset float int str boolean byte char unchar hex unhex join match matchAll nf nfc nfp nfs split splitTokens trim deviceOrientation accelerationX accelerationY accelerationZ pAccelerationX pAccelerationY pAccelerationZ rotationX rotationY rotationZ pRotationX pRotationY pRotationZ turnAxis setMoveThreshold setShakeThreshold deviceMoved deviceTurned deviceShaken keyIsPressed key keyCode keyPressed keyReleased keyTyped keyIsDown movedX movedY mouseIsPressed mouseX mouseY pmouseX pmouseY winMouseX winMouseY pwinMouseX pwinMouseY mouseButton mouseWheel requestPointerLock exitPointerLock touches createImage saveCanvas saveFrames image tint noTint imageMode pixels blend copy filter get loadPixels set updatePixels loadImage loadJSON loadStrings loadTable loadXML loadBytes httpGet httpPost httpDo Output createWriter save saveJSON saveStrings saveTable day hour minute millis month second year abs ceil constrain dist exp floor lerp log mag map max min norm pow round sq sqrt fract createVector noise noiseDetail noiseSeed randomSeed random randomGaussian acos asin atan atan2 cos sin tan degrees radians angleMode textAlign textLeading textSize textStyle textWidth textAscent textDescent loadFont text textFont orbitControl debugMode noDebugMode ambientLight specularColor directionalLight pointLight lights lightFalloff spotLight noLights loadShader createShader shader resetShader normalMaterial texture textureMode textureWrap ambientMaterial emissiveMaterial specularMaterial shininess camera perspective ortho frustum createCamera setCamera CENTER CORNER CORNERS POINTS WEBGL RGB ARGB HSB LINES CLOSE BACKSPACE DELETE ENTER RETURN TAB ESCAPE SHIFT CONTROL OPTION ALT UP_ARROW DOWN_ARROW LEFT_ARROW RIGHT_ARROW sampleRate freqToMidi midiToFreq soundFormats getAudioContext userStartAudio loadSound createConvolver setBPM saveSound getMasterVolume masterVolume soundOut chain drywet biquadFilter process freq res gain toggle setType freq setType pan phase triggerAttack triggerRelease setADSR attack decay sustain release dispose notes polyvalue AudioVoice noteADSR setADSR noteAttack noteRelease dispose isLoaded playMode set isLooping isPlaying isPaused setVolume pan getPan rate duration currentTime jump channels sampleRate frames getPeaks reverseBuffer onended setPath setBuffer processPeaks addCue removeCue clearCues save getBlob getLevel toggleNormalize waveform analyze getEnergy getCentroid linAverages logAverages getOctaveBands fade attackTime attackLevel decayTime decayLevel releaseTime releaseLevel setADSR setRange setExp triggerAttack triggerRelease r width setType input output stream mediaStream currentSource enabled amplitude getSources setSource bands process panner process positionX positionY positionZ orient orientX orientY orientZ setFalloff maxDist rollof leftDelay rightDelay process delayTime feedback filter setType process convolverNode process impulses addImpulse resetImpulse toggleImpulse sequence setBPM getBPM addPhrase removePhrase getPhrase replaceSequence onStep setBPM musicalTimeMode maxIterations synced bpm timeSignature interval iterations compressor process attack knee ratio threshold release reduction record isDetected update onPeak WaveShaperNode process getAmount getOversample amp setInput connect disconnect play pause stop set smooth start add mult loop */

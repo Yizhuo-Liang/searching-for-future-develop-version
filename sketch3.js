@@ -5,17 +5,7 @@ let universe;
 let startPng;
 let camZ;
 let spaceship;
-let earth;
-let planet1;
-let planet2;
-let planet3;
-let planet4;
-let planet5;
-let planet6;
-let planet7;
-let planet8;
-let planet9;
-let planet10;
+let earth, planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8, planet9, planet10;
 let explosionEffect;
 let BGM;
 
@@ -72,12 +62,12 @@ function preload() {
   );
   narratePoem = loadSound("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881");
 }
-let planetlist = [earth, planet1, planet2, planet3, planet4, planet5];
+let planetlist = [earth, planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8];
 let sb;
 let bumi;
 let displayPoem;
 
-let scenes
+let scenes;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -110,6 +100,26 @@ function setup() {
   frustum(-windowWidth/10000, windowWidth/10000, windowHeight/10000, -windowHeight/10000, 0.17, 20000);
   
 }
+
+function keyPressed() {
+  
+  if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+    started = true;
+  }
+
+  if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+    started = true;
+  }
+
+  if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
+    started = true;
+  }
+
+  if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
+    started = true;
+  }
+}
+
 
 //
 let ship1;
@@ -233,6 +243,7 @@ function draw() {
 class startPage {
   constructor() {
     this.started = false;
+    this.scale = min(width/1200, height/600)
     this.graphics = createGraphics(100, 100);
     this.img = startPng;
   }
@@ -258,7 +269,7 @@ class startPage {
     texture(this.graphics);
     noStroke();
     plane(width, height);
-    scale(1);
+    scale(this.scale);
     image(this.img, camX - 250, camY - 200);
     pop();
   }

@@ -1040,12 +1040,26 @@ function mousePressed() {
   //     started = true;
   //   }
   // }
-  started = true;
+  // started = true;
 }
 
 function keyPressed() {
   
-  started = true;
+  if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+    started = true;
+  }
+
+  if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+    started = true;
+  }
+
+  if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
+    started = true;
+  }
+
+  if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
+    started = true;
+  }
 }
 
 //--------------------------------- START OF GRAVITY ---------------------------------

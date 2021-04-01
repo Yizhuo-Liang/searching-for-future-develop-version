@@ -806,8 +806,6 @@ class Re_explosion {
       this.size = this.size * 0.9;
     }
   }
-  
-  
   getSize() {
     return this.size;
   }
@@ -831,7 +829,7 @@ class Re_explosion {
 
 //--------------------------------- END OF RE_EXPLOSION ---------------------------------
 //--------------------------------- START OF start_explosion ---------------------------------
-class Start_explosion {
+class start_explosion {
   constructor(x, y, z) {
     this.x = x;
     this.y = y;
@@ -875,7 +873,7 @@ class Start_explosion {
 
 //--------------------------------- END OF start_explosion ---------------------------------
 //--------------------------------- START OF assemble ---------------------------------
-// class Assemble {
+// class assemble {
 //   constructor(x, y, z, size) {
 //     this.x = x;
 //     this.y = y;

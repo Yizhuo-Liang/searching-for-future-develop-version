@@ -6,7 +6,16 @@ let startPng;
 let camZ;
 let spaceship;
 let earth;
-let planet, planet2, planet3, planet4, planet5, planet6, planet7, planet8, planet9, planet10;
+let planet1;
+let planet2;
+let planet3;
+let planet4;
+let planet5;
+let planet6;
+let planet7;
+let planet8;
+let planet9;
+let planet10;
 let explosionEffect;
 let BGM;
 
@@ -68,7 +77,7 @@ let sb;
 let bumi;
 let displayPoem;
 
-let scenes;
+let scenes
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -187,7 +196,7 @@ function draw() {
     );
     status = "died";
   } else if (status === "justaliveAgain") {
-    start_explosion_ball = new Start_explosion(
+    start_explosion_ball = new start_explosion(
       ship1.getLocation().x,
       ship1.getLocation().y,
       ship1.getLocation().z,
@@ -199,9 +208,10 @@ function draw() {
       start_explosion_ball.draw();
       ending.draw();
     }
-    else if (start_explosion_ball.getSize() < _W/2 + 200) {
+    else if (start_explosion_ball.getSize() < 2000) {
        clear();
        start_explosion_ball.draw();
+      
     }
     else {
       status = "alive";
@@ -819,7 +829,7 @@ class Re_explosion {
 
 //--------------------------------- END OF RE_EXPLOSION ---------------------------------
 //--------------------------------- START OF start_explosion ---------------------------------
-class Start_explosion {
+class start_explosion {
   constructor(x, y, z) {
     this.x = x;
     this.y = y;
@@ -831,28 +841,22 @@ class Start_explosion {
   }
 
   growBall() {
-    this.size = this.size * 1.08;
+    if (this.size < 2000) {
+      this.size = this.size * 1.08;
+    }
     if (this.transparent > 0) {
       this.transparent -= 5;
        this.strokeWeight -= 0.1;
     }
   }
-  
-  shrinkBall() {
-    this.size *= 0.92;
-  }
-  
   getSize() {
     return this.size;
   }
 
   draw() {
     background(0);
-    if (this.size < _W/2 + 200) {
-      this.growBall();
-    } else if (this.size >= _W/2 + 200) {
-      this.shrinkBall();
-    }
+    this.growBall();
+
     // if(this.explosion_status == false){
     //   explosde_sound.play();
     //   this.explosion_status=true;
@@ -963,27 +967,20 @@ function getAcceleration(myShip) {
   // let acceleration = new Vector3D(strength * unitVector.x, strength * unitVector.y, strength * unitVector.z);
   // return acceleration;
   
-  let acc = new Vector3D(0, 0, 0);
-  
+  console.log("testing");
   if (planets === []) {
-    return acc;
+    return false;
   }
   for (let i = 0; i < planets.length; i++) {
     if (isClose(myShip.position, planets[i], 155, planets[i].radius)) {
-      let distance = distFromLocations(myShip.getLocation(), planets[i].position);
-      let strength = 1/(pow(distance, 1.5))
-      if(strength > 20) strength = 20;
-      let unitVector = new Vector3D((planets[i].x - myShip.getLocation.x)/distance, (planets[i].y - myShip.getLocation.y)/distance, (planets[i].z - myShip.getLocation.z)/distance);
-      if()acc.x += unitVector.x * strength;
-      acc.y += unitVector.y * strength;
-      acc.z += unitVector.z * strength;
+      console.log("ShipIsClose1");
+      return true;
     }
   }
-  return acc;
-
+  return false;
 }
 
-function testCloseForGravity(myShip, planets) {
+function testCloseGravity(myShip, planets) {
   console.log("testing");
   if (planets === []) {
     return false;

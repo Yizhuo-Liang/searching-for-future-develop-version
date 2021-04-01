@@ -151,10 +151,10 @@ function draw() {
     start_overlap = true
   }
   if (status === "alivetransition" || start_overlap){
-    if (alive_ball.getSize() < 10) {
+    if (alive_ball.getSize() < 5) {
       status = "alive"
     }
-    if (alive_ball.getSize() > 5){
+    if (alive_ball.getSize() > 1){
       alive_ball.draw('shrink');
     } else {
       start_overlap = false;

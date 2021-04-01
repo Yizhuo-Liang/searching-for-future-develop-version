@@ -107,7 +107,7 @@ function setup() {
   // let fov = PI/3;
   // let cameraZ = (height/2.0)/(height/2.0)
   // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
-  frustum(-windowWidth/10000, windowWidth/10000, windowHeight/10000, -windowHeight/10000, 0.17, 200000);
+  frustum(-windowWidth/10000, windowWidth/10000, windowHeight/10000, -windowHeight/10000, 0.17, 20000);
   
 }
 
@@ -146,14 +146,10 @@ function draw() {
     background(getWarningLevel(ship1, planets));
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship)
-    // if (frameCount === 1 || frameCount % generate_interval == 0) {
-    //   generatePlanet(ship1);
-    // }
-    // if (frameCount === 1 || frameCount % 180 == 0) {
-    //   generatePlanet(ship1);
-    //   // console.log(planets.length);
-    // }
-    if (millis()%100 == 0) {
+    if (frameCount === 1 || frameCount % generate_interval == 0) {
+      generatePlanet(ship1);
+    }
+    if (frameCount === 1 || frameCount % 180 == 0) {
       generatePlanet(ship1);
       // console.log(planets.length);
     }
@@ -597,9 +593,9 @@ class Spaceship {
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
-  for (let d = 1; d < 1; d++) {
+  for (let d = 1; d < 4; d++) {
     lowerBound = shipLoc.z - 2000 * d;
-    pZ = int(random(lowerBound-100000, lowerBound - 10000000));
+    pZ = int(random(lowerBound-2000, lowerBound - 10000));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(250, 490));

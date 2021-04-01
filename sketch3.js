@@ -1206,66 +1206,76 @@ function testIsClose(myShip, planets) {
 // }
 
 let winningRays = []
+
 class WinningRay {
-  constructor(x, y, z, length, radius){
+  constructor(x, y, z, angle, radius){
     this.x = x;
     this.y = y;
     this.z = z;
-    this.length = length;
+		this.angle = angle;
     this.radius = radius;
+		this.hue = int(random(140, 280));
+		this.saturation = int(random(28,70));
+		this.speed = 2;
   }
   
   draw() {
     push();
+		this.z += this.speed;
     translate(this.x, this.y, this.z);
     noStroke();
     colorMode(HSB);
-    fill(int(random(360)), 100, 100);
-    rotateX(90);
-    cylinder(this.radius, this.length);
+    fill(this.hue, this.saturation, 100, 10);
+    sphere(this.radius);
     pop();
   }
 }
 
 class WinningScene {
-  constructor (x, y, z = -5000, W, H, rayAmount){
+  constructor (x, y, z, radius){
     this.x = x;
     this.y = y;
     this.z = z;
-    this._W = W;
-    this._H = H;
-    this.rayAmount = rayAmount;
+    this.radius = radius;
+		this.generateRay();
   }
   
   generateRay() {
-    for (let i = 0; i < this.rayAmount; i++){
-      let newRay = new WinningRay(random(this._W), random(this._H), this.z, int(random(100, 400)), int(random(10, 30))); 
-      winningRays.push(newRay)
-    }
+		for (let i = 0; i <= 20; i ++) {
+			let increment = int(random(10, 20));
+			for (let i = int(random(0,20)); i <= 360; i += increment){
+				if (random(1) > 0.4) {
+					let newRay = new WinningRay(0, -this.radius, camZ - 100, i, 2); 
+					winningRays.push(newRay);
+				}
+    	}
+			this.radius += 70
+		}
   }
   
   draw() {
     if (winningRays != []){
-      winningRays.filter(rayIsNotBehind)
-    }
-    if (frameCount % 40 === 0){
-      this.generateRay();
+      winningRays.filter(rayIsNotBehind);
     }
     for (let i = 0; i < winningRays.length; i++) {
-      winningRays[i].z += 25;
+      // winningRays[i].z += 3;
+			push();
+			rotateZ(winningRays[i].angle);
       winningRays[i].draw();
+			pop();
     }
   }
 }
 
 function rayIsNotBehind(ray) {
-  if (ray.z - ship1.getLocation().z > 2000) {
-    console.log("Ray destroyed");
+  if (ray.z - 100 > 0) {
+    // console.log("Ray destroyed");
     return false;
   } else {
     return true;
   }
 }
+
 //--------------------------------- END OF WARNING ---------------------------------
 
 //--------------------------------- START OF WINSCENE ---------------------------------

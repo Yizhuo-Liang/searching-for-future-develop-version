@@ -383,13 +383,13 @@ class DisplayWords {
 //--------------------------------- BEGINNING OF PLANET ---------------------------------
 let planetNo = 0;
 class Planet {
-  constructor(x, y, z, size, rings) {
+  constructor(x, y, z, radius, rings) {
     this.planetNumber = planetNo++;
     this.x = x;
     this.y = y;
     this.z = z;
     this.position = new Position(x, y, z);
-    this.size = size;
+    this.radius = radius;
     this.rings = rings;
     this.t = int(random(6));
     this.mass = int(random(500, 1000));
@@ -402,7 +402,7 @@ class Planet {
   }
 
   getRadius() {
-    return this.size;
+    return this.radius;
   }
 
   getZ() {
@@ -595,7 +595,7 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
 
 function testCollision(planets, myShip) {
   for (let i = 0; i < planets.length; i++) {
-    if (isCollide(myShip, planets[i], myShip.radius, planets[i].size)) {
+    if (isCollide(myShip, planets[i], myShip.radius, planets[i].radius)) {
       return true;
     }
   }
@@ -1000,7 +1000,7 @@ function getAcceleration(myShip) {
   }
   for (let i = 0; i < planets.length; i++) {
     if (
-      isCloseForGravity(myShip.position, planets[i], 155, planets[i].size)
+      isCloseForGravity(myShip.position, planets[i], 155, planets[i].radius)
     ) {
       let distance = dist(
         myShip.position.x,

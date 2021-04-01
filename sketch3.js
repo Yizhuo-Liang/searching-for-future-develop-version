@@ -269,6 +269,11 @@ function draw() {
       ending.draw();
     }
   }
+  if (sb.getScore() > 1000) {
+    status = "victory"
+  } else if (status === "victory") {
+    WinningScene.draw();
+  }
 }
 
 class startPage {
@@ -1233,22 +1238,27 @@ class WinningScene {
   
   generateRay() {
     for (let i = 0; i < this.rayAmount; i++){
-      let newRay = new WinningRay(random(this._W), random(this._H), this.z); 
-      winningRays.push(WinningRay())
+      let newRay = new WinningRay(random(this._W), random(this._H), this.z, int(random(100, 400)), int(random(10, 30))); 
+      winningRays.push(newRay)
     }
   }
   
   draw() {
+    winningRays.filter(rayIsNotBehind)
     if (frameCount % 40 === 0){
-      
+      this.generateRay();
     }
-    
-    
+    for (let i = 0; i < winningRays.length; i++) {
+      winningRays[i].z += 25;
+      winningRays[i].draw();
+    }
   }
 }
 
 
-function linesNotTooClose(ray) {
+
+
+function rayIsNotBehind(ray) {
   if (ray.z - camZ > 2000) {
     console.log("Ray destroyed");
     return false;

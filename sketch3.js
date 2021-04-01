@@ -195,10 +195,7 @@ function draw() {
       sb.getScore()
     );
     status = "died";
-  }
-  
-  
-  if (status === "justaliveAgain") {
+  } else if (status === "justaliveAgain") {
     start_explosion_ball = new start_explosion(
       ship1.getLocation().x,
       ship1.getLocation().y,
@@ -219,9 +216,7 @@ function draw() {
     else {
       status = "alive";
     }
-  }
-
-  if(status === "died") {
+  } else if(status === "died") {
     background(0);
     if (explosion_ball.getSize() < 900) {
       explosion_ball.draw();

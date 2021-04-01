@@ -1069,9 +1069,9 @@ class warning {
     translate(this.x, this.y, this.z);
     noStroke();
     fill(255, 0, 0);
-    sphere(80, 20, 20);
-    translate(0, );
-    box(100);
+    sphere(50, 20, 20);
+    translate(0, -120, 0);
+    box(35, 90, 100);
     pop();
   }
 }

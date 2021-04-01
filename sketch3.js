@@ -53,6 +53,21 @@ function preload() {
   planet5 = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet5.png?v=1616633291018"
   );
+  planet6 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet6.jfif?v=1617298849359"
+  );
+  planet7 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet7.jfif?v=1617298851576"
+  );
+  planet8 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet8.jpg?v=1617298854353"
+  );
+  planet9 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet9.jpg?v=1617298856293"
+  );
+  planet10 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet10.jpg?v=1617298858415"
+  );
   soundFormats("mp3", "ogg");
   explosde_sound = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2F11369.mp3?v=1617032492745"
@@ -62,7 +77,7 @@ function preload() {
   );
   narratePoem = loadSound("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881");
 }
-let planetlist = [earth, planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8];
+let planetlist = [earth, planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8, planet];
 let sb;
 let bumi;
 let displayPoem;
@@ -270,7 +285,7 @@ class startPage {
     noStroke();
     plane(width, height);
     scale(this.scale);
-    image(this.img, camX - 250, camY - 200);
+    image(this.img, camX - 250 * this.scale, camY - 200 * this.scale);
     pop();
   }
 }

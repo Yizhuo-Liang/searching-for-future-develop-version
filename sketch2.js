@@ -277,6 +277,7 @@ function draw() {
 class startPage {
   constructor() {
     this.started = false;
+    this.scale = min(width/1200, height/600)
     this.graphics = createGraphics(100, 100);
     this.img = startPng;
   }
@@ -302,8 +303,8 @@ class startPage {
     texture(this.graphics);
     noStroke();
     plane(width, height);
-    scale(1);
-    image(this.img, camX - 250, camY - 200);
+    scale(this.scale);
+    image(this.img, camX - 250 * this.scale, camY - 200 * this.scale);
     pop();
   }
 }

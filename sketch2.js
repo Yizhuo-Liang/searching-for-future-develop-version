@@ -955,7 +955,7 @@ function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {
     trgtPosition.y,
     trgtPosition.z
   );
-  return distance - 300 < objRadius + trgtRadius;
+  return distance - 800 < objRadius + trgtRadius;
 }
 
 function testIsClose(myShip, planets) {
@@ -1007,16 +1007,32 @@ class Vector3D {
 }
 
 function getAcceleration(myShip) {
-  let closePlanet = findClosestPlanet(myShip);
-  if(closePlanet === null) return new Vector3D(0, 0, 0);
-  if(closePlanet.length === 0) return new Vector3D(0, 0, 0);
-  let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-  // console.info("ClosePlanet Loc: " + closePlanet.x + " ** " + closePlanet.y + " ** " + closePlanet.z);
-  let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y)/distance, (closePlanet.z - myShip.getLocation.z)/distance);
-  let strength = 1/(pow(distance, 1.5))
-  if(strength > 20) strength = 20;
-  let acceleration = new Vector3D(strength * unitVector.x, strength * unitVector.y, strength * unitVector.z);
-  return acceleration;
+  // let closePlanet = findClosestPlanet(myShip);
+  // if(closePlanet === null) return new Vector3D(0, 0, 0);
+  // if(closePlanet.length === 0) return new Vector3D(0, 0, 0);
+  // let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
+  // // console.info("ClosePlanet Loc: " + closePlanet.x + " ** " + closePlanet.y + " ** " + closePlanet.z);
+  // let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y)/distance, (closePlanet.z - myShip.getLocation.z)/distance);
+  // let strength = 1/(pow(distance, 1.5))
+  // if(strength > 20) strength = 20;
+  // let acceleration = new Vector3D(strength * unitVector.x, strength * unitVector.y, strength * unitVector.z);
+  // return acceleration;
+  
+  
+}
+
+function testCloseGravity(myShip, planets) {
+  console.log("testing");
+  if (planets === []) {
+    return false;
+  }
+  for (let i = 0; i < planets.length; i++) {
+    if (isClose(myShip.position, planets[i], 155, planets[i].radius)) {
+      console.log("ShipIsClose1");
+      return true;
+    }
+  }
+  return false;
 }
 
 function findClosestPlanet(myShip) {

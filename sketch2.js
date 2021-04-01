@@ -127,14 +127,35 @@ function mouseClicked() {
 function draw() {
   console.log(status)
   orbitControl();
+  
   if(!started) {
     theStartPage.draw();
     frameCount = 0;
     return;
   }
+  
   if(startMillisNotInitialized === true) {
     startMillis = millis();
     startMillisNotInitialized = false;
+  }
+  
+    if (status === "alivecreatetransition") {
+    alive_ball = new Start_explosion(
+      ship1.getLocation().x,
+      ship1.getLocation().y,
+      ship1.getLocation().z,
+      _W/2+200
+    );
+    status = "alivetransition"
+  }
+  if (status === "alivetransition"){
+    if (alive_ball.getSize() > 21){
+      alive_ball.draw('shrink');
+    }
+    else{
+      status = "alive";
+    }
+    
   }
 
   if (status === "alive") {
@@ -217,24 +238,24 @@ function draw() {
       status = "alivecreatetransition";
     }
   }
-  if (status === "alivecreatetransition") {
-    alive_ball = new Start_explosion(
-      ship1.getLocation().x,
-      ship1.getLocation().y,
-      ship1.getLocation().z,
-      _W/2+200
-    );
-    status = "alivetransition"
-  }
-  if (status === "alivetransition"){
-    if (start_explosion_ball.getSize() > 20){
-      alive_ball.draw('shrink');
-    }
-    else{
-      
-    }
-    status = "alive";
-  }
+//   if (status === "alivecreatetransition") {
+//     alive_ball = new Start_explosion(
+//       ship1.getLocation().x,
+//       ship1.getLocation().y,
+//       ship1.getLocation().z,
+//       _W/2+200
+//     );
+//     status = "alivetransition"
+//   }
+//   if (status === "alivetransition"){
+//     if (alive_ball.getSize() > 21){
+//       alive_ball.draw('shrink');
+//     }
+//     else{
+//       status = "alive";
+//     }
+    
+//   }
 
   if(status === "died") {
     background(0);
@@ -868,7 +889,7 @@ class Start_explosion {
   }
   
   shrinkBall() {
-    this.size = this.size * 0.92;
+    this.size = this.size * 0.8;
   }
   
   getSize() {
@@ -881,7 +902,7 @@ class Start_explosion {
       this.growBall();
     } else if (this.size > 20 && text === "shrink") {
       this.transparent = 0;
-      this.strokeweight = 1;
+      this.strokeweight = 0.5;
       this.shrinkBall();
     }
     // if(this.explosion_status == false){

@@ -391,8 +391,10 @@ class Planet {
     this.position = new Position(x, y, z);
     this.radius = radius;
     this.rings = rings;
-    this.t = int(random(6));
+    this.t = int(random(11));
     this.mass = int(random(500, 1000));
+    this.angle = 0;
+    this.rotateSpeed = int(random(7));
   }
 
   move(xDist, yDist, zDist) {
@@ -407,6 +409,11 @@ class Planet {
 
   getZ() {
     return this.z;
+  }
+  
+  rotatePlanet() {
+    this.angle += this.rotateSpeed;
+    rotateY(this.angle);
   }
 
   draw() {
@@ -423,9 +430,20 @@ class Planet {
       texture(planet3);
     } else if (this.t === 4) {
       texture(planet4);
-    } else {
+    } else if (this.t === 5) {
       texture(planet5);
-    }
+    } else if (this.t === 6) {
+      texture(planet6);
+    } else if (this.t === 7) {
+      texture(planet7);
+    } else if (this.t === 8) {
+      texture(planet8);
+    } else if (this.t === 9) {
+      texture(planet9);
+    } else if (this.t === 10) {
+      texture(planet10);
+    } 
+    this.rotatePlanet();
 
     sphere(this.radius, 30, 30);
     pop();
@@ -454,7 +472,7 @@ let camX = 0;
 let camY = 0;
 let tiltZ = 0;
 let tiltX = 0;
-let speedZ = 15;
+let speedZ = 25;
 function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;
@@ -495,7 +513,7 @@ function moveAround() {
   }
 
   if (sb.getScore() % 100 == 0) {
-    speedZ += 5;
+    speedZ += 7;
   }
 
   if (triggerZ === 0) {
@@ -723,6 +741,14 @@ function generatePlanet(ship) {
     
     pX = int(random(shipLoc.x + 5000, shipLoc.x + 10000));
     pY = int(random(shipLoc.y - 200, shipLoc.y + 200));
+    pS = int(random(300, 700));
+    planetNew = new Planet(pX, pY, pZ, pS, 0);
+    if (!arePlanetsOverlapped(planetNew)){
+      planets.push(planetNew);
+    }
+    
+    pX = int(random(shipLoc.x - 300, shipLoc.x + 300));
+    pY = int(random(shipLoc.y - 1000, shipLoc.y - 5000));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)){

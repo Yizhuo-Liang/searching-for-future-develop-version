@@ -153,7 +153,7 @@ function draw() {
     //   generatePlanet(ship1);
     //   // console.log(planets.length);
     // }
-    if (millis()%50 == 0) {
+    if (millis()%100 == 0) {
       generatePlanet(ship1);
       // console.log(planets.length);
     }
@@ -597,9 +597,9 @@ class Spaceship {
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
-  for (let d = 1; d < 4; d++) {
+  for (let d = 1; d < 1; d++) {
     lowerBound = shipLoc.z - 2000 * d;
-    pZ = int(random(lowerBound-800000, lowerBound - 1000000));
+    pZ = int(random(lowerBound-100000, lowerBound - 10000000));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(250, 490));

@@ -144,6 +144,7 @@ function setup() {
   cam1 = createCamera();
   victoryScene = new WinningScene(camX, camY, camZ - 300, 65);
   currentCamera = 1;
+  narratePoem.play();
   // let fov = PI/3;
   // let cameraZ = (height/2.0)/(height/2.0)
   // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
@@ -206,6 +207,7 @@ function draw() {
   }
 
   if (status === "alive") {
+    
     background(0);
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
@@ -224,7 +226,7 @@ function draw() {
 
     displayPoem.draw(
       ship1.getLocation().x,
-      ship1.getLocation().y - _H / 3,
+      ship1.getLocation().y + _H / 4,
       ship1.getLocation().z
     );
 

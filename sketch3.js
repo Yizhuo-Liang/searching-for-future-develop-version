@@ -77,7 +77,7 @@ let sb;
 let bumi;
 let displayPoem;
 
-let scenes
+let scenes;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -967,20 +967,19 @@ function getAcceleration(myShip) {
   // let acceleration = new Vector3D(strength * unitVector.x, strength * unitVector.y, strength * unitVector.z);
   // return acceleration;
   
-  console.log("testing");
   if (planets === []) {
-    return false;
+    return new Vector3D(0, 0, 0);
   }
   for (let i = 0; i < planets.length; i++) {
     if (isClose(myShip.position, planets[i], 155, planets[i].radius)) {
-      console.log("ShipIsClose1");
-      return true;
+      this 
+      
     }
   }
-  return false;
+
 }
 
-function testCloseGravity(myShip, planets) {
+function testCloseForGravity(myShip, planets) {
   console.log("testing");
   if (planets === []) {
     return false;

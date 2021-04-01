@@ -1221,7 +1221,7 @@ class WinningRay {
 }
 
 class WinningScene {
-  constructor (x, y, z, density, W, H){
+  constructor (x, y, z = -5000, density, W, H){
     this.x = x;
     this.y = y;
     this.z = z;
@@ -1232,11 +1232,28 @@ class WinningScene {
   }
   
   generateRay() {
-    
+    for (let i = 0; i < this.rayAmount; i++){
+      let newRay = new WinningRay(random(this._W), random(this._H), this.z); 
+      winningRays.push(WinningRay())
+    }
   }
   
   draw() {
+    if (frameCount % 40 === 0){
+      
+    }
     
+    
+  }
+}
+
+
+function linesNotTooClose(ray) {
+  if (ray.z - camZ > 2000) {
+    console.log("Ray destroyed");
+    return false;
+  } else {
+    return true;
   }
 }
 //--------------------------------- END OF WARNING ---------------------------------

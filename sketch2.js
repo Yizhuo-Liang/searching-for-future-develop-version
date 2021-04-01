@@ -1018,7 +1018,17 @@ function getAcceleration(myShip) {
   // let acceleration = new Vector3D(strength * unitVector.x, strength * unitVector.y, strength * unitVector.z);
   // return acceleration;
   
-  
+  console.log("testing");
+  if (planets === []) {
+    return false;
+  }
+  for (let i = 0; i < planets.length; i++) {
+    if (isClose(myShip.position, planets[i], 155, planets[i].radius)) {
+      console.log("ShipIsClose1");
+      return true;
+    }
+  }
+  return false;
 }
 
 function testCloseGravity(myShip, planets) {

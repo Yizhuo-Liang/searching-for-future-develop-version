@@ -37,7 +37,10 @@ let narratePoem;
 let newboard;
 let generate_interval = 100;
 
+let space_age;
+
 function preload() {
+  space_age= loadFont("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fspace%20age.ttf?v=1617317845438");
   spaceship = loadModel("assets/spaceship2.obj");
   universe = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Funiverse-background-1.jpg?v=1617194401240"
@@ -108,6 +111,11 @@ let displayPoem;
 
 let scenes;
 
+let explosion_timer = 0;
+let particles=[]
+let cam1;
+let currentCamera;
+
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   _W = windowWidth;
@@ -116,7 +124,7 @@ function setup() {
   smooth();
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
-  sb = new Scoreboard(100);
+  sb = new Scoreboard(200);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   BGM.loop();
   // narratePoem.play(); (DONT TURN ON FIRST)
@@ -128,8 +136,10 @@ function setup() {
   // detail.style("width", "80px");
   theStartPage = new startPage();
   scenes = new background_scenes();
-  victoryScene = new WinningScene(camX, camY, camZ - 300, 100);
-
+  //create explosion camera
+  cam1 = createCamera();
+  
+  currentCamera = 1;
   // let fov = PI/3;
   // let cameraZ = (height/2.0)/(height/2.0)
   // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
@@ -165,7 +175,6 @@ function keyPressed() {
 let ship1;
 let planets = [];
 let status = "alive";
-let victoryScene;
 
 function mouseClicked() {
   if (status === "died") {
@@ -219,16 +228,16 @@ function draw() {
       status = "justdied";
     }
   } else if (status === "justdied") {
-    explosion_ball = new Explosion(
-      ship1.getLocation().x,
-      ship1.getLocation().y,
-      ship1.getLocation().z,
-      4,
-      250,
-      250,
-      0,
-      10
-    );
+    // explosion_ball = new Explosion(
+    //   ship1.getLocation().x,
+    //   ship1.getLocation().y,
+    //   ship1.getLocation().z,
+    //   4,
+    //   250,
+    //   250,
+    //   0,
+    //   10
+    // );
     re_explosion_ball = new Re_explosion(
       ship1.getLocation().x,
       ship1.getLocation().y,
@@ -248,6 +257,8 @@ function draw() {
       ship1.getLocation().y,
       ship1.getLocation().z
     );
+    explosion_timer=0;
+    explosion_bgm = false;      //timer_back
     status = "aliveagain";
   } else if (status === "aliveagain") {
     if (start_explosion_ball.getSize() < 500) {
@@ -261,25 +272,53 @@ function draw() {
     }
   } else if (status === "died") {
     background(0);
-    if (explosion_ball.getSize() < 900) {
-      explosion_ball.draw();
+    if(explosion_bgm===false){
+      explosde_sound.play();
+      explosion_bgm = true;
     }
+    
+    if (explosion_timer<350){
+      drawPlanets();
+      ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+      // ellipsoid(30, 40, 40);
+      explosion_timer+=1;
+      setCamera(cam1);
+      angleMode(DEGREES);
+      cam1.setPosition(2000*sin(explosion_timer), 0, 2000*cos(explosion_timer));
+      cam1.lookAt(camX, camY, camZ - 450);
+      if (random(1)>0.96){
+        var pos = createVector(camX, camY, camZ - 450);
+        for (var i =0; i<100;i++ ){
+          var p = new Particle(pos)
+          particles.push(p)
+        }
+      }
 
-    if (explosion_ball.getSize() > 900) {
-      background(0);
+
+
+      for(var i = particles.length -1; i>=0;i--){
+        if(dist(particles[i].pos.x,particles[i].pos.y,particles[i].pos.z,0,0,0)<1000){
+          particles[i].update();
+          particles[i].show();
+        }else{
+          particles.splice(i,1)
+        }
+      }
+      
+
+    }
+    else{
+      camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
       re_explosion_ball.draw();
       ending.draw();
+      
     }
+    // re_explosion_ball.draw();
+    // ending.draw();
   }
-
-  if (status === "victory") {
-    victoryScene.draw();
-    ship1.draw();
-  } else if (  if (sb.getScore() > 300) {
-    
-    status = "victory";
-  })
 }
+
+let explosion_bgm = false;
 
 class startPage {
   constructor() {
@@ -363,6 +402,7 @@ class DisplayWords {
     this.graphics.clear();
     this.graphics.background(0, 0);
     this.graphics.fill(255);
+    this.graphics.textFont(space_age);
     this.graphics.textSize(this.size / 8);
     if (frameCount % 120 == 0) {
       this.index += 1;
@@ -647,6 +687,7 @@ class Spaceship {
     push();
     // fill(255,255,255);
     // stroke(1);
+    this.position = new Position(x, y, z);
     translate(this.position.x, this.position.y, this.position.z);
     rotateZ(angleZ);
     rotateX(angleX);
@@ -777,7 +818,7 @@ function drawPlanets() {
 }
 
 function planetIsNotTooFar(planet) {
-  if (planet.z - ship1.getLocation().z > 1000 || status === "alive_again") {
+  if (planet.z - ship1.getLocation().z > 20000 || status === "alive_again") {
     console.log("Planet destroyed");
     return false;
   } else {
@@ -804,7 +845,8 @@ class Scoreboard {
     this.graphics.clear();
     this.graphics.background(0, 0);
     this.graphics.fill(255);
-    this.graphics.textSize(50);
+    this.graphics.textSize(20);
+    this.graphics.textFont(space_age)
     this.graphics.text(distance + "kM", 10, 80, 700, 700);
 
     texture(this.graphics);
@@ -999,8 +1041,9 @@ class EndScene {
     this.graphics.fill(255);
     this.graphics.background(0, 0);
     this.graphics.textAlign(CENTER, CENTER);
+    this.graphics.textFont(space_age)
     this.graphics.text(
-      "GAME OVER!\n Your Score: " + str(s),
+      "GAME OVER! \n Your Score: " + str(s),
       0,
       0,
       this.size,
@@ -1207,78 +1250,49 @@ function testIsClose(myShip, planets) {
 //   }
 // }
 
-let winningRays = []
-
-class WinningRay {
-  constructor(x, y, z, angle, radius){
-    this.x = x;
-    this.y = y;
-    this.z = z;
-		this.angle = angle;
-    this.radius = radius;
-		this.hue = int(random(140, 280));
-		this.saturation = int(random(28,70));
-		this.speed = 2;
-  }
-  
-  draw() {
-    push();
-		this.z += this.speed;
-    translate(this.x, this.y, this.z);
-    noStroke();
-    colorMode(HSB);
-    fill(this.hue, this.saturation, 100, 10);
-    sphere(this.radius);
-    pop();
-  }
-}
+// let winningRays = []
+// class WinningRay {
+//   constructor(length, radius, H, S, B){
+    
+//   } 
+// }
 
 class WinningScene {
-  constructor (x, y, z, radius){
+  constructor (x, y, z, density, windowSize){
     this.x = x;
     this.y = y;
     this.z = z;
-    this.radius = radius;
-		this.generateRay();
-  }
-  
-  generateRay() {
-		for (let i = 0; i <= 20; i ++) {
-			let increment = int(random(10, 20));
-			for (let i = int(random(0,20)); i <= 360; i += increment){
-				if (random(1) > 0.4) {
-					let newRay = new WinningRay(0, -this.radius, camZ - 100, i, 2); 
-					winningRays.push(newRay);
-				}
-    	}
-			this.radius += 70
-		}
-  }
-  
-  draw() {
-    if (winningRays != []){
-      winningRays.filter(rayIsNotBehind);
-    }
-    for (let i = 0; i < winningRays.length; i++) {
-      // winningRays[i].z += 3;
-			push();
-			rotateZ(winningRays[i].angle);
-      winningRays[i].draw();
-			pop();
-    }
+    this.density = density;
+    this.windowSize = windowSize;
+    this.number 
   }
 }
-
-function rayIsNotBehind(ray) {
-  if (ray.z - camZ > 200) {
-    // console.log("Ray destroyed");
-    return false;
-  } else {
-    return true;
-  }
-}
-
 //--------------------------------- END OF WARNING ---------------------------------
+class Particle{
+	constructor(pos,c){
+		this.pos = createVector(pos.x,pos.y,pos.z);
+		this.vel = p5.Vector.random3D().normalize().mult(random(4,6))
+		
+		this.c = c;
+		
+	}
+	update(){
+		this.pos.add(this.vel)
+	}
+	show(){
+		push();
+		stroke(100);
+		fill(255,255,255,180)
+		translate(this.pos.x,this.pos.y,this.pos.z);
+		
+		// rotateX(millis() / 10);
+		// rotateY(millis() / 10);
+		// rotateY(millis() / 10);
+  	box(20,20,20);
+
+		pop();
+	}
+}
 
 //--------------------------------- START OF WINSCENE ---------------------------------
 

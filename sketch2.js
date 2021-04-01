@@ -111,6 +111,7 @@ function setup() {
 let ship1;
 let planets = [];
 let status = "alivecreatetransition";
+let start_overlap = true;
 
 function mouseClicked() {
   if(status === "died"){
@@ -139,23 +140,25 @@ function draw() {
     startMillisNotInitialized = false;
   }
   
-    if (status === "alivecreatetransition") {
+  if (status === "alivecreatetransition") {
     alive_ball = new Start_explosion(
       ship1.getLocation().x,
       ship1.getLocation().y,
       ship1.getLocation().z,
-      _W/2+200
+      _W/2 + 200
     );
     status = "alivetransition"
+    start_overlap = true
   }
-  if (status === "alivetransition"){
-    if (alive_ball.getSize() > 21){
+  if (status === "alivetransition" || start_overlap){
+    if (alive_ball.getSize() < 10) {
+      status = "alive"
+    }
+    if (alive_ball.getSize() > 10){
       alive_ball.draw('shrink');
+    } else {
+      start_overlap = false;
     }
-    else{
-      status = "alive";
-    }
-    
   }
 
   if (status === "alive") {

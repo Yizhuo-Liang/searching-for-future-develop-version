@@ -538,6 +538,9 @@ function moveAround() {
 }
 //--------------------------------- END OF MOVEAROUND ---------------------------------
 
+
+
+
 //--------------------------------- START OF POSITION ---------------------------------
 class Position {
   constructor(x, y, z) {
@@ -610,12 +613,15 @@ class Spaceship {
 //--------------------------------- END OF SPACESHIP ---------------------------------
 
 //--------------------------------- START OF PLANETSFUNCTIONS ---------------------------------
+function arePlanetsOvelapped(planet){
+  
+}
 
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
   for (let d = 1; d < 4; d++) {
-    lowerBound = shipLoc.z - 2000 * d;
+    lowerBound = shipLoc.z - 1500 * d;
     pZ = int(random(lowerBound-2000, lowerBound - 10000));
     pX = int(random(shipLoc.x - 50, shipLoc.x + 50));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
@@ -644,11 +650,6 @@ function generatePlanet(ship) {
     planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
     planets.push(planetNew);
   }
-  // for ( let i = 0; i < random(8) ; i++) {
-  //   planetNew = new Planet(pX + randomness, pY + randomness, pZ, pS, 0);
-  //   planets.push(planetNew);
-  // }
-  // console.log("4 planets created");
 }
 
 function drawPlanets() {
@@ -686,8 +687,6 @@ class Scoreboard {
   
   draw(x, y, z) {
     push();
-    // Scoreboard = Scoreboard.filter(boardIsNotTooOld);
-    // let graphics = createGraphics(200, 200);
     let distance = int((millis() - startMillis) / 100);
     this.graphics.clear();
     this.graphics.background(0, 0);
@@ -698,10 +697,6 @@ class Scoreboard {
     texture(this.graphics);
 
     translate(x, y, z);
-    // rotateX(frameCount * 0.01);
-    // rotateY(frameCount * 0.01);
-    // rotateZ(frameCount * 0.01);
-    // box(200+this.expand_value);
     
     if (distance % 10 == 1) {
       this.expand_value = this.size / 2;
@@ -715,13 +710,12 @@ class Scoreboard {
   getScore() {
     return int(millis() / 100);
   }
-  // boardIsNotTooOld(particle) {
-  //   return Scoreboard.age < 2;
-  // }
 }
 
 
 //--------------------------------- END OF SCOREBOARD ---------------------------------
+
+
 //--------------------------------- START OF background_scenes ---------------------------------
 
 class background_scenes {
@@ -742,6 +736,9 @@ class background_scenes {
   }
 }
 //--------------------------------- END OF background_scenes ---------------------------------
+
+
+
 //--------------------------------- START OF EXPLOSION ---------------------------------
 
 class Explosion {
@@ -789,8 +786,6 @@ class Explosion {
       this.explosion_status = true;
     }
     push();
-    // this.x += 5 * cos(frameCount / 1);
-
     translate(this.x, this.y, this.z);
     noStroke();
     fill(this.r, this.g, this.b, this.transparent);
@@ -887,43 +882,9 @@ class start_explosion {
 }
 
 //--------------------------------- END OF start_explosion ---------------------------------
-//--------------------------------- START OF assemble ---------------------------------
-// class assemble {
-//   constructor(x, y, z, size) {
-//     this.x = x;
-//     this.y = y;
-//     this.z = z;
-//     this.size = 1000;
-//     // this.explosion_status=false;
-//   }
 
-//   growBall() {
-//     if (this.size > 20) {
-//       this.size = this.size * 0.9;
-//     }
-//   }
-//   getSize() {
-//     return this.size;
-//   }
 
-//   draw() {
-//     this.growBall();
 
-//     // if(this.explosion_status == false){
-//     //   explosde_sound.play();
-//     //   this.explosion_status=true;
-//     // }
-
-//     push();
-//     translate(this.x, this.y, this.z);
-//     noStroke();
-//     fill(255);
-//     sphere(this.size, 24, 16);
-//     pop();
-//   }
-// }
-
-//--------------------------------- END OF assemble ---------------------------------
 
 //--------------------------------- START OF ENDSCENE ---------------------------------
 class EndScene {
@@ -1114,7 +1075,7 @@ function testIsClose(myShip, planets) {
   }
   for (let i = 0; i < planets.length; i++) {
     if (isClose(myShip.position, planets[i], 155, planets[i].radius)) {
-      console.log("ShipIsClose1");
+      console.log("ShipIsClose");
       return true;
     }
   }

@@ -164,6 +164,7 @@ function keyPressed() {
 let ship1;
 let planets = [];
 let status = "alive";
+let victoryScene;
 
 function mouseClicked() {
   if (status === "died") {
@@ -269,11 +270,12 @@ function draw() {
       ending.draw();
     }
   }
-  if (sb.getScore() > 1000) {
-    status = "victory"
-  } else if (status === "victory") {
-    WinningScene.draw();
-  }
+  // if (sb.getScore() > 300) {
+  //   victoryScene = new WinningScene(camX, camZ, camZ, _W, _H, 50);
+  //   status = "victory";
+  // } else if (status === "victory") {
+  //   WinningScene.draw();
+  // }
 }
 
 class startPage {
@@ -773,7 +775,7 @@ function drawPlanets() {
 }
 
 function planetIsNotTooFar(planet) {
-  if (planet.z - ship1.getLocation().z > 20000 || status === "alive_again") {
+  if (planet.z - ship1.getLocation().z > 1000 || status === "alive_again") {
     console.log("Planet destroyed");
     return false;
   } else {
@@ -1226,14 +1228,13 @@ class WinningRay {
 }
 
 class WinningScene {
-  constructor (x, y, z = -5000, density, W, H){
+  constructor (x, y, z = -5000, W, H, rayAmount){
     this.x = x;
     this.y = y;
     this.z = z;
     this._W = W;
     this._H = H;
-    this.density = density;
-    this.rayAmount = int((W*H)/density);
+    this.rayAmount = rayAmount;
   }
   
   generateRay() {
@@ -1244,7 +1245,9 @@ class WinningScene {
   }
   
   draw() {
-    winningRays.filter(rayIsNotBehind)
+    if (winningRays != []){
+      winningRays.filter(rayIsNotBehind)
+    }
     if (frameCount % 40 === 0){
       this.generateRay();
     }
@@ -1255,11 +1258,8 @@ class WinningScene {
   }
 }
 
-
-
-
 function rayIsNotBehind(ray) {
-  if (ray.z - camZ > 2000) {
+  if (ray.z - ship1.getLocation().z > 2000) {
     console.log("Ray destroyed");
     return false;
   } else {

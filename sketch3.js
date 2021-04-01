@@ -43,7 +43,7 @@ function preload() {
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Funiverse-background-1.jpg?v=1617194401240"
   );
   startPng = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStartPage1.png?v=1617163053005"
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNew%20Project.png?v=1617291457112"
   );
   earth = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fearth.jpg?v=1616633286407"
@@ -259,7 +259,7 @@ class startPage {
     noStroke();
     plane(width, height);
     scale(1);
-    image(this.img, camX - 255, camY - 255);
+    image(this.img, camX - 250, camY - 200);
     pop();
   }
 }

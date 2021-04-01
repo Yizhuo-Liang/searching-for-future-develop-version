@@ -131,7 +131,7 @@ function setup() {
   sb = new Scoreboard(200);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   BGM.loop();
-  // narratePoem.play(); (DONT TURN ON FIRST)
+   //(DONT TURN ON FIRST)
   xp = width / 2;
   yp = height / 2;
   displayPoem = new DisplayWords(poem, 300);
@@ -304,7 +304,7 @@ function draw() {
         if(dist(particles[i].pos.x,particles[i].pos.y,particles[i].pos.z,0,0,0)<1000){
           particles[i].update();
           particles[i].show();
-        }else{
+        } else{
           particles.splice(i,1)
         }
       }

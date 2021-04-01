@@ -1197,6 +1197,30 @@ function testIsClose(myShip, planets) {
 //     resizeCanvas(width, height);
 //   }
 // }
+
+let winningRays = []
+class WinningRay {
+  constructor(length, radius, H, S, B){
+    
+  } 
+}
+
+class WinningScene {
+  constructor (x, y, z, density, windowSize){
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.density = density;
+    this.windowSize = windowSize;
+    this.rayAmount = int(windowSize/density);
+  }
+  
+  generateRay()
+  
+  draw() {
+    
+  }
+}
 //--------------------------------- END OF WARNING ---------------------------------
 
 //--------------------------------- START OF WINSCENE ---------------------------------

@@ -149,7 +149,11 @@ function draw() {
     if (frameCount === 1 || frameCount % generate_interval == 0) {
       generatePlanet(ship1);
     }
-    if (frameCount === 1 || frameCount % 180 == 0) {
+    // if (frameCount === 1 || frameCount % 180 == 0) {
+    //   generatePlanet(ship1);
+    //   // console.log(planets.length);
+    // }
+    if (millis()%50 == 0) {
       generatePlanet(ship1);
       // console.log(planets.length);
     }

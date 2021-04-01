@@ -270,12 +270,12 @@ function draw() {
       ending.draw();
     }
   }
-  // if (sb.getScore() > 300) {
-  //   victoryScene = new WinningScene(camX, camZ, camZ, _W, _H, 50);
-  //   status = "victory";
-  // } else if (status === "victory") {
-  //   WinningScene.draw();
-  // }
+  if (sb.getScore() > 300) {
+    victoryScene = new WinningScene(camX, camZ, camZ, _W, _H, 50);
+    status = "victory";
+  } else if (status === "victory") {
+    WinningScene.draw();
+  }
 }
 
 class startPage {

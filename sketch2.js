@@ -1007,7 +1007,7 @@ function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {
     trgtPosition.y,
     trgtPosition.z
   );
-  return distance - 800 < objRadius + trgtRadius;
+  return distance - 600 < objRadius + trgtRadius;
 }
 
 function testIsClose(myShip, planets) {

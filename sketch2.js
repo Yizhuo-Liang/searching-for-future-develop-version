@@ -89,7 +89,7 @@ function setup() {
   sb = new Scoreboard(100);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   BGM.loop();
-  narratePoem.play();
+  // narratePoem.play();
   xp = width / 2;
   yp = height / 2;
   displayPoem = new DisplayWords(poem, 300);

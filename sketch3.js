@@ -117,7 +117,7 @@ function setup() {
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
   sb = new Scoreboard(100);
-  ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
+  ship1 = new Spaceship(camX, camY, camZ - 350, 155, tiltZ, tiltX, spaceship);
   BGM.loop();
   // narratePoem.play(); (DONT TURN ON FIRST)
   xp = width / 2;
@@ -383,13 +383,13 @@ class DisplayWords {
 //--------------------------------- BEGINNING OF PLANET ---------------------------------
 let planetNo = 0;
 class Planet {
-  constructor(x, y, z, radius, rings) {
+  constructor(x, y, z, size, rings) {
     this.planetNumber = planetNo++;
     this.x = x;
     this.y = y;
     this.z = z;
     this.position = new Position(x, y, z);
-    this.radius = radius;
+    this.size = size;
     this.rings = rings;
     this.t = int(random(6));
     this.mass = int(random(500, 1000));
@@ -402,7 +402,7 @@ class Planet {
   }
 
   getRadius() {
-    return this.radius;
+    return this.size;
   }
 
   getZ() {
@@ -427,7 +427,7 @@ class Planet {
       texture(planet5);
     }
 
-    sphere(this.radius, 30, 30);
+    sphere(this.size, 30, 30);
     pop();
     // noFill();
     // stroke(255);
@@ -454,7 +454,7 @@ let camX = 0;
 let camY = 0;
 let tiltZ = 0;
 let tiltX = 0;
-let speedZ = 15;
+let speedZ = 25;
 function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;
@@ -495,7 +495,7 @@ function moveAround() {
   }
 
   if (sb.getScore() % 100 == 0) {
-    speedZ += 5;
+    speedZ += 7;
   }
 
   if (triggerZ === 0) {
@@ -595,7 +595,7 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
 
 function testCollision(planets, myShip) {
   for (let i = 0; i < planets.length; i++) {
-    if (isCollide(myShip.position, planets[i], 155, planets[i].radius)) {
+    if (isCollide(myShip, planets[i], myShip.size, planets[i].size)) {
       return true;
     }
   }
@@ -635,7 +635,11 @@ class Spaceship {
 //--------------------------------- END OF SPACESHIP ---------------------------------
 
 //--------------------------------- START OF PLANETSFUNCTIONS ---------------------------------
-function arePlanetsOvelapped(planet) {}
+function arePlanetsOverlapped(planet) {
+  if (testCollision(planets, planet)){
+    return true
+  }
+}
 
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
@@ -645,48 +649,48 @@ function generatePlanet(ship) {
   let distanceBtwPlanets = 0;
   let beginDistance = shipLoc.z - speedZ * 180;
   
-  for (beginDistance; beginDistance >= stopDistance; beginDistance -= 2000 ) {
+  for (beginDistance; beginDistance >= stopDistance; beginDistance -= 4000 ) {
     lowerBound = beginDistance;
-    pZ = int(random(lowerBound + 200, lowerBound));
-    pX = shipLoc.x;
-    pY = shipLoc.y;
-    pS = int(random(400, 800));
+    pZ = int(random(lowerBound, lowerBound + 1000));
+    pX = random(shipLoc.x - 200, shipLoc.x + 200);
+    pY = random(shipLoc.x - 200, shipLoc.x + 200);
+    pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
 
-    pX = int(random(shipLoc.x - randomRange, shipLoc.x - 3 * randomRange));
+    pX = int(random(shipLoc.x - 1.2 * randomRange, shipLoc.x - 3 * randomRange));
     pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
-    pS = int(random(400, 800));
+    pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
 
     pX = int(random(shipLoc.x + randomRange, shipLoc.x + 3 * randomRange));
     pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
-    pS = int(random(400, 800));
+    pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
     
-    pX = int(random(shipLoc.x - randomRange, shipLoc.x - 3 * randomRange));
+    pX = int(random(shipLoc.x - 1.2 * randomRange, shipLoc.x - 3 * randomRange));
     pY = int(random(shipLoc.y + randomRange, shipLoc.y + 2 * randomRange));
-    pS = int(random(400, 800));
+    pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
     
-    pX = int(random(shipLoc.x + randomRange, shipLoc.x + 3 * randomRange));
+    pX = int(random(shipLoc.x + 1.2 * randomRange, shipLoc.x + 3.8 * randomRange));
     pY = int(random(shipLoc.y + randomRange, shipLoc.y + 2 * randomRange));
-    pS = int(random(400, 800));
+    pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
 
     pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
-    pS = int(random(400, 800));
+    pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
     
     pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
-    pS = int(random(400, 800));
+    pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     planets.push(planetNew);
   }
@@ -977,7 +981,7 @@ function getAcceleration(myShip) {
   }
   for (let i = 0; i < planets.length; i++) {
     if (
-      isCloseForGravity(myShip.position, planets[i], 155, planets[i].radius)
+      isCloseForGravity(myShip.position, planets[i], 155, planets[i].size)
     ) {
       let distance = dist(
         myShip.position.x,
@@ -1012,7 +1016,7 @@ function testCloseGravity(myShip, planets) {
   }
   for (let i = 0; i < planets.length; i++) {
     if (
-      isCloseForGravity(myShip.position, planets[i], 155, planets[i].radius)
+      isCloseForGravity(myShip.position, planets[i], 155, planets[i].size)
     ) {
       return true;
     }
@@ -1118,7 +1122,7 @@ function testIsClose(myShip, planets) {
     return false;
   }
   for (let i = 0; i < planets.length; i++) {
-    if (isClose(myShip.position, planets[i], 155, planets[i].radius)) {
+    if (isClose(myShip.position, planets[i], 155, planets[i].size)) {
       console.log("ShipIsClose");
       return true;
     }

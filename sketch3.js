@@ -275,10 +275,10 @@ function draw() {
   if (status === "victory") {
     victoryScene.draw();
     ship1.draw();
-  } else if (  if (sb.getScore() > 300) {
-    
+  } else if (sb.getScore() > 300) {
+    background(0);
     status = "victory";
-  })
+  }
 }
 
 class startPage {

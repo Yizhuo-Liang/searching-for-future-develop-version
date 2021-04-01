@@ -116,6 +116,8 @@ let particles=[]
 let cam1;
 let currentCamera;
 
+let victoryScene;
+
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   _W = windowWidth;
@@ -138,7 +140,7 @@ function setup() {
   scenes = new background_scenes();
   //create explosion camera
   cam1 = createCamera();
-  
+  victoryScene = new WinningScene(camX, camY, camZ - 300, 65);
   currentCamera = 1;
   // let fov = PI/3;
   // let cameraZ = (height/2.0)/(height/2.0)
@@ -315,6 +317,14 @@ function draw() {
     }
     // re_explosion_ball.draw();
     // ending.draw();
+  }
+  
+  if (status === "victory") {
+    victoryScene.draw();
+    ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+  } else if (sb.getScore() > 100 && status === "alive") {
+    background(0);
+    status = "victory";
   }
 }
 
@@ -522,7 +532,7 @@ let camX = 0;
 let camY = 0;
 let tiltZ = 0;
 let tiltX = 0;
-let speedZ = 25;
+let speedZ = 30;
 function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;
@@ -1257,16 +1267,6 @@ function testIsClose(myShip, planets) {
 //   } 
 // }
 
-class WinningScene {
-  constructor (x, y, z, density, windowSize){
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.density = density;
-    this.windowSize = windowSize;
-    this.number 
-  }
-}
 //--------------------------------- END OF WARNING ---------------------------------
 class Particle{
 	constructor(pos,c){
@@ -1292,6 +1292,77 @@ class Particle{
 
 		pop();
 	}
+}
+
+let winningRays = []
+
+class WinningRay {
+  constructor(x, y, z, angle, radius){
+    this.x = x;
+    this.y = y;
+    this.z = z;
+		this.angle = angle;
+    this.radius = radius;
+		this.hue = int(random(140, 280));
+		this.saturation = int(random(28,70));
+		this.speed = 1;
+  }
+  
+  draw() {
+    push();
+		this.z += this.speed;
+    translate(this.x, this.y, this.z);
+    noStroke();
+    colorMode(HSB);
+    fill(this.hue, this.saturation, 100, 10);
+    sphere(this.radius);
+    pop();
+  }
+}
+
+class WinningScene {
+  constructor (x, y, z, radius){
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.radius = radius;
+		this.generateRay();
+  }
+  
+  generateRay() {
+		for (let i = 0; i <= 20; i ++) {
+			let increment = int(random(10, 20));
+			for (let i = int(random(0,20)); i <= 360; i += increment){
+				if (random(1) > 0.4) {
+					let newRay = new WinningRay(0, -this.radius, camZ - 100, i, 2); 
+					winningRays.push(newRay);
+				}
+    	}
+			this.radius += 70;
+		}
+  }
+  
+  draw() {
+    if (winningRays != []){
+      winningRays.filter(rayIsNotBehind);
+    }
+    for (let i = 0; i < winningRays.length; i++) {
+      // winningRays[i].z += 3;
+			push();
+			rotateZ(winningRays[i].angle);
+      winningRays[i].draw();
+			pop();
+    }
+  }
+}
+
+function rayIsNotBehind(ray) {
+  if (ray.z - camZ > 200) {
+    // console.log("Ray destroyed");
+    return false;
+  } else {
+    return true;
+  }
 }
 
 //--------------------------------- START OF WINSCENE ---------------------------------

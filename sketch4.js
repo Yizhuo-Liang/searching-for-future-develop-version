@@ -92,7 +92,7 @@ function preload() {
   narratePoem = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881"
   );
-  victoryBGM = loadSound('https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fthecityintheclouds.mp3?v=1617319870432')
+  victoryBGM = loadSound('https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStar%20Wars%20Main%20Theme%20(Full).mp3?v=1617319295463')
 }
 let planetlist = [
   earth,

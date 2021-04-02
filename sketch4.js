@@ -293,7 +293,7 @@ function draw() {
       explosion_bgm = true;
     }
     
-    if (explosion_timer<200){
+    if (explosion_timer<250){
       drawPlanets();
       ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
       // ellipsoid(30, 40, 40);

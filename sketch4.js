@@ -154,7 +154,7 @@ function setup() {
     windowHeight / 10000,
     -windowHeight / 10000,
     0.17,
-    20000
+    200000
   );
 }
 
@@ -549,13 +549,13 @@ let camX = 0;
 let camY = 0;
 let tiltZ = 0;
 let tiltX = 0;
-let speedZ = 50;
+let speedZ = 60;
 function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x += 15 + speedZ;
+      planets[i].x += 5 + speedZ;
     }
     tiltZ -= 4;
     triggerZ = 10;
@@ -563,7 +563,7 @@ function moveAround() {
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x -= 15 + speedZ;
+      planets[i].x -= 5 + speedZ;
     }
     tiltZ += 4;
     triggerZ = 10;
@@ -571,7 +571,7 @@ function moveAround() {
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y += 15 + speedZ;
+      planets[i].y += 5 + speedZ;
     }
     tiltX += 5;
     triggerX = 10;
@@ -579,7 +579,7 @@ function moveAround() {
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y -= 15 + speedZ;
+      planets[i].y -= 5 + speedZ;
     }
     tiltX -= 5;
     triggerX = 10;

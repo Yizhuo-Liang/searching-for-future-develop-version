@@ -154,7 +154,7 @@ function setup() {
     windowHeight / 10000,
     -windowHeight / 10000,
     0.17,
-    100000
+    20000
   );
 }
 
@@ -295,15 +295,15 @@ function draw() {
     
     if (explosion_timer<350){
       drawPlanets();
-      ship1.draw(camX, camY, camZ - 400, 15, tiltZ, tiltX, spaceship);
+      ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
       // ellipsoid(30, 40, 40);
       explosion_timer+=1;
       setCamera(cam1);
       angleMode(DEGREES);
       cam1.setPosition(2000*sin(explosion_timer), 0, 2000*cos(explosion_timer));
-      cam1.lookAt(camX, camY, camZ - 400);
+      cam1.lookAt(camX, camY, camZ - 450);
       if (random(1)>0.96){
-        var pos = createVector(camX, camY, camZ - 400);
+        var pos = createVector(camX, camY, camZ - 450);
         for (var i =0; i<100;i++ ){
           var p = new Particle(pos)
           particles.push(p)
@@ -333,16 +333,16 @@ function draw() {
     // ending.draw();
   }
   
-//   if (status === "victory") {
-//     victoryScene.draw();
-//     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+  if (status === "victory") {
+    victoryScene.draw();
+    ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
     
-//   } else if (sb.getScore() > 1270 && status === "alive") {
-//     background(0);
-//     BGM.stop();
-//     victoryBGM.play();
-//     status = "victory";
-//   }
+  } else if (sb.getScore() > 1270 && status === "alive") {
+    background(0);
+    BGM.stop();
+    victoryBGM.play();
+    status = "victory";
+  }
 }
 
 let explosion_bgm = false;
@@ -470,9 +470,8 @@ class Planet {
     this.rings = rings;
     this.t = int(random(11));
     this.mass = int(random(500, 1000));
-    this.angleX = 0;
+    this.angle = 0;
     this.rotateSpeed = int(random(7));
-    this.directionX = random(0,1);
   }
 
   move(xDist, yDist, zDist) {
@@ -490,12 +489,8 @@ class Planet {
   }
   
   rotatePlanet() {
-    this.angleX += this.rotateSpeed;
-    rotateY(this.angleX);
-    // rotateZ(this.angle);
-    // rotateX(this.angle);
-    // if(this.directionX )
-    
+    this.angle += this.rotateSpeed;
+    rotateY(this.angle);
   }
 
   draw() {
@@ -560,7 +555,7 @@ function moveAround() {
   let triggerX = 0;
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x += 10 + speedZ;
+      planets[i].x += 15 + speedZ;
     }
     tiltZ -= 4;
     triggerZ = 10;
@@ -568,7 +563,7 @@ function moveAround() {
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x -= 10 + speedZ;
+      planets[i].x -= 15 + speedZ;
     }
     tiltZ += 4;
     triggerZ = 10;
@@ -576,7 +571,7 @@ function moveAround() {
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y += 10 + speedZ;
+      planets[i].y += 15 + speedZ;
     }
     tiltX += 5;
     triggerX = 10;
@@ -584,7 +579,7 @@ function moveAround() {
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y -= 10 + speedZ;
+      planets[i].y -= 15 + speedZ;
     }
     tiltX -= 5;
     triggerX = 10;
@@ -594,8 +589,8 @@ function moveAround() {
     planets[i].z += speedZ;
   }
 
-  if (sb.getScore() % 10 == 0) {
-    speedZ += 1;
+  if (sb.getScore() % 100 == 0) {
+    speedZ += 7;
   }
 
   if (triggerZ === 0) {
@@ -756,7 +751,7 @@ function generatePlanet(ship) {
     lowerBound = beginDistance;
     pZ = int(random(lowerBound, lowerBound + 1000));
     pX = random(shipLoc.x - 200, shipLoc.x + 200);
-    pY = random(shipLoc.x - 400, shipLoc.x + 400);
+    pY = random(shipLoc.x - 200, shipLoc.x + 200);
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)){
@@ -798,8 +793,8 @@ function generatePlanet(ship) {
     }
     
     
-    pX = int(random(shipLoc.x - 15000, shipLoc.x - 30000));
-    pY = int(random(shipLoc.y - 25000, shipLoc.y + 25000));
+    pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
+    pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)){
@@ -807,8 +802,8 @@ function generatePlanet(ship) {
     }
     
     
-    pX = int(random(shipLoc.x + 15000, shipLoc.x + 30000));
-    pY = int(random(shipLoc.y - 50000, shipLoc.y + 50000));
+    pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
+    pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)){
@@ -816,7 +811,7 @@ function generatePlanet(ship) {
     }
     
     pX = int(random(shipLoc.x - 5000, shipLoc.x - 10000));
-    pY = int(random(shipLoc.y - 20000, shipLoc.y + 20000));
+    pY = int(random(shipLoc.y - 200, shipLoc.y + 200));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)){
@@ -824,7 +819,7 @@ function generatePlanet(ship) {
     }
     
     pX = int(random(shipLoc.x + 5000, shipLoc.x + 10000));
-    pY = int(random(shipLoc.y - 20000, shipLoc.y + 20000));
+    pY = int(random(shipLoc.y - 200, shipLoc.y + 200));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)){
@@ -832,7 +827,7 @@ function generatePlanet(ship) {
     }
     
     pX = int(random(shipLoc.x - 300, shipLoc.x + 300));
-    pY = int(random(shipLoc.y - 10000, shipLoc.y - 50000));
+    pY = int(random(shipLoc.y - 1000, shipLoc.y - 5000));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)){
@@ -1077,7 +1072,7 @@ class EndScene {
     this.graphics.textAlign(CENTER, CENTER);
     this.graphics.textFont(space_age)
     this.graphics.text(
-      "GAME OVER! \n tap to continous \nYour Score: " + str(s),
+      "GAME OVER! \n Click to continue \n Your Score: " + str(s),
       0,
       0,
       this.size,

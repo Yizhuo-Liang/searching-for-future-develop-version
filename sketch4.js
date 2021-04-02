@@ -154,7 +154,7 @@ function setup() {
     windowHeight / 10000,
     -windowHeight / 10000,
     0.17,
-    200000
+    100000
   );
 }
 
@@ -470,8 +470,9 @@ class Planet {
     this.rings = rings;
     this.t = int(random(11));
     this.mass = int(random(500, 1000));
-    this.angle = 0;
+    this.angleX = 0;
     this.rotateSpeed = int(random(7));
+    this.directionX = random(0,1);
   }
 
   move(xDist, yDist, zDist) {
@@ -489,8 +490,12 @@ class Planet {
   }
   
   rotatePlanet() {
-    this.angle += this.rotateSpeed;
-    rotateY(this.angle);
+    this.angleX += this.rotateSpeed;
+    rotateY(this.angleX);
+    // rotateZ(this.angle);
+    // rotateX(this.angle);
+    // if(this.directionX )
+    
   }
 
   draw() {
@@ -1072,7 +1077,7 @@ class EndScene {
     this.graphics.textAlign(CENTER, CENTER);
     this.graphics.textFont(space_age)
     this.graphics.text(
-      "GAME OVER! \n Your Score: " + str(s),
+      "GAME OVER! \n tap to continous \nYour Score: " + str(s),
       0,
       0,
       this.size,

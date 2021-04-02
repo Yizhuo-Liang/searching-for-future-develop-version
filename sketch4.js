@@ -154,7 +154,7 @@ function setup() {
     windowHeight / 10000,
     -windowHeight / 10000,
     0.17,
-    20000
+    200000
   );
 }
 
@@ -793,7 +793,7 @@ function generatePlanet(ship) {
     }
     
     
-    pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
+    pX = int(random(shipLoc.x - 15000, shipLoc.x - 30000));
     pY = int(random(shipLoc.y - 25000, shipLoc.y + 25000));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
@@ -802,8 +802,8 @@ function generatePlanet(ship) {
     }
     
     
-    pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
-    pY = int(random(shipLoc.y - 5000, shipLoc.y + 5000));
+    pX = int(random(shipLoc.x + 15000, shipLoc.x + 30000));
+    pY = int(random(shipLoc.y - 50000, shipLoc.y + 50000));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)){

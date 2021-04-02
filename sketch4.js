@@ -41,7 +41,7 @@ let space_age;
 let victoryTime;
 
 function preload() {
-  space_age= loadFont("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fspace%20age.ttf?v=1617317845438");
+  space_age= loadFont("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNasa.ttf?v=1617322691693");
   spaceship = loadModel("assets/spaceship2.obj");
   universe = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Funiverse-background-1.jpg?v=1617194401240"
@@ -329,7 +329,7 @@ function draw() {
     victoryScene.draw();
     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
     
-  } else if (sb.getScore() > 0 && status === "alive") {
+  } else if (sb.getScore() > 1270 && status === "alive") {
     background(0);
     BGM.stop();
     victoryBGM.play();

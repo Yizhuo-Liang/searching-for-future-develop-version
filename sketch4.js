@@ -421,7 +421,7 @@ class DisplayWords {
     this.graphics.clear();
     this.graphics.background(0, 0);
     this.graphics.fill(255);
-    this.graphics.textFont('Georgia');
+    this.graphics.textFont(space_age);
     this.graphics.textSize(this.size / 8);
     if (frameCount % 122 == 0) {
       this.index += 1;

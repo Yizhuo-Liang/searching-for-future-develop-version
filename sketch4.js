@@ -144,7 +144,7 @@ function setup() {
   cam1 = createCamera();
   victoryScene = new WinningScene(camX, camY, camZ - 300, 65);
   currentCamera = 1;
-  narratePoem.play();
+  // narratePoem.play();
   // let fov = PI/3;
   // let cameraZ = (height/2.0)/(height/2.0)
   // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
@@ -189,6 +189,7 @@ function mouseClicked() {
   }
 }
 
+
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////  -- DRAW IS HERE --  /////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -231,6 +232,7 @@ function draw() {
     );
 
     if (testCollision(planets, ship1)) {
+      // narratePoem.stop();
       status = "justdied";
     }
   } else if (status === "justdied") {
@@ -327,7 +329,7 @@ function draw() {
     victoryScene.draw();
     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
     
-  } else if (frameCount > 3810 && status === "alive") {
+  } else if (sb.getScore() > 0 && status === "alive") {
     background(0);
     BGM.stop();
     victoryBGM.play();

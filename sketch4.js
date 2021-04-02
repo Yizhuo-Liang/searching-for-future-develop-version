@@ -735,7 +735,7 @@ function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
   let stopDistance = shipLoc.z - 360 * speedZ;
-  let randomRange = 1500;
+  let randomRange = 2000;
   let distanceBtwPlanets = 0;
   let beginDistance = shipLoc.z - speedZ * 180;
   
@@ -746,7 +746,9 @@ function generatePlanet(ship) {
     pY = random(shipLoc.x - 200, shipLoc.x + 200);
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    planets.push(planetNew);
+    if (!arePlanetsOverlapped(planetNew)){
+      planets.push(planetNew);
+    }
 
     pX = int(random(shipLoc.x - 1.2 * randomRange, shipLoc.x - 3 * randomRange));
     pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
@@ -1246,7 +1248,7 @@ function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {
     trgtPosition.y,
     trgtPosition.z
   );
-  return distance - 800 < objRadius + trgtRadius;
+  return distance - 700 < objRadius + trgtRadius;
 }
 
 function testIsClose(myShip, planets) {

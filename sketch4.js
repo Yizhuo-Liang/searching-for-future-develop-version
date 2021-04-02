@@ -295,15 +295,15 @@ function draw() {
     
     if (explosion_timer<350){
       drawPlanets();
-      ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+      ship1.draw(camX, camY, camZ - 400, 15, tiltZ, tiltX, spaceship);
       // ellipsoid(30, 40, 40);
       explosion_timer+=1;
       setCamera(cam1);
       angleMode(DEGREES);
       cam1.setPosition(2000*sin(explosion_timer), 0, 2000*cos(explosion_timer));
-      cam1.lookAt(camX, camY, camZ - 450);
+      cam1.lookAt(camX, camY, camZ - 400);
       if (random(1)>0.96){
-        var pos = createVector(camX, camY, camZ - 450);
+        var pos = createVector(camX, camY, camZ - 400);
         for (var i =0; i<100;i++ ){
           var p = new Particle(pos)
           particles.push(p)
@@ -333,16 +333,16 @@ function draw() {
     // ending.draw();
   }
   
-  if (status === "victory") {
-    victoryScene.draw();
-    ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+//   if (status === "victory") {
+//     victoryScene.draw();
+//     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
     
-  } else if (sb.getScore() > 1270 && status === "alive") {
-    background(0);
-    BGM.stop();
-    victoryBGM.play();
-    status = "victory";
-  }
+//   } else if (sb.getScore() > 1270 && status === "alive") {
+//     background(0);
+//     BGM.stop();
+//     victoryBGM.play();
+//     status = "victory";
+//   }
 }
 
 let explosion_bgm = false;
@@ -555,7 +555,7 @@ function moveAround() {
   let triggerX = 0;
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x += 15 + speedZ;
+      planets[i].x += 10 + speedZ;
     }
     tiltZ -= 4;
     triggerZ = 10;
@@ -563,7 +563,7 @@ function moveAround() {
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x -= 15 + speedZ;
+      planets[i].x -= 10 + speedZ;
     }
     tiltZ += 4;
     triggerZ = 10;
@@ -571,7 +571,7 @@ function moveAround() {
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y += 15 + speedZ;
+      planets[i].y += 10 + speedZ;
     }
     tiltX += 5;
     triggerX = 10;
@@ -579,7 +579,7 @@ function moveAround() {
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y -= 15 + speedZ;
+      planets[i].y -= 10 + speedZ;
     }
     tiltX -= 5;
     triggerX = 10;
@@ -589,8 +589,8 @@ function moveAround() {
     planets[i].z += speedZ;
   }
 
-  if (sb.getScore() % 100 == 0) {
-    speedZ += 7;
+  if (sb.getScore() % 10 == 0) {
+    speedZ += 1;
   }
 
   if (triggerZ === 0) {
@@ -745,7 +745,7 @@ function generatePlanet(ship) {
   let stopDistance = shipLoc.z - 360 * speedZ;
   let randomRange = 2000;
   let distanceBtwPlanets = 0;
-  let beginDistance = shipLoc.z - speedZ * 180;
+  let beginDistance = shipLoc.z - speedZ * 280;
   
   for (beginDistance; beginDistance >= stopDistance; beginDistance -= 4000 ) {
     lowerBound = beginDistance;

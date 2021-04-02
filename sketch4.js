@@ -175,7 +175,7 @@ function keyPressed() {
     started = true;
   }
   
-  if 
+
 }
 
 //
@@ -327,16 +327,16 @@ function draw() {
     // ending.draw();
   }
   
-  if (status === "victory") {
-    victoryScene.draw();
-    ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+//   if (status === "victory") {
+//     victoryScene.draw();
+//     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
     
-  } else if (sb.getScore() > 1270 && status === "alive") {
-    background(0);
-    BGM.stop();
-    victoryBGM.play();
-    status = "victory";
-  }
+//   } else if (sb.getScore() > 1270 && status === "alive") {
+//     background(0);
+//     BGM.stop();
+//     victoryBGM.play();
+//     status = "victory";
+//   }
 }
 
 let explosion_bgm = false;
@@ -583,8 +583,8 @@ function moveAround() {
     planets[i].z += speedZ;
   }
 
-  if (sb.getScore() % 100 == 0) {
-    speedZ += 7;
+  if (sb.getScore() % 10 == 0) {
+    speedZ += 2;
   }
 
   if (triggerZ === 0) {

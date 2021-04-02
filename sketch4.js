@@ -218,7 +218,7 @@ function draw() {
     }
 
     drawPlanets();
-
+    getWarningLevel(ship1, planets);
     sb.draw(
       ship1.getLocation().x + _W / 4,
       ship1.getLocation().y - _H / 4,
@@ -1207,13 +1207,13 @@ function distFromLocations(location1, location2) {
 }
 
 function getWarningLevel(myShip, planets) {
-  if (testIsClose(myShip, planets) === true && frameCount % 10 === 0) {
+  if (testIsClose(myShip, planets) === true && frameCount % 30 > 15 ) {
     console.log("ShipIsClose");
-    let war = new Warning(camX, camY, -600);
+    let war = new Warning(camX + 40, camY - 140, -600);
     war.draw();
-    return "red";
+    return;
   } else {
-    return 0;
+    return;
   }
 }
 
@@ -1229,7 +1229,7 @@ class Warning {
     translate(this.x, this.y, this.z);
     noStroke();
     fill(255, 0, 0);
-    sphere(50, 20, 20);
+    sphere(30, 20, 20);
     translate(0, -120, 0);
     box(35, 90, 100);
     pop();
@@ -1374,25 +1374,7 @@ function rayIsNotBehind(ray) {
   }
 }
 
-class Warning {
-  
-  constructor(x, y, z) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-  }
-  
-  draw() {
-    push();
-    translate(this.x, this.y, this.z);
-    noStroke();
-    fill(255, 0, 0);
-    sphere(50, 20, 20);
-    translate(0, -120, 0);
-    box(35, 90, 100);
-    pop();
-  }
-}
+
 
 //--------------------------------- START OF WINSCENE ---------------------------------
 

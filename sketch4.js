@@ -144,7 +144,7 @@ function setup() {
   cam1 = createCamera();
   victoryScene = new WinningScene(camX, camY, camZ - 300, 65);
   currentCamera = 1;
-  // narratePoem.play();
+  narratePoem.play();
   // let fov = PI/3;
   // let cameraZ = (height/2.0)/(height/2.0)
   // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
@@ -174,6 +174,8 @@ function keyPressed() {
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
     started = true;
   }
+  
+  if 
 }
 
 //

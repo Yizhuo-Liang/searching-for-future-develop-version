@@ -1072,7 +1072,7 @@ class EndScene {
     this.graphics.textAlign(CENTER, CENTER);
     this.graphics.textFont(space_age)
     this.graphics.text(
-      "GAME OVER! \n Your Score: " + str(s),
+      "GAME OVER! \n Click to continue \n Your Score: " + str(s),
       0,
       0,
       this.size,

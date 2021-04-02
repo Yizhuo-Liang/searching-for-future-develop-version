@@ -144,7 +144,7 @@ function setup() {
   cam1 = createCamera();
   victoryScene = new WinningScene(camX, camY, camZ - 300, 65);
   currentCamera = 1;
-  // narratePoem.play();
+  narratePoem.play();
   // let fov = PI/3;
   // let cameraZ = (height/2.0)/(height/2.0)
   // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
@@ -175,13 +175,7 @@ function keyPressed() {
     started = true;
   }
   
-  if (keyIsDown(80)){
-    narratePoem.play();
-  }
-  
-  if (keyIsDown(79)){
-    narratePoem.pause();
-  }
+  if 
 }
 
 //
@@ -333,16 +327,16 @@ function draw() {
     // ending.draw();
   }
   
-//   if (status === "victory") {
-//     victoryScene.draw();
-//     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+  if (status === "victory") {
+    victoryScene.draw();
+    ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
     
-//   } else if (sb.getScore() > 1270 && status === "alive") {
-//     background(0);
-//     BGM.stop();
-//     victoryBGM.play();
-//     status = "victory";
-//   }
+  } else if (sb.getScore() > 1270 && status === "alive") {
+    background(0);
+    BGM.stop();
+    victoryBGM.play();
+    status = "victory";
+  }
 }
 
 let explosion_bgm = false;
@@ -549,7 +543,7 @@ let camX = 0;
 let camY = 0;
 let tiltZ = 0;
 let tiltX = 0;
-let speedZ = 50;
+let speedZ = 30;
 function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;
@@ -743,7 +737,7 @@ function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
   let stopDistance = shipLoc.z - 360 * speedZ;
-  let randomRange = 200;
+  let randomRange = 2000;
   let distanceBtwPlanets = 0;
   let beginDistance = shipLoc.z - speedZ * 180;
   
@@ -1072,7 +1066,7 @@ class EndScene {
     this.graphics.textAlign(CENTER, CENTER);
     this.graphics.textFont(space_age)
     this.graphics.text(
-      "GAME OVER! \n Click to continue \n Your Score: " + str(s),
+      "GAME OVER! \n Your Score: " + str(s),
       0,
       0,
       this.size,

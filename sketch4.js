@@ -246,16 +246,6 @@ function draw() {
       status = "justdied";
     }
   } else if (status === "justdied") {
-    // explosion_ball = new Explosion(
-    //   ship1.getLocation().x,
-    //   ship1.getLocation().y,
-    //   ship1.getLocation().z,
-    //   4,
-    //   250,
-    //   250,
-    //   0,
-    //   10
-    // );
     re_explosion_ball = new Re_explosion(
       ship1.getLocation().x,
       ship1.getLocation().y,
@@ -533,22 +523,6 @@ class Planet {
 
     sphere(this.radius, 30, 30);
     pop();
-    // noFill();
-    // stroke(255);
-    // strokeWeight(3);
-    // push();
-    // rotateX(1.1 * (PI / 2));
-    // if (this.rings >= 1) {
-    //   circle(0, 0, 5 * this.radius * random(0.95, 1.05));
-    // }
-    // pop();
-    // push();
-    // rotateY(-1.1 * (PI / 2));
-    // if (this.rings >= 2) {
-    //   circle(0, 0, 5 * this.radius * random(0.95, 1.05));
-    // }
-    // pop();
-    // rotateY(millis() / 2500);
   }
 }
 //--------------------------------- END OF PLANET ---------------------------------

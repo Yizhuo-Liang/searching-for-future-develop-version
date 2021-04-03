@@ -41,7 +41,9 @@ let space_age;
 let victoryTime;
 
 function preload() {
-  space_age= loadFont("https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNasa.ttf?v=1617322691693");
+  space_age = loadFont(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNasa.ttf?v=1617322691693"
+  );
   spaceship = loadModel("assets/spaceship2.obj");
   universe = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Funiverse-background-1.jpg?v=1617194401240"
@@ -92,7 +94,9 @@ function preload() {
   narratePoem = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881"
   );
-  victoryBGM = loadSound('https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStar%20Wars%20Main%20Theme%20(Full).mp3?v=1617319295463')
+  victoryBGM = loadSound(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStar%20Wars%20Main%20Theme%20(Full).mp3?v=1617319295463"
+  );
 }
 let planetlist = [
   earth,
@@ -114,7 +118,7 @@ let displayPoem;
 let scenes;
 
 let explosion_timer = 0;
-let particles=[]
+let particles = [];
 let cam1;
 let currentCamera;
 
@@ -131,7 +135,7 @@ function setup() {
   sb = new Scoreboard(200);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   BGM.loop();
-   //(DONT TURN ON FIRST)
+  //(DONT TURN ON FIRST)
   xp = width / 2;
   yp = height / 2;
   displayPoem = new DisplayWords(poem, 300);
@@ -174,12 +178,12 @@ function keyPressed() {
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
     started = true;
   }
-  
-  if (keyIsDown(80)){
+
+  if (keyIsDown(80)) {
     narratePoem.play();
   }
-  
-  if (keyIsDown(79)){
+
+  if (keyIsDown(79)) {
     narratePoem.pause();
   }
 }
@@ -196,7 +200,6 @@ function mouseClicked() {
     status = "justaliveAgain";
   }
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////  -- DRAW IS HERE --  /////////////////////////////////////
@@ -216,7 +219,6 @@ function draw() {
   }
 
   if (status === "alive") {
-    
     background(0);
     moveAround();
     ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
@@ -273,8 +275,8 @@ function draw() {
       ship1.getLocation().y,
       ship1.getLocation().z
     );
-    explosion_timer=0;
-    explosion_bgm = false;      //timer_back
+    explosion_timer = 0;
+    explosion_bgm = false; //timer_back
     status = "aliveagain";
   } else if (status === "aliveagain") {
     if (start_explosion_ball.getSize() < 500) {
@@ -288,61 +290,68 @@ function draw() {
     }
   } else if (status === "died") {
     background(0);
-    if(explosion_bgm===false){
+    if (explosion_bgm === false) {
       explosde_sound.play();
       explosion_bgm = true;
     }
-    
-    if (explosion_timer<250){
+
+    if (explosion_timer < 250) {
       drawPlanets();
       ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
       // ellipsoid(30, 40, 40);
-      explosion_timer+=1;
+      explosion_timer += 1;
       setCamera(cam1);
       angleMode(DEGREES);
-      cam1.setPosition(2000*sin(explosion_timer), 0, 2000*cos(explosion_timer));
+      cam1.setPosition(
+        2000 * sin(explosion_timer),
+        0,
+        2000 * cos(explosion_timer)
+      );
       cam1.lookAt(camX, camY, camZ - 450);
-      if (random(1)>0.96){
+      if (random(1) > 0.96) {
         var pos = createVector(camX, camY, camZ - 450);
-        for (var i =0; i<100;i++ ){
-          var p = new Particle(pos)
-          particles.push(p)
+        for (var i = 0; i < 100; i++) {
+          var p = new Particle(pos);
+          particles.push(p);
         }
       }
 
-
-
-      for(var i = particles.length -1; i>=0;i--){
-        if(dist(particles[i].pos.x,particles[i].pos.y,particles[i].pos.z,0,0,0)<1000){
+      for (var i = particles.length - 1; i >= 0; i--) {
+        if (
+          dist(
+            particles[i].pos.x,
+            particles[i].pos.y,
+            particles[i].pos.z,
+            0,
+            0,
+            0
+          ) < 1000
+        ) {
           particles[i].update();
           particles[i].show();
-        } else{
-          particles.splice(i,1)
+        } else {
+          particles.splice(i, 1);
         }
       }
-      
-
-    }
-    else{
+    } else {
       camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
       re_explosion_ball.draw();
       ending.draw();
-      
     }
     // re_explosion_ball.draw();
     // ending.draw();
   }
-  
-//   if (status === "victory") {
-//     victoryScene.draw();
-//     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
-    
-//   } else if (sb.getScore() > 1270 && status === "alive") {
-//     background(0);
-//     BGM.stop();
-//     victoryBGM.play();
-//     status = "victory";
-//   }
+
+  //   if (status === "victory") {
+  //     victoryScene.draw();
+  //     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+
+  //   } else if (sb.getScore() > 1270 && status === "alive") {
+  //     background(0);
+  //     BGM.stop();
+  //     victoryBGM.play();
+  //     status = "victory";
+  //   }
 }
 
 let explosion_bgm = false;
@@ -487,7 +496,7 @@ class Planet {
   getZ() {
     return this.z;
   }
-  
+
   rotatePlanet() {
     this.angle += this.rotateSpeed;
     rotateY(this.angle);
@@ -519,7 +528,7 @@ class Planet {
       texture(planet9);
     } else if (this.t === 10) {
       texture(planet10);
-    } 
+    }
     this.rotatePlanet();
 
     sphere(this.radius, 30, 30);
@@ -620,7 +629,7 @@ function moveAround() {
   } else if (tiltX < 0) {
     tiltX = max(tiltX, -16);
   }
-  
+
   //   phone version
 
   //     xp = map(rotationY, -180, 180, -maxSpeed, maxSpeed);
@@ -690,7 +699,9 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
 
 function testCollision(planets, myShip) {
   for (let i = 0; i < planets.length; i++) {
-    if (isCollide(myShip.position, planets[i], myShip.radius, planets[i].radius)) {
+    if (
+      isCollide(myShip.position, planets[i], myShip.radius, planets[i].radius)
+    ) {
       return true;
     }
   }
@@ -732,7 +743,7 @@ class Spaceship {
 
 //--------------------------------- START OF PLANETSFUNCTIONS ---------------------------------
 function arePlanetsOverlapped(planet) {
-  if (testCollision(planets, planet)){
+  if (testCollision(planets, planet)) {
     return true;
   } else {
     return false;
@@ -746,23 +757,25 @@ function generatePlanet(ship) {
   let randomRange = 2000;
   let distanceBtwPlanets = 0;
   let beginDistance = shipLoc.z - speedZ * 180;
-  
-  for (beginDistance; beginDistance >= stopDistance; beginDistance -= 4000 ) {
+
+  for (beginDistance; beginDistance >= stopDistance; beginDistance -= 4000) {
     lowerBound = beginDistance;
     pZ = int(random(lowerBound, lowerBound + 1000));
     pX = random(shipLoc.x - 200, shipLoc.x + 200);
     pY = random(shipLoc.x - 200, shipLoc.x + 200);
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    if (!arePlanetsOverlapped(planetNew)){
+    if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
     }
 
-    pX = int(random(shipLoc.x - 1.2 * randomRange, shipLoc.x - 3 * randomRange));
+    pX = int(
+      random(shipLoc.x - 1.2 * randomRange, shipLoc.x - 3 * randomRange)
+    );
     pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    if (!arePlanetsOverlapped(planetNew)){
+    if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
     }
 
@@ -770,70 +783,69 @@ function generatePlanet(ship) {
     pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    if (!arePlanetsOverlapped(planetNew)){
+    if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
     }
-    
-    
-    pX = int(random(shipLoc.x - 1.2 * randomRange, shipLoc.x - 3 * randomRange));
+
+    pX = int(
+      random(shipLoc.x - 1.2 * randomRange, shipLoc.x - 3 * randomRange)
+    );
     pY = int(random(shipLoc.y + randomRange, shipLoc.y + 2 * randomRange));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    if (!arePlanetsOverlapped(planetNew)){
+    if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
     }
-    
-    
-    pX = int(random(shipLoc.x + 1.2 * randomRange, shipLoc.x + 3.8 * randomRange));
+
+    pX = int(
+      random(shipLoc.x + 1.2 * randomRange, shipLoc.x + 3.8 * randomRange)
+    );
     pY = int(random(shipLoc.y + randomRange, shipLoc.y + 2 * randomRange));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    if (!arePlanetsOverlapped(planetNew)){
+    if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
     }
-    
-    
+
     pX = int(random(shipLoc.x - 1500, shipLoc.x - 3000));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    if (!arePlanetsOverlapped(planetNew)){
+    if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
     }
-    
-    
+
     pX = int(random(shipLoc.x + 1500, shipLoc.x + 3000));
     pY = int(random(shipLoc.y - 50, shipLoc.y + 50));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    if (!arePlanetsOverlapped(planetNew)){
+    if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
     }
-    
+
     pX = int(random(shipLoc.x - 5000, shipLoc.x - 10000));
     pY = int(random(shipLoc.y - 200, shipLoc.y + 200));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    if (!arePlanetsOverlapped(planetNew)){
+    if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
     }
-    
+
     pX = int(random(shipLoc.x + 5000, shipLoc.x + 10000));
     pY = int(random(shipLoc.y - 200, shipLoc.y + 200));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    if (!arePlanetsOverlapped(planetNew)){
+    if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
     }
-    
+
     pX = int(random(shipLoc.x - 300, shipLoc.x + 300));
     pY = int(random(shipLoc.y - 1000, shipLoc.y - 5000));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
-    if (!arePlanetsOverlapped(planetNew)){
+    if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
     }
-    
   }
 }
 
@@ -875,7 +887,7 @@ class Scoreboard {
     this.graphics.background(0, 0);
     this.graphics.fill(255);
     this.graphics.textSize(20);
-    this.graphics.textFont(space_age)
+    this.graphics.textFont(space_age);
     this.graphics.text(distance + "kM", 10, 80, 700, 700);
 
     texture(this.graphics);
@@ -1070,7 +1082,7 @@ class EndScene {
     this.graphics.fill(255);
     this.graphics.background(0, 0);
     this.graphics.textAlign(CENTER, CENTER);
-    this.graphics.textFont(space_age)
+    this.graphics.textFont(space_age);
     this.graphics.text(
       "GAME OVER! \n Click to continue \n Your Score: " + str(s),
       0,
@@ -1124,7 +1136,12 @@ function getAcceleration(myShip) {
   }
   for (let i = 0; i < planets.length; i++) {
     if (
-      isCloseForGravity(myShip.position, planets[i], myShip.radius, planets[i].radius)
+      isCloseForGravity(
+        myShip.position,
+        planets[i],
+        myShip.radius,
+        planets[i].radius
+      )
     ) {
       let distance = dist(
         myShip.position.x,
@@ -1217,7 +1234,7 @@ function distFromLocations(location1, location2) {
 }
 
 function getWarningLevel(myShip, planets) {
-  if (testIsClose(myShip, planets) === true && frameCount % 30 > 15 ) {
+  if (testIsClose(myShip, planets) === true && frameCount % 30 > 15) {
     console.log("ShipIsClose");
     let war = new Warning(camX + 40, camY - 140, -600);
     war.draw();
@@ -1282,54 +1299,55 @@ function testIsClose(myShip, planets) {
 // let winningRays = []
 // class WinningRay {
 //   constructor(length, radius, H, S, B){
-    
-//   } 
+
+//   }
 // }
 
 //--------------------------------- END OF WARNING ---------------------------------
-class Particle{
-	constructor(pos,c){
-		this.pos = createVector(pos.x,pos.y,pos.z);
-		this.vel = p5.Vector.random3D().normalize().mult(random(4,6))
-		
-		this.c = c;
-		
-	}
-	update(){
-		this.pos.add(this.vel)
-	}
-	show(){
-		push();
-		stroke(100);
-		fill(255,255,255,180)
-		translate(this.pos.x,this.pos.y,this.pos.z);
-		
-		// rotateX(millis() / 10);
-		// rotateY(millis() / 10);
-		// rotateY(millis() / 10);
-  	box(20,20,20);
+class Particle {
+  constructor(pos, c) {
+    this.pos = createVector(pos.x, pos.y, pos.z);
+    this.vel = p5.Vector.random3D()
+      .normalize()
+      .mult(random(4, 6));
 
-		pop();
-	}
+    this.c = c;
+  }
+  update() {
+    this.pos.add(this.vel);
+  }
+  show() {
+    push();
+    stroke(100);
+    fill(255, 255, 255, 180);
+    translate(this.pos.x, this.pos.y, this.pos.z);
+
+    // rotateX(millis() / 10);
+    // rotateY(millis() / 10);
+    // rotateY(millis() / 10);
+    box(20, 20, 20);
+
+    pop();
+  }
 }
 
-let winningRays = []
+let winningRays = [];
 
 class WinningRay {
-  constructor(x, y, z, angle, radius){
+  constructor(x, y, z, angle, radius) {
     this.x = x;
     this.y = y;
     this.z = z;
-		this.angle = angle;
+    this.angle = angle;
     this.radius = radius;
-		this.hue = int(random(140, 280));
-		this.saturation = int(random(28,70));
-		this.speed = 1;
+    this.hue = int(random(140, 280));
+    this.saturation = int(random(28, 70));
+    this.speed = 1;
   }
-  
+
   draw() {
     push();
-		this.z += this.speed;
+    this.z += this.speed;
     translate(this.x, this.y, this.z);
     noStroke();
     colorMode(HSB);
@@ -1340,37 +1358,37 @@ class WinningRay {
 }
 
 class WinningScene {
-  constructor (x, y, z, radius){
+  constructor(x, y, z, radius) {
     this.x = x;
     this.y = y;
     this.z = z;
     this.radius = radius;
-		this.generateRay();
+    this.generateRay();
   }
-  
+
   generateRay() {
-		for (let i = 0; i <= 20; i ++) {
-			let increment = int(random(10, 20));
-			for (let i = int(random(0,20)); i <= 360; i += increment){
-				if (random(1) > 0.4) {
-					let newRay = new WinningRay(0, -this.radius, camZ - 100, i, 1); 
-					winningRays.push(newRay);
-				}
-    	}
-			this.radius += 40;
-		}
+    for (let i = 0; i <= 20; i++) {
+      let increment = int(random(10, 20));
+      for (let i = int(random(0, 20)); i <= 360; i += increment) {
+        if (random(1) > 0.4) {
+          let newRay = new WinningRay(0, -this.radius, camZ - 100, i, 1);
+          winningRays.push(newRay);
+        }
+      }
+      this.radius += 40;
+    }
   }
-  
+
   draw() {
-    if (winningRays != []){
+    if (winningRays != []) {
       winningRays.filter(rayIsNotBehind);
     }
     for (let i = 0; i < winningRays.length; i++) {
       // winningRays[i].z += 3;
-			push();
-			rotateZ(winningRays[i].angle);
+      push();
+      rotateZ(winningRays[i].angle);
       winningRays[i].draw();
-			pop();
+      pop();
     }
   }
 }
@@ -1383,8 +1401,6 @@ function rayIsNotBehind(ray) {
     return true;
   }
 }
-
-
 
 //--------------------------------- START OF WINSCENE ---------------------------------
 

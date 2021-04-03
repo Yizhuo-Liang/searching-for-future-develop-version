@@ -2,5 +2,26 @@ Deliverables:
 1) Clashing mechanism
 2) 
 
+23/3:
+[Coulson]: Added Planet class
+[Shangyu]: Added basic explosion screen
+
 24/3:
-[Lucas]: Added movable camera
+[Lucas]: Added movable camera features
+[Lucas]: Added spaceship + textures of planets
+[Coulson]: Added functions which detects collision
+
+
+
+27/3:
+[Lucas]: Intgerated all codes & optimization of code process
+
+28/3:
+[Shangyu]: Added explosion sound
+[Lucas]: Aware of RAM usage of code still remains excessive, transformed co-ordinate system
+
+29/31:
+[Lucas]: Added story line of experience, added poem
+
+30/1:
+[Coulson]: Added startscreen

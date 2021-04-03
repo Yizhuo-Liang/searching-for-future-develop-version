@@ -1,27 +1,36 @@
-Deliverables:
-1) Clashing mechanism
-2) 
+WORKING LOG:
 
 23/3:
 [Coulson]: Added Planet class
 [Shangyu]: Added basic explosion screen
 
 24/3:
-[Lucas]: Added movable camera features
+[Lucas]: Added movement control system
 [Lucas]: Added spaceship + textures of planets
 [Coulson]: Added functions which detects collision
 
-
-
 27/3:
 [Lucas]: Intgerated all codes & optimization of code process
+[Lucas]: Added planets generating function
 
 28/3:
 [Shangyu]: Added explosion sound
-[Lucas]: Aware of RAM usage of code still remains excessive, transformed co-ordinate system
+[Lucas]: Aware of RAM usage of code still remains excessive, transformed co-ordinate system to make the spaceship the centre of the canva
 
 29/31:
 [Lucas]: Added story line of experience, added poem
+[Lucas]: Modified planet generating process to include filtering mechanism
+[Lucas & Shangyu]: Added Interstellar BGM
+[Lucas]: Added proximity warning system
 
 30/1:
 [Coulson]: Added startscreen
+
+1/4:
+[Lucas]: Added endcreen "Star Wars" tribute
+[Lucas]: Added narration of poem
+[Lucas]: Added more textures to planets
+[Lucas]: Added planets rotating mechanism
+[Shangyu]: Added font for text
+[Shangyu]: Modified the explosion mechanism by utilizing the particle system
+[Coulson]: Modified proximity wearning system

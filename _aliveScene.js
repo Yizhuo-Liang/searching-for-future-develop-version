@@ -39,8 +39,9 @@ function aliveScene() {
 
 //--------------------------------- BEGINNING OF PLANET ---------------------------------
 let planetCount = 0;
-class Planet{
-  constructor(x, y, z, radius, rings) {
+class Planet extends Position {
+  constructor (x, y, z, radius, rings) {
+    super(x, y, z);
     this.planetNumber = planetCount++;
     this.radius = radius;
     this.rings = rings;
@@ -48,7 +49,6 @@ class Planet{
     this.mass = int(random(500, 1000));
     this.angle = 0;
     this.rotateSpeed = int(random(7));
-    this.position = new Position(x, y, z);
   }
 
   move(xDist, yDist, zDist) {
@@ -70,10 +70,6 @@ class Planet{
     rotateY(this.angle);
   }
   
-  getLocation(){
-    return this.position
-  }
-
   draw() {
     push();
     translate(this.x, this.y, this.z);

@@ -138,11 +138,9 @@ class Explosion extends Position {
 //--------------------------------- END OF EXPLOSION ---------------------------------
 
 //--------------------------------- START OF RE_EXPLOSION ---------------------------------
-class Re_explosion {
+class Re_explosion extends Position{
   constructor(x, y, z, size) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
+    super(x, y, z);
     this.size = size;
     // this.explosion_status=false;
   }
@@ -176,11 +174,9 @@ class Re_explosion {
 //--------------------------------- END OF RE_EXPLOSION ---------------------------------
 
 //--------------------------------- START OF start_explosion ---------------------------------
-class start_explosion {
+class start_explosion extends Position{
   constructor(x, y, z) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
+    super(x, y, z);
     this.transparent = 255;
     this.strokeWeight = 6;
     this.size = 20;
@@ -203,7 +199,6 @@ class start_explosion {
   draw() {
     background(0);
     this.growBall();
-
     // if(this.explosion_status == false){
     //   explosde_sound.play();
     //   this.explosion_status=true;

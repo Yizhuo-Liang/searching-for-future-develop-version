@@ -17,6 +17,8 @@ let earth,
   planet9,
   planet10;
 let BGM;
+let ship1;
+let status = "alive";
 
 // Setting up variables for diedScene
 let explosion_sound;
@@ -143,9 +145,7 @@ function setup() {
   );
 }
 
-let ship1;
-let planets = [];
-let status = "alive";
+
 
 function mouseClicked() {
   if (status === "died") {

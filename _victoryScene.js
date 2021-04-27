@@ -4,11 +4,9 @@ function victoryScene() {
 
 let winningRays = [];
 
-class WinningRay {
+class WinningRay extends Position{
   constructor(x, y, z, angle, radius) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
+    super(x, y, z);
     this.angle = angle;
     this.radius = radius;
     this.hue = int(random(140, 280));

@@ -1,7 +1,6 @@
 //Place function & variables declared here:
 //
 
-let ship1;
 let planetlist = [
   earth,
   planet1,
@@ -15,6 +14,7 @@ let planetlist = [
   planet9,
   planet10
 ];
+let planets = [];
 
 function aliveScene() {
   background(0);

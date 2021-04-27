@@ -1,9 +1,7 @@
 //--------------------------------- START OF ENDSCENE ---------------------------------
-class EndScene {
+class EndScene extends Position{
   constructor(x, y, z, s = 0) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
+    super(x, y, z);
     this.size = min(_W, _H) / 4;
     this.graphics = createGraphics(this.size, this.size);
     this.graphics.textSize(this.size / 10);

@@ -4,6 +4,7 @@ let camY = 0;
 let tiltZ = 0;
 let tiltX = 0;
 let speedZ = 60;
+
 function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;

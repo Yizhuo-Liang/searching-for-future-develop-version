@@ -17,11 +17,8 @@ class Scoreboard {
     this.graphics.textSize(20);
     this.graphics.textFont(space_age);
     this.graphics.text(distance + "kM", 10, 80, 700, 700);
-
     texture(this.graphics);
-
     translate(x, y, z);
-
     if (distance % 10 == 1) {
       this.expand_value = this.size / 2;
     }

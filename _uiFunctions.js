@@ -1,203 +1,74 @@
-class startPage {
-  constructor() {
-    this.started = false;
-    this.scale = min(width / 1200, height / 600);
-    this.graphics = createGraphics(100, 100);
-    this.img = startPng;
+// START OF POEM
+
+let poem = [
+  "Life is strange is it not?",
+  "You wake up everyday not knowing what’s in store.",
+  "You go to sleep only to journey yet again.",
+  "Our universe is so vast and yet it is so detailed.",
+  "Everything has a story, including you.",
+  "You may not be the first person to exist.",
+  "You definitely won’t be the last.",
+  "But you are the only you that exists.",
+  "You’re unique from everyone else in your own special way.",
+  "Life is a journey.",
+  "You will hit many bumps along the way.",
+  "But you’ll keep moving on.",
+  "As cheesy as it sounds its not the destination that matters, it’s the journey.",
+  "That’s what makes life so wonderful.",
+  "The good and the bad moments we go through.",
+  "The people we meet.",
+  "The places we go.",
+  "And the goals we accomplish.",
+  "It shows how incredible we can be and what we can do if we keep pushing on.",
+  "If we keep on living.",
+  "If you keep being you.",
+  "So life may be strange but it’s also very beautiful and you are a part of it.",
+  "So live your life the way you want to.",
+  "Do what you wanna do.",
+  "Be who you wanna be.",
+  "Just be you and never stop being you.",
+  "So don’t cry.",
+  "Keep pushing on.",
+  "And smile for all of the universe to see!",
+  "So I wish you the best on your journey through this strange thing we call:",
+  "Life."
+];
+
+class DisplayWords {
+  constructor(wordList, size) {
+    this.wordList = wordList;
+    this.index = 0;
+    this.size = size;
+    this.graphics = createGraphics(this.size * 3, this.size);
   }
 
-  changeState(newState) {
-    this.started = newState;
-  }
-
-  draw() {
-    //     push();
-    //     this.graphics.background(0);
-    //     this.graphics.fill(255);
-    //     this.graphics.textSize(40);
-
-    //     this.graphics.textAlign(CENTER, CENTER);
-    //     this.graphics.text("MAY THE FORCE", width/2, height/2);
-    //     texture(this.graphics);
-    //     noStroke();
-    //     plane(width, height);
-    //     pop();
+  draw(x, y, z) {
     push();
-    this.graphics.background(0);
+    this.graphics.clear();
+    this.graphics.background(0, 0);
+    this.graphics.fill(255);
+    this.graphics.textFont(space_age);
+    this.graphics.textSize(this.size / 8);
+    if (frameCount % 122 == 0) {
+      this.index += 1;
+    }
+    this.graphics.textAlign(CENTER, CENTER);
+    this.graphics.text(
+      this.wordList[this.index],
+      0,
+      0,
+      this.size * 3,
+      this.size
+    );
     texture(this.graphics);
+    translate(x, y, z);
     noStroke();
-    plane(width, height);
-    scale(this.scale);
-    image(this.img, camX - 250 * this.scale, camY - 200 * this.scale);
+    plane(this.size, this.size / 3);
     pop();
   }
 }
 
-
-
-// Planet class introduction:
-// 1. constructor has 5 arguments
-// 2. x, y, z denotes the position of the plannet with radius
-// 3. number of rings can be either 0, 1, or 2
-// 4. move() function has 3 arguments which are increment amount of x, y, z
-// 5. draw() can be used to draw the plannet directly on its position
-
-
-
-
-
-
-
-//--------------------------------- START OF COLLISION DETECTING ---------------------------------
-
-
-
-//--------------------------------- END OF COLLISION DETECTING ---------------------------------
-
-
-
-
-
-
-
-//--------------------------------- START OF WARNING ---------------------------------
-
-class Vector3D {
-  constructor(x, y, z) {
-    this.x;
-    this.y;
-    this.z;
-  }
-}
-
-function getAcceleration(myShip) {
-  // let closePlanet = findClosestPlanet(myShip);
-  // if(closePlanet === null) return new Vector3D(0, 0, 0);
-  // if(closePlanet.length === 0) return new Vector3D(0, 0, 0);
-  // let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-  // // console.info("ClosePlanet Loc: " + closePlanet.x + " ** " + closePlanet.y + " ** " + closePlanet.z);
-  // let unitVector = new Vector3D((closePlanet.x - myShip.getLocation.x)/distance, (closePlanet.y - myShip.getLocation.y)/distance, (closePlanet.z - myShip.getLocation.z)/distance);
-  // let strength = 1/(pow(distance, 1.5))
-  // if(strength > 20) strength = 20;
-  // let acceleration = new Vector3D(strength * unitVector.x, strength * unitVector.y, strength * unitVector.z);
-  // return acceleration;
-
-  return new Vector3D(5, 5, 5);
-
-  let acc = new Vector3D(0, 0, 0);
-  if (planets === []) {
-    return acc;
-  }
-  for (let i = 0; i < planets.length; i++) {
-    if (
-      isCloseForGravity(
-        myShip.position,
-        planets[i],
-        myShip.radius,
-        planets[i].radius
-      )
-    ) {
-      let distance = dist(
-        myShip.position.x,
-        myShip.position.y,
-        myShip.position.z,
-        planets[i].x,
-        planets[i].y,
-        planets[i].z
-      );
-      let unitVector = new Vector3D(
-        (planets[i].x - myShip.getLocation.x) / distance,
-        (planets[i].y - myShip.getLocation.y) / distance,
-        (planets[i].z - myShip.getLocation.z) / distance
-      );
-      let strength = 1 / pow(distance, 1.5);
-      if (strength > 20) strength = 20;
-      if (unitVector.x != null && strength != null)
-        acc.x += unitVector.x * strength;
-      if (unitVector.y != null && strength != null)
-        acc.x += unitVector.y * strength;
-      if (unitVector.z != null && strength != null)
-        acc.x += unitVector.z * strength;
-    }
-  }
-  return acc;
-}
-
-function testCloseGravity(myShip, planets) {
-  console.log("testing");
-  if (planets === []) {
-    return false;
-  }
-  for (let i = 0; i < planets.length; i++) {
-    if (
-      isCloseForGravity(myShip.position, planets[i], 155, planets[i].radius)
-    ) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function findClosestPlanet(myShip) {
-  if (planets === null) return null;
-  if (planets.length === 0) return null;
-  let closePlanet = planets[1];
-  let distance = distFromLocations(myShip.getLocation(), closePlanet.position);
-  for (let i = 2; i < planets.length; i++) {
-    if (frameCount % 50 == 0)
-      console.info(
-        "compare: i: " +
-          i +
-          " -" +
-          distance +
-          " ----- " +
-          distFromLocations(myShip.getLocation(), planets[i].position)
-      );
-    if (
-      distFromLocations(myShip.getLocation(), planets[i].position) < distance
-    ) {
-      distance = distFromLocations(myShip.getLocation(), planets[i].position);
-      closePlanet = planets[i];
-    }
-  }
-  console.info("PlanetNum: " + closePlanet.planetNumber);
-  return closePlanet;
-}
-
-function isCloseForGravity(objPosition, trgtPosition, objRadius, trgtRadius) {
-  let distance = dist(
-    objPosition.x,
-    objPosition.y,
-    objPosition.z,
-    trgtPosition.x,
-    trgtPosition.y,
-    trgtPosition.z
-  );
-  return distance - 800 < objRadius + trgtRadius;
-}
-
-function distFromLocations(location1, location2) {
-  return dist(
-    location1.x,
-    location1.y,
-    location1.z,
-    location2.x,
-    location2.y,
-    location2.z
-  );
-}
-
-
-
-
-
-
-
-
-
-
-
-//--------------------------------- START OF WARNING ---------------------------------
+// END OF POEM
 function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {
   let distance = dist(
     objPosition.x,
@@ -224,8 +95,35 @@ function testIsClose(myShip, planets) {
   return false;
 }
 
-//--------------------------------- END OF WARNING ---------------------------------
+function getWarningLevel(myShip, planets) {
+  if (testIsClose(myShip, planets) === true && frameCount % 30 > 15) {
+    console.log("ShipIsClose");
+    let war = new Warning(camX + 40, camY - 140, -600);
+    war.draw();
+    return;
+  } else {
+    return;
+  }
+}
 
+class Warning {
+  constructor(x, y, z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+
+  draw() {
+    push();
+    translate(this.x, this.y, this.z);
+    noStroke();
+    fill(255, 0, 0);
+    sphere(30, 20, 20);
+    translate(0, -120, 0);
+    box(35, 90, 100);
+    pop();
+  }
+}
 
 
 

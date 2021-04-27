@@ -1,76 +1,12 @@
-function diedScene() {
-  background(0);
-  if (explosion_bgm === false) {
-    explosion_sound.play();
-    explosion_bgm = true;
-  }
-  if (explosion_timer < 250) {
-    drawPlanets();
-    ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
-    explosion_timer += 1;
-    setCamera(cam1);
-    angleMode(DEGREES);
-    cam1.setPosition(
-      2000 * sin(explosion_timer),
-      0,
-      2000 * cos(explosion_timer)
-    );
-    cam1.lookAt(camX, camY, camZ - 450);
-    if (random(1) > 0.96) {
-      var pos = createVector(camX, camY, camZ - 450);
-      for (var i = 0; i < 100; i++) {
-        var p = new Particle(pos);
-        particles.push(p);
-      }
-    }
-    for (var i = particles.length - 1; i >= 0; i--) {
-      if (
-        dist(
-          particles[i].pos.x,
-          particles[i].pos.y,
-          particles[i].pos.z,
-          0,
-          0,
-          0
-        ) < 1000
-      ) {
-        particles[i].update();
-        particles[i].show();
-      } else {
-        particles.splice(i, 1);
-      }
-    }
-  } else {
-    camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
-    re_explosion_ball.draw();
+function reviveAnimation() {
+  if (start_explosion_ball.getSize() < 500) {
+    start_explosion_ball.draw();
     ending.draw();
-  }
-}
-
-class Particle {
-  constructor(pos, c) {
-    this.pos = createVector(pos.x, pos.y, pos.z);
-    this.vel = p5.Vector.random3D()
-      .normalize()
-      .mult(random(4, 6));
-
-    this.c = c;
-  }
-  update() {
-    this.pos.add(this.vel);
-  }
-  show() {
-    push();
-    stroke(100);
-    fill(255, 255, 255, 180);
-    translate(this.pos.x, this.pos.y, this.pos.z);
-
-    // rotateX(millis() / 10);
-    // rotateY(millis() / 10);
-    // rotateY(millis() / 10);
-    box(20, 20, 20);
-
-    pop();
+  } else if (start_explosion_ball.getSize() < 2000) {
+    clear();
+    start_explosion_ball.draw();
+  } else {
+    status = "alive";
   }
 }
 

@@ -1,77 +1,105 @@
-function diedScene() {
-  background(0);
-  if (explosion_bgm === false) {
-    explosion_sound.play();
-    explosion_bgm = true;
-  }
-  if (explosion_timer < 250) {
-    drawPlanets();
-    ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
-    explosion_timer += 1;
-    setCamera(cam1);
-    angleMode(DEGREES);
-    cam1.setPosition(
-      2000 * sin(explosion_timer),
-      0,
-      2000 * cos(explosion_timer)
-    );
-    cam1.lookAt(camX, camY, camZ - 450);
-    if (random(1) > 0.96) {
-      var pos = createVector(camX, camY, camZ - 450);
-      for (var i = 0; i < 100; i++) {
-        var p = new Particle(pos);
-        particles.push(p);
-      }
+//--------------------------------- START OF MOVEAROUND ---------------------------------
+let camX = 0;
+let camY = 0;
+let tiltZ = 0;
+let tiltX = 0;
+let speedZ = 60;
+function moveAround() {
+  let triggerZ = 0;
+  let triggerX = 0;
+  if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+    for (let i = 0; i < planets.length; i++) {
+      planets[i].x += 5 + speedZ;
     }
-    for (var i = particles.length - 1; i >= 0; i--) {
-      if (
-        dist(
-          particles[i].pos.x,
-          particles[i].pos.y,
-          particles[i].pos.z,
-          0,
-          0,
-          0
-        ) < 1000
-      ) {
-        particles[i].update();
-        particles[i].show();
-      } else {
-        particles.splice(i, 1);
-      }
+    tiltZ -= 4;
+    triggerZ = 10;
+  }
+
+  if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+    for (let i = 0; i < planets.length; i++) {
+      planets[i].x -= 5 + speedZ;
     }
-  } else {
-    camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
-    re_explosion_ball.draw();
-    ending.draw();
+    tiltZ += 4;
+    triggerZ = 10;
   }
+
+  if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
+    for (let i = 0; i < planets.length; i++) {
+      planets[i].y += 5 + speedZ;
+    }
+    tiltX += 5;
+    triggerX = 10;
+  }
+
+  if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
+    for (let i = 0; i < planets.length; i++) {
+      planets[i].y -= 5 + speedZ;
+    }
+    tiltX -= 5;
+    triggerX = 10;
+  }
+
+  for (let i = 0; i < planets.length; i++) {
+    planets[i].z += speedZ;
+  }
+
+  if (sb.getScore() % 100 == 0) {
+    speedZ += 7;
+  }
+
+  if (triggerZ === 0) {
+    if (tiltZ > 0) {
+      tiltZ -= 2;
+    } else if (tiltZ < 0) {
+      tiltZ += 2;
+    }
+  }
+
+  if (triggerX === 0) {
+    if (tiltX > 0) {
+      tiltX -= 2;
+    } else if (tiltX < 0) {
+      tiltX += 2;
+    }
+  }
+
+  if (tiltZ > 0) {
+    tiltZ = min(tiltZ, 16);
+  } else if (tiltZ < 0) {
+    tiltZ = max(tiltZ, -16);
+  }
+
+  if (tiltX > 0) {
+    tiltX = min(tiltX, 16);
+  } else if (tiltX < 0) {
+    tiltX = max(tiltX, -16);
+  }
+
+  //   phone version
+
+  //     xp = map(rotationY, -180, 180, -maxSpeed, maxSpeed);
+  //     yp = map(rotationX, -180, 180, -maxSpeed, maxSpeed);
+
+  //     camX += xp*5;
+  //     camY += yp*5;
+
+  //phone version
+
+  //   if (keyIsDown(107) || keyIsDown(187)) {
+  //     camZ -= 5;
+  //     tiltX += 5;
+  //     triggerX = 1;
+  //   }
+
+  //   if (keyIsDown(109) || keyIsDown(189)) {
+  //     camZ += 5;
+  //     tiltX -= 5;
+  //     triggerX = 1;
+  //   }
+
+  // adding the resultant displacement due to gravity  <<<<<<<< ----------------------------- Gravity's Effect <<<<<<<
+  camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
 }
-
-class Particle {
-  constructor(pos, c) {
-    this.pos = createVector(pos.x, pos.y, pos.z);
-    this.vel = p5.Vector.random3D()
-      .normalize()
-      .mult(random(4, 6));
-
-    this.c = c;
-  }
-  update() {
-    this.pos.add(this.vel);
-  }
-  show() {
-    push();
-    stroke(100);
-    fill(255, 255, 255, 180);
-    translate(this.pos.x, this.pos.y, this.pos.z);
-
-    // rotateX(millis() / 10);
-    // rotateY(millis() / 10);
-    // rotateY(millis() / 10);
-    box(20, 20, 20);
-
-    pop();
-  }
-}
+//--------------------------------- END OF MOVEAROUND ---------------------------------
 
 /* global p5 sphere int detail random objPositon alpha blue brightness color green hue lerpColor lightness red saturation background clear colorMode fill noFill noStroke stroke erase noErase 2D Primitives arc ellipse circle line point quad rect square triangle ellipseMode noSmooth rectMode smooth strokeCap strokeJoin strokeWeight bezier bezierDetail bezierPoint bezierTangent curve curveDetail curveTightness curvePoint curveTangent beginContour beginShape bezierVertex curveVertex endContour endShape quadraticVertex vertex plane box sphere cylinder cone ellipsoid torus loadModel model HALF_PI PI QUARTER_PI TAU TWO_PI DEGREES RADIANS print frameCount deltaTime focused cursor frameRate noCursor displayWidth displayHeight windowWidth windowHeight windowResized width height fullscreen pixelDensity displayDensity getURL getURLPath getURLParams remove disableFriendlyErrors noLoop loop isLooping push pop redraw select selectAll removeElements changed input createDiv createP createSpan createImg createA createSlider createButton createCheckbox createSelect createRadio createColorPicker createInput createFileInput createVideo createAudio VIDEO AUDIO createCapture createElement createCanvas resizeCanvas noCanvas createGraphics blendMode drawingContext setAttributes boolean string number applyMatrix resetMatrix rotate rotateX rotateY rotateZ scale shearX shearY translate storeItem getItem clearStorage removeItem createStringDict createNumberDict append arrayCopy concat reverse shorten shuffle sort splice subset float int str boolean byte char unchar hex unhex join match matchAll nf nfc nfp nfs split splitTokens trim deviceOrientation accelerationX accelerationY accelerationZ pAccelerationX pAccelerationY pAccelerationZ rotationX rotationY rotationZ pRotationX pRotationY pRotationZ turnAxis setMoveThreshold setShakeThreshold deviceMoved deviceTurned deviceShaken keyIsPressed key keyCode keyPressed keyReleased keyTyped keyIsDown movedX movedY mouseIsPressed mouseX mouseY pmouseX pmouseY winMouseX winMouseY pwinMouseX pwinMouseY mouseButton mouseWheel requestPointerLock exitPointerLock touches createImage saveCanvas saveFrames image tint noTint imageMode pixels blend copy filter get loadPixels set updatePixels loadImage loadJSON loadStrings loadTable loadXML loadBytes httpGet httpPost httpDo Output createWriter save saveJSON saveStrings saveTable day hour minute millis month second year abs ceil constrain dist exp floor lerp log mag map max min norm pow round sq sqrt fract createVector noise noiseDetail noiseSeed randomSeed random randomGaussian acos asin atan atan2 cos sin tan degrees radians angleMode textAlign textLeading textSize textStyle textWidth textAscent textDescent loadFont text textFont orbitControl debugMode noDebugMode ambientLight specularColor directionalLight pointLight lights lightFalloff spotLight noLights loadShader createShader shader resetShader normalMaterial texture textureMode textureWrap ambientMaterial emissiveMaterial specularMaterial shininess camera perspective ortho frustum createCamera setCamera CENTER CORNER CORNERS POINTS WEBGL RGB ARGB HSB LINES CLOSE BACKSPACE DELETE ENTER RETURN TAB ESCAPE SHIFT CONTROL OPTION ALT UP_ARROW DOWN_ARROW LEFT_ARROW RIGHT_ARROW sampleRate freqToMidi midiToFreq soundFormats getAudioContext userStartAudio loadSound createConvolver setBPM saveSound getMasterVolume masterVolume soundOut chain drywet biquadFilter process freq res gain toggle setType freq setType pan phase triggerAttack triggerRelease setADSR attack decay sustain release dispose notes polyvalue AudioVoice noteADSR setADSR noteAttack noteRelease dispose isLoaded playMode set isLooping isPlaying isPaused setVolume pan getPan rate duration currentTime jump channels sampleRate frames getPeaks reverseBuffer onended setPath setBuffer processPeaks addCue removeCue clearCues save getBlob getLevel toggleNormalize waveform analyze getEnergy getCentroid linAverages logAverages getOctaveBands fade attackTime attackLevel decayTime decayLevel releaseTime releaseLevel setADSR setRange setExp triggerAttack triggerRelease r width setType input output stream mediaStream currentSource enabled amplitude getSources setSource bands process panner process positionX positionY positionZ orient orientX orientY orientZ setFalloff maxDist rollof leftDelay rightDelay process delayTime feedback filter setType process convolverNode process impulses addImpulse resetImpulse toggleImpulse sequence setBPM getBPM addPhrase removePhrase getPhrase replaceSequence onStep setBPM musicalTimeMode maxIterations synced bpm timeSignature interval iterations compressor process attack knee ratio threshold release reduction record isDetected update onPeak WaveShaperNode process getAmount getOversample amp setInput connect disconnect play pause stop set smooth start add mult loop */

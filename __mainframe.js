@@ -120,7 +120,6 @@ let displayPoem;
 let explosion_timer = 0;
 let particles = [];
 let cam1;
-let currentCamera;
 let victory;
 
 function setup() {
@@ -141,7 +140,6 @@ function setup() {
   theStartPage = new startPage();
   cam1 = createCamera();
   victory = new WinningScene(camX, camY, camZ - 300, 65);
-  currentCamera = 1;
   // narratePoem.play();
   // let fov = PI/3;
   // let cameraZ = (height/2.0)/(height/2.0)

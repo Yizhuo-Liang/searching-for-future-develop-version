@@ -21,7 +21,6 @@ let BGM;
 
 let explosion_sound;
 let ending;
-let assemble_ball;
 let explosion_ball;
 let re_explosion_ball;
 let start_explosion_ball;
@@ -123,6 +122,7 @@ let cam1;
 let victory;
 
 function setup() {
+  // Setup environment variables
   createCanvas(windowWidth, windowHeight, WEBGL);
   _W = windowWidth;
   _H = windowHeight;
@@ -130,6 +130,9 @@ function setup() {
   smooth();
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
+  //
+  
+  //
   sb = new Scoreboard(200);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   BGM.loop();
@@ -202,6 +205,8 @@ function draw() {
     );
     status = "died";
   }
+  
+  
   if (status === "justaliveAgain") {
     start_explosion_ball = new start_explosion(
       ship1.getLocation().x,
@@ -212,9 +217,11 @@ function draw() {
     explosion_bgm = false; //timer_back
     status = "revivePlayer";
   }
+  
   if (status === "revivePlayer") {
     reviveAnimation();
   }
+  
   if (status === "died") {
     diedScene();
   }

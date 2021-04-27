@@ -1,7 +1,6 @@
+// Declaring core global variables
 let _W;
 let _H;
-
-// Declaring core global variables
 let universe;
 let startPng;
 let camZ;
@@ -19,24 +18,24 @@ let earth,
   planet10;
 let BGM;
 
+// Setting up variables for diedScene
 let explosion_sound;
 let ending;
 let explosion_ball;
 let re_explosion_ball;
 let start_explosion_ball;
+let explosion_bgm = false;
+let cam1;
 
-let xp;
-let yp;
-let maxSpeed = 15;
-
+// Setting up variables for startScene
 let started = false;
 let theStartPage;
 let narratePoem;
 
-
-// 
-let explosion_bgm = false;
-let cam1;
+// Setting up variables for userControl
+let xp;
+let yp;
+let maxSpeed = 15;
 
 // Setting up variables for uiFunctions
 let sb;

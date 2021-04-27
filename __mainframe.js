@@ -271,6 +271,7 @@ class Position {
     this.x = x;
     this.y = y;
     this.z = z;
+    this.vector = createVector(x, y, z)
   }
 
   setPosition(x, y, z) {
@@ -278,13 +279,21 @@ class Position {
     this.y = y;
     this.z = z;
   }
+  
+  getVectorTo(x1, y1, z1){
+    return createVector(x1 - this.x, y1 - this.y, z1 - this.z)
+  }
+  
+  getLocation(){
+    return (this.x, this.y, this.z)
+  }
 }
 //--------------------------------- END OF POSITION ---------------------------------
 
 //--------------------------------- START OF SPACESHIP ---------------------------------
-class Spaceship {
+class Spaceship extends Position{
   constructor(x, y, z, size, angleZ, angleX, shipModel) {
-    this.position = new Position(x, y, z);
+    super(x, y, z);
     this.size = size;
     this.angleZ = angleZ;
     this.angleX = angleX;
@@ -294,19 +303,12 @@ class Spaceship {
 
   draw(x, y, z, size, angleZ, angleX, shipModel) {
     push();
-    // fill(255,255,255);
-    // stroke(1);
-    this.position = new Position(x, y, z);
     translate(this.position.x, this.position.y, this.position.z);
     rotateZ(angleZ);
     rotateX(angleX);
     scale(this.size);
     model(this.shipModel);
     pop();
-  }
-
-  getLocation() {
-    return this.position;
   }
 }
 

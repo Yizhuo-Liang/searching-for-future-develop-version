@@ -1,5 +1,4 @@
-let _W;
-let _H;
+
 
 let universe;
 let startPng;

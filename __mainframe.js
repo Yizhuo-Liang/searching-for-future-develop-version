@@ -1,6 +1,7 @@
 let _W;
 let _H;
 
+// Declaring core global variables
 let universe;
 let startPng;
 let camZ;
@@ -16,7 +17,6 @@ let earth,
   planet8,
   planet9,
   planet10;
-let explosionEffect;
 let BGM;
 
 let explosion_sound;
@@ -33,12 +33,19 @@ let started = false;
 let theStartPage;
 let narratePoem;
 
-let newboard;
-let generate_interval = 100;
-let victoryBGM;
-let space_age;
-let victoryTime;
+
+// 
 let explosion_bgm = false;
+let cam1;
+
+// Setting up variables for uiFunctions
+let sb;
+let displayPoem;
+let space_age;
+
+// Setting up variables for victoryScene
+let victoryBGM;
+let victory;
 
 function preload() {
   space_age = loadFont(
@@ -99,27 +106,7 @@ function preload() {
   );
 }
 
-let planetlist = [
-  earth,
-  planet1,
-  planet2,
-  planet3,
-  planet4,
-  planet5,
-  planet6,
-  planet7,
-  planet8,
-  planet9,
-  planet10
-];
-let sb;
-let bumi;
-let displayPoem;
 
-let explosion_timer = 0;
-let particles = [];
-let cam1;
-let victory;
 
 function setup() {
   // Setup environment variables

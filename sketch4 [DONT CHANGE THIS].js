@@ -35,7 +35,6 @@ let theStartPage;
 let narratePoem;
 
 let newboard;
-let generate_interval = 100;
 let victoryBGM;
 let space_age;
 let victoryTime;

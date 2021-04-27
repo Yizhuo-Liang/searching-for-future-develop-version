@@ -1,3 +1,21 @@
+//Place function & variables declared here:
+//
+
+let ship1;
+let planetlist = [
+  earth,
+  planet1,
+  planet2,
+  planet3,
+  planet4,
+  planet5,
+  planet6,
+  planet7,
+  planet8,
+  planet9,
+  planet10
+];
+
 function aliveScene() {
   background(0);
   moveAround();

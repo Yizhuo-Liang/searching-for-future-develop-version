@@ -1,6 +1,25 @@
+let _W;
+let _H;
 
+let universe;
+let startPng;
 let camZ;
+let spaceship;
+let earth,
+  planet1,
+  planet2,
+  planet3,
+  planet4,
+  planet5,
+  planet6,
+  planet7,
+  planet8,
+  planet9,
+  planet10;
 let explosionEffect;
+let BGM;
+
+let explosde_sound;
 let ending;
 let assemble_ball;
 let explosion_ball;
@@ -17,8 +36,68 @@ let narratePoem;
 
 let newboard;
 let generate_interval = 100;
-
+let victoryBGM;
+let space_age;
 let victoryTime;
+
+function preload() {
+  space_age = loadFont(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNasa.ttf?v=1617322691693"
+  );
+  spaceship = loadModel("assets/spaceship2.obj");
+  universe = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Funiverse-background-1.jpg?v=1617194401240"
+  );
+  startPng = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNew%20Project.png?v=1617291457112"
+  );
+  earth = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fearth.jpg?v=1616633286407"
+  );
+  planet1 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet2.jpg?v=1616633287289"
+  );
+  planet2 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet2.jpg?v=1616633287289"
+  );
+  planet3 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet3.jpg?v=1616633288086"
+  );
+  planet4 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet4.jpg?v=1616633289270"
+  );
+  planet5 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet5.png?v=1616633291018"
+  );
+  planet6 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet6.jfif?v=1617298849359"
+  );
+  planet7 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet7.jfif?v=1617298851576"
+  );
+  planet8 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet8.jpg?v=1617298854353"
+  );
+  planet9 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet9.jpg?v=1617298856293"
+  );
+  planet10 = loadImage(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet10.jpg?v=1617298858415"
+  );
+  soundFormats("mp3", "ogg");
+  explosde_sound = loadSound(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2F11369.mp3?v=1617032492745"
+  );
+  BGM = loadSound(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FBGM.mp3?v=1617047619315"
+  );
+  narratePoem = loadSound(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881"
+  );
+  victoryBGM = loadSound(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStar%20Wars%20Main%20Theme%20(Full).mp3?v=1617319295463"
+  );
+}
 let planetlist = [
   earth,
   planet1,
@@ -35,18 +114,81 @@ let planetlist = [
 let sb;
 let bumi;
 let displayPoem;
+
 let scenes;
+
 let explosion_timer = 0;
 let particles = [];
 let cam1;
 let currentCamera;
+
 let victoryScene;
 
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  _W = windowWidth;
+  _H = windowHeight;
+  angleMode(DEGREES);
+  smooth();
+  frameRate(30);
+  camZ = height / 2.0 / tan(30.0);
+  sb = new Scoreboard(200);
+  ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
+  BGM.loop();
+  //(DONT TURN ON FIRST)
+  xp = width / 2;
+  yp = height / 2;
+  displayPoem = new DisplayWords(poem, 300);
+  // detail = createSlider(3, 24, 14);
+  // detail.position(10, height - 30);
+  // detail.style("width", "80px");
+  theStartPage = new startPage();
+  scenes = new background_scenes();
+  //create explosion camera
+  cam1 = createCamera();
+  victoryScene = new WinningScene(camX, camY, camZ - 300, 65);
+  currentCamera = 1;
+  // narratePoem.play();
+  // let fov = PI/3;
+  // let cameraZ = (height/2.0)/(height/2.0)
+  // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
+  frustum(
+    -windowWidth / 10000,
+    windowWidth / 10000,
+    windowHeight / 10000,
+    -windowHeight / 10000,
+    0.17,
+    200000
+  );
+}
 
+function keyPressed() {
+  if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+    started = true;
+  }
 
+  if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+    started = true;
+  }
 
+  if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
+    started = true;
+  }
 
+  if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
+    started = true;
+  }
 
+  if (keyIsDown(80)) {
+    narratePoem.play();
+  }
+
+  if (keyIsDown(79)) {
+    narratePoem.pause();
+  }
+}
+
+//
 let ship1;
 let planets = [];
 let status = "alive";
@@ -63,7 +205,145 @@ function mouseClicked() {
 ////////////////////////////  -- DRAW IS HERE --  /////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 
+function draw() {
+  console.log(status);
+  orbitControl();
+  if (!started) {
+    theStartPage.draw();
+    frameCount = 0;
+    return;
+  }
+  if (startMillisNotInitialized === true) {
+    startMillis = millis();
+    startMillisNotInitialized = false;
+  }
 
+  if (status === "alive") {
+    background(0);
+    moveAround();
+    ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
+    if (frameCount === 1 || frameCount % 180 == 0) {
+      generatePlanet(ship1);
+      // console.log(planets.length);
+    }
+
+    drawPlanets();
+    getWarningLevel(ship1, planets);
+    sb.draw(
+      ship1.getLocation().x + _W / 4,
+      ship1.getLocation().y - _H / 4,
+      ship1.getLocation().z
+    );
+
+    displayPoem.draw(
+      ship1.getLocation().x,
+      ship1.getLocation().y + _H / 4,
+      ship1.getLocation().z
+    );
+
+    if (testCollision(planets, ship1)) {
+      // narratePoem.stop();
+      status = "justdied";
+    }
+  } else if (status === "justdied") {
+    re_explosion_ball = new Re_explosion(
+      ship1.getLocation().x,
+      ship1.getLocation().y,
+      ship1.getLocation().z,
+      1000
+    );
+    ending = new EndScene(
+      ship1.getLocation().x,
+      ship1.getLocation().y,
+      ship1.getLocation().z,
+      sb.getScore()
+    );
+    status = "died";
+  } else if (status === "justaliveAgain") {
+    start_explosion_ball = new start_explosion(
+      ship1.getLocation().x,
+      ship1.getLocation().y,
+      ship1.getLocation().z
+    );
+    explosion_timer = 0;
+    explosion_bgm = false; //timer_back
+    status = "aliveagain";
+    
+  } else if (status === "aliveagain") {
+    if (start_explosion_ball.getSize() < 500) {
+      start_explosion_ball.draw();
+      ending.draw();
+      
+    } else if (start_explosion_ball.getSize() < 2000) {
+      clear();
+      start_explosion_ball.draw();
+      
+    } else {
+      status = "alive";
+    }
+    
+  } else if (status === "died") {
+    background(0);
+    if (explosion_bgm === false) {
+      explosde_sound.play();
+      explosion_bgm = true;
+    }
+
+    if (explosion_timer < 250) {
+      drawPlanets();
+      ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+      // ellipsoid(30, 40, 40);
+      explosion_timer += 1;
+      setCamera(cam1);
+      angleMode(DEGREES);
+      cam1.setPosition(
+        2000 * sin(explosion_timer),
+        0,
+        2000 * cos(explosion_timer)
+      );
+      cam1.lookAt(camX, camY, camZ - 450);
+      if (random(1) > 0.96) {
+        var pos = createVector(camX, camY, camZ - 450);
+        for (var i = 0; i < 100; i++) {
+          var p = new Particle(pos);
+          particles.push(p);
+        }
+      }
+
+      for (var i = particles.length - 1; i >= 0; i--) {
+        if (
+          dist(
+            particles[i].pos.x,
+            particles[i].pos.y,
+            particles[i].pos.z,
+            0,
+            0,
+            0
+          ) < 1000
+        ) {
+          particles[i].update();
+          particles[i].show();
+        } else {
+          particles.splice(i, 1);
+        }
+      }
+    } else {
+      camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
+      re_explosion_ball.draw();
+      ending.draw();
+    }
+  }
+
+  if (status === "victory") {
+    victoryScene.draw();
+    ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+  } else if (sb.getScore() > 1270 && status === "alive") {
+    background(0);
+    BGM.stop();
+    victoryBGM.play();
+    status = "victory";
+  }
+}
 
 let explosion_bgm = false;
 
@@ -170,7 +450,83 @@ class DisplayWords {
   }
 }
 
+// Planet class introduction:
+// 1. constructor has 5 arguments
+// 2. x, y, z denotes the position of the plannet with radius
+// 3. number of rings can be either 0, 1, or 2
+// 4. move() function has 3 arguments which are increment amount of x, y, z
+// 5. draw() can be used to draw the plannet directly on its position
 
+//--------------------------------- BEGINNING OF PLANET ---------------------------------
+let planetNo = 0;
+class Planet {
+  constructor(x, y, z, radius, rings) {
+    this.planetNumber = planetNo++;
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.position = new Position(x, y, z);
+    this.radius = radius;
+    this.rings = rings;
+    this.t = int(random(11));
+    this.mass = int(random(500, 1000));
+    this.angle = 0;
+    this.rotateSpeed = int(random(7));
+  }
+
+  move(xDist, yDist, zDist) {
+    this.x += xDist;
+    this.y += yDist;
+    this.z += zDist;
+  }
+
+  getRadius() {
+    return this.radius;
+  }
+
+  getZ() {
+    return this.z;
+  }
+
+  rotatePlanet() {
+    this.angle += this.rotateSpeed;
+    rotateY(this.angle);
+  }
+
+  draw() {
+    push();
+    translate(this.x, this.y, this.z);
+    noStroke();
+    if (this.t === 0) {
+      texture(earth);
+    } else if (this.t === 1) {
+      texture(planet1);
+    } else if (this.t === 2) {
+      texture(planet2);
+    } else if (this.t === 3) {
+      texture(planet3);
+    } else if (this.t === 4) {
+      texture(planet4);
+    } else if (this.t === 5) {
+      texture(planet5);
+    } else if (this.t === 6) {
+      texture(planet6);
+    } else if (this.t === 7) {
+      texture(planet7);
+    } else if (this.t === 8) {
+      texture(planet8);
+    } else if (this.t === 9) {
+      texture(planet9);
+    } else if (this.t === 10) {
+      texture(planet10);
+    }
+    this.rotatePlanet();
+
+    sphere(this.radius, 30, 30);
+    pop();
+  }
+}
+//--------------------------------- END OF PLANET ---------------------------------
 
 //--------------------------------- START OF MOVEAROUND ---------------------------------
 let camX = 0;
@@ -644,6 +1000,10 @@ class Re_explosion {
 }
 
 //--------------------------------- END OF RE_EXPLOSION ---------------------------------
+
+
+
+
 //--------------------------------- START OF start_explosion ---------------------------------
 class start_explosion {
   constructor(x, y, z) {
@@ -788,6 +1148,11 @@ function getAcceleration(myShip) {
   return acc;
 }
 
+
+
+
+
+
 function testCloseGravity(myShip, planets) {
   console.log("testing");
   if (planets === []) {
@@ -863,6 +1228,17 @@ function getWarningLevel(myShip, planets) {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
 class Warning {
   constructor(x, y, z) {
     this.x = x;
@@ -881,6 +1257,13 @@ class Warning {
     pop();
   }
 }
+
+
+
+
+
+
+
 
 //--------------------------------- START OF WARNING ---------------------------------
 function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {

@@ -50,6 +50,7 @@ class Planet extends Position{
     this.mass = int(random(500, 1000));
     this.angle = 0;
     this.rotateSpeed = int(random(7));
+    this.position = {x: this.x, y: this.y, z: this.z}
   }
 
   move(xDist, yDist, zDist) {
@@ -249,7 +250,7 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
 function testCollision(planets, myShip) {
   for (let i = 0; i < planets.length; i++) {
     if (
-      isCollide(myShip.position, planets[i], myShip.radius, planets[i].radius)
+      isCollide(myShip.getPosition(), planets[i], myShip.radius, planets[i].radius)
     ) {
       return true;
     }

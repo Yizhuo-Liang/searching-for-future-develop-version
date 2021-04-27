@@ -273,6 +273,10 @@ class Position {
   getLocation(){
     return (this.x, this.y, this.z)
   }
+  
+  getPosition(){
+    return {x: this.x, y: this.y, z: this.z}
+  }
 }
 //--------------------------------- END OF POSITION ---------------------------------
 
@@ -285,11 +289,12 @@ class Spaceship extends Position{
     this.angleX = angleX;
     this.shipModel = shipModel;
     this.radius = 155;
+    this.position = new Position(x, y, z);
   }
 
   draw(x, y, z, size, angleZ, angleX, shipModel) {
     push();
-    translate(this.position.x, this.position.y, this.position.z);
+    translate(this.x, this.y, this.z);
     rotateZ(angleZ);
     rotateX(angleX);
     scale(this.size);

@@ -1,6 +1,5 @@
 //Place function & variables declared here:
 //
-
 let planetlist = [
   earth,
   planet1,
@@ -40,9 +39,8 @@ function aliveScene() {
 
 //--------------------------------- BEGINNING OF PLANET ---------------------------------
 let planetCount = 0;
-class Planet extends Position{
+class Planet{
   constructor(x, y, z, radius, rings) {
-    super(x, y, z);
     this.planetNumber = planetCount++;
     this.radius = radius;
     this.rings = rings;
@@ -50,7 +48,7 @@ class Planet extends Position{
     this.mass = int(random(500, 1000));
     this.angle = 0;
     this.rotateSpeed = int(random(7));
-    this.position = {x: this.x, y: this.y, z: this.z}
+    this.position = new Position(x, y, z);
   }
 
   move(xDist, yDist, zDist) {
@@ -70,6 +68,10 @@ class Planet extends Position{
   rotatePlanet() {
     this.angle += this.rotateSpeed;
     rotateY(this.angle);
+  }
+  
+  getLocation(){
+    return this.position
   }
 
   draw() {
@@ -250,7 +252,7 @@ function isCollide(objPosition, trgtPosition, objRadius, trgtRadius) {
 function testCollision(planets, myShip) {
   for (let i = 0; i < planets.length; i++) {
     if (
-      isCollide(myShip.getPosition(), planets[i], myShip.radius, planets[i].radius)
+      isCollide(myShip.getLocation(), planets[i], myShip.radius, planets[i].radius)
     ) {
       return true;
     }

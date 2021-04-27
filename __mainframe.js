@@ -281,9 +281,8 @@ class Position {
 //--------------------------------- END OF POSITION ---------------------------------
 
 //--------------------------------- START OF SPACESHIP ---------------------------------
-class Spaceship extends Position{
+class Spaceship {
   constructor(x, y, z, size, angleZ, angleX, shipModel) {
-    super(x, y, z);
     this.size = size;
     this.angleZ = angleZ;
     this.angleX = angleX;
@@ -294,12 +293,16 @@ class Spaceship extends Position{
 
   draw(x, y, z, size, angleZ, angleX, shipModel) {
     push();
-    translate(this.x, this.y, this.z);
+    translate(this.position.x, this.position.y, this.position.z);
     rotateZ(angleZ);
     rotateX(angleX);
     scale(this.size);
     model(this.shipModel);
     pop();
+  }
+  
+  getLocation() {
+    return this.position;
   }
 }
 

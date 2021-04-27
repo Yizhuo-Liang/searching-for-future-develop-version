@@ -5,7 +5,6 @@ function aliveScene() {
   if (frameCount === 1 || frameCount % 180 == 0) {
     generatePlanet(ship1);
   }
-
   drawPlanets();
   getWarningLevel(ship1, planets);
   sb.draw(
@@ -23,13 +22,10 @@ function aliveScene() {
 
 //--------------------------------- BEGINNING OF PLANET ---------------------------------
 let planetNo = 0;
-class Planet {
+class Planet extends Position{
   constructor(x, y, z, radius, rings) {
+    super(x, y, z);
     this.planetNumber = planetNo++;
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.position = new Position(x, y, z);
     this.radius = radius;
     this.rings = rings;
     this.t = int(random(11));

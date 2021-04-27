@@ -44,9 +44,33 @@ let victoryScene;
 
 
 
+function keyPressed() {
+  if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+    started = true;
+  }
 
+  if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+    started = true;
+  }
 
+  if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
+    started = true;
+  }
 
+  if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
+    started = true;
+  }
+
+  if (keyIsDown(80)) {
+    narratePoem.play();
+  }
+
+  if (keyIsDown(79)) {
+    narratePoem.pause();
+  }
+}
+
+//
 let ship1;
 let planets = [];
 let status = "alive";
@@ -170,7 +194,83 @@ class DisplayWords {
   }
 }
 
+// Planet class introduction:
+// 1. constructor has 5 arguments
+// 2. x, y, z denotes the position of the plannet with radius
+// 3. number of rings can be either 0, 1, or 2
+// 4. move() function has 3 arguments which are increment amount of x, y, z
+// 5. draw() can be used to draw the plannet directly on its position
 
+//--------------------------------- BEGINNING OF PLANET ---------------------------------
+let planetNo = 0;
+class Planet {
+  constructor(x, y, z, radius, rings) {
+    this.planetNumber = planetNo++;
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.position = new Position(x, y, z);
+    this.radius = radius;
+    this.rings = rings;
+    this.t = int(random(11));
+    this.mass = int(random(500, 1000));
+    this.angle = 0;
+    this.rotateSpeed = int(random(7));
+  }
+
+  move(xDist, yDist, zDist) {
+    this.x += xDist;
+    this.y += yDist;
+    this.z += zDist;
+  }
+
+  getRadius() {
+    return this.radius;
+  }
+
+  getZ() {
+    return this.z;
+  }
+
+  rotatePlanet() {
+    this.angle += this.rotateSpeed;
+    rotateY(this.angle);
+  }
+
+  draw() {
+    push();
+    translate(this.x, this.y, this.z);
+    noStroke();
+    if (this.t === 0) {
+      texture(earth);
+    } else if (this.t === 1) {
+      texture(planet1);
+    } else if (this.t === 2) {
+      texture(planet2);
+    } else if (this.t === 3) {
+      texture(planet3);
+    } else if (this.t === 4) {
+      texture(planet4);
+    } else if (this.t === 5) {
+      texture(planet5);
+    } else if (this.t === 6) {
+      texture(planet6);
+    } else if (this.t === 7) {
+      texture(planet7);
+    } else if (this.t === 8) {
+      texture(planet8);
+    } else if (this.t === 9) {
+      texture(planet9);
+    } else if (this.t === 10) {
+      texture(planet10);
+    }
+    this.rotatePlanet();
+
+    sphere(this.radius, 30, 30);
+    pop();
+  }
+}
+//--------------------------------- END OF PLANET ---------------------------------
 
 //--------------------------------- START OF MOVEAROUND ---------------------------------
 let camX = 0;

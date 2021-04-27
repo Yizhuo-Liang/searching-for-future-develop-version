@@ -1,129 +1,20 @@
+// Declaring variables for setup()
 let _W;
 let _H;
-
-let universe;
-let startPng;
 let camZ;
-let spaceship;
-let earth,
-  planet1,
-  planet2,
-  planet3,
-  planet4,
-  planet5,
-  planet6,
-  planet7,
-  planet8,
-  planet9,
-  planet10;
-let explosionEffect;
-let BGM;
-
-let explosion_sound;
-let ending;
-let assemble_ball;
-let explosion_ball;
-let re_explosion_ball;
-let start_explosion_ball;
-
-let xp;
-let yp;
-let maxSpeed = 15;
-
-let started = false;
-let theStartPage;
-let narratePoem;
-
-let newboard;
-let generate_interval = 100;
-let victoryBGM;
-let space_age;
-let victoryTime;
-
-function preload() {
-  space_age = loadFont(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNasa.ttf?v=1617322691693"
-  );
-  spaceship = loadModel("assets/spaceship2.obj");
-  universe = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Funiverse-background-1.jpg?v=1617194401240"
-  );
-  startPng = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNew%20Project.png?v=1617291457112"
-  );
-  earth = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fearth.jpg?v=1616633286407"
-  );
-  planet1 = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet2.jpg?v=1616633287289"
-  );
-  planet2 = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet2.jpg?v=1616633287289"
-  );
-  planet3 = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet3.jpg?v=1616633288086"
-  );
-  planet4 = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet4.jpg?v=1616633289270"
-  );
-  planet5 = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet5.png?v=1616633291018"
-  );
-  planet6 = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet6.jfif?v=1617298849359"
-  );
-  planet7 = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet7.jfif?v=1617298851576"
-  );
-  planet8 = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet8.jpg?v=1617298854353"
-  );
-  planet9 = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet9.jpg?v=1617298856293"
-  );
-  planet10 = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet10.jpg?v=1617298858415"
-  );
-  soundFormats("mp3", "ogg");
-  explosion_sound = loadSound(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2F11369.mp3?v=1617032492745"
-  );
-  BGM = loadSound(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FBGM.mp3?v=1617047619315"
-  );
-  narratePoem = loadSound(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fmedia-deee5997.mp3?v=1617183652881"
-  );
-  victoryBGM = loadSound(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStar%20Wars%20Main%20Theme%20(Full).mp3?v=1617319295463"
-  );
-}
-
-let planetlist = [
-  earth,
-  planet1,
-  planet2,
-  planet3,
-  planet4,
-  planet5,
-  planet6,
-  planet7,
-  planet8,
-  planet9,
-  planet10
-];
 let sb;
-let bumi;
+let ship1;
 let displayPoem;
-
+let xp;  //what is this?
+let yp;  //what is this?
+let theStartPage;
 let scenes;
-
-let explosion_timer = 0;
-let particles = [];
 let cam1;
+let victoryScene;
 let currentCamera;
 
-let victoryScene;
+//
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -163,23 +54,9 @@ function setup() {
   );
 }
 
-let ship1;
-let planets = [];
-let status = "alive";
-
-function mouseClicked() {
-  if (status === "died") {
-    planets = [];
-    status = "justaliveAgain";
-  }
-}
-
-//////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////  -- DRAW IS HERE --  /////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-
 function draw() {
   console.log(status);
+  orbitControl();
   if (!started) {
     theStartPage.draw();
     frameCount = 0;
@@ -191,7 +68,28 @@ function draw() {
   }
 
   if (status === "alive") {
-    aliveScene();
+    background(0);
+    moveAround();
+    ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
+    if (frameCount === 1 || frameCount % 180 == 0) {
+      generatePlanet(ship1);
+      // console.log(planets.length);
+    }
+
+    drawPlanets();
+    getWarningLevel(ship1, planets);
+    sb.draw(
+      ship1.getLocation().x + _W / 4,
+      ship1.getLocation().y - _H / 4,
+      ship1.getLocation().z
+    );
+
+    displayPoem.draw(
+      ship1.getLocation().x,
+      ship1.getLocation().y + _H / 4,
+      ship1.getLocation().z
+    );
+
     if (testCollision(planets, ship1)) {
       // narratePoem.stop();
       status = "justdied";
@@ -210,8 +108,7 @@ function draw() {
       sb.getScore()
     );
     status = "died";
-  } 
-  if (status === "justaliveAgain") {
+  } else if (status === "justaliveAgain") {
     start_explosion_ball = new start_explosion(
       ship1.getLocation().x,
       ship1.getLocation().y,
@@ -219,13 +116,67 @@ function draw() {
     );
     explosion_timer = 0;
     explosion_bgm = false; //timer_back
-    status = "revivePlayer";
-  }
-  if (status === "revivePlayer") {
-    reviveAnimation();
-  }
-  if (status === "died") {
-    diedScene();
+    status = "aliveagain";
+  } else if (status === "aliveagain") {
+    if (start_explosion_ball.getSize() < 500) {
+      start_explosion_ball.draw();
+      ending.draw();
+    } else if (start_explosion_ball.getSize() < 2000) {
+      clear();
+      start_explosion_ball.draw();
+    } else {
+      status = "alive";
+    }
+  } else if (status === "died") {
+    background(0);
+    if (explosion_bgm === false) {
+      explosde_sound.play();
+      explosion_bgm = true;
+    }
+
+    if (explosion_timer < 250) {
+      drawPlanets();
+      ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+      // ellipsoid(30, 40, 40);
+      explosion_timer += 1;
+      setCamera(cam1);
+      angleMode(DEGREES);
+      cam1.setPosition(
+        2000 * sin(explosion_timer),
+        0,
+        2000 * cos(explosion_timer)
+      );
+      cam1.lookAt(camX, camY, camZ - 450);
+      if (random(1) > 0.96) {
+        var pos = createVector(camX, camY, camZ - 450);
+        for (var i = 0; i < 100; i++) {
+          var p = new Particle(pos);
+          particles.push(p);
+        }
+      }
+
+      for (var i = particles.length - 1; i >= 0; i--) {
+        if (
+          dist(
+            particles[i].pos.x,
+            particles[i].pos.y,
+            particles[i].pos.z,
+            0,
+            0,
+            0
+          ) < 1000
+        ) {
+          particles[i].update();
+          particles[i].show();
+        } else {
+          particles.splice(i, 1);
+        }
+      }
+    } else {
+      camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
+      re_explosion_ball.draw();
+      ending.draw();
+    }
   }
 
   if (status === "victory") {
@@ -236,32 +187,6 @@ function draw() {
     BGM.stop();
     victoryBGM.play();
     status = "victory";
-  }
-}
-
-function keyPressed() {
-  if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
-    started = true;
-  }
-
-  if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
-    started = true;
-  }
-
-  if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
-    started = true;
-  }
-
-  if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
-    started = true;
-  }
-
-  if (keyIsDown(80)) {
-    narratePoem.play();
-  }
-
-  if (keyIsDown(79)) {
-    narratePoem.pause();
   }
 }
 

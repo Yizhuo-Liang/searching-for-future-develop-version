@@ -1,3 +1,24 @@
+
+let camZ;
+let explosionEffect;
+let ending;
+let assemble_ball;
+let explosion_ball;
+let re_explosion_ball;
+let start_explosion_ball;
+
+let xp;
+let yp;
+let maxSpeed = 15;
+
+let started = false;
+let theStartPage;
+let narratePoem;
+
+let newboard;
+let generate_interval = 100;
+
+let victoryTime;
 let planetlist = [
   earth,
   planet1,
@@ -14,14 +35,11 @@ let planetlist = [
 let sb;
 let bumi;
 let displayPoem;
-
 let scenes;
-
 let explosion_timer = 0;
 let particles = [];
 let cam1;
 let currentCamera;
-
 let victoryScene;
 
 

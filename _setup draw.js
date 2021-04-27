@@ -1,3 +1,21 @@
+// Declaring variables for setup()
+let _W;
+let _H;
+let camZ;
+let sb;
+let ship1;
+let displayPoem;
+let xp;  //what is this?
+let yp;  //what is this?
+let theStartPage;
+let scenes;
+let cam1;
+let victoryScene;
+let currentCamera;
+
+//
+
+
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   _W = windowWidth;

@@ -1,10 +1,7 @@
-let _W;
-let _H;
-
+let space_age;
+let spaceship;
 let universe;
 let startPng;
-let camZ;
-let spaceship;
 let earth,
   planet1,
   planet2,
@@ -16,29 +13,11 @@ let earth,
   planet8,
   planet9,
   planet10;
-let explosionEffect;
-let BGM;
-
 let explosde_sound;
-let ending;
-let assemble_ball;
-let explosion_ball;
-let re_explosion_ball;
-let start_explosion_ball;
-
-let xp;
-let yp;
-let maxSpeed = 15;
-
-let started = false;
-let theStartPage;
+let BGM;
 let narratePoem;
-
-let newboard;
-let generate_interval = 100;
 let victoryBGM;
-let space_age;
-let victoryTime;
+
 
 function preload() {
   space_age = loadFont(

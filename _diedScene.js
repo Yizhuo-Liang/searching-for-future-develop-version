@@ -1,6 +1,8 @@
 let particles = [];
 let explosion_timer = 0;
 
+/* global explosion_bgm */
+
 function diedScene() {
   background(0);
   if (explosion_bgm === false) {

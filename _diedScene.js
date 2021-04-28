@@ -7,6 +7,7 @@ function diedScene() {
     explosion_sound.play();
     explosion_bgm = true;
   }
+  
   if (explosion_timer < 250) {
     drawPlanets();
     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);

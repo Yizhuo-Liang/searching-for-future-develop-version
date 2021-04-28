@@ -1,5 +1,15 @@
+let BGM;
+
+function preload() {
+  BGM = loadSound(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FBGM.mp3?v=1617047619315"
+  );
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
+  BGM.loop();
+  BGM.play();
 }
 
 function draw() {

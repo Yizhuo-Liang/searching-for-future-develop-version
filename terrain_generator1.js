@@ -10,11 +10,13 @@ let high = 0
 // let exsit = 0;
 let grass;
 let terrain = [];
+
 function preload() {
   grass = loadImage(
     "https://cdn.glitch.com/0d62f7df-1918-459f-b472-1f38130432c1%2Fgrass2.jpg?v=1619493619708"
   );
 }
+
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   cols = w / scale;

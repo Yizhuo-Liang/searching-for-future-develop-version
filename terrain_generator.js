@@ -15,8 +15,6 @@ let terrain = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  cols = w / scale;
-  rows = h / scale;
 
   for (let x = 0; x < cols; x++) {
     terrain[x] = [];
@@ -27,46 +25,37 @@ function setup() {
 }
 
 function draw() {
-  push();
-  flying -= 0.1; // decrease noise space every cycle
-  
-  let yoff = flying; // y offset
-  for (let y = 0; y < rows; y++) {
-    let xoff = 0; // x offset
-    for (let x = 0; x < cols; x++) {
-      terrain[x][y] = map(noise(xoff, yoff), 0, 1, -20, 50);
-      xoff += peak;
-    }
-    yoff += peak;
-  }
-  
-  stroke(255);
-  noFill();
-  rotateX(PI/2.5);
-  translate(-w/2, 0); // draw relative to center of window
-  // ortho();
-  
-  for (let y = 0; y < rows-1; y++) {
-    beginShape(TRIANGLE_STRIP);
-    for (let x = 0; x < cols; x++) {
-      vertex(x*scale, y*scale, terrain[x][y]);
-      vertex(x*scale, (y+1)*scale, terrain[x][y+1]);
-    }
-    endShape();
-  }
-  pop();
+
 }
 
 
 class Terrain {
   constructor (w, h ,scale, detial, flying, peak, high) {
-    
+    let this.w = w;
+    let this.h = h;
+    let this.scale = scale;
+    let this.detial = detial;
+    let this.flying = flying;
+    let this.peak = peak;
+    let this.high = high;    
+    let this.cols = w/scale;
+    this.terrain = [];
+    let this.rows = h/scale;
+    this.createTerrain;
+  }
+  
+  createTerrain(){
+    for (let x = 0; x < cols; x++) {
+      terrain[x] = [];
+      for (let y = 0; y < rows; y++) {
+        terrain[x][y] = 0; // default value
+      }
+    }
   }
   
   draw() {
   push();
   flying -= 0.1; // decrease noise space every cycle
-  
   let yoff = flying; // y offset
   for (let y = 0; y < rows; y++) {
     let xoff = 0; // x offset
@@ -76,7 +65,6 @@ class Terrain {
     }
     yoff += peak;
   }
-  
   stroke(255);
   noFill();
   rotateX(PI/2.5);

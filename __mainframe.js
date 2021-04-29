@@ -33,6 +33,7 @@ let cam1;
 let started = false;
 let theStartPage;
 let narratePoem;
+let soundMap;
 
 // Setting up variables for userControl
 let xp;
@@ -131,6 +132,7 @@ function setup() {
   theStartPage = new startPage();
   cam1 = createCamera();
   victory = new WinningScene(camX, camY, camZ - 300, 65);
+  soundMap = new Terrain(1400, 600, 20, 1, 0, 0.12, 0);
   // narratePoem.play();
   // let fov = PI/3;
   // let cameraZ = (height/2.0)/(height/2.0)

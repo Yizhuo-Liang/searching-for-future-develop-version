@@ -56,9 +56,6 @@ function draw() {
   // ortho();
   
   for (let y = 0; y < rows-1; y++) {
-    
-    
-    
     beginShape(TRIANGLE_STRIP);
     for (let x = 0; x < cols; x++) {
       // fill(255,255,255,50)\

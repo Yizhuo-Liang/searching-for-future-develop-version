@@ -2,10 +2,11 @@ let soundMap;
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  let soundMap = new Terrain(1400, 600, 1, 0, 0.12, 0);
+  soundMap = new Terrain(1400, 600, 1, 0, 0.12, 0);
 }
 
 function draw() {
+  background(0);
   soundMap.draw();
 }
 

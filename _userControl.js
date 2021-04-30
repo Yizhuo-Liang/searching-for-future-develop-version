@@ -12,6 +12,7 @@ function moveAround() {
     for (let i = 0; i < planets.length; i++) {
       planets[i].x += 5 + speedZ;
     }
+    soundMap.x += speedZ
     tiltZ -= 4;
     triggerZ = 10;
   }
@@ -20,6 +21,7 @@ function moveAround() {
     for (let i = 0; i < planets.length; i++) {
       planets[i].x -= 5 + speedZ;
     }
+    soundMap.x -= speedZ
     tiltZ += 4;
     triggerZ = 10;
   }
@@ -28,6 +30,7 @@ function moveAround() {
     for (let i = 0; i < planets.length; i++) {
       planets[i].y += 5 + speedZ;
     }
+    soundMap.y -= speedZ
     tiltX += 5;
     triggerX = 10;
   }
@@ -36,6 +39,7 @@ function moveAround() {
     for (let i = 0; i < planets.length; i++) {
       planets[i].y -= 5 + speedZ;
     }
+    soundMap.y -= speedZ
     tiltX -= 5;
     triggerX = 10;
   }

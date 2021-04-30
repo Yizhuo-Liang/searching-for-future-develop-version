@@ -259,8 +259,9 @@ function testCollision(planets, myShip) {
   return false;
 }
 
-class Terrain {
-  constructor(w, h, scale, detial, flying, peak, high) {
+class Terrain extends Position{
+  constructor(x, y, z, w, h, scale, detial, flying, peak, high) {
+    super(x, y, z);
     this.w = w;
     this.h = h;
     this.scale = scale;
@@ -283,6 +284,10 @@ class Terrain {
       }
     }
   }
+  
+  move() {
+    
+  }
 
   draw() {
     push();
@@ -299,7 +304,7 @@ class Terrain {
     stroke(255);
     noFill();
     rotateX(180 / 2.5);
-    translate(-this.w / 2, 0); // draw relative to center of window
+    translate(this.x, this.y, this.z); // draw relative to center of window
     // ortho()
     for (let y = 0; y < this.rows - 1; y++) {
       beginShape(TRIANGLE_STRIP);

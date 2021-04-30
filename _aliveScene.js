@@ -298,10 +298,9 @@ class Terrain {
     }
     stroke(255);
     noFill();
-    rotateX(PI / 2.5);
+    rotateX(180 / 2.5);
     translate(-this.w / 2, 0); // draw relative to center of window
     // ortho()
-    background(0);
     for (let y = 0; y < this.rows - 1; y++) {
       beginShape(TRIANGLE_STRIP);
       for (let x = 0; x < this.cols; x++) {

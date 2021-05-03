@@ -1,12 +1,23 @@
 let soundMap;
+let victoryBGM;
+let amplitude;
+
+function preload(){
+  victoryBGM = loadSound(
+    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStar%20Wars%20Main%20Theme%20(Full).mp3?v=1617319295463"
+  );
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   soundMap = new Terrain(1400, 600, 20, 1, 0, 0.12, 0);
+  victoryBGM.play();
+  amplitude = new p5.Amplitude();
 }
 
 function draw() {
-  soundMap.draw();
+  let level = amplitude.getLevel();
+  soundMap.draw(level);
 }
 
 class Terrain {
@@ -34,15 +45,16 @@ class Terrain {
     }
   }
 
-  draw() {
+  draw(level) {
     push();
     orbitControl();
     this.flying -= 0.1; // decrease noise space every cycle
+    console.log(level);
     let yoff = this.flying; // y offset
     for (let y = 0; y < this.rows; y++) {
       let xoff = 0; // x offset
       for (let x = 0; x < this.cols; x++) {
-        this.terrain[x][y] = map(noise(xoff, yoff), 0, 1, -20, 50);
+        this.terrain[x][y] = map(noise(xoff, yoff), 0, 1, -20, (level*1000)+20);
         xoff += this.peak;
       }
       yoff += this.peak;

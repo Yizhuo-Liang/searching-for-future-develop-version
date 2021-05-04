@@ -1,7 +1,17 @@
 //Variables declared in this page:
 /* victoryScene winningRays WinningRay WinningScene rayIsNotBehind */
 
-//Variables delcared in other JS files:
+//Variables declared in other files:
+/* _W _H universe startPng camZ spaceship earth planet1 planet2 planet3 planet4 planet5 planet6 planet7 planet8 planet9 planet10 BGM ship1 status explosion_sound ending explosion_ball start_explosion_ball explosion_bgm cam1 started theStartPage narratePoem soundMap terrainPic xp yp maxSpeed sb displayPoem space_age victoryBGM victory keyPressed Position Spaceship */
+/* planetlist planets aliveScene planetCount Planet generatePlanet planetIsNotTooFar drawPlanets planetIsNotTooFar arePlanetsOverlapped isCollide testCollision Terrain */
+/* particles explosion_timer diedScene Particle Explosion Re_explosion start_explosion */
+/* EndScene */
+/* reviveAnimation() */
+/* startPage */
+/* startMillis startMillisNotInitialized Scoreboard poem DisplayWords isClose getWarningLevel Warning drawBackground*/
+/* camX camY tiltZ tiltX speedZ moveAround */
+
+
 
 
 function victoryScene() {

@@ -10,7 +10,7 @@ function preload(){
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  soundMap = new Terrain(1400, 600, 20, 1, 0, 0.12, 0);
+  soundMap = new Terrain(1400, 1200, 20, 1, 0, 0.12, 0);
   victoryBGM.play();
   amplitude = new p5.Amplitude();
 }
@@ -47,20 +47,15 @@ class Terrain {
 
   draw(level) {
     push();
-    orbitControl();
+    angleMode(RADIANS);
     this.flying -= 0.1; // decrease noise space every cycle
     console.log(level);
     let yoff = this.flying; // y offset
     for (let y = 0; y < this.rows; y++) {
       let xoff = 0; // x offset
       for (let x = 0; x < this.cols; x++) {
-        if (x < 3 * this.cols/4 && x > this.cols/4 ){
-          this.terrain[x][y] = map(noise(xoff, yoff), 0, 1, -20, level * 500)
-        }
-        else{
-          this.terrain[x][y] = map(noise(xoff, yoff), 0, 1, -20, 50)
-        }
-        
+        let range = map(abs(x - this.cols/2), this.cols/2, 0, 1000);
+        this.terrain[x][y] = map(noise(x, yoff), 0, 1, -20, level * 500);
         xoff += this.peak;
       }
       yoff += this.peak;
@@ -68,8 +63,7 @@ class Terrain {
     stroke(255);
     noFill();
     rotateX(PI / 2.5);
-    translate(-this.w / 2, 0); // draw relative to center of window
-    // ortho()
+    translate(-this.w / 2, -550,0); // draw relative to center of window
     background(0);
     for (let y = 0; y < this.rows - 1; y++) {
       beginShape(TRIANGLE_STRIP);

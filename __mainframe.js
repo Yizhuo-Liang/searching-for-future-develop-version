@@ -1,3 +1,5 @@
+//Variables 
+
 // Declaring core global variables
 let _W;
 let _H;

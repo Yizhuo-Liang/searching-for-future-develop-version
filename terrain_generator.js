@@ -1,4 +1,4 @@
-let soundMap, background1;
+let soundMap, background1, terrainPic;
 let victoryBGM;
 let amplitude;
 
@@ -6,12 +6,13 @@ function preload(){
   victoryBGM = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStar%20Wars%20Main%20Theme%20(Full).mp3?v=1617319295463"
   );
-  background1 = loadImage('https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fbackground2.jfif?v=1620149004479') 
+  background1 = loadImage('https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fbackground2.jfif?v=1620149004479'); 
+  terrainPic = loadImage("https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fvolcanicterrain.jfif?v=1620149747779");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  soundMap = new Terrain(1400, 1200, 20, 1, 0, 0.12, 0);
+  soundMap = new Terrain(windowWidth, 1200, 20, 1, 0, 0.12, 0);
   victoryBGM.play();
   amplitude = new p5.Amplitude();
 }
@@ -57,8 +58,8 @@ class Terrain {
     for (let y = 0; y < this.rows; y++) {
       let xoff = 0; // x offset
       for (let x = 0; x < this.cols; x++) {
-        let range = map(abs(x - this.cols/2), this.cols/2, 0,0, 1000);
-        this.terrain[x][y] = map(noise(xoff, yoff), 0, 1, -20, level * range);
+        // let range = map(abs(x - this.cols/2), this.cols/2, 0,0, 1000);
+        this.terrain[x][y] = map(noise(xoff, yoff), 0, 1, -20, 100);
         xoff += this.peak;
       }
       yoff += this.peak;
@@ -67,6 +68,7 @@ class Terrain {
     noFill();
     rotateX(PI / 2.5);
     translate(-this.w / 2, -500,0); // draw relative to center of window
+    // texture(background1);
     for (let y = 0; y < this.rows - 1; y++) {
       beginShape(TRIANGLE_STRIP);
       for (let x = 0; x < this.cols; x++) {
@@ -81,10 +83,10 @@ class Terrain {
 
 function drawBackground() {
   push();
-  
+  noStroke();
   translate(0,0, -1000);
   texture(background1);
-  plane(3*windowWidth, 3*windowHeight)
+  plane(3*windowWidth, 2*windowHeight)
   pop();
 }
 

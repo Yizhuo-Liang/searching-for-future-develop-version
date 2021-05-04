@@ -1,3 +1,6 @@
+//Variables declared in this page:
+/* reviveAnimation() */
+
 function reviveAnimation() {
   if (start_explosion_ball.getSize() < 500) {
     start_explosion_ball.draw();

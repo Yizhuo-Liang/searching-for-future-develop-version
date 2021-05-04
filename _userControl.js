@@ -1,3 +1,6 @@
+//Variables declared in this page:
+/* camX camY tiltZ tiltX speedZ moveAround */
+
 //--------------------------------- START OF MOVEAROUND ---------------------------------
 let camX = 0;
 let camY = 0;

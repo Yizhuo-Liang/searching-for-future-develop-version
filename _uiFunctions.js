@@ -1,3 +1,6 @@
+//Variables declared in this page:
+/* startMillis startMillisNotInitialized Scoreboard poem DisplayWords isClose getWarningLevel Warning drawBackground*/
+
 //--------------------------------- START OF SCOREBOARD ---------------------------------
 let startMillis;
 let startMillisNotInitialized = true;

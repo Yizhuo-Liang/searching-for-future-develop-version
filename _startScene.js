@@ -1,3 +1,6 @@
+//Variables declared in this page:
+/* startPage */
+
 class startPage {
   constructor() {
     this.started = false;

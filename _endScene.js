@@ -1,3 +1,6 @@
+//Variables declared in this page:
+/* EndScene */
+
 //--------------------------------- START OF ENDSCENE ---------------------------------
 class EndScene extends Position{
   constructor(x, y, z, s = 0) {

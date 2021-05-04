@@ -1,3 +1,9 @@
+//Variables declared in this page:
+/* victoryScene winningRays WinningRay WinningScene rayIsNotBehind */
+
+//Variables delcared in other JS files:
+
+
 function victoryScene() {
     victory.draw();
   }

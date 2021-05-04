@@ -54,8 +54,8 @@ class Terrain {
     for (let y = 0; y < this.rows; y++) {
       let xoff = 0; // x offset
       for (let x = 0; x < this.cols; x++) {
-        let range = map(abs(x - this.cols/2), this.cols/2, 0, 1000);
-        this.terrain[x][y] = map(noise(x, yoff), 0, 1, -20, level * 500);
+        let range = map(abs(x - this.cols/2), this.cols/2, 0,0, 1000);
+        this.terrain[x][y] = map(noise(xoff, yoff), 0, 1, -20, level * range);
         xoff += this.peak;
       }
       yoff += this.peak;
@@ -63,7 +63,7 @@ class Terrain {
     stroke(255);
     noFill();
     rotateX(PI / 2.5);
-    translate(-this.w / 2, -550,0); // draw relative to center of window
+    translate(-this.w / 2, -500,0); // draw relative to center of window
     background(0);
     for (let y = 0; y < this.rows - 1; y++) {
       beginShape(TRIANGLE_STRIP);

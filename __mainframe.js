@@ -1,4 +1,5 @@
-//Variables 
+//Variables declared in this page:
+/* _W _H universe, startPng camZ spaceship earth planet1 planet2 planet3 planet4 planet5 planet6 planet7 planet8 planet9 planet10 BGM ship1 status explosion_sound ending explosion_ball start_explosion_ball explosion_bgm cam1 started theStartPage narratePoem soundMap */
 
 // Declaring core global variables
 let _W;

@@ -1,4 +1,5 @@
-//Place function & variables declared here:
+//Variables declared in this page:
+/* planetlist planets aliveScene planetCount Planet generatePlanet planetIsNotTooFar drawPlanets planetIsNotTooFar arePlanetsOverlapped isCollide*/
 
 let planetlist = [
   earth,

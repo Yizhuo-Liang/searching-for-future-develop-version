@@ -1,5 +1,5 @@
 //Variables declared in this page:
-/* _W _H universe, startPng camZ spaceship earth planet1 planet2 planet3 planet4 planet5 planet6 planet7 planet8 planet9 planet10 BGM ship1 status explosion_sound ending explosion_ball start_explosion_ball explosion_bgm cam1 started theStartPage narratePoem soundMap */
+/* _W _H universe, startPng camZ spaceship earth planet1 planet2 planet3 planet4 planet5 planet6 planet7 planet8 planet9 planet10 BGM ship1 status explosion_sound ending explosion_ball start_explosion_ball explosion_bgm cam1 started theStartPage narratePoem soundMap terrainPic xp yp maxSpeed sb displayPoem space_age victoryBGM victory keyPressed Position Spaceship */
 
 // Declaring core global variables
 let _W;
@@ -18,7 +18,8 @@ let earth,
   planet7,
   planet8,
   planet9,
-  planet10;
+  planet10,
+    terrainPic;
 let BGM;
 let ship1;
 let status = "alive";
@@ -109,6 +110,7 @@ function preload() {
   victoryBGM = loadSound(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStar%20Wars%20Main%20Theme%20(Full).mp3?v=1617319295463"
   );
+  terrainPic = loadImage("https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fvolcanicterrain.jfif?v=1620149747779");
 }
 
 
@@ -177,6 +179,7 @@ function draw() {
 
   if (status === "alive") {
     aliveScene();
+    drawBackground();
     if (testCollision(planets, ship1)) {
       // narratePoem.stop();
       status = "justdied";

@@ -54,7 +54,13 @@ class Terrain {
     for (let y = 0; y < this.rows; y++) {
       let xoff = 0; // x offset
       for (let x = 0; x < this.cols; x++) {
-        this.terrain[x][y] = map(noise(xoff, yoff), 0, 1, -20, 50)
+        if (x < 3 * this.cols/4 && x > this.cols/4 ){
+          this.terrain[x][y] = map(noise(xoff, yoff), 0, 1, -20, level * 500)
+        }
+        else{
+          this.terrain[x][y] = map(noise(xoff, yoff), 0, 1, -20, 50)
+        }
+        
         xoff += this.peak;
       }
       yoff += this.peak;

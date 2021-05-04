@@ -101,7 +101,6 @@ class Planet extends Position {
       texture(planet10);
     }
     this.rotatePlanet();
-
     sphere(this.radius, 30, 30);
     pop();
   }

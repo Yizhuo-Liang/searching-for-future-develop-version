@@ -17,10 +17,18 @@ let camY = 0;
 let tiltZ = 0;
 let tiltX = 0;
 let speedZ = 60;
+let xMoved;
+let yMoved;
+let boundaryX;
+let boundaryY;
 
 function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;
+  if (abs(xMoved) >= boundaryX || abs(yMoved >= boundaryY)){}
+    return
+  }
+  
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     for (let i = 0; i < planets.length; i++) {
       planets[i].x += 5 + speedZ;

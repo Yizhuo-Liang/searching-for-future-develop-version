@@ -165,6 +165,7 @@ class Warning {
   }
 
   draw() {
+    
     push();
     translate(this.x, this.y, this.z);
     noStroke();

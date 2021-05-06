@@ -12,6 +12,7 @@
 /* victoryScene winningRays WinningRay WinningScene rayIsNotBehind */
 
 class startPage {
+  
   constructor() {
     this.started = false;
     this.scale = min(width / 1200, height / 600);

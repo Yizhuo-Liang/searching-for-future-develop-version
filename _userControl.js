@@ -17,22 +17,23 @@ let camY = 0;
 let tiltZ = 0;
 let tiltX = 0;
 let speedZ = 60;
-let xMoved;
-let yMoved;
-let boundaryX;
-let boundaryY;
+let xMoved = 0;
+let yMoved = 0;
+let boundaryX = 10000;
+let boundaryY = 5000;
 
 function moveAround() {
   let triggerZ = 0;
   let triggerX = 0;
-  if (abs(xMoved) >= boundaryX || abs(yMoved >= boundaryY)){}
+  if (abs(xMoved) >= boundaryX || abs(yMoved) >= boundaryY){
     return
   }
   
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x += 5 + speedZ;
+      planets[i].x += speedZ;
     }
+    xMoved -= speedZ;
     soundMap.x += speedZ
     tiltZ -= 4;
     triggerZ = 10;
@@ -40,8 +41,9 @@ function moveAround() {
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].x -= 5 + speedZ;
+      planets[i].x -= speedZ;
     }
+    xMoved += speedZ;
     soundMap.x -= speedZ
     tiltZ += 4;
     triggerZ = 10;
@@ -49,18 +51,20 @@ function moveAround() {
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y += 5 + speedZ;
+      planets[i].y += speedZ;
     }
-    soundMap.z -= speedZ
+    yMoved -= speedZ;
+    soundMap.z -= speedZ;
     tiltX += 5;
     triggerX = 10;
   }
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
     for (let i = 0; i < planets.length; i++) {
-      planets[i].y -= 5 + speedZ;
+      planets[i].y -= speedZ;
     }
-    soundMap.z += speedZ
+    yMoved += speedZ;
+    soundMap.z += speedZ;
     tiltX -= 5;
     triggerX = 10;
   }

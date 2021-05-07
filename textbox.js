@@ -24,9 +24,12 @@ function draw() {
 	text(s2, (_W/4) + 300, _H/2 + 100, (_W/2) - 300, _H - 10);
 }
 
-function textBox() {
-  createGraphics(500, 500);
-  
+function textBox(s) {
+  let tb = createGraphics(300, 100);
+  tb.fill(255);
+  tb.textAlign(CENTER);
+  textFont("georgia");
+  tb.text(s, 150, 50);
 }
 
 function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {

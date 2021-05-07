@@ -3,7 +3,7 @@ let _W, _H;
 
 
 function setup() {
-	createCanvas(windowWidth, windowHeight);
+	createCanvas(windowWidth, windowHeight, WEBGL);
 	background(255);
 	_W = windowWidth;
 	_H = windowHeight;
@@ -12,36 +12,34 @@ function setup() {
 }
 
 function draw() {
-	fill(0);
-	textFont("georgia");
-	textAlign(LEFT);
-	textSize(50);
-	text(s, (_W/4), 100, (_W/2), _H/2);
-	
-	textFont("Roboto");
-	textAlign(RIGHT);
-	textSize(40);
-	text(s2, (_W/4) + 300, _H/2 + 100, (_W/2) - 300, _H - 10);
+  background(0);
+  if (isClose(0, 0)){
+    textBox("hello");
+  }
 }
 
 function textBox(s) {
-  let tb = createGraphics(300, 100);
+  push();
+  let tb = createGraphics(300, 300);
   tb.fill(255);
   tb.textAlign(CENTER);
+  tb.textSize(80);
   textFont("georgia");
   tb.text(s, 150, 50);
+  texture(tb);
+  // translate(_W/2, _H/2);
+  plane(300, 300);
+  pop();
 }
 
-function isClose(objPosition, trgtPosition, objRadius, trgtRadius) {
+function isClose(objX, objY) {
   let distance = dist(
-    objPosition.x,
-    objPosition.y,
-    objPosition.z,
-    trgtPosition.x,
-    trgtPosition.y,
-    trgtPosition.z
+    mouseX,
+    mouseY,
+    objX,
+    objY
   );
-  return distance - 700 < objRadius + trgtRadius;
+  return distance - 200 < 0;
 }
 
 

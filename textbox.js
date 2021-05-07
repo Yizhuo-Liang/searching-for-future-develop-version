@@ -13,7 +13,7 @@ function setup() {
 
 function draw() {
   background(0);
-  if (isClose(0, 0)){
+  if (isClose(_W/2, _H/2)){
     textBox("hello");
   }
 }
@@ -34,8 +34,8 @@ function textBox(s) {
 
 function isClose(objX, objY) {
   let distance = dist(
-    mouseX,
-    mouseY,
+    mouseX + _W/2,
+    mouseY + _H.2,
     objX,
     objY
   );

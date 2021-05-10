@@ -18,7 +18,7 @@ class Scoreboard {
   constructor(size) {
     this.size = size;
     this.expand_value = 0;
-    this.graphics = createGraphics(200, 100);
+    this.graphics = createGraphics(200, 200);
   }
 
   draw(x, y, z) {
@@ -38,7 +38,6 @@ class Scoreboard {
     plane(this.size + this.expand_value);
     pop();
   }
-
   getScore() {
     return int(millis() / 100);
   }
@@ -50,7 +49,6 @@ class ScanBoard extends Position {
   constructor(x, y, z, size) {
     super(x, y, z);
     this.size = size;
-    this.expand_value = 0;
     this.graphics = createGraphics(200, 200);
   }
 
@@ -69,7 +67,7 @@ class ScanBoard extends Position {
     texture(this.graphics);
     translate(this.x, this.y, this.z);
     // noStroke();
-    plane(this.size + this.expand_value);
+    plane(this.size);
     pop();
   }
 }

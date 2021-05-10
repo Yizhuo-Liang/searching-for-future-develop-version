@@ -125,7 +125,6 @@ function preload() {
 }
 
 
-
 function setup() {
   // Setup environment variables
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -135,9 +134,6 @@ function setup() {
   smooth();
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
-  //
-  
-  //
   sb = new Scoreboard(200);
   ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   BGM.loop();
@@ -161,7 +157,7 @@ function setup() {
     0.17,
     200000
   );
-  scanResults = new ScanBoard(camX, camY, camZ);
+  scanResults = new ScanBoard((_W/2)-300, (_H/2)-300, camZ);
 }
 
 function mouseClicked() {

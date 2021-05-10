@@ -11,21 +11,18 @@
 /* camX camY tiltZ tiltX speedZ moveAround */
 /* victoryScene winningRays WinningRay WinningScene rayIsNotBehind */
 
-
-
-
 class startPage extends Position{
   constructor(x, y, z, s = 0) {
     super(x, y, z);
     this.size = min(_W, _H) / 4;
     this.graphics = createGraphics(this.size, this.size);
-    this.graphics.textSize(this.size / 10);
+    this.graphics.textSize(this.size / 7);
     this.graphics.fill(255);
     this.graphics.background(0, 0);
-    this.graphics.textAlign(CENTER, CENTER);
+    this.graphics.textAlign(LEFT);
     this.graphics.textFont(space_age);
     this.graphics.text(
-      "S-earthing in the unknown \n by Lucas Goh and Shangyu Xie" + str(s),
+      "   S-earthing \n   in the unknown \n\n\n" + str(s),
       0,
       0,
       this.size,
@@ -34,6 +31,7 @@ class startPage extends Position{
   }
 
   draw() {
+    background(0);
     push();
     translate(this.x, this.y, this.z);
     rotateX(frameCount * 0.7);

@@ -145,7 +145,7 @@ function setup() {
   xp = width / 2;
   yp = height / 2;
   displayPoem = new DisplayWords(poem, 300);
-  theStartPage = new startPage();
+  theStartPage = new startPage(camX, camY, camZ - 350);
   cam1 = createCamera();
   victory = new WinningScene(camX, camY, camZ - 300, 65);
   soundMap = new Terrain(camX - 400, camY + 100, camZ - 1000, 1400, 600, 20, 1, 0, 0.12, 0);
@@ -163,9 +163,10 @@ function setup() {
   );
 }
 
-
-
 function mouseClicked() {
+  if (status === "start"){
+    status = "alive";
+  }
   if (status === "died") {
     planets = [];
     status = "justaliveAgain";
@@ -180,7 +181,7 @@ function draw() {
   console.log(status);
   if (status == "start") {
     theStartPage.draw();
-    frameCount = 0;
+    // frameCount = 0;
     return
   }
   if (startMillisNotInitialized === true) {

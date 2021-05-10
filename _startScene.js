@@ -28,24 +28,20 @@ class startPage {
   }
 
   draw() {
-    //     push();
-    //     this.graphics.background(0);
-    //     this.graphics.fill(255);
-    //     this.graphics.textSize(40);
-
-    //     this.graphics.textAlign(CENTER, CENTER);
-    //     this.graphics.text("MAY THE FORCE", width/2, height/2);
-    //     texture(this.graphics);
-    //     noStroke();
-    //     plane(width, height);
-    //     pop();
     push();
-    this.graphics.background(0);
+    this.graphics.clear();
+    this.graphics.background(0, 0);
+    this.graphics.fill(255);
+    this.graphics.textSize(20);
+    this.graphics.textFont(space_age);
+    this.graphics.text("S-earthing in the unknown", 10, 80, 700, 700);
     texture(this.graphics);
+    translate(x, y, z);
+    if (distance % 10 == 1) {
+      this.expand_value = this.size / 2;
+    }
     noStroke();
-    plane(width, height);
-    scale(this.scale);
-    image(this.img, camX - 250 * this.scale, camY - 200 * this.scale);
+    plane(this.size + this.expand_value);
     pop();
   }
 }

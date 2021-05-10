@@ -180,9 +180,9 @@ class Warning {
 function drawBackground() {
   push();
   noStroke();
-  translate(0,0, -1000);
+  translate(0,0, -10000);
   texture(universe);
-  plane(3*windowWidth, 2*windowHeight)
+  plane(20*windowWidth, 10*windowHeight)
   pop();
 }
 

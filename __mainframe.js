@@ -33,7 +33,7 @@ let earth,
     terrainPic;
 let BGM;
 let ship1;
-let status = "alive";
+let status = "start";
 
 // Setting up variables for diedScene
 let explosion_sound;
@@ -70,7 +70,7 @@ function preload() {
   );
   spaceship = loadModel("assets/spaceship2.obj");
   universe = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Funiverse-background-1.jpg?v=1617194401240"
+    "https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fbackground2.jfif?v=1620149004479"
   );
   startPng = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNew%20Project.png?v=1617291457112"
@@ -178,10 +178,10 @@ function mouseClicked() {
 
 function draw() {
   console.log(status);
-  if (!started) {
+  if (status == "start") {
     theStartPage.draw();
     frameCount = 0;
-    return;
+    return
   }
   if (startMillisNotInitialized === true) {
     startMillis = millis();

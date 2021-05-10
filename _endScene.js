@@ -16,7 +16,9 @@
 class EndScene extends Position{
   constructor(x, y, z, s = 0) {
     super(x, y, z);
-    this.size = min(_W, _H) / 4;ize(this.size / 10);
+    this.size = min(_W, _H) / 4;
+    this.graphics = createGraphics(this.size, this.size);
+    this.graphics.textSize(this.size / 10);
     this.graphics.fill(255);
     this.graphics.background(0, 0);
     this.graphics.textAlign(CENTER, CENTER);
@@ -25,8 +27,6 @@ class EndScene extends Position{
       "GAME OVER! \n Click to continue \n Your Score: " + str(s),
       0,
       0,
-    this.graphics = createGraphics(this.size, this.size);
-    this.graphics.textS
       this.size,
       this.size
     );

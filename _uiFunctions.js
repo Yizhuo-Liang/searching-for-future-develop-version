@@ -181,7 +181,7 @@ function drawBackground() {
   push();
   noStroke();
   translate(0,0, -1000);
-  texture(background1);
+  texture(universe);
   plane(3*windowWidth, 2*windowHeight)
   pop();
 }

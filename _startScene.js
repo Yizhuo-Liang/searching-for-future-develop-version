@@ -11,6 +11,9 @@
 /* camX camY tiltZ tiltX speedZ moveAround */
 /* victoryScene winningRays WinningRay WinningScene rayIsNotBehind */
 
+
+
+
 class startPage {
   
   constructor() {

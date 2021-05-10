@@ -161,6 +161,7 @@ function setup() {
     0.17,
     200000
   );
+  scanResults = new ScanBoard(camX, camY, camZ);
 }
 
 function mouseClicked() {

@@ -48,6 +48,7 @@ function aliveScene() {
     ship1.getLocation().z
   );
   
+  
   soundMap.draw();
 }
 

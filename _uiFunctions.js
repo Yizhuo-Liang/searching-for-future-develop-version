@@ -54,25 +54,23 @@ class ScanBoard extends Position {
     this.graphics = createGraphics(200, 200);
   }
 
-  draw(x, y, z, ) {
+  draw(planetName, planetClimate, planetLivability, surfaceWater, livability) {
     push();
     this.graphics.clear();
     this.graphics.fill(255);
     this.graphics.textSize(20);
     this.graphics.textFont(space_age);
-    this.graphics.text(distance + "kM", 10, 80, 700, 700);
+    this.graphics.text(
+    "Name:", planetName,
+    "Climate:", planetClimate,
+    "Surface Water:", surfaceWater,
+    "Livability:", livability
+    );
     texture(this.graphics);
-    translate(x, y, z);
-    if (distance % 10 == 1) {
-      this.expand_value = this.size / 2;
-    }
-    noStroke();
+    translate(this.x, this.y, this.z);
+    // noStroke();
     plane(this.size + this.expand_value);
     pop();
-  }
-
-  getScore() {
-    return int(millis() / 100);
   }
 }
 

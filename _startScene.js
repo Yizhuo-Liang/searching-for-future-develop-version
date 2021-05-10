@@ -19,10 +19,10 @@ class startPage extends Position{
     this.graphics.textSize(this.size / 7);
     this.graphics.fill(255);
     this.graphics.background(0, 0);
-    this.graphics.textAlign(LEFT);
-    this.graphics.textFont(space_age);
+    this.graphics.textAlign(CENTER, CENTER);
+    this.graphics.textFont("gothic");
     this.graphics.text(
-      "   S-earthing \n   in the unknown \n\n\n" + str(s),
+      "S-earthing in the unknown",
       0,
       0,
       this.size,

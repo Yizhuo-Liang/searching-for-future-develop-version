@@ -25,7 +25,6 @@ class Scoreboard {
     push();
     let distance = int((millis() - startMillis) / 100);
     this.graphics.clear();
-    this.graphics.background(0, 0);
     this.graphics.fill(255);
     this.graphics.textSize(20);
     this.graphics.textFont(space_age);
@@ -96,7 +95,6 @@ class DisplayWords {
   draw(x, y, z) {
     push();
     this.graphics.clear();
-    this.graphics.background(0, 0);
     this.graphics.fill(255);
     this.graphics.textFont(space_age);
     this.graphics.textSize(this.size / 8);
@@ -180,9 +178,9 @@ class Warning {
 function drawBackground() {
   push();
   noStroke();
-  translate(0,0, -10000);
+  translate(0,0, -15000);
   texture(universe);
-  plane(20*windowWidth, 10*windowHeight)
+  plane(20*windowWidth, 20*windowHeight)
   pop();
 }
 

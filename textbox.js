@@ -35,7 +35,7 @@ function textBox(s) {
 function isClose(objX, objY) {
   let distance = dist(
     mouseX + _W/2,
-    mouseY + _H.2,
+    mouseY + _H/2,
     objX,
     objY
   );

@@ -166,6 +166,7 @@ function setup() {
 function mouseClicked() {
   if (status === "start"){
     status = "alive";
+    frameCount = 0;
   }
   if (status === "died") {
     planets = [];
@@ -181,7 +182,6 @@ function draw() {
   console.log(status);
   if (status == "start") {
     theStartPage.draw();
-    // frameCount = 0;
     return
   }
   if (startMillisNotInitialized === true) {

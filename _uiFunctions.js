@@ -229,9 +229,10 @@ class Warning {
 function drawBackground() {
   push();
   noStroke();
-  translate(0,0, -15000);
+  translate(0,0, -5000);
   texture(universe);
-  plane(20*windowWidth, 20*windowHeight)
+  // plane(20*windowWidth, 20*windowHeight)
+  sphere(10*windowWidth);
   pop();
 }
 

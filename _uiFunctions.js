@@ -55,7 +55,7 @@ class ScanBoard extends Position {
   scanPlanet(planets, camZ){
     for (let p in planets){
       if (p.z < camZ - 3000){
-        if (mouseIsClose(p.y, p.z)){
+        if (mouseIsClose(p.x, p.y)){
           this.draw("a", "b", "c", "d", "e");
           return;
         }
@@ -95,7 +95,7 @@ function mouseIsClose(objX, objY) {
 		0
   );
 	console.log(distance);
-  return distance - 200 < 0;
+  return distance - 1000 < 0;
 }
 
 

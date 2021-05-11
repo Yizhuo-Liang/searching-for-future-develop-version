@@ -13,9 +13,10 @@ function setup() {
 
 function draw() {
   background(0);
-  if (isClose(_W/2, _H/2)){
+	orbitControl();
+  if (isClose(0, 0)){
     textBox("hello");
-  }
+	}
 }
 
 function textBox(s) {
@@ -25,7 +26,7 @@ function textBox(s) {
   tb.textAlign(CENTER);
   tb.textSize(80);
   textFont("georgia");
-  tb.text(s, 150, 50);
+  tb.text(s, 100, 100);
   texture(tb);
   // translate(_W/2, _H/2);
   plane(300, 300);
@@ -33,12 +34,16 @@ function textBox(s) {
 }
 
 function isClose(objX, objY) {
+	// console.log(mouseX, mouseY, objX, objY);
   let distance = dist(
-    mouseX + _W/2,
-    mouseY + _H/2,
+    mouseX - _W/2,
+    mouseY - _H/2,
+		0,
     objX,
-    objY
+    objY,
+		0
   );
+	console.log(distance);
   return distance - 200 < 0;
 }
 

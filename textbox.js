@@ -28,7 +28,7 @@ function textBox(s) {
   textFont("georgia");
   tb.text(s, 100, 100);
   texture(tb);
-  // translate(_W/2, _H/2);
+  translate(_W/2 - 300, _H/2);
   plane(300, 300);
   pop();
 }

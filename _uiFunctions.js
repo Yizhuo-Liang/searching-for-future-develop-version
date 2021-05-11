@@ -51,6 +51,12 @@ class ScanBoard extends Position {
     this.size = size;
     this.graphics = createGraphics(200, 200);
   }
+  
+  scanPlanet(planets){
+    for (planet in planets){
+      
+    }
+  }
 
   draw(planetName, planetClimate, planetLivability, surfaceWater, livability) {
     push();
@@ -70,6 +76,20 @@ class ScanBoard extends Position {
     plane(this.size);
     pop();
   }
+}
+
+function mouseIsClose(objX, objY) {
+	// console.log(mouseX, mouseY, objX, objY);
+  let distance = dist(
+    mouseX - _W/2,
+    mouseY - _H/2,
+		0,
+    objX,
+    objY,
+		0
+  );
+	console.log(distance);
+  return distance - 200 < 0;
 }
 
 

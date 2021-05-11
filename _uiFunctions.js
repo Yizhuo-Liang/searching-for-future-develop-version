@@ -52,10 +52,16 @@ class ScanBoard extends Position {
     this.graphics = createGraphics(200, 200);
   }
   
-  scanPlanet(planets){
-    for (planet in planets){
-      
+  scanPlanet(planets, camZ){
+    for (let p in planets){
+      if (p.z < camZ - 3000){
+        if (mouseIsClose(p.y, p.z)){
+          this.draw("a", "b", "c", "d", "e");
+          return;
+        }
+      }
     }
+    this.draw("","","","","");
   }
 
   draw(planetName, planetClimate, planetLivability, surfaceWater, livability) {

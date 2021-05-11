@@ -47,6 +47,7 @@ function aliveScene() {
     ship1.getLocation().y + _H / 4,
     ship1.getLocation().z
   );
+  scanResults.scanPlanet(planets, camZ);
   // soundMap.draw();
 }
 

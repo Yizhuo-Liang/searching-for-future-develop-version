@@ -1,8 +1,8 @@
 let stars = [];
 let introStars = [];
 let fakeStars = [];
-let maxStars = 300;
-let maxIntroStars = 300;
+let maxStars = 200;
+let maxIntroStars = 200;
 let introFrames = 100;
 let sfCanva;
 let sfCanvaWidth;
@@ -36,7 +36,7 @@ function draw () {
 
   sfCanva.strokeWeight(1);
   for (let i = 0; i < fakeStars.length; i++) {
-    point(fakeStars[i].x, fakeStars[i].y);
+    sfCanva.point(fakeStars[i].x, fakeStars[i].y);
   }
 
   sfCanva.strokeWeight(2);
@@ -49,8 +49,6 @@ function draw () {
       introStars[i].update();
       introStars[i].show();
     }
-    
-    fill("rgba(244, 66, 66, 255)");
     introFrames-=0.5;
   }
   sfCanva.pop();

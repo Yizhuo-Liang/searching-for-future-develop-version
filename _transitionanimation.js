@@ -49,7 +49,7 @@ class openBallAnimation {
     fill(0);
     sphere(this.size, 24, 16);
     pop();
-    if (this.getSize() > 400) {
+    if (this.getSize() > 550) {
       this.strokeWeight = 2;
       animationtrigger = 2;
       status = destStatus;

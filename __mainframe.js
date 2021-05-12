@@ -61,7 +61,6 @@ let yp;
 let maxSpeed = 15;
 
 // Setting up variables for uiFunctions
-let sb;
 let displayPoem;
 let space_age;
 let uiTextbox;
@@ -141,7 +140,6 @@ function setup() {
   smooth();
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
-  sb = new Scoreboard(200);
   ship1 = new Spaceship(camX, camY - 100, camZ - 600, 15, tiltZ, tiltX, spaceship);
   BGM.loop();
   xp = width / 2;
@@ -252,7 +250,7 @@ function draw() {
       ship1.getLocation().x,
       ship1.getLocation().y,
       camZ - 450,
-      sb.getScore()
+      uiTextbox.getScore()
     );
     status = "died";
   }
@@ -273,7 +271,6 @@ function draw() {
   }
   
   if (status === "died") {
-    background(0);
     drawBackground();
     diedScene();
   }
@@ -283,7 +280,7 @@ function draw() {
     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
   }
 
-  if (textbox.getScore() > 1200 && status === "alive") {
+  if (uiTextbox.getScore() > 1200 && status === "alive") {
     background(0);
     BGM.stop();
     victoryBGM.play();

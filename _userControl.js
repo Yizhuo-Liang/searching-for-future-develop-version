@@ -28,6 +28,7 @@ function moveAround() {
   
   for (let i = 0; i < planets.length; i++) {
     planets[i].z += speedZ;
+    
   }
   
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {

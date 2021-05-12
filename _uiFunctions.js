@@ -32,14 +32,13 @@ class Textbox {
     this.graphics.textFont(space_age);
     this.graphics.textSize(this.textsize);
     this.graphics.textAlign(RIGHT);
-    fill(255);
+    this.graphics.fill(255);
     this.graphics.text("Instructions:", 10, 10, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("User Interface:", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("Distance travelled:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
     console.log("it is here");
-    
     texture(this.graphics);
-    translate(0, 0, camZ - 600);
+    translate(0, _H * 0.3, camZ-600);
     plane(this.W, this.H);
     pop();
   }

@@ -54,15 +54,20 @@ class Textbox {
   }
   
   drawStart(){
-    this.graphics.text("Instructions:", 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("User Control:", 10, 10, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("Right-click to start", 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight)
   }
   
   drawAlive(){
     let distance = int((millis() - startMillis) / 100);
-    this.graphics.text("Instructions:\nX: Move Up\nS: Move Down\nA: Move Left\nD: Move Right", 10, 10, this.sectionsize - 10, this.boxHeight);
-    this.graphics.text("Distance:\n"+str(distance)+"au", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
-    this.graphics.text("Distance travelled:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("User Control:\nX: Move Up\nS: Move Down\nA: Move Left\nD: Move Right\nF: Scan for the nearest planet", 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Distance: "+str(distance)+"au", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Instructions:\nIdentify a planet with habitable living conditions", this.sectionsize + 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Planet information", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Code:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Gravity:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Ambient Temperature:")
+    this.graphics.text()
   }
 }
 

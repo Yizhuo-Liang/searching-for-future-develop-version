@@ -36,17 +36,6 @@ function aliveScene() {
   }
   drawPlanets();
   getWarningLevel(ship1, planets);
-  sb.draw(
-    ship1.getLocation().x + _W / 4,
-    ship1.getLocation().y - _H / 4,
-    ship1.getLocation().z
-  );
-
-  displayPoem.draw(
-    ship1.getLocation().x,
-    ship1.getLocation().y + _H / 4,
-    ship1.getLocation().z
-  );
   scanResults.scanPlanet(planets, camZ);
   // soundMap.draw();
 }

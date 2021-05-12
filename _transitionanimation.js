@@ -24,10 +24,10 @@ class openBallAnimation {
     if (this.size > 10) {
       this.size = this.size * 0.95;
     }
-    if (this.transparency > 0) {
-      this.transparency -= 5;
-      this.strokeWeight += 0.1;
-    }
+    // if (this.transparency > 0) {
+    //   this.transparency -= 2;
+    //   this.strokeWeight += 0.1;
+    // }
   }
   
   getSize() {
@@ -50,6 +50,7 @@ class openBallAnimation {
     sphere(this.size, 24, 16);
     pop();
     if (this.getSize() > 400) {
+      this.strokeWeight = 2;
       animationtrigger = 2;
       status = destStatus;
     }
@@ -59,9 +60,9 @@ class openBallAnimation {
     this.shrinkBall();
     push();
     translate(this.x, this.y, this.z);
+    fill(0);
     stroke(255);
-    strokeWeight(this.strokeWeight);
-    fill(0,0,0, this.transparency);
+    strokeWeight(6);
     sphere(this.size, 24, 16);
     pop();
     if (this.getSize() < 10) {

@@ -174,7 +174,7 @@ function mouseClicked() {
     animationtrigger = 1;
   }
   else if (status === "prologue"){
-    status = "alive";
+    animationtrigger = 1;
     frameCount = 0;
   }
   else if (status === "died") {
@@ -204,6 +204,9 @@ function draw() {
     }
     prologueScene();
     uiTextbox.draw(status);
+    if (animationtrigger == 1){
+      startAnimation.draw("alive");
+    }
   }
   
   if (startMillisNotInitialized === true) {
@@ -212,6 +215,9 @@ function draw() {
   }
 
   if (status === "alive") {
+    if (animationtrigger == 2){
+      startAnimation.drawClose();
+    }
     aliveScene();
     drawBackground();
     let warning = moveAround();

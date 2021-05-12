@@ -19,9 +19,11 @@ function setup () {
   for (let i = 0; i < maxStars; i++) {
     fakeStars.push(new Star(0));
   }
+  smooth();
 }
 
 function draw () {
+  sfCanva.push();
   sfCanva.background(0);
   sfCanva.fill(255);
   sfCanva.stroke(255);
@@ -51,9 +53,13 @@ function draw () {
     fill("rgba(244, 66, 66, 255)");
     introFrames-=0.5;
   }
+  sfCanva.pop();
+  push();
   texture(sfCanva);
-  translate(0,0, (height/2.0) / tan(PI*30.0 / 180.0) -350);
-  plane(windowWidth, windowHeight);
+  // translate(0,0, (height/2.0) / tan(PI*30.0 / 180.0) -350);
+  noStroke();
+  plane(sfCanvaWidth, sfCanvaHeight);
+  pop();
 }
 
 class Star {

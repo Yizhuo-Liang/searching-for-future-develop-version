@@ -52,8 +52,8 @@ class Textbox {
     else if (status == "alive") {
       this.drawAlive(_planetconditions[0], _planetconditions[1], _planetconditions[2], _planetconditions[3], _planetconditions[4], warning);
     }
-    else if (status == "alive") {
-      this.drawAlive(_planetconditions[0], _planetconditions[1], _planetconditions[2], _planetconditions[3], _planetconditions[4], warning);
+    else if (status == "end") {
+      this.drawEnd();
     }
     texture(this.graphics);
     translate(0, _H * 0.3, camZ-680);
@@ -75,8 +75,8 @@ class Textbox {
     this.graphics.text("User Control:\nX: Move Up\nS: Move Down\nA: Move Left\nD: Move Right\nF: Scan for the nearest planet", 10, 10, this.sectionsize - 10, this.boxHeight);
     
     //Column2
-    this.graphics.text("Distance: "+str(distance)+"au", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
-    this.graphics.text("Instructions:\nIdentify a planet with habitable living conditions", this.sectionsize + 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Distance: "+str(distance)+"au\n", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Instructions:\nIdentify a planet with habitable living conditions\n", this.sectionsize + 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("Warning: "+warning, this.sectionsize + 10, 10 + 4*this.textsize, this.sectionsize - 10, this.boxHeight);
     
     //Column 3

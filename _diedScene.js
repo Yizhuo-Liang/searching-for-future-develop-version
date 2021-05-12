@@ -20,6 +20,7 @@ function diedScene() {
   }
   
   if (explosion_timer < 250) {
+    push();
     drawPlanets();
     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
     explosion_timer += 1;
@@ -55,8 +56,9 @@ function diedScene() {
         particles.splice(i, 1);
       }
     }
+    pop();
   } else {
-    camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
+    camera(camX, camY, camZ);
     re_explosion_ball.draw();
     ending.draw();
     uiTextbox.draw(status);

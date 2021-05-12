@@ -3,7 +3,7 @@ function prologueScene() {
   push();
   fill(238, 213, 75);
   textFont(paragraphfont);
-  textSize(width * 0.04);
+  textSize(width * 0.03);
   textAlign(CENTER);
   rotateX(45);
   let w = width * 0.6;

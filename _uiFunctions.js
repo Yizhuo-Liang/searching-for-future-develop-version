@@ -14,21 +14,32 @@
 //--------------------------------- START OF SCOREBOARD ---------------------------------
 let startMillis;
 let startMillisNotInitialized = true;
+
 class Textbox {
-  constructor(size) {
-    this.graphics = createGraphics(_W, _H*0.2);
-    this.sectionsize = _W/3;
-    this.boxWidth = _W;
-    this.boxHeight = _H*0.2;
-    this.textsize = _H*0.2*0.2; // Can hold 5 lines of text per box
+  constructor(W, H) {
+    this.W = W;
+    this.H = H;
+    this.graphics = createGraphics(W, H);
+    this.sectionsize = W/3;
+    this.boxWidth = W;
+    this.boxHeight = H;
+    this.textsize = H*0.2; // Can hold 5 lines of text per box
   }
   
   draw(status){
+    push();
+    this.graphics.background(0);
     this.graphics.textSize(this.textsize);
     this.graphics.textAlign(RIGHT);
     this.graphics.text("Instructions:", 10, 10, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("User Interface:", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("Distance travelled:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
+    
+    texture(this.graphics);
+    translate
+    plane(this.W, this.H);
+    translate(0, -_W/2);
+    pop()
   }
 }
 

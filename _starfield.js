@@ -4,9 +4,11 @@ let fakeStars = [];
 let maxStars = 300;
 let maxIntroStars = 300;
 let introFrames = 100;
+let sfCanva;
 
 function setup () {
-  createCanvas(window.innerWidth, window.innerHeight);
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  sfCanva = createGraphics(windowWidth, windowHeight);
   for (let i = 0; i < maxIntroStars; i++) {
     introStars.push(new Star(1));
   }
@@ -16,23 +18,22 @@ function setup () {
 }
 
 function draw () {
-  background(0);
-  fill(255);
-  stroke(255);
-  translate(width/2, height/2);
-
-  strokeWeight(2);
+  sfCanva.background(0);
+  sfCanva.fill(255);
+  sfCanva.stroke(255);
+  sfCanva.translate(width/2, height/2);
+  sfCanva.strokeWeight(2);
   for (let i = 0; i < stars.length; i++) {
     stars[i].update();
     stars[i].show();
   }
 
-  strokeWeight(1);
+  sfCanva.strokeWeight(1);
   for (let i = 0; i < fakeStars.length; i++) {
     point(fakeStars[i].x, fakeStars[i].y);
   }
 
-  strokeWeight(2);
+  sfCanva.strokeWeight(2);
   if (introFrames > 0) {
     for (let i = 0; i < floor(maxStars/100); i++) {
       stars.push(new Star(1));
@@ -43,11 +44,9 @@ function draw () {
       introStars[i].show();
     }
 
-    textSize(introFrames);
     strokeWeight(0);
     fill("rgba(244, 66, 66, 255)");
     textAlign(CENTER, CENTER);
-    text("ENGAGING HYPERDRIVE", 0, 0);
     introFrames-=0.5;
   }
 }
@@ -85,50 +84,8 @@ class Star {
   }
 
   show () {
-    var tempx = map (this.x / this.z, -0.5, 0.5, -width/2, width/2);
-    var tempy = map (this.y / this.z, -0.5*height/width, 0.5*height/width, -height/2, height/2);
-
-    let r = map(this.z, 1, width, 40, 0.1) * Math.min(1, this.life/15);
-    let angle = Math.atan2(this.y, this.x);
-
-    let x1 = tempx + r * Math.cos(angle);
-    let y1 = tempy + r * Math.sin(angle);
-
-    line(tempx, tempy, x1, y1);
-  }
-}
-
-class Star {
-  constructor (type) {
-    if (type == 1) {
-      // Moving stars
-      let r = random(width/60);
-      let angle = random(0, 2*PI);
-      this.x = r * Math.cos(angle);
-      this.y = r * Math.sin(angle);
-      this.z = random(0.95*width,width);
-      this.life = 0;
-    } else {
-      // Background stars
-      this.x = random(-width/2, width/2);
-      this.y = random(-height/2, height/2);
-    }
-  }
-
-  update () {
-    this.z -= 10;
-    this.life++;
-    if (this.z < 1) {
-      this.x = random(-width/20, width/20);
-      this.y = random(-height/20, height/20);
-      this.z = random(width*0.5, width);
-      this.life = 0;
-    }
-  }
-
-  show () {
-    var tempx = map (this.x / this.z, -0.5, 0.5, -width/2, width/2);
-    var tempy = map (this.y / this.z, -0.5*height/width, 0.5*height/width, -height/2, height/2);
+    let tempx = map (this.x / this.z, -0.5, 0.5, -width/2, width/2);
+    let tempy = map (this.y / this.z, -0.5*height/width, 0.5*height/width, -height/2, height/2);
 
     let r = map(this.z, 1, width, 40, 0.1) * Math.min(1, this.life/15);
     let angle = Math.atan2(this.y, this.x);

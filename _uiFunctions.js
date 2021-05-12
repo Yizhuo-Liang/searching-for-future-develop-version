@@ -17,13 +17,14 @@ let startMillisNotInitialized = true;
 
 class Textbox {
   constructor(W, H) {
+    W = W*0.8
     this.W = W;
     this.H = H;
     this.graphics = createGraphics(W, H);
     this.sectionsize = W/3;
     this.boxWidth = W;
     this.boxHeight = H;
-    this.textsize = H*0.2; // Can hold 5 lines of text per box
+    this.textsize = H*0.08; // Can hold 5 lines of text per box
   }
   
   draw(status){
@@ -31,16 +32,25 @@ class Textbox {
     this.graphics.background(0);
     this.graphics.textFont(space_age);
     this.graphics.textSize(this.textsize);
-    this.graphics.textAlign(RIGHT);
+    this.graphics.textAlign(LEFT);
     this.graphics.fill(255);
+    this.graphics.line(this.sectionsize)
+    this.drawStart();
+    texture(this.graphics);
+    translate(_W*0.05, _H * 0.3, camZ-600);
+    plane(this.W, this.H);
+    pop();
+  }
+  
+  drawStart(){
+    this.graphics.text("Instructions:", 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Right-click to start", 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight)
+  }
+  
+  drawAlive(){
     this.graphics.text("Instructions:", 10, 10, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("User Interface:", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("Distance travelled:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
-    console.log("it is here");
-    texture(this.graphics);
-    translate(0, _H * 0.3, camZ-600);
-    plane(this.W, this.H);
-    pop();
   }
 }
 

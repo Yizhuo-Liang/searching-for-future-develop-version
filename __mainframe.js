@@ -190,9 +190,18 @@ function draw() {
     aliveScene();
     drawBackground();
     if (keyIsDown(70)){
+      let nearestPlanet = null;
+      let d = 10000;
       for (let planet in planets) {
-        
+        if (planet.z < ship1.getLocation().z) {    
+          let d1 = dist(planet.x, planet.y, planet.z, ship1.getLocation().x, ship1.getLocation().y, ship1.getLocation().z)
+          if (d1 < d) {
+            d = d1
+            nearestPlanet = planet
+          }
+        }
       }
+      
     }
     uiTextbox.draw(status);
     if (testCollision(planets, ship1)) {

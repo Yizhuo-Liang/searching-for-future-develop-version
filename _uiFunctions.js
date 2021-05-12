@@ -31,7 +31,7 @@ class Textbox {
   draw(status, warning){
     push();
     this.graphics.background(0);
-    this.graphics.textFont("gothic");
+    this.graphics.textFont(dimfont);
     this.graphics.textSize(this.textsize);
     this.graphics.textAlign(LEFT);
     this.graphics.fill(255);
@@ -42,6 +42,7 @@ class Textbox {
     this.graphics.line(0, 2, this.W, 2);
     pop();
     this.graphics.stroke(10);
+    this.graphics.textStyle(BOLD);
     if (status == "start"){
       this.drawStart();
     }

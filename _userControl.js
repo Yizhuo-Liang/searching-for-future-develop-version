@@ -19,14 +19,15 @@ let tiltX = 0;
 let speedZ = 60;
 let xMoved = 0;
 let yMoved = 0;
-let boundaryX = 10000;
-let boundaryY = 5000;
+let boundaryX = 9000;
+let boundaryY = 9000;
 
 function moveAround() {
-  let triggerZ = 0;
+  let triggerZ = 0; //designed to smooth the process
   let triggerX = 0;
-  if (abs(xMoved) >= boundaryX || abs(yMoved) >= boundaryY){
-    return
+  
+  for (let i = 0; i < planets.length; i++) {
+    planets[i].z += speedZ;
   }
   
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
@@ -34,7 +35,6 @@ function moveAround() {
       planets[i].x += speedZ;
     }
     xMoved -= speedZ;
-    soundMap.x += speedZ
     tiltZ -= 4;
     triggerZ = 10;
   }
@@ -44,7 +44,6 @@ function moveAround() {
       planets[i].x -= speedZ;
     }
     xMoved += speedZ;
-    soundMap.x -= speedZ
     tiltZ += 4;
     triggerZ = 10;
   }
@@ -54,7 +53,6 @@ function moveAround() {
       planets[i].y += speedZ;
     }
     yMoved -= speedZ;
-    soundMap.z -= speedZ;
     tiltX += 5;
     triggerX = 10;
   }
@@ -64,18 +62,14 @@ function moveAround() {
       planets[i].y -= speedZ;
     }
     yMoved += speedZ;
-    soundMap.z += speedZ;
     tiltX -= 5;
     triggerX = 10;
   }
 
-  for (let i = 0; i < planets.length; i++) {
-    planets[i].z += speedZ;
-  }
-
-  if (sb.getScore() % 100 == 0) {
-    speedZ += 7;
-  }
+  // Increase speed by when score increases, off temporarily
+  // if (sb.getScore() % 100 == 0) {
+  //   speedZ += 7;
+  // }
 
   if (triggerZ === 0) {
     if (tiltZ > 0) {
@@ -113,8 +107,6 @@ function moveAround() {
   //     camX += xp*5;
   //     camY += yp*5;
 
-  //phone version
-
   //   if (keyIsDown(107) || keyIsDown(187)) {
   //     camZ -= 5;
   //     tiltX += 5;
@@ -128,7 +120,7 @@ function moveAround() {
   //   }
 
   // adding the resultant displacement due to gravity  <<<<<<<< ----------------------------- Gravity's Effect <<<<<<<
-  camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
+  camera(camX, camY, camZ, camX, camY, camZ - 100);
 }
 //--------------------------------- END OF MOVEAROUND ---------------------------------
 

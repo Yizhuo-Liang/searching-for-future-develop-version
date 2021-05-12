@@ -62,6 +62,7 @@ let displayPoem;
 let space_age;
 let uiTextbox;
 let dimfont;
+let paragraphfont;
 
 // Setting up variables for victoryScene
 let victoryBGM;
@@ -71,7 +72,7 @@ function preload() {
   space_age = loadFont(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNasa.ttf?v=1617322691693"
   );
-  dimfont = loadFont("https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2FWIREFRAM.TTF?v=1620844879107");
+  dimfont = loadFont("https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2FQuicksand-BoldItalic.otf?v=1620845649473");
   spaceship = loadModel("assets/spaceship2.obj");
   universe = loadImage(
     "https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fdarkrift-orig_full.jpg?v=1620835680372"

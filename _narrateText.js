@@ -18,7 +18,6 @@ function setup() {
 function draw() {
   background(0);
   // No translate(): WEBGL mode starts with the origin in the center.
-
   fill(238, 213, 75);
   textFont(font);
   textSize(width * 0.04);

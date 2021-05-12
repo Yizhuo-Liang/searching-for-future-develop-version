@@ -31,7 +31,7 @@ class Textbox {
   draw(status, warning){
     push();
     this.graphics.background(0);
-    this.graphics.textFont(dimfont);
+    this.graphics.textFont("gothic");
     this.graphics.textSize(this.textsize);
     this.graphics.textAlign(LEFT);
     this.graphics.fill(255);
@@ -50,7 +50,7 @@ class Textbox {
       this.drawAlive(_planetconditions[0], _planetconditions[1], _planetconditions[2], _planetconditions[3], _planetconditions[4], warning);
     }
     texture(this.graphics);
-    translate(_W*0.05, _H * 0.3, camZ-600);
+    translate(0, _H * 0.3, camZ-680);
     plane(this.W, this.H);
     pop();
   }

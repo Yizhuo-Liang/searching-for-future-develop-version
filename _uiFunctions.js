@@ -14,6 +14,13 @@
 //--------------------------------- START OF SCOREBOARD ---------------------------------
 let startMillis;
 let startMillisNotInitialized = true;
+class Textbox {
+  constructor(status, size) {
+    this.graphics = createGraphics()
+    
+  }
+}
+
 class Scoreboard {
   constructor(size) {
     this.size = size;
@@ -97,6 +104,8 @@ function mouseIsClose(objX, objY) {
 	console.log(distance);
   return distance - 1000 < 0;
 }
+
+
 
 
 // START OF POEM

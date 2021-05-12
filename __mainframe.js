@@ -72,9 +72,6 @@ function preload() {
   universe = loadImage(
     "https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fbackground2.jfif?v=1620149004479"
   );
-  startPng = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNew%20Project.png?v=1617291457112"
-  );
   earth = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fearth.jpg?v=1616633286407"
   );
@@ -140,13 +137,12 @@ function setup() {
   xp = width / 2;
   yp = height / 2;
   displayPoem = new DisplayWords(poem, 300);
-  theStartPage = new startPage(camX, camY, camZ - 350);
+  theStartPage = new startPage(camX, camY - _H/20, camZ - 350);
   cam1 = createCamera();
   victory = new WinningScene(camX, camY, camZ - 300, 65);
   soundMap = new Terrain(camX - 400, camY + 100, camZ - 1000, 1400, 600, 20, 1, 0, 0.12, 0);
   // narratePoem.play();
   // let fov = PI/3;
-  // let cameraZ = (height/2.0)/(height/2.0)
   // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
   frustum(
     -windowWidth / 10000,

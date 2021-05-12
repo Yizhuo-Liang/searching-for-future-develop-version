@@ -180,6 +180,7 @@ function draw() {
     uiTextbox.draw(status);
     return
   }
+  
   if (startMillisNotInitialized === true) {
     startMillis = millis();
     startMillisNotInitialized = false;
@@ -192,6 +193,7 @@ function draw() {
       // narratePoem.stop();
       status = "justdied";
     }
+    
   } else if (status === "justdied") {
     re_explosion_ball = new Re_explosion(
       ship1.getLocation().x,
@@ -207,7 +209,6 @@ function draw() {
     );
     status = "died";
   }
-  
   
   if (status === "justaliveAgain") {
     start_explosion_ball = new start_explosion(

@@ -197,6 +197,7 @@ function draw() {
   
   if (status === "prologue"){
     prologueScene();
+    uiTextbox.draw(status);
   }
   
   if (startMillisNotInitialized === true) {

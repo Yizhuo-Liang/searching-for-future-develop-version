@@ -29,7 +29,6 @@ let planets = [];
 
 function aliveScene() {
   background(0);
-  moveAround();
   ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
   if (frameCount === 1 || frameCount % 180 == 0) {
     generatePlanet(ship1);

@@ -37,45 +37,44 @@ function moveAround() {
       }
       xMoved -= speedZ;
     }
-    else {
-      
-    }
-    xMoved -= speedZ;
     tiltZ -= 4;
     triggerZ = 10;
   }
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
-    for (let i = 0; i < planets.length; i++) {
-      planets[i].x -= speedZ;
+    if (xMoved > boundaryX) {
+      for (let i = 0; i < planets.length; i++) {
+        planets[i].x -= speedZ;
+      }
+      xMoved += speedZ;
     }
-    xMoved += speedZ;
     tiltZ += 4;
     triggerZ = 10;
   }
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
-    for (let i = 0; i < planets.length; i++) {
-      planets[i].y += speedZ;
+    if (yMoved < -boundaryY) {
+      for (let i = 0; i < planets.length; i++) {
+        planets[i].y += speedZ;
+      }
+      yMoved -= speedZ;
     }
-    yMoved -= speedZ;
     tiltX += 5;
     triggerX = 10;
   }
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
-    for (let i = 0; i < planets.length; i++) {
-      planets[i].y -= speedZ;
+    if (yMoved > boundaryY){
+      for (let i = 0; i < planets.length; i++) {
+        planets[i].y -= speedZ;
+      }
+      yMoved += speedZ;
     }
-    yMoved += speedZ;
     tiltX -= 5;
     triggerX = 10;
   }
 
-  // Increase speed by when score increases, off temporarily
-  // if (sb.getScore() % 100 == 0) {
-  //   speedZ += 7;
-  // }
+  
 
   if (triggerZ === 0) {
     if (tiltZ > 0) {
@@ -127,6 +126,12 @@ function moveAround() {
 
   // adding the resultant displacement due to gravity  <<<<<<<< ----------------------------- Gravity's Effect <<<<<<<
   camera(camX, camY, camZ, camX, camY, camZ - 350);
+  if (abs(xMoved) > boundaryX || abs(yMoved) > boundaryY) {
+    return "BOUNDARY REACHED"
+  }
+  else{
+    return ""
+  }
 }
 //--------------------------------- END OF MOVEAROUND ---------------------------------
 

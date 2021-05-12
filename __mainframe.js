@@ -189,6 +189,7 @@ function draw() {
   if (status === "alive") {
     aliveScene();
     drawBackground();
+    let warning = moveAround();
     if (keyIsDown(70)){
       let nearestPlanet = null;
       let d = 10000;
@@ -203,7 +204,7 @@ function draw() {
       }
       _planetconditions = nearestPlanet.getConditions().slice()
     }
-    uiTextbox.draw(status);
+    uiTextbox.draw(status, warning);
     if (testCollision(planets, ship1)) {
       // narratePoem.stop();
       status = "justdied";

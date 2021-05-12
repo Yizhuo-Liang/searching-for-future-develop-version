@@ -28,7 +28,7 @@ class Textbox {
     this.textsize = H*0.08; // Can hold 5 lines of text per box
   }
   
-  draw(status){
+  draw(status, warning){
     push();
     this.graphics.background(0);
     this.graphics.textFont("gothic");
@@ -46,7 +46,7 @@ class Textbox {
       this.drawStart();
     }
     else if (status == "alive") {
-      this.drawAlive(_planetconditions[0], _planetconditions[1], _planetconditions[2], _planetconditions[3], _planetconditions[4]);
+      this.drawAlive(_planetconditions[0], _planetconditions[1], _planetconditions[2], _planetconditions[3], _planetconditions[4], warning);
     }
     texture(this.graphics);
     translate(_W*0.05, _H * 0.3, camZ-600);
@@ -59,14 +59,14 @@ class Textbox {
     this.graphics.text("Right-click to start", 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight)
   }
   
-  drawAlive(code, temperature, oxygen, water, gravity){
+  drawAlive(code, temperature, oxygen, water, gravity, warning){
     let distance = int((millis() - startMillis) / 100);
     this.graphics.text("User Control:\nX: Move Up\nS: Move Down\nA: Move Left\nD: Move Right\nF: Scan for the nearest planet", 10, 10, this.sectionsize - 10, this.boxHeight);
     
     //Column2
     this.graphics.text("Distance: "+str(distance)+"au", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("Instructions:\nIdentify a planet with habitable living conditions", this.sectionsize + 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight);
-    this.graphics.text("Warning:", this.sectionsize + 10, 10 + 4*this.textsize, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Warning: "+warning, this.sectionsize + 10, 10 + 4*this.textsize, this.sectionsize - 10, this.boxHeight);
     
     //Column 3
     this.graphics.text("Planet Scan Results:", (2*this.sectionsize)+10, 10, this.sectionsize - 10, this.boxHeight);

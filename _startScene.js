@@ -14,7 +14,7 @@
 class startPage extends Position{
   constructor(x, y, z, s = 0) {
     super(x, y, z);
-    this.size = min(_W, _H) / 4;
+    this.size = min(_W, _H) / 6;
     this.graphics = createGraphics(this.size, this.size);
     this.graphics.textSize(this.size / 7);
     this.graphics.fill(255);

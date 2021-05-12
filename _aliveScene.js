@@ -46,7 +46,7 @@ class Planet extends Position {
   
   constructor (x, y, z, radius, rings) {
     super(x, y, z);
-    
+    this.alphabets = ["A", "E", "I", "O", "U", "M", "N", "N", "1", "4", "7", "8", "9", "2", "3", "5", "6"];
     this.planetNumber = planetCount++;
     this.radius = radius;
     this.rings = rings;
@@ -54,10 +54,13 @@ class Planet extends Position {
     this.mass = int(random(500, 1000));
     this.angle = 0;
     this.rotateSpeed = int(random(7));
-    this.code = str
+    this.code = random(this.alphabet) + random(this.alphabet) + random(this.alphabet) + random(this.alphabet) + random(this.alphabet) + random(this.alphabet)
+    this.temperature = str(round(random(-1000, 2000), 2))+"°C";
+    this.oxygen = round(random(0, 100), 2)+"%";
+    this.water = round(random(0,100),2)+"%";
+    this.gravity = round(random(0,1000),2)+"m/s2";
+    this.image = null;
   }
-
-  let alphabets = 
   
   move(xDist, yDist, zDist) {
     this.x += xDist;
@@ -71,6 +74,10 @@ class Planet extends Position {
 
   getZ() {
     return this.z;
+  }
+  
+  getConditions(){
+    return [this.code, this.temperature, this.oxygen, this.water, this.gravity]
   }
 
   rotatePlanet() {

@@ -189,6 +189,11 @@ function draw() {
   if (status === "alive") {
     aliveScene();
     drawBackground();
+    if (keyIsDown(70)){
+      for (let planet in planets) {
+        
+      }
+    }
     uiTextbox.draw(status);
     if (testCollision(planets, ship1)) {
       // narratePoem.stop();

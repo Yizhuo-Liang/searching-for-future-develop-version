@@ -981,11 +981,6 @@ class Re_explosion {
   draw() {
     this.growBall();
 
-    // if(this.explosion_status == false){
-    //   explosde_sound.play();
-    //   this.explosion_status=true;
-    // }
-
     push();
     translate(this.x, this.y, this.z);
     noStroke();
@@ -1028,11 +1023,6 @@ class start_explosion {
   draw() {
     background(0);
     this.growBall();
-
-    // if(this.explosion_status == false){
-    //   explosde_sound.play();
-    //   this.explosion_status=true;
-    // }
     push();
     translate(this.x, this.y, this.z);
     stroke(255);

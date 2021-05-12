@@ -72,7 +72,7 @@ function preload() {
   );
   spaceship = loadModel("assets/spaceship2.obj");
   universe = loadImage(
-    "https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fbackground2.jfif?v=1620149004479"
+    "https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fdarkrift-orig_full.jpg?v=1620835680372"
   );
   earth = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fearth.jpg?v=1616633286407"

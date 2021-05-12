@@ -52,7 +52,7 @@ class Planet extends Position {
     this.mass = int(random(500, 1000));
     this.angle = 0;
     this.rotateSpeed = int(random(7));
-    this.code = random(this.alphabet) + random(this.alphabet) + random(this.alphabet) + random(this.alphabet) + random(this.alphabet) + random(this.alphabet)
+    this.code = random(this.alphabets) + random(this.alphabets) + random(this.alphabets) + random(this.alphabets) + random(this.alphabets) + random(this.alphabets)
     this.temperature = str(round(random(-1000, 2000), 2))+"°C";
     this.oxygen = str(round(random(0, 100), 2))+"%";
     this.water = str(round(random(0,100),2))+"%";

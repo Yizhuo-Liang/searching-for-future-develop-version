@@ -15,6 +15,7 @@
 let startMillis;
 let startMillisNotInitialized = true;
 
+let _planetconditions = ["", "", "", "", ""]
 class Textbox {
   constructor(W, H) {
     W = W*0.8
@@ -58,7 +59,7 @@ class Textbox {
     this.graphics.text("Right-click to start", 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight)
   }
   
-  drawAlive(){
+  drawAlive(code, temperature, oxygen, water, gravity){
     let distance = int((millis() - startMillis) / 100);
     this.graphics.text("User Control:\nX: Move Up\nS: Move Down\nA: Move Left\nD: Move Right\nF: Scan for the nearest planet", 10, 10, this.sectionsize - 10, this.boxHeight);
     
@@ -68,10 +69,12 @@ class Textbox {
     this.graphics.text("Warning:", this.sectionsize + 10, 10 + 4*this.textsize, this.sectionsize - 10, this.boxHeight);
     
     //Column 3
-    this.graphics.text("Planet information:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
-    this.graphics.text("Code:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
-    this.graphics.text("Gravity:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
-    this.graphics.text("Ambient Temperature:")
+    this.graphics.text("Planet Scan Results:", (2*this.sectionsize)+10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Code: "+code, (2*this.sectionsize) + 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Climate Temperature: "+temperature, (2*this.sectionsize) + 10, 10 + 2*this.textsize, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Oxygen Level: "+oxygen, (2*this.sectionsize) + 10, 10 + 3*this.textsize, this.sectionsize - 10, this.boxHeight)
+    this.graphics.text("Water Composition: "+water, (2*this.sectionsize) + 10, 10 + 4*this.textsize, this.sectionsize - 10, this.boxHeight)
+    this.graphics.text("Gravity: "+gravity, (2*this.sectionsize) + 10, 10 + 5*this.textsize, this.sectionsize - 10, this.boxHeight)
   }
 }
 

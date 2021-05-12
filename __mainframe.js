@@ -201,7 +201,7 @@ function draw() {
           }
         }
       }
-      
+      _planetconditions = nearestPlanet.getConditions()
     }
     uiTextbox.draw(status);
     if (testCollision(planets, ship1)) {

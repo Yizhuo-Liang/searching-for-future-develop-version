@@ -121,14 +121,14 @@ function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
   let stopDistance = shipLoc.z - 360 * speedZ; //12 seconds from where ship is
-  let randomRange = 3000;
+  let randomRange = 2000;
   let distanceBtwPlanets = 0;
   let beginDistance = shipLoc.z - speedZ * 180; // 6 seconds from where ship is
 
   for (beginDistance; beginDistance >= stopDistance; beginDistance -= 4000) {
     lowerBound = beginDistance;
     pZ = int(random(lowerBound, lowerBound + 3000));
-    
+
     pX = random(shipLoc.x - 200, shipLoc.x + 200);
     pY = random(shipLoc.x - 200, shipLoc.x + 200);
     pS = int(random(600, 1100));

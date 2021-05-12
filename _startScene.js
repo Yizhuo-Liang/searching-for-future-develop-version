@@ -16,13 +16,22 @@ class startPage extends Position{
     super(x, y, z);
     this.size = min(_W, _H) / 6;
     this.graphics = createGraphics(this.size, this.size);
+    this.graphics.textFont(space_age);
     this.graphics.textSize(this.size / 7);
     this.graphics.fill(255);
     this.graphics.background(0, 0);
     this.graphics.textAlign(CENTER, CENTER);
-    this.graphics.textFont("gothic");
     this.graphics.text(
       "S-earthing in the unknown",
+      0,
+      0,
+      this.size,
+      this.size
+    );
+    this.graphics.textAlign(CENTER, BOTTOM);
+    this.graphics.textSize(this.size / 20);
+    this.graphics.text(
+      "Made by\nLucas Goh & Shangyu Xie\n\n",
       0,
       0,
       this.size,

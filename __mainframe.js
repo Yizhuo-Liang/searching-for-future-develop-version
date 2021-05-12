@@ -139,7 +139,7 @@ function setup() {
   xp = width / 2;
   yp = height / 2;
   displayPoem = new DisplayWords(poem, 300);
-  theStartPage = new startPage(camX, camY - _H/20, camZ - 350);
+  theStartPage = new startPage(camX, camY - _H/20, camZ - 450);
   cam1 = createCamera();
   victory = new WinningScene(camX, camY, camZ - 300, 65);
   // soundMap = new Terrain(camX - 400, camY + 100, camZ - 1000, 1400, 600, 20, 1, 0, 0.12, 0);
@@ -220,7 +220,7 @@ function draw() {
     ending = new EndScene(
       ship1.getLocation().x,
       ship1.getLocation().y,
-      ship1.getLocation().z,
+      camZ - 450,
       sb.getScore()
     );
     status = "died";

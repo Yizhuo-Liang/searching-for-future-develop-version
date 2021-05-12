@@ -142,7 +142,7 @@ function setup() {
   theStartPage = new startPage(camX, camY - _H/20, camZ - 350);
   cam1 = createCamera();
   victory = new WinningScene(camX, camY, camZ - 300, 65);
-  soundMap = new Terrain(camX - 400, camY + 100, camZ - 1000, 1400, 600, 20, 1, 0, 0.12, 0);
+  // soundMap = new Terrain(camX - 400, camY + 100, camZ - 1000, 1400, 600, 20, 1, 0, 0.12, 0);
   // narratePoem.play();
   // let fov = PI/3;
   // perspective(PI/3, (width)/(height), camZ/10.0, camZ/10.0);
@@ -304,11 +304,11 @@ class Position {
     return createVector(x1 - this.x, y1 - this.y, z1 - this.z)
   }
   
-  getLocation(){
-    return (this.x, this.y, this.z)
-  }
+//   getLocation(){
+//     return (this.x, this.y, this.z)
+//   }
   
-  getPosition(){
+  getLocation(){
     return {x: this.x, y: this.y, z: this.z}
   }
 }

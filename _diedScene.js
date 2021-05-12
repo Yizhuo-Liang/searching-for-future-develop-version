@@ -15,6 +15,7 @@ let particles = [];
 let explosion_timer = 0;
 
 function diedScene() {
+
   background(0);
   if (explosion_bgm === false) {
     explosion_sound.play();

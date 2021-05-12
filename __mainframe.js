@@ -166,11 +166,12 @@ function setup() {
   uiTextbox = new Textbox(_W, _H*0.2);
   prologue_txt = join(prologueLines, '\n');
   prologue_y = height / 2;
+  startAnimation = new openBallAnimation(camX, camY, camZ-600);
 }
 
 function mouseClicked() {
   if (status === "start"){
-    status = "prologue";
+    animationtrigger = 1;
     frameCount = 0;
   }
   else if (status === "prologue"){
@@ -192,6 +193,9 @@ function draw() {
   if (status == "start") {
     theStartPage.draw();
     uiTextbox.draw(status);
+    if (animationtrigger == 1){
+      startAnimation.draw("prologue");
+    }
     return
   }
   

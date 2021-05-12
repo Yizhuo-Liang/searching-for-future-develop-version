@@ -34,8 +34,19 @@ class Textbox {
     this.graphics.textSize(this.textsize);
     this.graphics.textAlign(LEFT);
     this.graphics.fill(255);
-    this.graphics.line(this.sectionsize)
-    this.drawStart();
+    push();
+    this.graphics.stroke(255);
+    this.graphics.line(0, 1, this.W, 1);
+    this.graphics.line(this.sectionsize, 0, this.sectionsize, this.H);
+    this.graphics.line(2*this.sectionsize, 0, 2*this.sectionsize, this.H);
+    pop();
+    this.graphics.stroke(10);
+    if (status == "start"){
+      this.drawStart();
+    }
+    else if (status == "alive") {
+      
+    }
     texture(this.graphics);
     translate(_W*0.05, _H * 0.3, camZ-600);
     plane(this.W, this.H);

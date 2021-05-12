@@ -273,6 +273,7 @@ function draw() {
   }
   
   if (status === "died") {
+    background(0);
     drawBackground();
     diedScene();
   }

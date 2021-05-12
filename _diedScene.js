@@ -14,7 +14,6 @@ let particles = [];
 let explosion_timer = 0;
 
 function diedScene() {
-  background(0);
   if (explosion_bgm === false) {
     explosion_sound.play();
     explosion_bgm = true;
@@ -60,6 +59,7 @@ function diedScene() {
     camera(camX, camY, camZ + 300, camX, camY, camZ - 100);
     re_explosion_ball.draw();
     ending.draw();
+    uiTextbox.draw(status);
   }
 }
 

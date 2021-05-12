@@ -52,6 +52,9 @@ class Textbox {
     else if (status == "alive") {
       this.drawAlive(_planetconditions[0], _planetconditions[1], _planetconditions[2], _planetconditions[3], _planetconditions[4], warning);
     }
+    else if (status == "alive") {
+      this.drawAlive(_planetconditions[0], _planetconditions[1], _planetconditions[2], _planetconditions[3], _planetconditions[4], warning);
+    }
     texture(this.graphics);
     translate(0, _H * 0.3, camZ-680);
     plane(this.W, this.H);
@@ -83,6 +86,10 @@ class Textbox {
     this.graphics.text("Oxygen Level: "+oxygen, (2*this.sectionsize) + 10, 10 + 3*this.textsize, this.sectionsize - 10, this.boxHeight)
     this.graphics.text("Water Composition: "+water, (2*this.sectionsize) + 10, 10 + 4*this.textsize, this.sectionsize - 10, this.boxHeight)
     this.graphics.text("Gravity: "+gravity, (2*this.sectionsize) + 10, 10 + 5*this.textsize, this.sectionsize - 10, this.boxHeight)
+  }
+  
+  drawEnd() {
+    this.graphics.text("User Control: \nRight-click when ready", 10, 10, this.sectionsize - 10, this.boxHeight);
   }
 }
 

@@ -15,9 +15,15 @@
 let startMillis;
 let startMillisNotInitialized = true;
 class Textbox {
-  constructor(status, size) {
-    this.graphics = createGraphics()
-    
+  constructor(size) {
+    this.graphics = createGraphics(_W, _H*0.2);
+  }
+  
+  draw(status){
+    textAli
+    if (status == "start"){
+      
+    }
   }
 }
 

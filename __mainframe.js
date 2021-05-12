@@ -132,7 +132,7 @@ function setup() {
   frameRate(30);
   camZ = height / 2.0 / tan(30.0);
   sb = new Scoreboard(200);
-  ship1 = new Spaceship(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
+  ship1 = new Spaceship(camX, camY, camZ - 600, 15, tiltZ, tiltX, spaceship);
   BGM.loop();
   xp = width / 2;
   yp = height / 2;

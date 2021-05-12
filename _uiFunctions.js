@@ -36,16 +36,16 @@ class Textbox {
     this.graphics.fill(255);
     push();
     this.graphics.stroke(255);
-    this.graphics.line(0, 1, this.W, 1);
     this.graphics.line(this.sectionsize, 0, this.sectionsize, this.H);
     this.graphics.line(2*this.sectionsize, 0, 2*this.sectionsize, this.H);
+    this.graphics.line(0, 2, this.W, 2);
     pop();
     this.graphics.stroke(10);
     if (status == "start"){
       this.drawStart();
     }
     else if (status == "alive") {
-      
+      this.drawAlive();
     }
     texture(this.graphics);
     translate(_W*0.05, _H * 0.3, camZ-600);
@@ -60,6 +60,7 @@ class Textbox {
   
   drawAlive(){
     this.graphics.text("Instructions:", 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("X: Move Up\nS: Move Down\nA: Move Left\nD: Move Right", 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("User Interface:", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("Distance travelled:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
   }

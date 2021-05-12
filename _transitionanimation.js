@@ -1,5 +1,42 @@
 let animationtrigger = 0;
 
+class openBallAnimation {
+  constructor(x, y, z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.transparency = 255;
+    this.strokeWeight = 6;
+    this.size = 20;
+  }
+
+  growBall() {
+    if (this.size < 2000) {
+      this.size = this.size * 1.08;
+    }
+    if (this.transparent > 0) {
+      this.transparent -= 5;
+      this.strokeWeight -= 0.1;
+    }
+  }
+  
+  getSize() {
+    return this.size;
+  }
+
+  draw() {
+    background(0);
+    this.growBall();
+    push();
+    translate(this.x, this.y, this.z);
+    stroke(255);
+    strokeWeight(this.strokeWeight);
+    fill(255, 255, 255, this.transparent);
+    sphere(this.size, 24, 16);
+    pop();
+  }
+}
+
 function openAnimation() {
   
 }

@@ -283,7 +283,7 @@ function draw() {
     ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
   }
 
-  if (sb.getScore() > 1200 && status === "alive") {
+  if (textbox.getScore() > 1200 && status === "alive") {
     background(0);
     BGM.stop();
     victoryBGM.play();

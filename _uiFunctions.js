@@ -52,7 +52,7 @@ class Textbox {
     else if (status == "alive") {
       this.drawAlive(_planetconditions[0], _planetconditions[1], _planetconditions[2], _planetconditions[3], _planetconditions[4], warning);
     }
-    else if (status == "end") {
+    else if (status == "died") {
       this.drawEnd();
     }
     texture(this.graphics);
@@ -89,7 +89,7 @@ class Textbox {
   }
   
   drawEnd() {
-    this.graphics.text("User Control: \nRight-click when ready", 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("User Control: \nRight-click to revive", 10, 10, this.sectionsize - 10, this.boxHeight);
   }
 }
 
@@ -117,6 +117,7 @@ class Scoreboard {
     plane(this.size + this.expand_value);
     pop();
   }
+  
   getScore() {
     return int(millis() / 100);
   }

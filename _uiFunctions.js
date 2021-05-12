@@ -30,7 +30,7 @@ class Textbox {
   draw(status){
     push();
     this.graphics.background(0);
-    this.graphics.textFont(space_age);
+    this.graphics.textFont("gothic");
     this.graphics.textSize(this.textsize);
     this.graphics.textAlign(LEFT);
     this.graphics.fill(255);
@@ -59,9 +59,9 @@ class Textbox {
   }
   
   drawAlive(){
-    this.graphics.text("Instructions:", 10, 10, this.sectionsize - 10, this.boxHeight);
-    this.graphics.text("X: Move Up\nS: Move Down\nA: Move Left\nD: Move Right", 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight);
-    this.graphics.text("User Interface:", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
+    let distance = int((millis() - startMillis) / 100);
+    this.graphics.text("Instructions:\nX: Move Up\nS: Move Down\nA: Move Left\nD: Move Right", 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Distance:\n"+str(distance)+"au", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("Distance travelled:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
   }
 }

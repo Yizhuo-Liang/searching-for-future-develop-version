@@ -50,6 +50,8 @@ let theStartPage;
 let narratePoem;
 let soundMap;
 
+// Setting up variables for prologue
+let prologueLines;
 
 // Setting up variables for userControl
 let xp;

@@ -218,10 +218,10 @@ class Warning {
 function drawBackground() {
   push();
   noStroke();
-  translate(0,0, -5000);
+  translate(0,0, camZ-350);
   texture(universe);
   // plane(20*windowWidth, 20*windowHeight)
-  sphere(10*windowWidth);
+  sphere(10000);
   pop();
 }
 

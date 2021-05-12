@@ -10,7 +10,6 @@
 /* startMillis startMillisNotInitialized Scoreboard poem DisplayWords isClose getWarningLevel Warning drawBackground*/
 /* camX camY tiltZ tiltX speedZ moveAround */
 /* victoryScene winningRays WinningRay WinningScene rayIsNotBehind */
-
 let particles = [];
 let explosion_timer = 0;
 

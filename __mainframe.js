@@ -172,7 +172,6 @@ function setup() {
 function mouseClicked() {
   if (status === "start"){
     animationtrigger = 1;
-    frameCount = 0;
   }
   else if (status === "prologue"){
     status = "alive";
@@ -200,6 +199,9 @@ function draw() {
   }
   
   if (status === "prologue"){
+    if (animationtrigger == 2){
+      startAnimation.drawClose();
+    }
     prologueScene();
     uiTextbox.draw(status);
   }

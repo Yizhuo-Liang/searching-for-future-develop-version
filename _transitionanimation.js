@@ -5,18 +5,28 @@ class openBallAnimation {
     this.x = x;
     this.y = y;
     this.z = z;
-    this.transparency = 255;
+    this.transparency = 0;
     this.strokeWeight = 6;
     this.size = 20;
   }
 
   growBall() {
     if (this.size < 2000) {
-      this.size = this.size * 1.08;
+      this.size = this.size * 1.05;
+    }
+    if (this.transparency < 255) {
+      this.transparency += 5;
+      this.strokeWeight -= 0.1;
+    }
+  }
+  
+  shrinkBall() {
+    if (this.size > 10) {
+      this.size = this.size * 0.95;
     }
     if (this.transparency > 0) {
       this.transparency -= 5;
-      this.strokeWeight -= 0.1;
+      this.strokeWeight += 0.1;
     }
   }
   
@@ -25,25 +35,39 @@ class openBallAnimation {
   }
   
   reset() {
-    this.transpareny = 255;
+    this.transparency = 0;
     this.strokeWeight = 6;
     this.size = 20;
   }
 
   draw(destStatus) {
-    if (this.getSize() > 1500) {
-      animationtrigger = 2;
-      this.reset();
-      status = destStatus;
-    }
     this.growBall();
     push();
     translate(this.x, this.y, this.z);
     stroke(255);
     strokeWeight(this.strokeWeight);
-    fill(255, 255, 255, this.transparency);
+    fill(0);
     sphere(this.size, 24, 16);
     pop();
+    if (this.getSize() > 400) {
+      animationtrigger = 2;
+      status = destStatus;
+    }
+  }
+  
+  drawClose() {
+    this.shrinkBall();
+    push();
+    translate(this.x, this.y, this.z);
+    stroke(255);
+    strokeWeight(this.strokeWeight);
+    fill(0,0,0, this.transparency);
+    sphere(this.size, 24, 16);
+    pop();
+    if (this.getSize() < 10) {
+      animationtrigger = 0;
+      this.reset();
+    }
   }
 }
 

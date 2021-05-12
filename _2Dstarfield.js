@@ -4,15 +4,9 @@ let fakeStars = [];
 let maxStars = 300;
 let maxIntroStars = 300;
 let introFrames = 100;
-let sfCanva;
-let sfCanvaWidth;
-let sfCanvaHeight;
 
 function setup () {
-  createCanvas(windowWidth, windowHeight, WEBGL);
-  sfCanva = createGraphics(windowWidth, windowHeight);
-  sfCanvaWidth = windowWidth;
-  sfCanvaHeight = windowHeight;
+  createCanvas(windowWidth, windowHeight);
   for (let i = 0; i < maxIntroStars; i++) {
     introStars.push(new Star(1));
   }
@@ -22,22 +16,23 @@ function setup () {
 }
 
 function draw () {
-  sfCanva.background(0);
-  sfCanva.fill(255);
-  sfCanva.stroke(255);
-  sfCanva.translate(width/2, height/2);
-  sfCanva.strokeWeight(2);
+  background(0);
+  fill(255);
+  stroke(255);
+  translate(width/2, height/2);
+
+  strokeWeight(2);
   for (let i = 0; i < stars.length; i++) {
     stars[i].update();
     stars[i].show();
   }
 
-  sfCanva.strokeWeight(1);
+  strokeWeight(1);
   for (let i = 0; i < fakeStars.length; i++) {
     point(fakeStars[i].x, fakeStars[i].y);
   }
 
-  sfCanva.strokeWeight(2);
+  strokeWeight(2);
   if (introFrames > 0) {
     for (let i = 0; i < floor(maxStars/100); i++) {
       stars.push(new Star(1));
@@ -48,11 +43,13 @@ function draw () {
       introStars[i].show();
     }
 
+    textSize(introFrames);
+    strokeWeight(0);
+    fill("rgba(244, 66, 66, 255)");
+    textAlign(CENTER, CENTER);
+    text("ENGAGING HYPERDRIVE", 0, 0);
     introFrames-=0.5;
   }
-  texture(sfCanva);
-  translate(0,0, -300);
-  plane(windowWidth, windowHeight);
 }
 
 class Star {
@@ -84,13 +81,16 @@ class Star {
   }
 
   show () {
-    let tempx = map (this.x / this.z, -0.5, 0.5, -width/2, width/2);
-    let tempy = map (this.y / this.z, -0.5*height/width, 0.5*height/width, -height/2, height/2);
+    var tempx = map (this.x / this.z, -0.5, 0.5, -width/2, width/2);
+    var tempy = map (this.y / this.z, -0.5*height/width, 0.5*height/width, -height/2, height/2);
+
     let r = map(this.z, 1, width, 40, 0.1) * Math.min(1, this.life/15);
     let angle = Math.atan2(this.y, this.x);
+
     let x1 = tempx + r * Math.cos(angle);
     let y1 = tempy + r * Math.sin(angle);
-    sfCanva.line(tempx, tempy, x1, y1);
+
+    line(tempx, tempy, x1, y1);
   }
 }
 

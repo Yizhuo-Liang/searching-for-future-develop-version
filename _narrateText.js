@@ -1,30 +1,14 @@
-let paragraphfont;
-let prologueLines;
-let txt;
-let y = 0;
-
-function preload() {
-  prologueLines = loadStrings('_prologue.txt');
-  paragraphfont = loadFont('https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2FTechnaSans-Regular.otf?v=1620846805552');
-}
-
-function setup() {
-  createCanvas(windowWidth, windowHeight, WEBGL);
-
-}
-
-function draw() {
+function prologueScene() {
   background(0);
   push();
-  // No translate(): WEBGL mode starts with the origin in the center.
   fill(238, 213, 75);
-  textFont(font);
+  textFont(paragraphfont);
   textSize(width * 0.04);
   textAlign(CENTER);
   rotateX(45);
   let w = width * 0.6;
-  text(txt, -w / 2, y, w, height * 10);
-  y -= 1;
+  text(prologue_txt, -w / 2, prologue_y, w, height * 10);
+  prologue_y -= 1;
   pop();
 }
 

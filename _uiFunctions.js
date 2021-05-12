@@ -46,6 +46,9 @@ class Textbox {
     if (status == "start"){
       this.drawStart();
     }
+    else if (status == "prologue"){
+      this.drawPrologue();
+    }
     else if (status == "alive") {
       this.drawAlive(_planetconditions[0], _planetconditions[1], _planetconditions[2], _planetconditions[3], _planetconditions[4], warning);
     }
@@ -58,6 +61,10 @@ class Textbox {
   drawStart(){
     this.graphics.text("User Control:", 10, 10, this.sectionsize - 10, this.boxHeight);
     this.graphics.text("Right-click to start", 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight)
+  }
+  
+  drawPrologue(){
+    this.graphics.text("User Control: \nRight-click when ready", 10, 10, this.sectionsize - 10, this.boxHeight);
   }
   
   drawAlive(code, temperature, oxygen, water, gravity, warning){

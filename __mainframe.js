@@ -52,6 +52,8 @@ let soundMap;
 
 // Setting up variables for prologue
 let prologueLines;
+let prologue_txt;
+let prologue_y = 0;
 
 // Setting up variables for userControl
 let xp;
@@ -71,10 +73,11 @@ let victoryBGM;
 let victory;
 
 function preload() {
+  prologueLines = loadStrings("_prologue.txt")
+  paragraphfont = loadFont("https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2FTechnaSans-Regular.otf?v=1620846805552")
   space_age = loadFont(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNasa.ttf?v=1617322691693"
   );
-  dimfont = loadFont("https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2FQuicksand-BoldItalic.otf?v=1620845649473");
   spaceship = loadModel("assets/spaceship2.obj");
   universe = loadImage(
     "https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fdarkrift-orig_full.jpg?v=1620835680372"
@@ -161,14 +164,20 @@ function setup() {
   );
   scanResults = new ScanBoard((_W/2)-300, (_H/2)-300, camZ);
   uiTextbox = new Textbox(_W, _H*0.2);
+  prologue_txt = join(prologueLines, '\n');
+  prologue_y = height / 2;
 }
 
 function mouseClicked() {
   if (status === "start"){
+    status = "prologue";
+    frameCount = 0;
+  }
+  else if (status === "prologue"){
     status = "alive";
     frameCount = 0;
   }
-  if (status === "died") {
+  else if (status === "died") {
     planets = [];
     status = "justaliveAgain";
   }
@@ -184,6 +193,10 @@ function draw() {
     theStartPage.draw();
     uiTextbox.draw(status);
     return
+  }
+  
+  if (status === "prologue"){
+    prologueScene();
   }
   
   if (startMillisNotInitialized === true) {

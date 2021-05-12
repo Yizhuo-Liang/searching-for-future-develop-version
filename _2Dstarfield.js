@@ -81,8 +81,8 @@ class Star {
   }
 
   show () {
-    var tempx = map (this.x / this.z, -0.5, 0.5, -width/2, width/2);
-    var tempy = map (this.y / this.z, -0.5*height/width, 0.5*height/width, -height/2, height/2);
+    let tempx = map (this.x / this.z, -0.5, 0.5, -width/2, width/2);
+    let tempy = map (this.y / this.z, -0.5*height/width, 0.5*height/width, -height/2, height/2);
 
     let r = map(this.z, 1, width, 40, 0.1) * Math.min(1, this.life/15);
     let angle = Math.atan2(this.y, this.x);

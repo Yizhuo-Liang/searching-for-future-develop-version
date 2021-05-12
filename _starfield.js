@@ -47,11 +47,12 @@ function draw () {
       introStars[i].update();
       introStars[i].show();
     }
-
+    
+    fill("rgba(244, 66, 66, 255)");
     introFrames-=0.5;
   }
   texture(sfCanva);
-  translate(0,0, -300);
+  translate(0,0, (height/2.0) / tan(PI*30.0 / 180.0) -350);
   plane(windowWidth, windowHeight);
 }
 
@@ -86,10 +87,13 @@ class Star {
   show () {
     let tempx = map (this.x / this.z, -0.5, 0.5, -width/2, width/2);
     let tempy = map (this.y / this.z, -0.5*height/width, 0.5*height/width, -height/2, height/2);
+    
     let r = map(this.z, 1, width, 40, 0.1) * Math.min(1, this.life/15);
     let angle = Math.atan2(this.y, this.x);
+    
     let x1 = tempx + r * Math.cos(angle);
     let y1 = tempy + r * Math.sin(angle);
+    
     sfCanva.line(tempx, tempy, x1, y1);
   }
 }

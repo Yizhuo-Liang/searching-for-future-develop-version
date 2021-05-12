@@ -18,18 +18,17 @@ class Textbox {
   constructor(size) {
     this.graphics = createGraphics(_W, _H*0.2);
     this.sectionsize = _W/3;
-    this.textsize = _W*0.2*0.2 // Can hold 5 lines of text per box
+    this.boxWidth = _W;
+    this.boxHeight = _H*0.2;
+    this.textsize = _H*0.2*0.2; // Can hold 5 lines of text per box
   }
   
   draw(status){
     this.graphics.textSize(this.textsize);
     this.graphics.textAlign(RIGHT);
-    this.graphics.text("Instructions:", 10, 10, this.sectionsize - 10, this.sectionsize - 10);
-    this.graphics.text("User Interface:", this.sectionsize + 10, this.sectionsize  + 10, this.sectionsize - 10, this.sectionsize - 10);
-    this.graphics.text("Other:", (2*this.sectionsize) + 10, (2*this.sectionsize)  + 10, this.sectionsize - 10, this.sectionsize - 10);
-    if (status == "start"){
-      
-    }
+    this.graphics.text("Instructions:", 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("User Interface:", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Distance travelled:", (2*this.sectionsize) + 10, 10, this.sectionsize - 10, this.boxHeight);
   }
 }
 

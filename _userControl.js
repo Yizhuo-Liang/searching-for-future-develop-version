@@ -19,8 +19,8 @@ let tiltX = 0;
 let speedZ = 60;
 let xMoved = 0;
 let yMoved = 0;
-let boundaryX = 9000;
-let boundaryY = 9000;
+let boundaryX = 8000;
+let boundaryY = 8000;
 
 function moveAround() {
   let triggerZ = 0; //designed to smooth the process
@@ -31,13 +31,16 @@ function moveAround() {
   }
   
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
-    if (abs(xMoved) < boundaryX){
+    if (xMoved > -boundaryX) {
       for (let i = 0; i < planets.length; i++) {
-      planets[i].x += speedZ;
+        planets[i].x += speedZ;
+      }
+      xMoved -= speedZ;
+    }
+    else {
+      
     }
     xMoved -= speedZ;
-    }
-    
     tiltZ -= 4;
     triggerZ = 10;
   }

@@ -46,7 +46,7 @@ class Textbox {
       this.drawStart();
     }
     else if (status == "alive") {
-      this.drawAlive();
+      this.drawAlive(_planetconditions[0], _planetconditions[1], _planetconditions[2], _planetconditions[3], _planetconditions[4], _planetconditions[5]);
     }
     texture(this.graphics);
     translate(_W*0.05, _H * 0.3, camZ-600);

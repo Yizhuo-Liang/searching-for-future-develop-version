@@ -36,14 +36,12 @@ function aliveScene() {
   }
   drawPlanets();
   getWarningLevel(ship1, planets);
-  scanResults.scanPlanet(planets, camZ);
   // soundMap.draw();
 }
 
 //--------------------------------- BEGINNING OF PLANET ---------------------------------
 let planetCount = 0;
 class Planet extends Position {
-  
   constructor (x, y, z, radius, rings) {
     super(x, y, z);
     this.alphabets = ["A", "E", "I", "O", "U", "M", "N", "N", "1", "4", "7", "8", "9", "2", "3", "5", "6"];
@@ -56,9 +54,9 @@ class Planet extends Position {
     this.rotateSpeed = int(random(7));
     this.code = random(this.alphabet) + random(this.alphabet) + random(this.alphabet) + random(this.alphabet) + random(this.alphabet) + random(this.alphabet)
     this.temperature = str(round(random(-1000, 2000), 2))+"°C";
-    this.oxygen = round(random(0, 100), 2)+"%";
-    this.water = round(random(0,100),2)+"%";
-    this.gravity = round(random(0,1000),2)+"m/s2";
+    this.oxygen = str(round(random(0, 100), 2))+"%";
+    this.water = str(round(random(0,100),2))+"%";
+    this.gravity = str(round(random(0,1000),2))+"m/s2";
     this.image = null;
   }
   

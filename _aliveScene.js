@@ -120,10 +120,10 @@ class Planet extends Position {
 function generatePlanet(ship) {
   let shipLoc = ship.getLocation();
   let pZ, pY, pS, pX, planetNew, lowerBound, randomness;
-  let stopDistance = shipLoc.z - 360 * speedZ;
+  let stopDistance = shipLoc.z - 360 * speedZ; //12 seconds from where ship is
   let randomRange = 2000;
   let distanceBtwPlanets = 0;
-  let beginDistance = shipLoc.z - speedZ * 180;
+  let beginDistance = shipLoc.z - speedZ * 180; // 6 seconds from where ship is
 
   for (beginDistance; beginDistance >= stopDistance; beginDistance -= 4000) {
     lowerBound = beginDistance;

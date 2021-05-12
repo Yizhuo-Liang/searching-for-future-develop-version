@@ -31,7 +31,7 @@ function moveAround() {
   }
   
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
-    if (xMoved > -boundaryX) {
+    if (-boundaryX < xMoved) {
       for (let i = 0; i < planets.length; i++) {
         planets[i].x += speedZ;
       }
@@ -42,7 +42,7 @@ function moveAround() {
   }
 
   if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
-    if (xMoved > boundaryX) {
+    if (xMoved < boundaryX) {
       for (let i = 0; i < planets.length; i++) {
         planets[i].x -= speedZ;
       }
@@ -53,7 +53,7 @@ function moveAround() {
   }
 
   if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
-    if (yMoved < -boundaryY) {
+    if (-boundaryY < yMoved) {
       for (let i = 0; i < planets.length; i++) {
         planets[i].y += speedZ;
       }
@@ -64,7 +64,7 @@ function moveAround() {
   }
 
   if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
-    if (yMoved > boundaryY){
+    if (yMoved < boundaryY){
       for (let i = 0; i < planets.length; i++) {
         planets[i].y -= speedZ;
       }
@@ -73,8 +73,6 @@ function moveAround() {
     tiltX -= 5;
     triggerX = 10;
   }
-
-  
 
   if (triggerZ === 0) {
     if (tiltZ > 0) {

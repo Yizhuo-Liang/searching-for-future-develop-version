@@ -23,9 +23,18 @@ class openBallAnimation {
   getSize() {
     return this.size;
   }
+  
+  reset() {
+    this.transparency = 255;
+    this.strokeWeight = 6;
+    this.size = 20;
+  }
 
   draw() {
-    background(0);
+    if (this.getSize() > 1500) {
+      animationtrigger = 0;
+      
+    }
     this.growBall();
     push();
     translate(this.x, this.y, this.z);
@@ -34,6 +43,7 @@ class openBallAnimation {
     fill(255, 255, 255, this.transparent);
     sphere(this.size, 24, 16);
     pop();
+    animationtrigger = 1;
   }
 }
 

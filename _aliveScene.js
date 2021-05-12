@@ -127,10 +127,11 @@ function generatePlanet(ship) {
 
   for (beginDistance; beginDistance >= stopDistance; beginDistance -= 4000) {
     lowerBound = beginDistance;
-    pZ = int(random(lowerBound, lowerBound + 1000));
+    pZ = int(random(lowerBound, lowerBound + 3000));
+    
     pX = random(shipLoc.x - 200, shipLoc.x + 200);
     pY = random(shipLoc.x - 200, shipLoc.x + 200);
-    pS = int(random(300, 700));
+    pS = int(random(900, 1500));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
@@ -140,7 +141,17 @@ function generatePlanet(ship) {
       random(shipLoc.x - 1.2 * randomRange, shipLoc.x - 3 * randomRange)
     );
     pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
-    pS = int(random(300, 700));
+    pS = int(random(900, 1500));
+    planetNew = new Planet(pX, pY, pZ, pS, 0);
+    if (!arePlanetsOverlapped(planetNew)) {
+      planets.push(planetNew);
+    }
+    
+    pX = int(
+      random(shipLoc.x - randomRange, shipLoc.x - 4 * randomRange)
+    );
+    pY = int(random(shipLoc.y - 2 * randomRange, shipLoc.y - 4 * randomRange));
+    pS = int(random(900, 1500));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
@@ -148,7 +159,7 @@ function generatePlanet(ship) {
 
     pX = int(random(shipLoc.x + randomRange, shipLoc.x + 3 * randomRange));
     pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
-    pS = int(random(300, 700));
+    pS = int(random(900, 1500));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
@@ -158,7 +169,25 @@ function generatePlanet(ship) {
       random(shipLoc.x - 1.2 * randomRange, shipLoc.x - 3 * randomRange)
     );
     pY = int(random(shipLoc.y + randomRange, shipLoc.y + 2 * randomRange));
-    pS = int(random(300, 700));
+    pS = int(random(900, 1500));
+    planetNew = new Planet(pX, pY, pZ, pS, 0);
+    if (!arePlanetsOverlapped(planetNew)) {
+      planets.push(planetNew);
+    }
+    
+    pX = int(
+      random(shipLoc.x - randomRange, shipLoc.x - 4 * randomRange)
+    );
+    pY = int(random(shipLoc.y + 2 * randomRange, shipLoc.y + 4 * randomRange));
+    pS = int(random(900, 1500));
+    planetNew = new Planet(pX, pY, pZ, pS, 0);
+    if (!arePlanetsOverlapped(planetNew)) {
+      planets.push(planetNew);
+    }
+
+    pX = int(random(shipLoc.x + randomRange, shipLoc.x + 3 * randomRange));
+    pY = int(random(shipLoc.y - randomRange, shipLoc.y - 2 * randomRange));
+    pS = int(random(900, 1500));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)) {
       planets.push(planetNew);
@@ -167,7 +196,7 @@ function generatePlanet(ship) {
     pX = int(
       random(shipLoc.x + 1.2 * randomRange, shipLoc.x + 3.8 * randomRange)
     );
-    pY = int(random(shipLoc.y + randomRange, shipLoc.y + 2 * randomRange));
+    pY = int(random(shipLoc.y + 2 * randomRange, shipLoc.y + 2 * randomRange));
     pS = int(random(300, 700));
     planetNew = new Planet(pX, pY, pZ, pS, 0);
     if (!arePlanetsOverlapped(planetNew)) {

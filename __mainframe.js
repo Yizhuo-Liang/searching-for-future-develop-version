@@ -55,6 +55,10 @@ let prologueLines;
 let prologue_txt;
 let prologue_y = 0;
 
+// Setting up variables for returnQuestion
+let returnQLines;
+let returnQ_txt;
+
 // Setting up variables for userControl
 let xp;
 let yp;
@@ -73,6 +77,7 @@ let victory;
 
 function preload() {
   prologueLines = loadStrings("_prologue.txt")
+  returnQLines = loadStrings("_endingScript.txt")
   paragraphfont = loadFont("https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2FTechnaSans-Regular.otf?v=1620846805552")
   space_age = loadFont(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FNasa.ttf?v=1617322691693"
@@ -163,6 +168,7 @@ function setup() {
   scanResults = new ScanBoard((_W/2)-300, (_H/2)-300, camZ);
   uiTextbox = new Textbox(_W, _H*0.2);
   prologue_txt = join(prologueLines, '\n');
+  returnQ_txt = join(returnQLines, '\n');
   prologue_y = height / 2;
   startAnimation = new openBallAnimation(camX, camY, camZ-600);
 }
@@ -200,7 +206,7 @@ function draw() {
     if (animationtrigger == 2){
       startAnimation.drawClose();
     }
-    prologueScene();
+    prologueScene(prologue_txt);
     uiTextbox.draw(status);
     if (animationtrigger == 1){
       startAnimation.draw("alive");

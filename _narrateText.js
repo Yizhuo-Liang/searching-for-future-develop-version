@@ -1,4 +1,4 @@
-function prologueScene() {
+function prologueScene(txt) {
   background(0);
   push();
   fill(238, 213, 75);
@@ -7,7 +7,7 @@ function prologueScene() {
   textAlign(CENTER);
   rotateX(45);
   let w = width * 0.6;
-  text(prologue_txt, -w / 2, prologue_y, w, height * 10);
+  text(txt, -w / 2, prologue_y, w, height * 10);
   prologue_y -= 1;
   pop();
 }

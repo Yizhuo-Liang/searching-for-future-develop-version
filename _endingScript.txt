@@ -1,21 +1,8 @@
 Dear soldier, 
 
-I hope you're soing well and safe. It is your 207 IQ AI assistant here: Oliver.
+I hope you're doing well and safe. It is your 207 IQ AI assistant here: Oliver.
 
-I am pleas
+You have now travelled over 1200 AUs, which is equivalent to over 1.7951744 x 10^11 kM. My algorithm has suggested to me that there is a possibility that Earth might have return to its previous health after all these years that you are away. Do you want to re-visit Earth?
 
-"Human use, population and technology have reached that certain stage where Mother Earth no longer accepts human's presence with silence"
-
-- Dalai Lama
-
-
-It is now 2057 AD, the Malthusian constraint has been been realized and 99% of human population is now extinct. On the bright side, yes, you are the 1%
-
-
-Now, you carry with you the item that determines the fate of humanity: the last string of DNA of the human species. To succeed in this task, you need to identify a habitable planet for the human species to settle and populate. 
-
-
-Our fate is now in your hands. 
-All the best, soldier.
-
-RIGHT CLICK TO CONTINUE.
+PRESS Y TO PROCEED TO EARTH.
+PRESS N TO QUIT.

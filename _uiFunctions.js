@@ -76,8 +76,8 @@ class Textbox {
     
     //Column2
     this.graphics.text("Distance: "+str(distance)+"au\n", this.sectionsize + 10, 10, this.sectionsize - 10, this.boxHeight);
-    this.graphics.text("Instructions:\nIdentify a planet with habitable living conditions\n", this.sectionsize + 10, 10 + this.textsize, this.sectionsize - 10, this.boxHeight);
-    this.graphics.text("Warning: "+warning, this.sectionsize + 10, 10 + 4*this.textsize, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("Instructions:\nIdentify a planet with habitable living conditions\n", this.sectionsize + 10, 10 + 3*this.textsize, this.sectionsize - 10, this.boxHeight);
+    this.graphics.text("System Message: "+warning, this.sectionsize + 10, 10 + 6*this.textsize, this.sectionsize - 10, this.boxHeight);
     
     //Column 3
     this.graphics.text("Planet Scan Results:", (2*this.sectionsize)+10, 10, this.sectionsize - 10, this.boxHeight);

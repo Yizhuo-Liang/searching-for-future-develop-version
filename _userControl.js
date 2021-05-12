@@ -1,15 +1,15 @@
 //Variables declared in this page:
-/* camX camY tiltZ tiltX speedZ moveAround */
+/* global camX camY tiltZ tiltX speedZ moveAround */
 
 //Variables declared in other files:
-/* _W _H universe startPng camZ spaceship earth planet1 planet2 planet3 planet4 planet5 planet6 planet7 planet8 planet9 planet10 BGM ship1 status explosion_sound ending explosion_ball start_explosion_ball explosion_bgm cam1 started theStartPage narratePoem soundMap terrainPic xp yp maxSpeed sb displayPoem space_age victoryBGM victory keyPressed Position Spaceship */
-/* planetlist planets aliveScene planetCount Planet generatePlanet planetIsNotTooFar drawPlanets planetIsNotTooFar arePlanetsOverlapped isCollide testCollision Terrain */
-/* particles explosion_timer diedScene Particle Explosion Re_explosion start_explosion */
-/* EndScene */
-/* reviveAnimation() */
-/* startPage */
-/* startMillis startMillisNotInitialized Scoreboard poem DisplayWords isClose getWarningLevel Warning drawBackground*/
-/* victoryScene winningRays WinningRay WinningScene rayIsNotBehind */
+/* global _W _H universe startPng camZ spaceship earth planet1 planet2 planet3 planet4 planet5 planet6 planet7 planet8 planet9 planet10 BGM ship1 status explosion_sound ending explosion_ball start_explosion_ball explosion_bgm cam1 started theStartPage narratePoem soundMap terrainPic xp yp maxSpeed sb displayPoem space_age victoryBGM victory keyPressed Position Spaceship */
+/* global planetlist planets aliveScene planetCount Planet generatePlanet planetIsNotTooFar drawPlanets planetIsNotTooFar arePlanetsOverlapped isCollide testCollision Terrain */
+/* global particles explosion_timer diedScene Particle Explosion Re_explosion start_explosion */
+/* global EndScene */
+/* global reviveAnimation() */
+/* global startPage */
+/* global startMillis startMillisNotInitialized Scoreboard poem DisplayWords isClose getWarningLevel Warning drawBackground*/
+/* global victoryScene winningRays WinningRay WinningScene rayIsNotBehind */
 
 //--------------------------------- START OF MOVEAROUND ---------------------------------
 let camX = 0;
@@ -120,7 +120,7 @@ function moveAround() {
   //   }
 
   // adding the resultant displacement due to gravity  <<<<<<<< ----------------------------- Gravity's Effect <<<<<<<
-  camera(camX, camY, camZ, camX, camY, camZ - 100);
+  camera(camX, camY, camZ, camX, camY, camZ - 350);
 }
 //--------------------------------- END OF MOVEAROUND ---------------------------------
 

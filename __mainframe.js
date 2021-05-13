@@ -317,6 +317,7 @@ function draw() {
     uiTextbox.draw(status);
   }
   if (status == "returnEarth"){
+    // ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     drawStarfield();
   }
   else if (status == "forest"){
@@ -331,7 +332,7 @@ function draw() {
   //   // drawStarfield();
   // }
   
-  if (uiTextbox.getScore() > 300 && status === "alive") {
+  if (uiTextbox.getScore() > 800 && status === "alive") {
     background(0);
     BGM.stop();
     victoryBGM.play();

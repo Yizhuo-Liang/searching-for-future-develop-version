@@ -28,7 +28,7 @@ class Textbox {
     this.textsize = H*0.08; // Can hold 5 lines of text per box
   }
   
-  draw(status, warning){
+  draw(status, warning=""){
     push();
     this.graphics.background(0);
     this.graphics.textFont("gothic");

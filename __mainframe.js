@@ -87,7 +87,7 @@ function preload() {
     "https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fbackground2.jfif?v=1620149004479"
   );
   earth = loadImage(
-    "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fearth.jpg?v=1616633286407"
+    "https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Ftexturen.png?v=1620871540623"
   );
   planet1 = loadImage(
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2Fplanet1.png?v=1616633287022"
@@ -319,6 +319,7 @@ function draw() {
   if (status == "returnEarth"){
     // ship1.draw(camX, camY, camZ - 350, 15, tiltZ, tiltX, spaceship);
     drawStarfield();
+    uiTextbox.draw(status);
   }
   else if (status == "forest"){
     drawForest();

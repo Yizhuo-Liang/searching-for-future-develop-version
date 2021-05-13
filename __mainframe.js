@@ -171,6 +171,17 @@ function setup() {
   returnQ_txt = join(returnQLines, '\n');
   prologue_y = height / 2;
   startAnimation = new openBallAnimation(camX, camY, camZ-600);
+  
+  // Starfield
+  sfCanva = createGraphics(windowWidth, windowHeight);
+  sfCanvaWidth = windowWidth;
+  sfCanvaHeight = windowHeight;
+  for (let i = 0; i < maxIntroStars; i++) {
+    introStars.push(new Star(1));
+  }
+  for (let i = 0; i < maxStars; i++) {
+    fakeStars.push(new Star(0));
+  }
 }
 
 function mouseClicked() {
@@ -277,6 +288,9 @@ function draw() {
   }
   
   if (status === "died") {
+    if (animationtrigger == 2){
+      startAnimation.drawClose();
+    }
     drawBackground();
     diedScene();
   }
@@ -284,10 +298,10 @@ function draw() {
   if (status === "returnQ") {
     prologueScene(returnQ_txt);
     uiTextbox(status);
-  if (keyIsDown(89)){
-    animationtrigger = 1;
-    if (animationtrigger == 1){
-      startAnimation.draw("return");
+    if (keyIsDown(89)){
+      animationtrigger = 1;
+      if (animationtrigger == 1){
+        startAnimation.draw("returnEarth");
     }
   } else if (keyIsDown(78)) {
     status = "justdied";
@@ -296,8 +310,17 @@ function draw() {
       startAnimation.draw("justdied");
     }
     }
-    
   }
+  
+  else if (status = "returnEarth") {
+    if (animationtrigger == 2){
+      startAnimation.drawClose();
+    }
+    drawStarfield();
+  }
+  
+  
+  
 
   if (uiTextbox.getScore() > 1200 && status === "alive") {
     background(0);

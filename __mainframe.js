@@ -133,6 +133,14 @@ function preload() {
     "https://cdn.glitch.com/48b3940f-dc59-484b-bb22-aaa9c4991ca3%2FStar%20Wars%20Main%20Theme%20(Full).mp3?v=1617319295463"
   );
   terrainPic = loadImage("https://cdn.glitch.com/fb372d77-9c17-4766-a6ef-4c29f473176b%2Fvolcanicterrain.jfif?v=1620149747779");
+  nb_tree = loadModel("assets/tree.obj");
+  nb_tree_2 = loadModel("assets/tree_2.obj");
+  nb_tree_3 = loadModel("assets/tree_3.obj");
+  forestSky = loadImage(
+    "https://cdn.glitch.com/0d62f7df-1918-459f-b472-1f38130432c1%2FVizPeople_non_commercial_hdr_v1_03-1920x928.jpg?v=1620699036011"
+  );
+  grass = loadImage(
+    "https://cdn.glitch.com/0d62f7df-1918-459f-b472-1f38130432c1%2Fgrass2.jpg?v=1619493619708");
 }
 
 
@@ -182,12 +190,14 @@ function setup() {
   for (let i = 0; i < maxStars; i++) {
     fakeStars.push(new Star(0));
   }
+  // For forest
+  grass.resize(500,0)
 }
 
 function mouseClicked() {
   if (status === "start"){
     animationtrigger = 1;
-  }
+  } 
   else if (status === "prologue"){
     animationtrigger = 1;
     frameCount = 0;
@@ -195,6 +205,8 @@ function mouseClicked() {
   else if (status === "died") {
     planets = [];
     status = "justaliveAgain";
+  } else if(status === "returnEarth"){
+    status = "forest"
   }
 }
 
@@ -307,6 +319,9 @@ function draw() {
   if (status == "returnEarth"){
     drawStarfield();
   }
+  else if (status == "forest"){
+    drawForest();
+  }
   
   
   // else if (status = "returnEarth") {
@@ -331,8 +346,10 @@ function keyPressed() {
     }
   }
   
-  if (keyIsDown == "returnEarth"){
-    
+  if (keyIsDown(78)){
+    if (status == "returnQ"){
+      status = "justdied"
+    }
   }
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     started = true;

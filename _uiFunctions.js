@@ -55,6 +55,9 @@ class Textbox {
     else if (status == "died") {
       this.drawEnd();
     }
+    else if (status == "returnEarth") {
+      this.drawReturnEarth();
+    }
     texture(this.graphics);
     translate(0, _H * 0.3, camZ-680);
     plane(this.W, this.H);
@@ -86,6 +89,14 @@ class Textbox {
     this.graphics.text("Oxygen Level: "+oxygen, (2*this.sectionsize) + 10, 10 + 3*this.textsize, this.sectionsize - 10, this.boxHeight)
     this.graphics.text("Water Composition: "+water, (2*this.sectionsize) + 10, 10 + 4*this.textsize, this.sectionsize - 10, this.boxHeight)
     this.graphics.text("Gravity: "+gravity, (2*this.sectionsize) + 10, 10 + 5*this.textsize, this.sectionsize - 10, this.boxHeight)
+  }
+  
+  drawReturnEarth(){
+    this.graphics.text("User Control: \nRight-click to proceed to Earth", 10, 10, this.sectionsize - 10, this.boxHeight);
+  }
+  
+  drawReturnQ(){
+    this.graphics.text("User Control: \nY: Proceed to Earth\nN: Exit", 10, 10, this.sectionsize - 10, this.boxHeight);
   }
   
   drawEnd() {

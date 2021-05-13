@@ -333,7 +333,7 @@ function draw() {
   //   // drawStarfield();
   // }
   
-  if (uiTextbox.getScore() > 800 && status === "alive") {
+  if (uiTextbox.getScore() > 300 && status === "alive") {
     background(0);
     BGM.stop();
     victoryBGM.play();

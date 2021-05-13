@@ -1,14 +1,7 @@
-# p5.js template
+This is the develop version for the game.
 
-Click **"Remix to edit"** that appears at the right top corner!
+Link to the blog post: https://wp.nyu.edu/coulson_idm/2021/04/03/project-ii-may-the-force-be-with-you/
+Link to the stable version: https://may-the-force.glitch.me
 
-[p5.js](https://p5js.org) is a Javascript library for creative coding.
-
-This project is a template for using p5.js from a Content Delivery Network
-(CDN).
-
-## License
-
-This work is licensed under a [Creative Commons
-Attribution-NonCommercial-ShareAlike 4.0 International
-License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+Creators: Coulson Liang, Shangyu Xie, Lucas Gogh
+Course: Creative Coding Lab at NYUSH

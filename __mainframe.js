@@ -217,9 +217,7 @@ function draw() {
     if (animationtrigger == 2){
       startAnimation.drawClose();
     }
-    
     prologueScene(prologue_txt);
-    
     uiTextbox.draw(status);
     if (animationtrigger == 1){
       startAnimation.draw("alive");
@@ -297,7 +295,7 @@ function draw() {
     diedScene();
   }
 
-  if (status === "returnQ") {
+  else if (status === "returnQ") {
     prologueScene(returnQ_txt);
     uiTextbox(status);
       if (keyIsDown(89)){
@@ -314,18 +312,18 @@ function draw() {
       }
   }
   
-  else if (status = "returnEarth") {
-    if (animationtrigger == 2){
-      startAnimation.drawClose();
-    }
-    // drawStarfield();
-  }
+  // else if (status = "returnEarth") {
+  //   if (animationtrigger == 2){
+  //     startAnimation.drawClose();
+  //   }
+  //   // drawStarfield();
+  // }
   
-  if (uiTextbox.getScore() > 1200 && status === "alive") {
+  if (uiTextbox.getScore() > 500 && status === "alive") {
     background(0);
     BGM.stop();
     victoryBGM.play();
-    animationtrigger == 1;
+    animationtrigger = 1;
     if (animationtrigger == 1){
       startAnimation.draw("returnQ");
     }

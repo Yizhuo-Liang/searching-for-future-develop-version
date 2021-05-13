@@ -106,7 +106,7 @@ class T {
       }
     }
 
-    orbitControl();
+    
     push();
 
     flying -= this.flying_speed; // decrease noise space every cycle

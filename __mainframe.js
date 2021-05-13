@@ -213,11 +213,13 @@ function draw() {
     return
   }
   
-  if (status === "prologue"){
+  else if (status === "prologue"){
     if (animationtrigger == 2){
       startAnimation.drawClose();
     }
+    
     prologueScene(prologue_txt);
+    
     uiTextbox.draw(status);
     if (animationtrigger == 1){
       startAnimation.draw("alive");
@@ -298,30 +300,27 @@ function draw() {
   if (status === "returnQ") {
     prologueScene(returnQ_txt);
     uiTextbox(status);
-    if (keyIsDown(89)){
+      if (keyIsDown(89)){
       animationtrigger = 1;
       if (animationtrigger == 1){
         startAnimation.draw("returnEarth");
-    }
-  } else if (keyIsDown(78)) {
-    status = "justdied";
-    animationtrigger = 1;
-    if (animationtrigger == 1){
-      startAnimation.draw("justdied");
-    }
-    }
+      }
+      }else if (keyIsDown(78)) {
+        status = "justdied";
+        animationtrigger = 1;
+        if (animationtrigger == 1){
+          startAnimation.draw("justdied");
+        }
+      }
   }
   
   else if (status = "returnEarth") {
     if (animationtrigger == 2){
       startAnimation.drawClose();
     }
-    drawStarfield();
+    // drawStarfield();
   }
   
-  
-  
-
   if (uiTextbox.getScore() > 1200 && status === "alive") {
     background(0);
     BGM.stop();

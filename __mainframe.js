@@ -281,16 +281,32 @@ function draw() {
     diedScene();
   }
 
-  if (status === "victory") {
-    victoryScene();
-    ship1.draw(camX, camY, camZ - 450, 15, tiltZ, tiltX, spaceship);
+  if (status === "returnQ") {
+    prologueScene(returnQ_txt);
+    uiTextbox(status);
+  if (keyIsDown(89)){
+    animationtrigger = 1;
+    if (animationtrigger == 1){
+      startAnimation.draw("return");
+    }
+  } else if (keyIsDown(78)) {
+    status = "justdied";
+    animationtrigger = 1;
+    if (animationtrigger == 1){
+      startAnimation.draw("justdied");
+    }
+    }
+    
   }
 
   if (uiTextbox.getScore() > 1200 && status === "alive") {
     background(0);
     BGM.stop();
     victoryBGM.play();
-    status = "victory";
+    animationtrigger == 1;
+    if (animationtrigger == 1){
+      startAnimation.draw("returnQ");
+    }
   }
 }
 

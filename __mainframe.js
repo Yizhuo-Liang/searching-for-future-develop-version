@@ -295,16 +295,16 @@ function draw() {
     diedScene();
   }
 
-  else if (status === "returnQ") {
+  else if (status == "returnQ") {
+    if (animationtrigger == 2){
+      startAnimation.drawClose();
+    }
     prologueScene(returnQ_txt);
     uiTextbox(status);
       if (keyIsDown(89)){
-      animationtrigger = 1;
-      if (animationtrigger == 1){
+        animationtrigger = 1;
         startAnimation.draw("returnEarth");
-      }
-      }else if (keyIsDown(78)) {
-        status = "justdied";
+      } else if (keyIsDown(78)) {
         animationtrigger = 1;
         if (animationtrigger == 1){
           startAnimation.draw("justdied");

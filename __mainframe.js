@@ -230,6 +230,7 @@ function draw() {
   }
 
   if (status === "alive") {
+    prologue_y = height / 2;
     if (animationtrigger == 2){
       startAnimation.drawClose();
     }
@@ -299,19 +300,14 @@ function draw() {
     if (animationtrigger == 2){
       startAnimation.drawClose();
     }
-    prologue_y = height / 2;
+    background(0);
     prologueScene(returnQ_txt);
     uiTextbox.draw(status);
-    if (keyIsDown(89)){
-      animationtrigger = 1;
-      startAnimation.draw("returnEarth");
-      } else if (keyIsDown(78)) {
-      animationtrigger = 1;
-        if (animationtrigger == 1){
-          startAnimation.draw("justdied");
-        }
-      }
   }
+  if (status == "returnEarth"){
+    drawStarfield();
+  }
+  
   
   // else if (status = "returnEarth") {
   //   if (animationtrigger == 2){
@@ -330,10 +326,13 @@ function draw() {
 
 function keyPressed() {
   if (keyIsDown(89)){
-    if (status == "returnEarth"){
-      animationtrigger = 1;
+    if (status == "returnQ"){
       status = "returnEarth"
     }
+  }
+  
+  if (keyIsDown == "returnEarth"){
+    
   }
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
     started = true;
